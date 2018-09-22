@@ -1,0 +1,291 @@
+﻿<div ng-controller="pluginCtrl" class="content-wrapper">
+    <div class="container">
+        <div class="col-md-7">
+            <span class="header-line">插件管理</span>
+            <!--span class="PMsearch">
+                <input class="span2" type="text" placeholder="输入插件名称">
+                <button><span ng-click="searchPG()" title="搜索"><i class="glyphicon glyphicon-search"></i> </span></button>
+            </span-->
+            <!--div id="box">
+                <ul>
+                    <li>这是1个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    <li>这是2个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    <li>这是3个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    <li>这是4个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    <li>这是5个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    <li>这是6个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    <li>这是7个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    <li>这是8个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    <li>这是9个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                </ul>
+            </div-->
+        </div>
+
+        <!--模块控件-->
+
+        <div id="pluginIcon">
+            <div ng-repeat="item in pluginGroups" ng-click="showAll(item)" class="chooseBtn pluginChoose" ng-style="item.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
+                <div>
+                    <span data-toggle="modal" data-target="#SMDetail" class="itemp"></span>
+                    <span title="插件管理"><i class="fa fa-plug fa-2x"></i></span>
+                    <p class="stylePulgin">{{item.name}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!--右侧表格显示（上部）-->
+        <div class="pluginRightView">
+            <div class="pluginChart">
+                <div class="PluginInfo">
+                    <p>插件基本信息</p>
+                </div>
+                <div class="displayPosition">
+                    <p>插件名称：{{name}}</p>
+                    <p>插件url：{{url}}</p>
+                    <p>插件描述：{{describe}}</p>
+                    <p id="changeState">插件状态：<span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
+                        <i ng-class="{true:'fa fa-refresh fa-spin',false:'fa fa-refresh'}[isActive]"></i>
+                        {{pluginStateDisplay.state}}</span>
+                    </p>
+                </div>
+                <div class="btnPosition">
+                    <button class="btn btn-success user tenant" data-toggle="modal"
+                            data-target="#refreshDevice"  ng-click="activePlugin()">激活插件</button>
+                    <button class="btn btn-danger user tenant" data-toggle="modal"
+                            data-target="#refreshDevice"  ng-click="stopPlugin()">暂停插件</button>
+                    <button id="runingStatus" class="btn btn-primary" data-toggle="modal"
+                            data-target="#operatingStatus">运行状态</button>
+                </div>
+            </div>
+
+
+            <div class="displayInterface">
+                <div class="PluginInterfaceInfo">
+                    <p>插件接口信息</p>
+                </div>
+                <div class="interfaceInfo">
+                    <ul>
+                        <li class="inlinInter">内外接口<span class="interName">接口名称</span></li>
+                        <li ng-repeat="inter in interfaceArray">{{inter.value}}接口:&nbsp{{inter.name}}</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+    <!--插件运行状态显示模态框-->
+    <div class="modal fade" id="operatingStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h3 class="modal-title" id="myModalLabel" style="color: #305680;font-weight: 600">
+                    插件运行信息MESSAGE
+                </h3>
+            </div>
+            <div class="modal-body">
+                <h4>插件被请求次数：<strong style="color: #305680">{{frameBody}}</strong></h4><hr>
+                <h4><strong style="color: #305680">{{name}}</strong> 中MailController被请求次数：<strong style="color: #305680">{{MailController}}</strong></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--创建插
+     <span style="margin-left: 160px" ng-init="firstState='SUSPEND'">
+                    <i class="glyphicon glyphicon-ok" ng-bind="firstState">{{state}}</i>
+                    </span>
+
+    <p class="stylePulgin">插件url：{{itemp.url}}</p>
+                        <p class="stylePulgin"> 描述：{{itemp.describe}}</p>
+
+    <span class="pluginActiveposition" data-toggle="modal" data-target="#activePG">
+                    <i class="glyphicon glyphicon-play" title="激活" ng-click="activePG()"></i>
+                    </span>
+                    <span class="pluginStopposition" data-toggle="modal" data-target="#stopPG">
+                    <i class="glyphicon glyphicon-pause" title="暂停"></i>
+                </span>
+
+
+    件界面-->
+<!--div class="modal fade" id="addPluginGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h3 class="modal-title" style="color: #305680;font-weight: 600" >
+                    添加插件
+                </h3>
+            </div>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    <span style="color: red;">*</span>名称
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" class="add form-control" placeholder="必填" ng-model="$parent.addDGName">
+                </div>
+            </div>
+            <br/>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    &nbsp;&nbsp;描述
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" class="add form-control" placeholder="必填" ng-model="$parent.addDGName">
+                </div>
+            </div>
+            <br/>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    <span style="color: red;">*</span>API令牌
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" class="add form-control" placeholder="必填" ng-model="$parent.addDGName">
+                </div>
+            </div>
+            <br/>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    <span style="color: red;">*</span>插件类型
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" class="add form-control" style="pixels: 300px" placeholder="REST API Call Plugin" ng-model="$parent.addDGName">
+                </div>
+            </div>
+            <br/>
+            <div class="modal-body">
+                <span style="color: #8a6d3b;font-weight: 600;font-size: 20px">插件管理</span>
+            </div>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    <span style="color: red;">*</span>URI Scheme name
+                </label>
+                <div class="col-sm-9">
+                    <select class="form-control" type="text" style="pixels: 300px" placeholder="必填" ng-model="$parent.add">
+                        <option value="HTTP">HTTP</option>
+                        <option value="HTTPS">HTTPS</option>
+                    </select>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3"></div>
+            </div>
+            <br/>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    <span style="color: red;">*</span>Host
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" class="add form-control" placeholder="必填" ng-model="$parent.addDGName">
+                </div>
+            </div>
+            <br/>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    <span style="color: red;">*</span>Port
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" class="add form-control" placeholder="必填" ng-model="$parent.addDGName">
+                </div>
+            </div>
+            <br/>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    <span style="color: red;">*</span>Base Path
+                </label>
+                <div class="col-sm-9">
+                    <input type="text" class="add form-control" placeholder="必填" ng-model="$parent.addDGName">
+                </div>
+            </div>
+            <br/>
+            <div class="modal-body">
+                <label class="col-sm-3 control-label" style="text-align: left">
+                    <span style="color: red;">*</span>Authentication method
+                </label>
+                <div class="col-sm-9">
+                    <select class="form-control" type="text" style="pixels: 300px" placeholder="必填" ng-model="$parent.add">
+                        <option value="No-authentication">No authentication</option>
+                        <option value="Basic-authentication">Basic authentication</option>
+                    </select>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-basic" ng-click="addDG()">
+                    创建
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div-->
+
+    <!--激活插件界面-->
+<!--div class="modal fade" id="activePG" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    激活插件
+                </h4>
+            </div>
+            <div class="modal-body">
+                确定激活此插件？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+                <button type="button" class="btn btn-basic"  ng-click="activePlugin()">
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div-->
+
+
+<!--暂停插件界面-->
+    <!--div class="modal fade" id="stopPG" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myodalLabel">
+                        暂停插件
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    确定暂停此插件？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="button" class="btn btn-basic"  ng-click="stopPlugin()">
+                        确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div-->
+</div>

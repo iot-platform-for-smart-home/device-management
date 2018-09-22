@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>数据分析平台</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css" media="all" />
+
+    <style>
+        section { width: 30%; display: inline-block; vertical-align: top; margin: 1%; background: transparent; border-radius: 5px; }
+
+        @media only screen and (max-width: 600px) {
+            section { min-width: 350px; }
+        }
+        .loader { position: relative; width: 60px; height: 60px; border-radius: 50%; margin: 75px; display: inline-block; vertical-align: middle; }
+        .loader-star { position: absolute; top: calc(50% - 12px); }
+        /*LOADER-2*/
+
+        .loader-2 .loader-star { position: static; width: 60px; height: 60px; -webkit-transform: scale(0.7); transform: scale(0.7); -webkit-animation: loader-2-star 1s ease alternate infinite; animation: loader-2-star 1s ease alternate infinite; }
+        .loader-2 .loader-circles { width: 8px; height: 8px; background: #18ffff; border-radius: 50%; position: absolute; left: calc(50% - 4px); top: calc(50% - 4px); -webkit-transition: all 1s ease; transition: all 1s ease; -webkit-animation: loader-2-circles 1s ease-in-out alternate infinite; animation: loader-2-circles 1s ease-in-out alternate infinite; }
+        /* ----------------     KEYFRAMES    ----------------- */
+
+        @-webkit-keyframes loader-2-circles {
+            0% {
+                box-shadow: 0 0 0 #18ffff;
+                opacity: 1;
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            50% {
+                box-shadow: 24px -22px #18ffff, 30px -15px 0 -3px #18ffff, 31px 0px #18ffff, 29px 9px 0 -3px #18ffff, 24px 23px #18ffff, 17px 30px 0 -3px #18ffff, 0px 33px #18ffff, -10px 28px 0 -3px #18ffff, -24px 22px #18ffff, -29px 14px 0 -3px #18ffff, -31px -3px #18ffff, -30px -11px 0 -3px #18ffff, -20px -25px #18ffff, -12px -30px 0 -3px #18ffff, 5px -29px #18ffff, 13px -25px 0 -3px #18ffff;
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+                box-shadow: 25px -22px #18ffff, 15px -22px 0 -3px black, 31px 2px #18ffff, 21px 2px 0 -3px black, 23px 25px #18ffff, 13px 25px 0 -3px black, 0px 33px #18ffff, -10px 33px 0 -3px black, -26px 24px #18ffff, -19px 17px 0 -3px black, -32px 0px #18ffff, -23px 0px 0 -3px black, -25px -23px #18ffff, -16px -23px 0 -3px black, 0px -31px #18ffff, -2px -23px 0 -3px black;
+            }
+        }
+        @keyframes loader-2-circles {
+            0% {
+                box-shadow: 0 0 0 #18ffff;
+                opacity: 1;
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            50% {
+                box-shadow: 24px -22px #18ffff, 30px -15px 0 -3px #18ffff, 31px 0px #18ffff, 29px 9px 0 -3px #18ffff, 24px 23px #18ffff, 17px 30px 0 -3px #18ffff, 0px 33px #18ffff, -10px 28px 0 -3px #18ffff, -24px 22px #18ffff, -29px 14px 0 -3px #18ffff, -31px -3px #18ffff, -30px -11px 0 -3px #18ffff, -20px -25px #18ffff, -12px -30px 0 -3px #18ffff, 5px -29px #18ffff, 13px -25px 0 -3px #18ffff;
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+                box-shadow: 25px -22px #18ffff, 15px -22px 0 -3px black, 31px 2px #18ffff, 21px 2px 0 -3px black, 23px 25px #18ffff, 13px 25px 0 -3px black, 0px 33px #18ffff, -10px 33px 0 -3px black, -26px 24px #18ffff, -19px 17px 0 -3px black, -32px 0px #18ffff, -23px 0px 0 -3px black, -25px -23px #18ffff, -16px -23px 0 -3px black, 0px -31px #18ffff, -2px -23px 0 -3px black;
+            }
+        }
+        @-webkit-keyframes loader-2-star {
+            0% {
+                -webkit-transform: scale(0) rotate(0deg);
+                transform: scale(0) rotate(0deg);
+            }
+            100% {
+                -webkit-transform: scale(0.7) rotate(360deg);
+                transform: scale(0.7) rotate(360deg);
+            }
+        }
+        @keyframes loader-2-star {
+            0% {
+                -webkit-transform: scale(0) rotate(0deg);
+                transform: scale(0) rotate(0deg);
+            }
+            100% {
+                -webkit-transform: scale(0.7) rotate(360deg);
+                transform: scale(0.7) rotate(360deg);
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/style.css" media="all" />
+
+</head>
+<body>
+
+<div class="testing">
+    <section class="user" style="border-bottom:1px solid white;margin-bottom: 10px">
+        <div style="float: left;width: 40%;height: 26px;padding: 25px 0 0 25px">
+            <p style="font-size: 24px;color: white;margin: 0">大数据平台</p>
+        </div>
+        <div class="buttons" style="width: 55%;padding-top: 15px">
+            <a href="device1.html"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px; margin-left: 11%" value="首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页"/></a>
+            <a href="ocean.html"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px" value="海量分析"/></a>
+            <a href="statistics1.html"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px" value="数据分析"/></a>
+            <ul id="dropzone" style="float: left; width: 12%;margin-left: 5px">
+                <li style="width: 100%"><a href="model.html"><input type="button" style="background:#ffffff;color: #000000;width: 100%; height:38px;font-size: 12px;margin: 0" value="模型管理"/></a></li>
+                <li style="width: 100%; display:none;" id="dropli"><a href="modelentity.html"><input type="button" style="width: 100%; height:38px;font-size: 12px;margin: 0" value="模型应用"/></a></li>
+            </ul>
+            <a href="pre.html"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px" value="预测管理"/></a>
+            <a href="/home?TENANT_ADMIN&2&1"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px" value="返回上一级"/></a>
+            <input type="button" value="退&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出" style="width: 12%; float: left; height:38px;font-size: 12px" onclick="quitThings()" />
+            <!--<a href="../login/chooseIndex.html"><span class="button">返回物管理 <span class="pip">6</span></span></a>-->
+            <!--<a href="../login/index.html"><span class="button blue">退出</span></a>-->
+        </div>
+    </section>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">实例详情</h4>
+            </div>
+            <div class="modal-body" id="modelSelect">
+                <p id="view1"></p>
+                <p id="view2"></p>
+                <p id="view3"></p>
+                <p id="view4"></p>
+                <p id="view5"></p>
+                <p id="view6"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeModal" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<div style="width: 100%;height:40px;background: transparent;color: white;margin-top: 2%"><p style=" margin-left: 35px;margin-top: 10px;float: left; font-size: 16px">模型实例</p>
+    <a href="model.html"><button style="float: right;margin-right: 20px">查看数据模型</button></a>
+</div>
+
+<div id="YWaitDialog1" class="container" style="display: none">
+    <section style="position: absolute;margin-left:32%; margin-top:10%;">
+        <div class="loader loader-2">
+            <svg class="loader-star" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+                <polygon points="29.8 0.3 22.8 21.8 0 21.8 18.5 35.2 11.5 56.7 29.8 43.4 48.2 56.7 41.2 35.1 59.6 21.8 36.8 21.8 " fill="#18ffff" />
+            </svg>
+            <div class="loader-circles"></div>
+        </div>
+    </section>
+</div>
+
+<!--<div>
+<input type="button" value="click" id="test"/>
+</div>
+<script type="text/javascript">
+    $('test').onclick(
+        function () {
+            $('main').css("background","#208ed3");
+        }
+    )
+</script>-->
+
+<!--<script type="text/javascript">
+
+    var copydiv = document.getElementById("divcard");
+    for(var i=0;i<14;i++){
+        var clonediv = copydiv.cloneNode(true);
+        clonediv.setAttribute("id","divcard-"+i);
+        var clonename = clonediv.getElementsByTagName("p");
+        clonename[0].innerText="设备 No-"+(i+2);
+        copydiv.parentNode.appendChild(clonediv);
+
+    }
+</script>-->
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/common.js"></script>
+<script src="js/getUrlParam.js"></script>
+<script src="js/starttoend.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/getModelentity.js"></script>
+</body>
+</html>

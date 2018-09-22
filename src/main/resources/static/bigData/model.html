@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>数据分析平台</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css" media="all" />
+    <link rel="stylesheet" href="css/style.css" media="all" />
+
+</head>
+<body>
+
+<div class="testing">
+    <section class="user" style="border-bottom:1px solid white;margin-bottom: 10px">
+        <div style="float: left;width: 40%;height: 26px;padding: 25px 0 0 25px">
+            <p style="font-size: 24px;color: white;margin: 0">大数据平台</p>
+        </div>
+        <div class="buttons" style="width: 55%;padding-top: 15px">
+            <a href="device1.html"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px; margin-left: 11%" value="首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页"/></a>
+            <a href="ocean.html"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px" value="海量分析"/></a>
+            <a href="statistics1.html"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px" value="数据分析"/></a>
+            <ul id="dropzone" style="float: left; width: 12%;margin-left: 5px">
+                <li style="width: 100%"><a href="model.html"><input type="button" style="background:#ffffff;color: #000000;width: 100%; height:38px;font-size: 12px;margin: 0" value="模型管理"/></a></li>
+                <li style="width: 100%; display:none;" id="dropli"><a href="modelentity.html"><input type="button" style="width: 100%; height:38px;font-size: 12px;margin: 0" value="模型应用"/></a></li>
+            </ul>
+            <a href="pre.html"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px" value="预测管理"/></a>
+            <a href="/home?TENANT_ADMIN&2&1"><input type="button" style="width: 12%; float: left; height:38px;font-size: 12px" value="返回上一级"/></a>
+            <input type="button" value="退&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出" style="width: 12%; float: left; height:38px;font-size: 12px" onclick="quitThings()" />
+            <!--<a href="../login/chooseIndex.html"><span class="button">返回物管理 <span class="pip">6</span></span></a>-->
+            <!--<a href="../login/index.html"><span class="button blue">退出</span></a>-->
+        </div>
+    </section>
+</div>
+
+<!--<div id="main1" style="width: 100%;margin-left: 20px">
+    <h1 style="color: white;font-size: 16px;margin-top:30px; margin-left: 1%">通用模型</h1>
+</div>-->
+
+<div style="width: 100%;height:40px;background: transparent;color: white;margin-top: 20px"><p style=" margin-left: 35px;margin-top: 10px;float: left; font-size: 16px">通用模型</p>
+    <a href="modelentity.html"><button style="float: right;margin-right: 20px;margin-top: 3px">查看模型实例</button></a>
+</div>
+<!--<div id="main2" style="width: 100%;margin-top:250px;margin-left:20px;font-size:16px">
+    <h1 style="color: white;font-size: 16px; margin-left: 1%">自定义模型</h1>
+</div>-->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body" id="modelSelect"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="modelchange" type="button" class="btn btn-primary">添加实例</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel1">模型详情</h4>
+            </div>
+            <div class="modal-body" id="modelSelect1">
+                <p id="view1"></p>
+                <p id="view2"></p>
+                <p id="view3"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!--<div>
+<input type="button" value="click" id="test"/>
+</div>
+<script type="text/javascript">
+    $('test').onclick(
+        function () {
+            $('main').css("background","#208ed3");
+        }
+    )
+</script>-->
+
+<!--<script type="text/javascript">
+
+    var copydiv = document.getElementById("divcard");
+    for(var i=0;i<14;i++){
+        var clonediv = copydiv.cloneNode(true);
+        clonediv.setAttribute("id","divcard-"+i);
+        var clonename = clonediv.getElementsByTagName("p");
+        clonename[0].innerText="设备 No-"+(i+2);
+        copydiv.parentNode.appendChild(clonediv);
+
+    }
+</script>-->
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/common.js"></script>
+<script src="js/getUrlParam.js"></script>
+<script src="js/starttoend.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/getModel.js"></script>
+</body>
+</html>

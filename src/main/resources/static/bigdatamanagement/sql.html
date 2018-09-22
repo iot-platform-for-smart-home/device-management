@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!-- Required Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/mws.style.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="css/icons/icons.css" media="screen"/>
+
+    <link rel="stylesheet" type="text/css" href="css/text.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/fluid.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/jui/jquery.ui.css" media="screen" />
+
+    <!-- Theme Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/mws.theme.css" media="screen"/>
+
+    <!-- codemirror -->
+    <link rel="stylesheet" type="text/css" href="plugins/codemirror/codemirror.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="plugins/codemirror/show-hint.css" media="screen"/>
+
+    <!--zTree-->
+    <link rel="stylesheet" type="text/css" href="plugins/ztree/zTreeStyle/zTreeStyle.css" media="screen"/>
+
+    <title>SQL</title>
+
+</head>
+
+<body>
+
+<div id="mws-header" class="clearfix">
+    <div id="mws-logo-wrap">
+        <p style="color: white;font-size: 24px;margin-top: 13px;margin-left: 15px">大数据平台</p>
+    </div>
+</div>
+
+<div id="mws-wrapper">
+    <div id="mws-sidebar-stitch"></div>
+    <div id="mws-sidebar-bg"></div>
+    <div id="mws-sidebar">
+        <div id="mws-navigation">
+            <ul>
+                <li><a href="../bigData/device1.html" class="mws-i-24 i-home">Dashboard</a></li>
+                <li><a href="table.html" class="mws-i-24 i-list">数据管理</a></li>
+                <ul>
+                    <li id="ul1" style="background: #3b3d47"><a href="#" class="mws-i-24 i-list">数据ETL</a></li>
+                    <li style="background: #000000"><a href="etl.html" class="mws-i-24 i-chart">数据ETL处理</a></li>
+                    <li style="background: #000000"><a href="etl1.html" class="mws-i-24 i-chart">已有数据ETL</a></li>
+                    <li style="background: #000000"><a href="etl2.html" class="mws-i-24 i-chart">上传数据ETL</a></li>
+                </ul>
+                <ul>
+                    <li id="ul2" style="background: #3b3d47"><a style="color: #c8d350" href="#" class="mws-i-24 i-list">数据分析</a></li>
+                    <li style="background: #000000"><a style="color: #c8d350" href="sql.html" class="mws-i-24 i-polaroids">SQL</a></li>
+                    <li style="background: #000000"><a href="../bigData/ocean.html"
+                                                       class="mws-i-24 i-polaroids">常规分析</a></li>
+                    <li style="background: #000000"><a href="../bigData/statistics1.html" class="mws-i-24 i-polaroids">数据分析</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li id="ul3" style="background: #3b3d47"><a href="#" class="mws-i-24 i-list">数据预测</a></li>
+                    <li style="background: #000000"><a href="predict.html" class="mws-i-24 i-blocks-images">预测管理</a></li>
+                    <li style="background: #000000"><a href="../bigData/pre.html" class="mws-i-24 i-blocks-images">预测结果</a></li>
+                    <li style="background: #000000"><a href="model.html" class="mws-i-24 i-blocks-images">预测模型管理</a></li>
+                </ul>
+                <ul>
+                    <li id="ul4" style="background: #3b3d47"><a href="#" class="mws-i-24 i-list">数据挖掘</a></li>
+                    <li style="background: #000000"><a href="datadig.html" class="mws-i-24 i-cog">数据挖掘</a></li>
+                    <li style="background: #000000"><a href="model1.html" class="mws-i-24 i-cog">挖掘模型管理</a></li>
+                </ul>
+                <li><a href="http://39.104.186.210:8888" class="mws-i-24 i-list">线上开发</a></li>
+                <li><a href="/home?TENANT_ADMIN&2&1" class="mws-i-24 i-alert-2">返回上一级</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="mws-container" class="clearfix">
+        <div class="container">
+            <div class="mws-panel grid_8">
+                <!--<fieldset style="border:none;border-top:1px solid #cec9c9;margin:10px 0 20px;">-->
+                    <!--<legend style="font-size: 20px;font-weight: 300;padding: 0 10px;margin-left: 20px">请输入SQL查询语句-->
+                    <!--</legend>-->
+                <!--</fieldset>-->
+                <div class="mws-panel-header">
+                    <span class="mws-i-24 i-list">请输入SQL查询语句</span>
+                </div>
+                <div class="mws-panel-body">
+                    <div class="mws-form-row" style="height:350px;">
+                        <div style="float: left;width: 20%;height: 100%;background: #f0f6e4">
+                            <div style="text-align: center;margin-top: 5px">数据库目录树</div>
+                            <ul id="filetree" class="ztree" style="height:85%;background: #f0f6e4;overflow-y:scroll;overflow-x:auto;"></ul>
+                        </div>
+                        <textarea rows="5" placeholder="请输入SQL语句..." name="SQLcode" id="SQLcode" style="height: 340px;width: 870px;font-size: 16px">select * from user;</textarea><br>
+                    </div>
+                </div>
+                <div>
+                    <div style="float: right">
+                        <button id="search" style="margin:10px;cursor: pointer;height: 30px;line-height: 30px;background-color: #3b3c3f;color: #fff;text-align: center;border: none;border-radius: 2px">查询</button>
+                    </div>
+                    <span style="color:#3a3d43;">*&nbsp;Ctrl键开启代码提示功能</span>
+                </div>
+                <fieldset style="border:none;border-top:1px solid #cec9c9;margin:30px 0 20px;">
+                    <legend style="font-size: 20px;font-weight: 300;padding: 0 10px;margin-left: 20px">查询结果</legend>
+                </fieldset>
+                <table class="mws-table" id="querytable">
+                    <thead id="thead"></thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="plugins/ztree/jquery.ztree.core.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+<script type="text/javascript" src="plugins/codemirror/codemirror.js"></script>
+<script type="text/javascript" src="plugins/codemirror/show-hint.js"></script>
+<script type="text/javascript" src="plugins/codemirror/sql-hint.js"></script>
+<script type="text/javascript" src="plugins/codemirror/sql.js"></script>
+<!--<script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById("SQLcode"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: 'text/x-sql',
+        indentUnit: 4,
+        indentWithTabs: true,
+        smartIndent: true,
+        extraKeys: {"Ctrl": 'autocomplete'},
+        showCursorWhenSelecting: true
+    });
+    editor.setSize('800px', '350px');
+</script>-->
+
+<script type="text/javascript">
+
+    var dir="plugins/ztree/zTreeStyle/img/diy/";
+    //zTree
+    var zTreeObj;
+    // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+    var setting = {};
+    // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+    /*var zNodes = [
+        {name:"user",icon:dir+"table.png", open:false, children:[
+            {name:"id",icon:dir+"byte.png"},
+            {name:"addition_info",icon:dir+"byte.png"},
+            {name:"authority",icon:dir+"byte.png"},
+            {name:"customer_id",icon:dir+"byte.png"},
+            {name:"email",icon:dir+"byte.png"},
+            {name:"name",icon:dir+"byte.png"},
+            {name:"tenant_id",icon:dir+"byte.png"}]},
+        {name:"app",icon:dir+"table.png", open:false, children:[
+            {name:"app_id",icon:dir+"byte.png"},
+            {name:"app_name",icon:dir+"byte.png"},
+            {name:"model_id",icon:dir+"byte.png"},
+            {name:"app_input",icon:dir+"byte.png"},
+            {name:"app_output",icon:dir+"byte.png"},
+            {name:"tenant_id",icon:dir+"byte.png"},
+            {name:"stop_time",icon:dir+"byte.png"}]},
+        {name:"data_model",icon:dir+"table.png", open:false, children:[
+            {name:"model_id",icon:dir+"byte.png"},
+            {name:"model_name",icon:dir+"byte.png"},
+            {name:"model_desc",icon:dir+"byte.png"},
+            {name:"model_input",icon:dir+"byte.png"},
+            {name:"model_path",icon:dir+"byte.png"},
+            {name:"tenant_id",icon:dir+"byte.png"}]},
+        {name:"tenant",icon:dir+"table.png", open:false, children:[
+            {name:"id",icon:dir+"byte.png"},
+            {name:"addition_info",icon:dir+"byte.png"},
+            {name:"address",icon:dir+"byte.png"},
+            {name:"email",icon:dir+"byte.png"},
+            {name:"phone",icon:dir+"byte.png"},
+            {name:"title",icon:dir+"byte.png"}]},
+        {name:"data",icon:dir+"table.png", open:false, children:[
+            {name:"tenant_id",icon:dir+"byte.png"},
+            {name:"device_id",icon:dir+"byte.png"},
+            {name:"device_type",icon:dir+"byte.png"},
+            {name:"value",icon:dir+"byte.png"},
+            {name:"timestamp",icon:dir+"byte.png"}]},
+        {name:"devicesmodel",icon:dir+"table.png", open:false, children:[
+            {name:"id",icon:dir+"byte.png"},
+            {name:"tenantId",icon:dir+"byte.png"},
+            {name:"name",icon:dir+"byte.png"},
+            {name:"deviceId",icon:dir+"byte.png"},
+            {name:"siteId",icon:dir+"byte.png"},
+            {name:"deviceModelUrl",icon:dir+"byte.png"},
+            {name:"compressStatus",icon:dir+"byte.png"},
+            {name:"ossStatus",icon:dir+"byte.png"},
+            {name:"location",icon:dir+"byte.png"},
+            {name:"createAt",icon:dir+"byte.png"},
+            {name:"updateAt",icon:dir+"byte.png"},
+            {name:"version",icon:dir+"byte.png"}]}
+    ];*/
+    var zNodes = [];
+    $(document).ready(function(){
+
+        $.get("http://127.0.0.1:8092/api/sql/tables",function (data) {
+            for (var i=0; i<data.length; i++){
+                var table_name = data[i].table_name;
+                var field =[];
+                for (var j=0; j<data[i].cloumns.length; j++){
+                    field.push({name:data[i].cloumns[j],icon:dir+"byte.png"})
+                }
+                zNodes.push({name:table_name,icon:dir+"table.png", open:false, children:field});
+                zTreeObj = $.fn.zTree.init($("#filetree"), setting, zNodes);
+            }
+        });
+
+        $("#search").click(
+            function () {
+                var code = $("#SQLcode").val();
+                $.get("http://127.0.0.1:8092/api/sql/exec-sql?sql="+code,function (data) {
+                    $("#thead").empty();
+                    $("#tbody").empty();
+                    $tr = $("<tr></tr>");
+                    for (var item in data[0]){
+                        $th = $("<th>"+item+"</th>");
+                        $tr.append($th);
+                    }
+                    $("#thead").append($tr);
+                    for (var i=0; i<data.length; i++){
+                        $tr = $("<tr></tr>");
+                        for (var item in data[i]){
+                            $td = $("<td>"+data[i][item]+"</td>");
+                            $tr.append($td);
+                        }
+                        $("#tbody").append($tr);
+                    }
+                })
+            }
+        )
+    })
+</script>
+</body>
+</html>

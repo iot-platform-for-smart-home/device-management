@@ -1,0 +1,938 @@
+﻿
+/*======================================
+    GENERAL STYLES
+======================================= */
+
+.b-clr {
+    color:#000;
+}
+.sec-menu {
+    background-color:#468847;
+    padding-top:20px;
+    padding-bottom:15px;
+    color:#fff;
+    font-size:22px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+.content-wrapper {
+    min-height:1000px;
+    min-width:954px;
+    background: rgb(238,238,238);
+    padding-left: 6%;
+    margin-top: 50px;
+}
+.content-wrapper .container{
+    width: 100%;
+}
+
+
+
+/* =============================================================
+HEAD MENU STYLES
+============================================================ */
+.upSideMenu{
+    font-size: 16px;
+}
+#userCenter{
+    /*margin-left: 500px;*/
+    position:absolute;
+    right:50px;
+    cursor: pointer;
+}
+#backIcon{
+    margin-left: 25px;
+}
+#dropQuit{
+    color: #ffffff;
+    cursor: pointer;
+}
+#headMenuFont{
+    /*color: #cacaca;*/
+    font-family: 'Adobe 黑体 Std R';
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+
+.dropdown-user {
+    left: -100px;
+}
+
+.dropdown-user li{
+    margin:9px 2px;
+    font-size: 14px;
+}
+#logout{
+    cursor: pointer;
+}
+
+
+
+/* =============================================================
+   SIDE MENU STYLES
+ ============================================================ */
+
+#side-menu {
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background-color: #468847;
+    color: #fff;
+    z-index: 999;
+    overflow: auto;
+    max-width: 500px;
+
+}
+
+#side-menu ul {
+    list-style: none;
+    padding: 0px;
+}
+
+#side-menu ul li {
+    border-bottom: 1px solid #468847;
+    text-align: left;
+}
+#side-menu ul .userMenu{
+    padding: 17px 25px;
+}
+#side-menu ul .systemMenu{
+    padding: 17px 25px;
+}
+#side-menu ul .tenantMenu{
+    padding: 15px 25px;
+}
+
+#side-menu ul li a i {
+    padding-right: 10px;
+}
+
+#side-menu ul li a, #side-menu ul li a:hover {
+    color: #cad4df;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.menu-close-icon, .menu-open-icon {
+    cursor: pointer;
+
+}
+.fontStyle{
+    font-size: 20px;
+}
+.textStyle{
+    font-size: 18px;
+    font-weight: bold;
+}
+#searchKey{
+    height: 34px;
+}
+#attrSelectInfoTd{
+    vertical-align: middle;
+}
+
+
+
+
+
+/* =============================================================
+ICON STYLES
+============================================================ */
+
+ul,li{
+    list-style: none;
+
+}
+
+.homeIconBackground{
+    width: 200px;
+    height: 200px;
+    background:#468847;
+    border-radius: 30px;
+    margin-top: 50px;
+    margin-left: 150px;
+    float: left;
+    cursor: pointer;
+
+}
+.homeIcon{
+
+    color: #ffffff;
+    font-size: 50px;
+    margin-top: 50px;
+    margin-left: 70px;
+}
+.homeIconName{
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+.chooseBtn{
+    margin-top: 3%;
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 20px;
+    width: 150px;
+    height: 100px;
+    border: 2px solid #c0c0c0;
+    float: left;
+    border-radius: 10px;
+    background: white;
+}
+.chooseBtn div i{
+    color: #468847;
+    font-size: 30px;
+    text-align: center;
+    display: block;
+}
+.chooseBtn div p{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-basic {
+    color: #fff;
+    background-color: #348835;
+    border-color: #38883c;
+}
+
+.btn-basic:hover,
+.btn-basic:focus,
+.btn-basic.focus,
+.btn-basic:active,
+.btn-basic.active,
+.open > .dropdown-toggle.btn-basic {
+    color: #fff;
+    background-color: #046602;
+    border-color: #348835;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    background-image: none;
+}
+
+/* =============================================================
+DEVICELIST STYLES
+============================================================ */
+#deviceListIcon,#customerIcon,#customerUserIcon{
+    width: 48%;
+    float: left;
+    padding-left: 10px;
+}
+
+#deviceListChart{
+    width: 40%;
+    float: right;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+#customerChart,#customerUserChart{
+    width: 40%;
+    float: right;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+#cancelAssign{
+    float: right;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    color: #468847;
+    border-color: #adadad;
+    border-width: 0.5px;
+}
+
+.attName{
+    font-weight: bold;
+    width: 150px;
+    text-align: center;
+}
+
+.inputInfo{
+    width: 90%;
+}
+
+.input-err{
+
+    border: 2px solid #ff3c3c;
+}
+.showForm table tbody tr td{
+    width: 30%;
+    text-align: center;
+}
+.boldForm{
+    font-weight: bold;
+
+}
+.highlight{
+    color: #468847;
+}
+.divide-line{
+    border-top: 2px solid #c0c0c0;
+}
+.ctrlDivBtn{
+    margin-left: 60px;
+    margin-top: 5px;
+}
+.pagination li{
+    cursor: pointer;
+}
+#preDevice,#nextDevice{
+    margin-top: 15%;
+    width: 2%;
+    height: 30px;
+    float: left;
+    background: #c0c0c0;
+    opacity: 0.3;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    color: #7e7e7e;
+}
+/*#nextDevice{*/
+    /*margin-right: 40px;*/
+/*}*/
+.service-panel{
+    background: #c0c0c036;
+    border-radius: 10px;
+}
+.service-panel legend{
+    text-align: center;
+}
+#showHistory,#showEvent{
+    font-size:20px;
+    margin-left:10px;
+    cursor:pointer;
+    color:#468847;
+}
+#showEventTable th,#showEventTable tr{
+    width: 20%;
+    text-align: center;
+}
+.labelDiv{
+    float: left;
+    margin-right: 10px;
+}
+.labelDiv span{
+    color: #6f6e6e;
+}
+/* =============================================================
+   DeviceGroup
+ ============================================================ */
+.DG_Main_View{
+    margin: 50px -50px 0 60px;
+    overflow: hidden;
+}
+.LeftView{
+    margin-right: 48%;
+    min-width: 560px;
+}
+.DGTitle{
+    margin:5px 0 0 10px;
+}
+.DGminTitle{
+    overflow: hidden;
+}
+.SearchDG{
+    float: right;
+    height: 20px;
+    margin-top: 10px;
+    margin-right:20px;
+    width: 180px;
+}
+.Searchicon{
+    margin-left: -25px;
+    color:#adadad;
+}
+.showEmpty{
+    text-align: center;
+    padding-top: 150px;
+    font-size: 30px;
+    color: #adadad ;
+}
+
+/* =============================================================
+   DeviceGroupAssign
+ ============================================================ */
+.RightView{
+    float: right;
+    padding-top: 10px;
+    width:45%;
+    min-width: 350px;
+    height:1000px;
+}
+.RightviewTitle{
+    font-size: 20px;
+}
+.item{
+    margin:15px 20px;
+}
+.gridStyle{
+    border:1px solid rgb(212,212,212);
+    margin: 0 0 10px 0;
+}
+.DGgridstyle{
+    height: 270px;
+}
+.shand{
+    cursor:pointer;
+}
+.DGAssignContainer{
+    border:1px solid rgb(212,212,212);
+    background-color: #fdfdfd;
+    margin:5px 0 0 0;
+}
+.iedit{
+    margin-left:5px;
+}
+#deviceGroupEmpty{
+    color: #adadad;
+    font-size: large;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+/* =============================================================
+   Rule
+ ============================================================ */
+.RulegridStyle{
+    height: 60px;
+}
+.RuleBtn{
+    width:175px ;
+    margin-left: 20px;
+    padding:15px 5px;
+}
+.ruleiconcontainer{
+    float: right;
+    margin: 5px 10px;
+}
+.ruleicon{
+    margin:0 5px;
+}
+.ruleicon:hover{
+    color: #df5b58;
+}
+#RuleModalInput{
+    margin-top: 15px;
+    width: 450px;
+    height: 125px;
+}
+.stateActive{
+    color: #33ce2d;
+}
+.stateNActive{
+    color: #ff5945;
+}
+.addfiltertab{
+    width:530px;
+    margin-left: 20px;
+}
+.StarMark{
+    font-size: 15px;
+    margin-right:5px;
+    color: red;
+}
+.alertempty{
+    display:none;
+    color: red;
+}
+#rule_jscode{
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+/* =============================================================
+serviceGroup
+============================================================ */
+.abilityIcon{
+    width: 60%;
+    float: left;
+    margin-left: 10px;
+
+}
+.abilityBackgroundstyle{
+    width: 210px;
+    height: 138px;
+    border-radius: 10px;
+    margin-top: 25px;
+    margin-left: 20px;
+    float: left;
+    cursor: pointer;
+    padding-top: 10px;
+    padding-left: 10px;
+    border: 2px solid #c0c0c0;
+    background: white;
+}
+
+.abilityPlus{
+    font-size: large;
+    margin-left: 95px;
+    display: inline-block;
+}
+.abilityDelete{
+    font-size: large;
+    display: inline-block;
+
+}
+.style{
+    color:  #468847;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.abilityChart{
+    float: right;
+    width:38%;
+    height:520px;
+    background: white;
+    border: 1px solid rgb(212,212,212);
+    overflow-y: auto;
+    margin-top: 30px;
+
+}
+
+.bg-info{
+    background-color: #cfe3d9;
+}
+/* =============================================================
+pluginsGroup
+============================================================ */
+.pluginActiveposition{
+    margin-left: 250px;
+    color: #468847;
+    font-size: large;
+    margin-top: -50px;
+}
+.pluginStopposition{
+    margin-left: 250px;
+    color: #468847;
+    font-size: large;
+}
+.header-line{
+    font-size: 30px;
+}
+.stylePulgin{
+    color:  #468847;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+}
+.pluginChoose{
+    width:180px ;
+    margin-left: 20px;
+    padding:15px 5px;
+}
+.pluginRightView{
+    float: right;
+    padding-top: 10px;
+    width:44%;
+    min-width: 350px;
+}
+.pluginChart{
+    border:1px solid rgb(212,212,212);
+    background-color: #fdfdfd;
+    padding:3px 0 0 0;
+    height: 230px;
+
+}
+.displayInterface{
+    border:1px solid rgb(212,212,212);
+    background-color: #fdfdfd;
+    margin:2px 0 0 0;
+    overflow-y: auto;
+}
+/*
+width: 35%;
+    float: right;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
+    position: fixed;
+    right: 1%;
+    top: 18%;
+.lowerLayout{
+    width: 73%;
+    height: 1000px;
+    float: left;
+    padding-top:10px;
+    background: #c0c0c036;
+    margin: 1px 10px 5px -45px;
+}
+.upperLayout{
+    height: 110px;
+    width: 73%;
+    float: left;
+    background: #c0c0c036;
+    margin: 6px 10px 5px -45px;
+}
+
+
+
+
+*/
+/*插件模块控件位置*/
+#pluginIcon {
+    width:50%;
+    float: left;
+    margin-left: 10px;
+}
+.btnPosition{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.PluginInfo{
+    font-size: 23px;
+    color: #468847;
+    font-weight: 500;
+    padding: 5px;
+    margin-left: 20px;
+}
+.displayPosition{
+    margin-left: 20px;
+    font-size: 15px;
+    color: #0f0f0f;
+    font-weight: 400;
+}
+
+.PluginInterfaceInfo{
+    font-size: 23px;
+    color: #468847;
+    font-weight: 500;
+    padding: 5px;
+    margin-left: 20px;
+}
+.interfaceInfo {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #0f0f0f;
+    font-weight: 400;
+}
+.interfaceInfo ul li{
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 6px;
+
+}
+.interName{
+    margin-left: 90px;
+}
+.inlinInter{
+    color: #468847;
+    border: 1px solid #CCC;
+    border-radius:5px;
+    font-weight: 500;
+}
+#box{
+    width:400px;
+    height:40px;
+    border:1px solid #ccc;
+    padding:10px;
+    overflow:hidden;
+    font-size:12px;
+    margin-left: 190px;
+    margin-top: -35px;
+}
+#box ul li{
+    line-height:25px;
+    text-align:center;
+    list-style:none;
+}
+
+/* =============================================================
+    HomePage
+ ============================================================ */
+.content{
+    margin:30px 0 0 70px;
+    height:100%;
+    overflow:hidden;
+}
+.block{
+    min-height: 210px;
+    height:33%;
+    margin:20px 15px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 1px 1px 5px #888888;
+    border-radius: 5px;
+}
+
+.block-top {
+    min-width: 300px;
+    width: 47%;
+}
+
+.block-bottom {
+    min-width:200px;
+}
+
+.block_number{
+    font-size: 80px;
+    font-weight: bold;
+    color: #43a375;
+}
+.block_title{
+    font-size: 25px;
+    color: #448864;
+    padding-top: 25px;
+}
+.no_broadcast{
+    text-align: center;
+    font-size: 25px;
+    line-height: 200px;
+    color: rgba(43, 76, 227, 0.4);
+}
+.home_flex{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.count_flex{
+    flex-direction: column;
+    width: 33%;
+    margin-left: 5%;
+}
+
+.flex_chart{
+    margin-left: 5%;
+    flex:1;
+}
+/* =============================================================
+        Dashboard
+============================================================ */
+.left_Dashboard{
+    position: fixed;
+    bottom:0px;
+    width: 200px;
+    border-right: 1px solid #ffffff;
+    height: 83%;
+    overflow-y: scroll;
+}
+.left_Dashboard::-webkit-scrollbar {display:none;}
+#dblist_title{
+    font-size: 20px;
+}
+.right_Dashboard{
+    margin-left:220px ;
+}
+.dashboard{
+    margin-left: 0;
+    height: 100px;
+    width: 180px;
+    margin-top: 15px;
+}
+.dashboard_add{
+    border-style: dashed;
+    cursor: pointer;
+}
+.db_add_item{
+    text-align: center;
+    font-size: 20px;
+    color: #c0c0c0;
+    line-height: 40px
+}
+.dbwidget_add_item{
+    line-height: 250px;
+    text-align: center;
+    font-size: 25px;
+    color: rgba(43, 76, 227, 0.4);
+}
+.dashboard_item{
+    float: left;
+    width: 80%;
+    margin-top: 55px;
+    margin-left:55px;
+    border: 1px solid rgba(25, 100, 173, 0.5);
+    min-height: 270px;
+    box-shadow: 1px 2px 1px rgba(0,0,0,0.172);
+    background-color: white;
+}
+#addDBwidget_table tr{
+    height: 40px;
+}
+.dbicon{
+    margin:0 10px;
+}
+.dbicon:hover{
+    color: #df5b58;
+}
+.entity_title{
+    padding: 10px 15px;
+    background-color: #f8f9fb;
+}
+#entity_name{
+    font-size: 25px;
+    color:#8096ab;
+}
+/*=======================================tenantGroup===========================================*/
+/*底层阴影
+.tenantLoyout{
+    position:absolute;
+    background: #c0c0c036;
+    height: 100px;
+    width: 50%;
+}
+.tenantRow{
+    position: absolute;
+    left: 184px;
+    top: 195px;
+    background: #c0c0c036;
+    width: 785px;
+
+}
+*/
+#tenantIcon{
+    margin-right: 500px;
+    float: left;
+    margin-left: 10px;
+}
+.tenantChoose{
+    width: 150px;
+    height: 100px;
+}
+.tenantRight{
+    position: absolute;
+    right: 2%;
+    top:88px;
+    height: 640px;
+    width: 35%;
+    background: #c0c0c036;
+}
+
+#tenantDetail ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    background-color: #afd9ee;
+    position: fixed;
+    top: 94px;
+    width: 35%;
+    right: 2%;
+}
+#tenantDetail li {
+    float: left;
+}
+#tenantDetail li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+#tenantDetail li a:hover:not(.active) {
+    background-color: #30a94f;
+}
+#tenantDetail .active {
+    background-color: #30a94f;
+}
+#tenantDetail .right{
+    float:right;
+}
+#detailShow{
+    padding:15px;
+    margin-top:30px;
+
+    background-color: #ffffff;
+    height:610px;
+    width: 35%;
+    top: 110px;
+    border-bottom: 2px solid #c0c0c0;
+    border-left: 2px solid #c0c0c0;
+    border-right: 2px solid #c0c0c0;
+    position: fixed;
+    right: 2%;
+
+}
+#detailShow h2{
+    color: #30a94f;
+    font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
+    padding-bottom: 20px;
+}
+.lineSpacing{
+    padding-top: 10px;
+    text-align: left;
+    font-family: 微软雅黑;
+}
+.underLine{
+    border-bottom:1px solid #000000;
+}
+#tenantAdministrator{
+    padding:15px;
+    margin-top:30px;
+
+    background-color: #ffffff;
+    height:615px;
+    width: 35%;
+    top: 110px;
+    border-bottom: 2px solid #c0c0c0;
+    border-left: 2px solid #c0c0c0;
+    border-right: 2px solid #c0c0c0;
+    position: fixed;
+    right: 2%;
+    overflow-y: auto;
+    text-align: center;
+
+}
+#tenantAue #tenantTow #tenantThere #createManager{
+    cursor:hand;
+}
+#tenantAdministrator h2{
+    color: #30a94f;
+    font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
+    padding-bottom: 20px;
+    text-align: left;
+}
+#tenantAdministrator table{
+    border: 1px solid #30a94f;
+
+}
+#tenantAdministrator th{
+    height: 50px;
+    text-align: center;
+}
+#tenantAdministrator td{
+    height: 40px;
+}
+/*=======================================tenantAdmin===========================================*/
+.page-header {
+    padding-bottom: 9px;
+    margin: 10px 0 45px;
+    border-bottom: 1px solid #C7D1DD;
+}
+.panel-default > .panel-heading {
+    color: #000;
+    background-color: #FFFFFF;
+    border-color: #ddd;
+    font-weight:bold;
+
+}
+.panel-body{
+    min-height: 500px;
+}
+.boxs{
+    border: 1px solid #ddd;
+}
+/*=======================================evaluate===========================================*/
+.panel{
+    margin-top: 20px;
+    margin-left: 19px;
+}

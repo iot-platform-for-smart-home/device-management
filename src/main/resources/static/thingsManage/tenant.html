@@ -1,0 +1,280 @@
+<div ng-controller="tenantCtrl" class="content-wrapper">
+    <div class="container">
+        <!--租户头部模型-->
+        <div class="col-md-7">
+            <div class="header-line">租户
+                <button style="margin-left:10px" class="btn btn-basic btn-sm" data-toggle="modal"
+                        data-target="#addTenantGroup" id="addTenant">+ 创建租户
+                </button>
+            </div>
+        </div>
+
+        <!--下侧控件模块-->
+        <div class="tenantRow">
+            <div id="tenantIcon">
+                <div ng-repeat="item in tenantGroups" ng-click="showTenantDetail(item)" class="chooseBtn tenantChoose" ng-style="item.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
+                    <div>
+                        <span title="租户"><i class="fa fa-home fa-2x"></i></span>
+                        <p class="stylePulgin">{{item.title}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--右侧栏详情-->
+        <div class="tenantRight">
+            <div id="tenantDetail">
+                <ul>
+                    <li><a class="active" id="tenantAue" ng-click="showTenantAue()">租户</a></li>
+                    <li><a id="tenantTow" ng-click="showTenantTow()">租户管理员</a></li>
+                    <li class="right" data-toggle="modal" data-target="#addTenantChange"><a id="tenantThere"><strong><i class="glyphicon glyphicon-pencil"></i>编辑</strong></a></li>
+                    <li class="right" data-toggle="modal" data-target="#addTenantManager"><a id="createManager"><strong><i class="glyphicon glyphicon-plus"></i>创建租户管理员</strong></a></li>
+                </ul>
+            </div>
+            <div id="detailShow">
+                <h2 class="lineSpacing">租户信息详情<i class="glyphicon glyphicon-trash" title="删除租户" data-toggle="modal"
+                                                      data-target="#deleteTenantModal" style="left: 250px;font-size: 24px"></i></h2>
+                <h4 class="lineSpacing">姓名：{{tenantDetailShow.title}}</h4><hr>
+                <h4 class="lineSpacing">邮箱：{{tenantDetailShow.email}}</h4><hr>
+                <h4 class="lineSpacing">电话：{{tenantDetailShow.phone}}</h4><hr>
+                <h4 class="lineSpacing">地址：{{tenantDetailShow.address}}</h4><hr>
+                <h4 class="lineSpacing">附加消息：{{tenantDetailShow.additional_info}}</h4><hr>
+                <h4 class="lineSpacing">操作：<button class="btn btn-sm btn-info" ng-click="$location.path('tenantAdmin')" ng-click="showTenantTow()">查看租户下租户管理员</button></h4><hr>
+            </div>
+            <div id="tenantAdministrator">
+                 <table border="1" width="100%">
+                     <h2>租户管理员详情</h2>
+                     <thead>
+                     <tr>
+                         <th width="60%">租户管理员名称</th>
+                         <th>操作</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     <tr ng-repeat="arr in tenantAdminInfo">
+                         <td>{{arr.name}}</td>
+                         <td><button class="btn btn-sm btn-info" data-toggle="modal" data-target="#showAdminInfo" ng-click="showAdminInfo(arr)">查看详情</button>
+
+                             <button class="btn btn-sm btn-danger" ng-click="deleteAdmin(arr)">删除</button></td>
+                     </tr>
+                     </tbody>
+                 </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--创建租户模态框-->
+
+    <div class="modal fade" id="addTenantGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3 class="modal-title user" style="color: #305680;font-weight: 600">
+                        创建租户
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>姓名
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="tenantName" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>邮箱
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="tenantEmail"  required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>电话
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="tenantPhone" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>地址
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="tenantAddress" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>备注
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="tenantInfo" required/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-basic" data-dismiss="modal" id="modalConfirmCreateTenant" ng-click="createTenant()">
+                        创建
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--编辑模态框-->
+
+    <div class="modal fade" id="addTenantChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3 class="modal-title user" style="color: #305680;font-weight: 600">
+                        创建租户
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>姓名
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" value="{{tenantDetailShow.title}}" id="reTenantName" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>邮箱
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="reTenantEmail"  required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>电话
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="reTenantPhone" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>地址
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="reTenantAddress" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>附加消息
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="reTenantInfo" required/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-basic" ng-click="editTenant()">
+                        确定
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--删除模态框-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deleteTenantModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold;">删除租户</h4>
+                </div>
+                <div class="modal-body" id="deleteCustomerTable">
+                    <p style="text-align: center;font-size: 17px;">确定删除该租户？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >取消</button>
+                    <button type="button" class="btn btn-basic"  data-dismiss="modal" ng-click="deleteTenant()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Admin查看详情模态框-->
+    <div class="modal fade" id="showAdminInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3 class="modal-title user" style="color: #305680;font-weight: 600">
+                        租户管理员详情
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <h4 class="lineSpacing">姓名：{{adminInformation.name}}</h4><hr>
+                    <h4 class="lineSpacing">邮箱：{{adminInformation.email}}</h4><hr>
+                    <h4 class="lineSpacing">权限：{{adminInformation.authority}}</h4><hr>
+                    <h4 class="lineSpacing">附加消息：{{adminInformation.additional_info}}</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-basic" data-dismiss="modal">
+                        确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!--Admin创建租户管理员模态框-->
+    <div class="modal fade" id="addTenantManager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3 class="modal-title user" style="color: #305680;font-weight: 600">
+                        创建租户管理员
+                    </h3>
+                </div>
+                <div class="modal-body" id="abilityInfo">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>姓名
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="adminName" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>邮箱
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="adminEmail" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>密码
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="adminPassword" required/>
+                </div>
+                <div class="modal-body">
+                    <label class="col-sm-3 control-label" style="text-align: left">
+                        <span style="color: red;">*</span>备注
+                    </label>
+                    <input type="text" style="pixels: 300px" placeholder="必填" id="adminAdditional_info" required/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-basic" id="modalConfirmCreateAdmin" ng-click="addAdmin(arr)">
+                        创建
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

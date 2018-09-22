@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>数据分析平台</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" media="all" />
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/getUrlParam.js"></script>
+
+</head>
+<body>
+
+<div class="testing">
+    <header class="main">
+        <h1><strong>大数据平台</strong> </h1>
+        <input type="text" value="search" />
+    </header>
+    <section class="user">
+
+        <div style="width: 100px;height: 43px;float: left;margin-top: 23px;margin-left: 10px">
+            <input style="width: 90px;height: 35px" type="button" value="导航栏" id="test1"/>
+        </div>
+        <div class="buttons">
+            <ul id="test4" style="width:80px;margin-right: 8px;float: left ">
+                <li><input type="button" value="更多皮肤" id="test"/></li>
+                <li id="test2" style="display: none"><input type="button" value="天之蓝"/></li>
+                <li id="test3" style="display: none"><input type="button" value="红宝石"/></li>
+            </ul>
+            <a href="/home?TENANT_ADMIN&2&1"><input type="button" style="width: 90px" value="返回上一级"/></a>
+            <input type="button" class="button blue" value="退&nbsp;&nbsp;&nbsp;出" onclick="quitThings()" />
+            <!--<a href="../login/chooseIndex.html"><span class="button">返回物管理 <span class="pip">6</span></span></a>-->
+            <!--<a href="../login/index.html"><span class="button blue">退出</span></a>-->
+        </div>
+    </section>
+</div>
+<nav>
+    <ul>
+        <li><a href="device1.html" style="font-size: 14px"><span class="icon">&#128202;</span>首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</a></li>
+        <li class="section"><a href="start.html" style="font-size: 14px"><span class="icon">&#128200;</span>设备统计</a></li>
+        <ul id="test5">
+            <li><a href="#" style="font-size: 14px"><span class="icon">&#128201;</span>模型仓库</a></li>
+            <li id="test6" style="display: none;height: 45px"><a style="padding: 5px 7.14% 0 2.38%;font-size: 12px" href="model.html"><span class="icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·</span>模型定制</a></li>
+            <li id="test7" style="display: none;height: 45px"><a style="padding: 5px 7.14% 0 2.38%;font-size: 12px" href="modelentity.html"><span class="icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·</span>实例详情</a></li>
+        </ul>
+        <li><a href="hisdata.html" style="font-size: 14px"><span class="icon">&#128196;</span>海量分析</a></li><!--128711-->
+    </ul>
+</nav>
+
+<section class="alert">
+    <!--<form method="link" action="statisticsdata.jsp">-->
+    <a id="transportId" href="#"><button class="green">点此查看统计数据</button></a>
+    <!--</form>-->
+</section>
+
+<section class="content" id="navid">
+    <section class="widget">
+
+        <p id="showDevice" style="font-size: 14px;"></p>
+        <table id="table_id_example" class="display" style="display: none">
+            <thead>
+            <tr>
+                <th>时间</th>
+                <th>属性键</th>
+                <th>属性值</th>
+            </tr>
+            </thead>
+            <tbody id="tBody">
+            <tr>
+                <td style="text-align: center">2018-06-10 7:02:58</td>
+                <td style="text-align: center">temperature</td>
+                <td style="text-align: center">22.8</td>
+            </tr>
+            <tr>
+                <td style="text-align: center">2018-06-10 7:02:58</td>
+                <td style="text-align: center">humidity</td>
+                <td style="text-align: center">76</td>
+            </tr>
+            <tr>
+                <td style="text-align: center">2018-06-10 7:02:58</td>
+                <td style="text-align: center">status</td>
+                <td style="text-align: center">false</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+</section>
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/common.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/getUrlParam.js"></script>
+<script src="js/webSocket.js"></script>
+<script src="js/starttoend.js"></script>
+<script src="js/echarts.min.js"></script>
+</body>
+</html>

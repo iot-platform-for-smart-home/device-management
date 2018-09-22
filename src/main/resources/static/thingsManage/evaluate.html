@@ -1,0 +1,87 @@
+﻿<div ng-controller="evaluateCtrl" class="content-wrapper">
+    <div class="container">
+        <div clas="SMTitle">
+            <div class="col-md-7">
+                <span class="header-line">用户手册
+                <button style="margin-left:10px" class="btn btn-basic btn-sm user tenant" data-toggle="modal"
+                        data-target="#upFile" ng-disabled="flag">+ 上传文件
+                </button>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        参考文档
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <span>共有{{numberFile}}篇文档</span>
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th width="80%">文档名称</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="odd gradeX" ng-repeat="item in arrayItem">
+                                    <td>{{item.name}}.{{item.type}}</td>
+                                    <td><button class="btn btn-basic btn-xs" id="downFile" ng-click="fileDown(item)"><i class="glyphicon glyphicon-cloud-download"></i>  下载</button>&nbsp;
+                                        <button class="btn btn-basic btn-xs" id="delFile" ng-click="delFile(item)" ng-disabled="flag"><i class="glyphicon glyphicon-trash"></i>  删除</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--上传文件模态框-->
+        <div class="modal fade" id="upFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h3 class="modal-title" id="myModalLabel" style="color: #305680;font-weight: 600">
+                            上传文件
+                        </h3>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" name="form">
+                            <div class="form-line">
+                                <label>请选择上传文件：</label><span class="small-tip">证书文件只支持.xls .xlsx .doc .docx .ppt .pptx格式</span>
+                                <div class="choose-file-area">
+                                    <a href="javascript:;" class="choose-book">
+                                        <input type="file" name="certificate" nv-file-select uploader="uploader" ng-click="clearItems()"/>浏览
+                                    </a>
+                                    <input  class="filename" type="text" readonly="readonly" ng-model="fileItem.name"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" data-dismiss="modal" ng-click="uploader.uploadAll()">确定</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            取消
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+

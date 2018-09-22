@@ -1,0 +1,585 @@
+﻿<div class="content-wrapper" ng-controller="deviceListCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <span style="font-size: 30px;" id="list"></span>
+                <button style="margin-left:5px" class="btn btn-basic btn-sm user" data-toggle="modal"
+                        data-target="#createDevice" id="addDevice">
+                </button>
+                <span style="margin-left: 30%;font-size: 1.8rem" id="deviceNum"></span>
+                <span style="font-size: 1.8rem">{{Devices_Number||0}}</span>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;margin-left: 20px;">
+            <div class="col-xs-4 col-sm-4 col-md-3" >
+                <!--<div class="input-group">
+                    --<input type="text" class="form-control" placeholder="每页显示设备数量" id="deviceListNum">
+                      <span class="input-group-btn">
+                          <button class="btn btn-basic" type="button" ng-click="deviceListNumChoose()">确定</button>
+                      </span>
+                      </div>-->
+                 <!--每页显示 <input type="text" id="deviceListNum" style="width: 50px;border-radius: 5px;" ng-change="deviceListNumChoose()" ng-model="myNum" placeholder="9"><span id="devices"> </span>个设备-->
+                <span id="display"></span>
+                <input type="text" id="deviceListNum" style="width: 50px;border-radius: 5px;" ng-change="deviceListNumChoose()" ng-model="myNum" placeholder="9">
+                <span id="devices"> </span>
+            </div>
+              <!--<div class="col-md-3"></div>-->
+              <div class="col-xs-3 col-sm-3 col-md-3">
+                  <div class="input-group">
+                      <input type="text" class="form-control" placeholder="请输入设备名称..." id="searchDeviceText">
+                      <span class="input-group-btn">
+                        <button class="btn btn-basic" type="button" ng-click="searchDevice()"><i class="fa fa-search"></i></button>
+                    </span>
+                  </div><!-- /input-group -->
+              </div><!-- /.col-lg-4 -->
+              <!--<div class="col-md-1">-->
+                  <!--<i class="fa fa-angle-double-up"></i>-->
+              <!--</div>-->
+        </div>
+        <div class="row" style="margin-left: 4%;margin-top: 1%;">
+            <div class="labelDiv">
+                <div style="width: 30px;height: 10px;background: #468847;border-radius: 3px;"></div><span id="online"></span>
+            </div>
+            <div class="labelDiv">
+                <div style="width: 30px;height: 10px;background: rgb(220, 220, 220);border-radius: 3px;"></div><span id="offline"></span>
+            </div>
+            <div class="labelDiv">
+                <div style="width: 30px;height: 10px;background: orange;border-radius: 3px;"></div><span id="remind"></span>
+            </div>
+            <div class="labelDiv">
+                <div style="width: 30px;height: 10px;background: red;border-radius: 3px;"></div><span id="warning"></span>
+            </div>
+
+            <!--L显示搜索设备个数-->
+            <div style="margin-left: 35%" ng-if="ifSearch">
+                <span id="searchDevice"></span><span>{{searchCount}}</span><span id="searchResult"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div id="preDevice" ng-click="preDeviceInfo()"><i class="fa fa-chevron-left"></i></div>
+            <div id="deviceListIcon">
+                <div class="chooseBtn" ng-repeat="data in deviceList" ng-click="show(data)" ng-style="data.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
+                    <div title="{{data.name}}">
+                        <i class="fa fa-file-text fa-2x" id="{{data.id}}"></i>
+                        <p>{{data.name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="nextDevice" ng-click="nextDeviceInfo()"><i class="fa  fa-chevron-right"></i></div>
+            <div id="deviceListChart">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="2">{{deviceName}}
+                            <i class="fa fa-trash-o highlight userDelete" data-toggle="modal" data-target="#deleteDevice" title="删除" style="float: right;font-size: 17px;cursor: pointer;color: #468847;"></i>
+                        </th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="attName" id="curDeviceId"></td>
+                        <td>{{ID}}</td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curCustomerGroup"></td>
+                        <td>{{customerName}}<button id="cancelAssign" ng-click="cancelAssign()"></button></td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curParentDevice"></td>
+                        <td>{{parentName}}</td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curVendor"></td>
+                        <td>{{manufacture}}</td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curDeviceType"></td>
+                        <td>{{deviceType}}</td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curModel"></td>
+                        <td>{{model}}</td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curStatus"></td>
+                        <td>{{status}}</td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curLocation"></td>
+                        <td>{{location}}</td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curLifeTime"></td>
+                        <td>{{lifeTime}}</td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curOperation"></td>
+                        <td>
+                            <button class="btn btn-basic user" data-toggle="modal" data-target="#refreshDevice"  ng-click="setValue()" id="updateDevice"></button>
+                            <button class="btn btn-basic user" data-toggle="modal" data-target="#assign" id="assignDevice"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="attName" id="curView"></td>
+                        <td>
+                            <button class="highlight btn btn-default" data-toggle="modal" data-target="#token" ng-click="showToken()" id="viewToken"></button>
+                            <button data-toggle="modal" data-target="#deviceEvent" class="highlight btn btn-default" ng-click="showEvent()" id="viewEvent"></button>
+                            <button data-toggle="modal" data-target="#deviceDetail" class="highlight btn btn-default" ng-click="showDetail()" id="viewDetail"></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--  CREATE MODEL  -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="createDevice">
+        <!--.modal:指定为模态框      fade:淡入淡出效果     tabindex="-1":不受tab键控制    role="dialog":指定模态框为对话框-->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold;" id="newDevice"></h4>
+                </div>
+                <div class="modal-body" id="deviceInfo">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                        <tr>
+                            <td class="attName" id="newDeviceName"><span style="color: red;font-size: 10px;margin-right: 5px;" >*</span></td>
+                            <td><input type="text" class="inputInfo" id="name" placeholder="必填"></td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="newParentDevice"></td>
+                            <td>
+                                <select class="inputInfo" id="parentId">
+                                    <option value=""></option>
+                                    <option ng-repeat="data in deviceListAll" class="{{data.id}}">{{data.name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="newVendor"></td>
+                            <td>
+                                <select class="inputInfo" id="manufacture" ng-change="getCreateManufacture()" ng-model="myManufacturer">
+                                    <option value=""></option>
+                                    <option ng-repeat="data in manufacturerInfo" class="{{data.manufacturerId}}">{{data.manufacturerName}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="newDeviceType"></td>
+                            <td>
+                                <select class="inputInfo" id="deviceType" ng-change="getCreateDeviceType()" ng-model="myDeviceType">
+                                    <option value=""></option>
+                                    <option ng-repeat="data in deviceTypeInfo" class="{{data.deviceTypeId}}">{{data.deviceTypeName}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="newModel"></td>
+                            <td>
+                                <select class="inputInfo" id="model" ng-change="getCreateDeviceModel()" ng-model="myDeviceModel">
+                                    <option value=""></option>
+                                    <option ng-repeat="data in deviceModelInfo" class="{{data.modelId}}">{{data.modelName}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="newLocation"></td>
+                            <td><input type="text" class="inputInfo" id="location"></td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="newStatus"></td>
+                            <td><input type="text" class="inputInfo" id="status"></td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="newLifeTime"></td>
+                            <td> <input type="datetime-local" id="fixTime"/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalClose"></button>
+                    <button type="button" class="btn btn-basic" data-dismiss="modal" id="modalConfirm" ng-click="createDevice()"></button>
+
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+    <!--  REFRESH MODEL  -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="refreshDevice">
+        <!--.modal:指定为模态框      fade:淡入淡出效果     tabindex="-1":不受tab键控制    role="dialog":指定模态框为对话框-->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold;" id="renewDevice"></h4>
+                </div>
+                <div class="modal-body" id="deviceInfoRefresh">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                        <tr>
+                            <td class="attName" id="renewDeviceName"></td>
+                            <td><input type="text" class="inputInfo" disabled="disabled" ng-value="deviceName" id="reName"></td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="renewParentDevice"></td>
+                            <td>
+
+                                <select class="inputInfo" id="reParentId">
+                                    <option></option>
+                                    <option ng-repeat="data in deviceListAll" class="{{data.id}}">{{data.name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="renewVendor"></td>
+                            <td>
+
+                                <select class="inputInfo" id="reManufacture" ng-change="getManufacture()" ng-model="myReManufacturer">
+
+                                    <option ng-repeat="data in manufacturerInfo" class="{{data.manufacturerId}}">{{data.manufacturerName}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="renewDeviceType"></td>
+                            <td>
+
+                                <select class="inputInfo" id="reDeviceType" ng-change="getDeviceType()" ng-model="myReDeviceType">
+
+                                    <option ng-repeat="data in deviceTypeInfo" class="{{data.deviceTypeId}}">{{data.deviceTypeName}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="renewModel"></td>
+                            <td>
+
+                                <select class="inputInfo" id="reModel"  ng-change="getDeviceModel()" ng-model="myReDeviceModel">
+
+                                    <option ng-repeat="data in deviceModelInfo" class="{{data.modelId}}">{{data.modelName}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="renewLocation"></td>
+                            <td><input type="text" class="inputInfo" id="reLocation"></td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="renewStatus"></td>
+                            <td><input type="text" class="inputInfo" id="reStatus"></td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="renewLifeTime"></td>
+                            <td>
+                                <input type="text" id="reFixTime" disabled="disabled"/>
+                                <button class="btn btn-default" id="reTime"><i class="fa fa-pencil" style="margin-left:2%; "></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseRefresh"></button>
+                    <button type="button" class="btn btn-basic" id="modalConfirmRefresh" data-dismiss="modal" ng-click="refreshDevice()"></button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+    <!-- TOKEN MODEL -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="token">
+        <!--.modal:指定为模态框      fade:淡入淡出效果     tabindex="-1":不受tab键控制    role="dialog":指定模态框为对话框-->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold;" id="deviceToken"></h4>
+                </div>
+                <div class="modal-body" id="tokenTable">
+                    <p style="text-align: center;">{{token}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseToken"></button>
+                    <button type="button" class="btn btn-basic" id="modalConfirmToken" data-dismiss="modal"></button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+    <!-- ASSIGN MODEL -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="assign">
+        <!--.modal:指定为模态框      fade:淡入淡出效果     tabindex="-1":不受tab键控制    role="dialog":指定模态框为对话框-->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold;" id="assignDetail"></h4>
+                </div>
+                <div class="modal-body" id="assignHeader">
+                    <!--<input type="checkbox" ng-model="deviceGroupBox" id="deviceGroupBox"/>分配设备到设备组
+                    <input type="checkbox" ng-model="customerBox" id="customerBox"/>分配设备到客户组-->
+                    <input type="radio" id="deviceGroupBox" name="assignBox" value="deviceGroupBox"/>
+                    <input type="radio" id="customerBox" name="assignBox" value="customerBox"/>
+                </div>
+                <div class="modal-body" id="assignTable" style="display: none;">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th id="assignDeviceGroup"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="attName" id="assignGroDeviceId"></td>
+                            <td>{{ID}}</td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="assignGroDeviceName"></td>
+                            <td>{{deviceName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="chooseGroDeviceGroup"></td>
+                            <td >
+                                <select class="inputInfo" id="deviceGroupSelect">
+                                    <option ng-repeat="deviceGroupInfo in deviceGroup" id="{{deviceGroupInfo.id}}">{{deviceGroupInfo.name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-body" id="assignToCustomer" style="display: none;">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                               <th id="assignCustomer"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="attName" id="assignCusDeviceId" ></td>
+                            <td>{{ID}}</td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="assignCusDeviceName" ></td>
+                            <td>{{deviceName}}</td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="chooseCustomer" ></td>
+                            <td >
+                                <select class="inputInfo" id="customerSelect">
+                                    <option ng-repeat="customerInfo in allCustomersInfo" id="{{customerInfo.id}}">{{customerInfo.title}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseAssign"></button>
+                    <button type="button" class="btn btn-basic" id="modalConfirmAssign" data-dismiss="modal" ng-click="assign()"></button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- DELETE MODEL -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deleteDevice">
+        <!--.modal:指定为模态框      fade:淡入淡出效果     tabindex="-1":不受tab键控制    role="dialog":指定模态框为对话框-->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold;" id="deleteDetail"></h4>
+                </div>
+                <div class="modal-body" id="deleteTable">
+                    <p style="text-align: center;font-size: 17px;" id="deleteConfirm"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseDelete"></button>
+                    <button type="button" class="btn btn-basic" id="modalConfirmDelete" data-dismiss="modal" ng-click="delete()"></button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- DEVICE DETAIL -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deviceDetail">
+        <!--.modal:指定为模态框      fade:淡入淡出效果     tabindex="-1":不受tab键控制    role="dialog":指定模态框为对话框-->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalCloseTagDetail">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold;font-size: 20px;" id="detailDetail">设备详情</h4>
+                </div>
+                <div class="modal-body showForm" id="detailTable">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th class="attName" style="text-align: left;font-size: 16px;" id="attribute">-----属性-----</th>
+                        </tr>
+                        <tr>
+
+                            <td id="attrSelectInfoTd">
+                                每页显示
+                                <select id="attrSelectInfo" ng-change="showNum()" ng-model="myNum">
+                                    <option value="">5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>20</option>
+                                </select>
+                                <i id="recordNumber">条记录</i>
+                            </td>
+                            <td></td>
+                            <td>
+                                <div class="input-group">
+                                      <input type="text" class="form-control" placeholder="请输入键值查找..." id="searchKey">
+                                       <span class="input-group-btn">
+                                             <button class="btn btn-basic" type="button" ng-click="findKey()"><i class="fa fa-search"></i></button>
+                                       </span>
+                                </div>
+                                <!--<input type="text" class="form-control" placeholder="请输入键值搜索..." id="searchKey" ng-change="findKey()" ng-model="myKey">-->
+                            </td>
+                        </tr>
+
+                        <tr class="boldForm">
+                            <td style="width: 30%; text-align: center;" id="attrUpdateTime">最后更新时间</td>
+                            <td style="width: 30%; text-align: center;" id="attrKey">键</td>
+                            <td style="width: 30%; text-align: center;" id="attrValue">值</td>
+                        </tr>
+                        </thead>
+                        <tbody id="attrDisplay" class="data-list"></tbody>
+                    </table>
+                    <div id="pagination" class="pagination"></div>
+                </div>
+                <div class="divide-line"></div>
+                <div class="modal-body showForm" id="realTimeTable">
+                    <h4 class="detail-block-header" id="telemetry">-----最新遥测-----</h4>
+                    <div class="row">
+                        <div>
+                            <table id="realtime_data_table" class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th style="width: 30%; text-align: center;" id="teleUpdateTime">最后更新时间</th>
+                                    <th style="width: 30%; text-align: center;" id="teleKey">键</th>
+                                    <th style="width: 30%; text-align: center;" id="teleValue">值</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="divide-line"></div>
+
+                <div class="modal-body showHistoryData" id="historyDataTable">
+                    <h4 class="detail-block-header" id="history">-----历史数据-----</h4>
+
+                     <label id="historyStart">起始时间：</label>
+                     <input type="datetime-local" id="startTime"/>
+
+                     <label id="historyEnd">终止时间：</label>
+                     <input type="datetime-local" id="endTime"/>
+
+                     <i class="fa fa-search" id="showHistory" ng-click="subTime()"></i>
+
+                     <div id="historyEcharts" style="width: 569px;height: 200px;margin-top: 10px;"></div>
+
+                </div>
+
+                <div class="divide-line"></div>
+
+                <div class="modal-body showForm" id="controlTable">
+                    <h4 class="detail-block-header" id="control">-----控制面板-----</h4>
+                    <div class="row">
+                        <div class="control-panel" id="control_panel">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseDetail">关闭</button>
+                    <button type="button" class="btn btn-basic" id="modalConfirmDetail" data-dismiss="modal">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- DEVICE EVENT -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deviceEvent">
+        <!--.modal:指定为模态框      fade:淡入淡出效果     tabindex="-1":不受tab键控制    role="dialog":指定模态框为对话框-->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeEvent">&times;</button>
+                    <h4 class="modal-title" style="font-weight: bold;" id="eventDetail">设备事件</h4>
+                </div>
+                <div class="modal-body" id="eventTable">
+                    <label id="eventStart">起始时间：</label>
+                    <input type="datetime-local" id="eventStartTime"/>
+
+                    <label id="eventEnd">终止时间：</label>
+                    <input type="datetime-local" id="eventEndTime"/>
+
+                    <i class="fa fa-search" id="showEvent" ng-click="subEventTime()"></i>
+                    <div class="divide-line" style="margin-top: 15px;"></div>
+                    <table class="table table-striped table-hover" id="showEventTable">
+                        <thead>
+                            <tr>
+                                <th id="methodName">方法名</th>
+                                <th id="serviceName">服务名</th>
+                                <th id="state">状态</th>
+                                <th id="userId">uid</th>
+                                <th id="createTime">创建时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in eventInfo" class="eventContent">
+                                <td>{{data.body.methodName}}</td>
+                                <td>{{data.body.serviceName}}</td>
+                                <td>{{data.body.status}}</td>
+                                <td>{{data.body.uid}}</td>
+                                <td>{{data.createdTime * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                            </tr>
+                        <tr id="eventPageBtn">
+                            <td></td>
+                            <td><button class="btn btn-basic" id="preEvent" ng-click="preEvent()">上一页</button></td>
+                            <td></td>
+                            <td><button class="btn btn-basic" id="nextEvent" ng-click="nextEvent()">下一页</button></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseEvent">关闭</button>
+                    <!--<button type="button" class="btn btn-basic" id="modalConfirmEvent" data-dismiss="modal">确定</button>-->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+
+<script type="text/javascript" src="static/thingsManage/assets/js/deviceListSwitch.js" ></script>
+    <!-- CONTENT-WRAPPER SECTION END-->

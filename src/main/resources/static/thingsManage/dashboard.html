@@ -1,0 +1,185 @@
+<div class="content-wrapper" ng-controller="dashboardCtrl">
+    <div class="container">
+        <!--左侧视图-->
+        <div class="left_Dashboard">
+            <div id="dblist_title">仪表板列表</div>
+            <div class="chooseBtn dashboard dashboard_add" data-toggle="modal" data-target="#addDashboard">
+                <div class="db_add_item">
+                    <p>+添加仪表板</p>
+                </div>
+            </div>
+
+            <div ng-repeat="db in Dashboards" class="chooseBtn dashboard" ng-click="showDBDetail(db)"
+                 ng-style="db.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
+                <div>
+                    <i class="fa fa-tachometer fa-2x" aria-hidden="true"></i>
+                    <p>{{db.name}}</p>
+                </div>
+            </div>
+            <br/>
+        </div>
+        <!--右侧视图-->
+        <div class="right_Dashboard" ng-show="!isChoose">
+            <div class="showEmpty">
+                点击左侧列表选择仪表板
+            </div>
+        </div>
+
+        <div class="right_Dashboard" ng-show="isChoose">
+            <div>
+                <h3 style="display : inline">仪表板&nbsp;&nbsp;>&nbsp;&nbsp;{{dbItem.name}}</h3>
+                <div style="float: right;margin-right: 20px">
+                    <span data-toggle="modal" data-target="#addEntity" ng-click="getAllDevice()">
+                        <i class="glyphicon glyphicon-plus fa-lg shand dbicon" title="创建实例"></i>
+                    </span>
+                    <span data-toggle="modal" data-target="#delDashboard">
+                        <i class="glyphicon glyphicon-trash fa-lg shand dbicon" title="删除仪表板"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="dashboard_item" ng-repeat="entity in entitys">
+                <div class="entity_title">
+                    <span id="entity_name">{{entity.name}}</span>
+                    <span data-toggle="modal" data-target="#delEntity" ng-click="getEntityId(entity)" style="float: right;margin-top: 10px">
+                        <i class="glyphicon glyphicon-trash shand dbicon" title="删除当前实例"></i>
+                    </span>
+                    <span>&emsp;设备：{{entity.device_name}}</span>
+                </div>
+                <canvas id="entityChart_{{$index}}" min-height="500"></canvas>
+            </div>
+
+            <div ng-show="isShowEmpty" class="showEmpty">
+                <p>仪表板为空，请添加组件实例</p>
+            </div>
+            <!--<div class="dashboard_add dashboard_item" style="border-style: dashed;" data-toggle="modal" data-target="#addDBWidget">-->
+                <!--<div class="dbwidget_add_item">-->
+                <!--+添加展示组件-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+
+    <!--modal添加Dashboard-->
+    <div class="modal fade" id="addDashboard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        添加仪表板
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+                    <label>仪表板名称：</label>
+                            <td><input id="add_db_name" name="add_db_name" type="text"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cleanForm()">关闭
+                    </button>
+                    <button type="button" class="btn btn-basic" ng-click="addDashboard()">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--modal添加Entity-->
+    <div class="modal fade" id="addEntity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        添加组件
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table id="addDBwidget_table">
+                        <tr><td>组件名称：</td>
+                            <td><input ng-model="add_entity_name" name="add_entity_name" type="text"/></td></tr>
+                        <tr><td>关联设备：</td>
+                        <td><select id="db_device" ng-model="add_entity_device" ng-options="x.name for x in DeviceName">
+                            <option value="" disabled>--请选择设备--</option>
+                            </select></td></tr>
+                        <tr><td>组件类型：</td>
+                        <td><select id="db_widget" ng-model="add_entity_type" ng-options="x.name for x in Widgets">
+                            <option value="" disabled>--请选择组件--</option>
+                        </select></td></tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cleanForm()">关闭
+                    </button>
+                    <button type="button" class="btn btn-basic" ng-click="addEntity()">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--modal删除仪表板-->
+    <div class="modal fade" id="delDashboard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        删除仪表板
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    确定删除此仪表板？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="button" class="btn btn-basic" ng-click="delDashboard()">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!--modal删除Entity-->
+    <div class="modal fade" id="delEntity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        删除实例
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    确定删除当前实例？{{entity.id}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="button" class="btn btn-basic" ng-click="delEntity()">
+                        确定
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+</div>

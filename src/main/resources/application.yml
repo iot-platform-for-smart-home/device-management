@@ -1,0 +1,54 @@
+spring.thymeleaf.prefix: classpath:/
+spring.thymeleaf.suffix: .html
+spring.thymeleaf.mode: LEGACYHTML5
+spring.thymeleaf.cache: true
+
+security.basic.enabled: false
+
+server:
+    port: 81
+
+spring:
+  http:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+
+# OpenIoT 配置
+bupt.thingsboard:
+  #host: 10.108.216.193 # for cc
+  #host: 10.108.217.227 # for gpu
+  host: 127.0.0.1
+  #host: 39.104.84.131
+  port: 8080
+
+
+device-access:
+ host: 39.104.189.84
+ port: 30080
+
+smart_ruler:
+ host: 39.104.189.84
+ port: 30080
+
+service-management:
+ host: 39.104.189.84
+ port: 30080
+
+dashboard:
+ host: 39.104.189.84
+ port: 30080
+
+userDocument:
+ host: 39.104.189.84
+ port: 30080
+
+account:
+#  host: 39.104.165.155
+#  port: 8400
+  host: 39.104.189.84
+  port: 30080
+  login_url: http://${account.host}:${account.port}/api/v1/account/login
+  logout_url: http://${account.host}:${account.port}/api/v1/account/logout
+  client_id: client_2
+  client_secret: 123456
