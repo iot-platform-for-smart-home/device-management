@@ -6,7 +6,7 @@ spring.thymeleaf.cache: true
 security.basic.enabled: false
 
 server:
-    port: 81
+    port: 8081
 
 spring:
   http:
@@ -24,29 +24,29 @@ bupt.thingsboard:
 
 
 device-access:
- host: 39.104.189.84
+ host: 10.108.218.64
  port: 30080
 
 smart_ruler:
- host: 39.104.189.84
+ host: 10.108.218.64
  port: 30080
 
 service-management:
- host: 39.104.189.84
+ host: 10.108.218.64
  port: 30080
 
 dashboard:
- host: 39.104.189.84
+ host: 10.108.218.64
  port: 30080
 
 userDocument:
- host: 39.104.189.84
+ host: 10.108.218.64
  port: 30080
 
 account:
 #  host: 39.104.165.155
 #  port: 8400
-  host: 39.104.189.84
+  host: 10.108.218.64
   port: 30080
   login_url: http://${account.host}:${account.port}/api/v1/account/login
   logout_url: http://${account.host}:${account.port}/api/v1/account/logout
