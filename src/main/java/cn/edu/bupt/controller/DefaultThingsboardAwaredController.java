@@ -96,7 +96,7 @@ public class DefaultThingsboardAwaredController {
 
     public Integer getTenantId(){
         HttpSession sess = request.getSession();
-        Integer tenantId = (Integer) sess.getAttribute("tenant_id");
+        Integer tenantId = (Integer) sess.getAttribute("tenantId");
 //        String res = HttpUtil.getAccessToken(sess);
 //        JsonObject jo = (JsonObject)new JsonParser().parse(res);
 //        Integer tenantId = jo.get("tenant_id").getAsInt();
