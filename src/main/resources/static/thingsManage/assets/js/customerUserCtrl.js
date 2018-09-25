@@ -170,6 +170,7 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
             }
         });
         if($("#customerUserName").val() && $("#customerUserPassword").val() && $("#customerUserPasswordAgain").val() && $("#customerUserEmail").val()){
+            var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
             var userName = $("#customerUserName").val();
             var userPassword = $("#customerUserPassword").val();
             var userPasswordAgain = $("#customerUserPasswordAgain").val();
@@ -179,21 +180,30 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
             if(userPassword === userPasswordAgain){
                 var createCustomerUserInfo = '{"name":'+'"'+userName+'"'+',"password":'+'"'+userPassword+'"'+',"email":'+'"'+userEmail+'"'+',"customer_id":'+'"'+userCustomerId+'"'+',"additional_info":'+'"'+userAdditionalInfo+'"'+'}';
                 console.log(createCustomerUserInfo);
-                $.ajax({
-                    url:"/api/account/customerUser",
-                    data:createCustomerUserInfo,
-                    type:"POST",
-                    contentType: "application/json; charset=utf-8",//post请求必须
-                    success:function (resp) {
-                        toastr.success("创建用户成功！");
-                        setTimeout(function () {
-                            window.location.reload();
-                        },1000);
-                    },
-                    error:function (err) {
-                        toastr.error("创建用户失败！");
-                    }
-                });
+                if(reg.test(userEmail)) {
+                    $.ajax({
+                        url:"/api/account/customerUser",
+                        data:createCustomerUserInfo,
+                        type:"POST",
+                        contentType: "application/json; charset=utf-8",//post请求必须
+                        success:function (resp) {
+                            toastr.success("创建用户成功！");
+                            setTimeout(function () {
+                                window.location.reload();
+                            },1000);
+                        },
+                        error:function (err) {
+                            toastr.error("创建用户失败！");
+                        }
+                    });
+                }
+                else {
+                    $("#modalConfirmCreateCustomerUser").removeAttr("data-dismiss");
+                    document.getElementById("emailCheck").style.display="inline";
+                    $('#customerUserEmail').on('focus', function() {
+                        document.getElementById("emailCheck").style.display="none";
+                    });
+                }
             }
             else{
                 $("#modalConfirmCreateCustomerUser").removeAttr("data-dismiss");
@@ -218,32 +228,56 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
 
     /*修改用户*/
     $scope.setCustomerUserInfo = function () {
+        $(".necInfo").removeClass("input-err");
         $("#refreshCustomerUserName").val($scope.name);
         $("#refreshCustomerId").val($scope.customerId);
         $("#refreshCustomerUserEmail").val($scope.email);
         $("#refreshCustomerUserAddInfo").val($scope.additional_info);
     };
     $scope.refreshCustomerUser = function () {
-        var refreshCustomerUserName = $("#refreshCustomerUserName").val();
-        var refreshCustomerId = $("#refreshCustomerId").val();
-        var refreshCustomerUserEmail = $("#refreshCustomerUserEmail").val();
-        var refreshCustomerUserAddInfo = $("#refreshCustomerUserAddInfo").val();
-        var refreshCustomerUserInfo = '{"id":'+'"'+$scope.userId+'"'+',"customer_id":'+'"'+refreshCustomerId+'"'+',"name":'+'"'+refreshCustomerUserName+'"'+',"email":'+'"'+refreshCustomerUserEmail+'"'+',"additional_info":'+'"'+refreshCustomerUserAddInfo+'"'+'}';
-        console.log(refreshCustomerUserInfo);
-        $.ajax({
-            url:"/api/account/user",
-            data:refreshCustomerUserInfo,
-            type:"PUT",
-            contentType: "application/json; charset=utf-8",//post请求必须
-            success:function (resp) {
-                toastr.success("修改用户信息成功！");
-                setTimeout(function () {
-                    window.location.reload();
-                },1000);
-            },
-            error:function () {
-                toastr.error("修改用户信息失败！");
+        $("#modalConfirmCreateCustomerUser").attr("data-dismiss","modal");
+        $(".necInfo").each(function () {
+            if($(this).val()===""){
+                /*增加提示效果*/
+                $(this).addClass("input-err");
+                $("#modalConfirmCreateCustomerUser").removeAttr("data-dismiss");
+                $(this).on('focus', function() {
+                    $(this).removeClass('input-err');
+                });
             }
         });
+        if($("#refreshCustomerUserName").val() && $("#refreshCustomerId").val() && $("#refreshCustomerUserEmail").val()) {
+            var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+            var refreshCustomerUserName = $("#refreshCustomerUserName").val();
+            var refreshCustomerId = $("#refreshCustomerId").val();
+            var refreshCustomerUserEmail = $("#refreshCustomerUserEmail").val();
+            var refreshCustomerUserAddInfo = $("#refreshCustomerUserAddInfo").val();
+            var refreshCustomerUserInfo = '{"id":'+'"'+$scope.userId+'"'+',"customer_id":'+'"'+refreshCustomerId+'"'+',"name":'+'"'+refreshCustomerUserName+'"'+',"email":'+'"'+refreshCustomerUserEmail+'"'+',"additional_info":'+'"'+refreshCustomerUserAddInfo+'"'+'}';
+            console.log(refreshCustomerUserInfo);
+            if(reg.test(refreshCustomerUserEmail)) {
+                $.ajax({
+                    url:"/api/account/user",
+                    data:refreshCustomerUserInfo,
+                    type:"PUT",
+                    contentType: "application/json; charset=utf-8",//post请求必须
+                    success:function (resp) {
+                        toastr.success("修改用户信息成功！");
+                        setTimeout(function () {
+                            window.location.reload();
+                        },1000);
+                    },
+                    error:function () {
+                        toastr.error("修改用户信息失败！");
+                    }
+                });
+            }
+            else {
+                $("#modalConfirmRefreshCustomerUser").removeAttr("data-dismiss");
+                document.getElementById("emailModifyCheck").style.display="inline";
+                $('#refreshCustomerUserEmail').on('focus', function() {
+                    document.getElementById("emailModifyCheck").style.display="none";
+                });
+            }
+        }
     };
 }]);

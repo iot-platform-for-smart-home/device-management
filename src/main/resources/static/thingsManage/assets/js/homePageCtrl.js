@@ -243,7 +243,7 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
     function connect() {
 
 
-        var socket = new SockJS('http://39.104.189.84:30080/api/v1/updatemessageplugin');
+        var socket = new SockJS('http://10.108.218.64:30080/api/v1/updatemessageplugin');
         stompClient = Stomp.over(socket);
 
         var data=[]

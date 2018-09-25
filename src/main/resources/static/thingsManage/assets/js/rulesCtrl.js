@@ -162,7 +162,8 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             });
             }
         else {
-            alert("输入不能为空!");
+            // alert("输入不能为空!");
+            location.reload();
         }
     };
 
@@ -225,9 +226,13 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             /****若出现嵌套model添加一次儿子后闪退bug，把js命令换成data-dismiss*****/
             $("#addruleFilter").modal("hide");
         } else {
-            $('#filternamealert').show();
+            // $('#filternamealert').show();
+            $("#addfiltername").addClass("input-err");
+            $('#addfiltername').on('focus', function() {
+                $(this).removeClass('input-err');
+            });
         }
-    }
+    };
 
     //点击添加规则-点击添加插件,获取所有插件
     $scope.getAllplugin = function () {
@@ -369,9 +374,13 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
                 toastr.success("创建规则失败！");
             });
         } else {
-            $('#rulenamealert').show();
+            // $('#rulenamealert').show();
+            $("#ruleName").addClass("input-err");
+            $('#ruleName').on('focus', function() {
+                $(this).removeClass('input-err');
+            });
         }
-    }
+    };
 
 
     /********添加规则-添加多个MailPlugin收件人*****/

@@ -1,6 +1,4 @@
 mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $resource) {
-
-
     $scope.deviceInfo;//用于记录当前选中的设备
 
     var parentName;//用于记录父设备名称
@@ -837,7 +835,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     var ws;
 
     function realtimeDevice(deviceId) {
-        var url = 'ws://39.104.189.84:30080/api/v1/deviceaccess/websocket';
+        var url = 'ws://10.108.218.64:30080/api/v1/deviceaccess/websocket';
         var keys = [];
         listenWs(url);
 

@@ -90,7 +90,7 @@ mainApp.controller("dashboardCtrl",["$scope","$resource","$timeout",function ($s
         var myChart=drawChart(deviceId,type,i)
 
         //获取websocket实时数据
-        var url = 'ws://39.104.189.84:30080/api/v1/deviceaccess/websocket';
+        var url = 'ws://10.108.218.64:30080/api/v1/deviceaccess/websocket';
         listenWs(url);
 
         //测试用模拟数据

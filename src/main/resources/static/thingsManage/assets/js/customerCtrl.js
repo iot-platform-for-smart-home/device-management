@@ -173,10 +173,11 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
         $("#createCustomer input").each(function () {
             $(this).val("");
         });
-
+        document.getElementById("emailCheck").style.display="none";
     });
     $scope.createCustomer = function () {
         $("#modalConfirmCreateCustomer").attr("data-dismiss","modal");
+        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
         if($("#customerName").val()){
             var title = $("#customerName").val();
             var phone = $("#customerPhone").val();
@@ -185,21 +186,49 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
             var additional_info =$("#customerAddInfo").val();
             var createCustomerInfo = '{"title":'+'"'+title+'"'+',"phone":'+'"'+phone+'"'+',"email":'+'"'+email+'"'+',"address":'+'"'+address+'"'+',"additional_info":'+'"'+additional_info+'"'+'}';
             console.log(createCustomerInfo);
-            $.ajax({
-                url:"/api/account/customer",
-                data:createCustomerInfo,
-                type:"POST",
-                contentType: "application/json; charset=utf-8",//post请求必须
-                success:function (resp) {
-                    toastr.success("创建客户组成功！");
-                    setTimeout(function () {
-                        window.location.reload();
-                    },1000);
-                },
-                error:function (err) {
-                    toastr.error("创建客户组失败！");
+            if(email != "" && email != null) {
+                if(reg.test(email)) {
+                    $.ajax({
+                        url:"/api/account/customer",
+                        data:createCustomerInfo,
+                        type:"POST",
+                        contentType: "application/json; charset=utf-8",//post请求必须
+                        success:function (resp) {
+                            toastr.success("创建客户组成功！");
+                            setTimeout(function () {
+                                window.location.reload();
+                            },1000);
+                        },
+                        error:function (err) {
+                            toastr.error("创建客户组失败！");
+                        }
+                    });
                 }
-            });
+                else {
+                    $("#modalConfirmCreateCustomer").removeAttr("data-dismiss");
+                    document.getElementById("emailCheck").style.display="inline";
+                    $('#customerEmail').on('focus', function() {
+                        document.getElementById("emailCheck").style.display="none";
+                    });
+                }
+            }
+            else {
+                $.ajax({
+                    url:"/api/account/customer",
+                    data:createCustomerInfo,
+                    type:"POST",
+                    contentType: "application/json; charset=utf-8",//post请求必须
+                    success:function (resp) {
+                        toastr.success("创建客户组成功！");
+                        setTimeout(function () {
+                            window.location.reload();
+                        },1000);
+                    },
+                    error:function (err) {
+                        toastr.error("创建客户组失败！");
+                    }
+                });
+            }
 
         }else{
             /*增加提示效果*/
@@ -223,27 +252,56 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
     //修改客户组信息
     $scope.refreshCustomer = function () {
 
+        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
         var phone = $("#refreshCustomerPhone").val();
         var email = $("#refreshCustomerEmail").val();
         var address = $("#refreshCustomerAddress").val();
         var additional_info =$("#refreshCustomerAddInfo").val();
         var refreshCustomerInfo = '{"id":'+'"'+$scope.customerId+'"'+',"title":'+'"'+$scope.title+'"'+',"phone":'+'"'+phone+'"'+',"email":'+'"'+email+'"'+',"address":'+'"'+address+'"'+',"additional_info":'+'"'+additional_info+'"'+'}';
         console.log(refreshCustomerInfo);
-        $.ajax({
-            url:"/api/account/customer",
-            data:refreshCustomerInfo,
-            type:"PUT",
-            contentType: "application/json; charset=utf-8",//post请求必须
-            success:function (resp) {
-                toastr.success("修改客户组信息成功！");
-                setTimeout(function () {
-                    window.location.reload();
-                },1000);
-            },
-            error:function () {
-                toastr.error("修改客户组信息失败！");
+        if(email != "" && email != null) {
+            if(reg.test(email)) {
+                $.ajax({
+                    url:"/api/account/customer",
+                    data:refreshCustomerInfo,
+                    type:"PUT",
+                    contentType: "application/json; charset=utf-8",//post请求必须
+                    success:function (resp) {
+                        toastr.success("修改客户组信息成功！");
+                        setTimeout(function () {
+                            window.location.reload();
+                        },1000);
+                    },
+                    error:function () {
+                        toastr.error("修改客户组信息失败！");
+                    }
+                });
             }
-        });
+            else {
+                $("#modalConfirmRefresheCustomer").removeAttr("data-dismiss");
+                document.getElementById("emailModifyCheck").style.display="inline";
+                $('#refreshCustomerEmail').on('focus', function() {
+                    document.getElementById("emailModifyCheck").style.display="none";
+                });
+            }
+        }
+        else {
+            $.ajax({
+                url:"/api/account/customer",
+                data:refreshCustomerInfo,
+                type:"PUT",
+                contentType: "application/json; charset=utf-8",//post请求必须
+                success:function (resp) {
+                    toastr.success("修改客户组信息成功！");
+                    setTimeout(function () {
+                        window.location.reload();
+                    },1000);
+                },
+                error:function () {
+                    toastr.error("修改客户组信息失败！");
+                }
+            });
+        }
     };
 
     //展示客户组下所有设备
