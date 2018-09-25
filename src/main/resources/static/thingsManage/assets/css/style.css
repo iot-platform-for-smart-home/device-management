@@ -109,6 +109,7 @@ HEAD MENU STYLES
 
 #side-menu ul li a i {
     padding-right: 10px;
+    width: 30px;
 }
 
 #side-menu ul li a, #side-menu ul li a:hover {

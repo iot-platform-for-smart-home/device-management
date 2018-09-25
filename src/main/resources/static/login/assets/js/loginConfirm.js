@@ -32,24 +32,26 @@ $(document).ready(function () {
                     console.log(password);*/
                     console.log(msg);
                     var msgJson = JSON.parse(msg);
-                    $.cookie("userLevel",msgJson.authority);
-                    $.cookie("tenantId",msgJson.tenant_id);
-                    $.cookie("userId",msgJson.user_id);
-                    $.cookie("customerId",msgJson.customer_id);
+                    // $.cookie("userLevel",msgJson.authority);
+                    // $.cookie("tenantId",msgJson.tenant_id);
+                    // $.cookie("userId",msgJson.user_id);
+                    // $.cookie("customerId",msgJson.customer_id);
                    /* userLevel = msgJson.authority;
                     tenant = msgJson.tenant_id;
                     userId = msgJson.user_id;
                    window.location.href = "/home?"+userLevel+"&"+tenant+"&"+userId;*/
                     // window.location.href = "/home";
-                    if(msgJson.authority == "CUSTOMER_USER"){
-                        window.location.href = "/thingsUserManager";
-                    }
-                    else if(msgJson.authority == "TENANT_ADMIN"){
+                    // if(msgJson.authority == "CUSTOMER_USER"){
+                    //     window.location.href = "/thingsUserManager";
+                    // }
+                    // else if(msgJson.authority == "TENANT_ADMIN"){
+                    if(msgJson.status == "success") {
                         window.location.href = "/thingsTenantManager";
                     }
-                    else if(msgJson.authority == "SYS_ADMIN"){
-                        window.location.href = "/thingsSystemManager";
-                    }
+                    // }
+                    // else if(msgJson.authority == "SYS_ADMIN"){
+                    //     window.location.href = "/thingsSystemManager";
+                    // }
                 },
                 error:function () {
                     toastr.error("用户名或密码错误！");

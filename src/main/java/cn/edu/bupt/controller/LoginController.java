@@ -40,7 +40,7 @@ public class LoginController extends DefaultThingsboardAwaredController {
         JsonObject json1 = new JsonParser().parse(body).getAsJsonObject();
         String username = json1.get("username").getAsString() ;
         String password = json1.get("password").getAsString() ;
-        String url = getAccountServer()+"/api/v1/account/login";
+        String url = "http://" +  getAccountServer()+"/api/v1/account/login";
         String res = null;
         try {
             res = HttpUtil.requestLogin(url, username,password);
