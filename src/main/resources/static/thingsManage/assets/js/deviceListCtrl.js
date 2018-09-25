@@ -1,6 +1,4 @@
 mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $resource) {
-
-
     $scope.deviceInfo;//用于记录当前选中的设备
 
     var parentName;//用于记录父设备名称

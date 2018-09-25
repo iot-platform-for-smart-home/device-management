@@ -51,7 +51,12 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
                 }
             });
         } else {
-            alert("输入不能为空!");
+            // alert("输入不能为空!");
+            /*增加提示效果*/
+            $("#dgName").addClass("input-err");
+            $('#dgName').on('focus', function () {
+                $(this).removeClass('input-err');
+            });
         }
     }
 

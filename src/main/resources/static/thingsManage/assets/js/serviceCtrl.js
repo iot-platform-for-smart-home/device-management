@@ -1,7 +1,7 @@
 mainApp.controller("abilityCtrl", function ($scope, $resource) {
-   var modelId;
-   var abilityId = [];
-   $scope.result = new Array();
+    var modelId;
+    var abilityId = [];
+    $scope.result = new Array();
 
     /*权限管理*/
     if($.cookie("userLevel") === "CUSTOMER_USER"){
@@ -82,24 +82,43 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
         $scope.deviceType = $("#deviceType").val();
         $scope.model = $("#model").val();
         console.log($scope.manufacturerName);
-        if($scope.manufacturerName=="" || $scope.manufacturerName==null){
-            alert("厂商不能为空！");
-        }else if($scope.deviceType=="" || $scope.deviceType==null){
-            alert("设备类型不能为空！");
-        }else if($scope.model==""|| $scope.model==null){
-            alert("设备型号不能为空！");
-        }else {
+        if($scope.manufacturerName!="" && $scope.manufacturerName!=null &&
+            $scope.deviceType!="" && $scope.deviceType!=null &&
+            $scope.model!="" && $scope.model!=null) {
             $scope.createAbilityInfo = '{"manufacturerName":'+'"'+$scope.manufacturerName+'"'+',"deviceType":'+'"'+$scope.deviceType+'"'+',"model":'+'"'+$scope.model+'"'+'}';
             console.log($scope.createAbilityInfo);
             var createAbilityGroupObj =  $resource("/api/v1/abilityGroup");
             $scope.abilityInformation = createAbilityGroupObj.save({},$scope.createAbilityInfo,function (resp) {
-               toastr.success("新增设备成功！");
+                toastr.success("新增设备成功！");
                 setTimeout(function () {
                     window.location.reload();
                 },500);
             },function (error) {
                 toastr.error("新增设备失败！");
             });
+        }
+        else {
+            if($scope.manufacturerName=="" || $scope.manufacturerName==null){
+                // alert("厂商不能为空！");
+                $("#manufacturerName").addClass("input-err");
+                $('#manufacturerName').on('focus', function () {
+                    $(this).removeClass('input-err');
+                });
+            }
+            if($scope.deviceType=="" || $scope.deviceType==null){
+                // alert("设备类型不能为空！");
+                $("#deviceType").addClass("input-err");
+                $('#deviceType').on('focus', function () {
+                    $(this).removeClass('input-err');
+                });
+            }
+            if($scope.model==""|| $scope.model==null){
+                // alert("设备型号不能为空！");
+                $("#model").addClass("input-err");
+                $('#model').on('focus', function () {
+                    $(this).removeClass('input-err');
+                });
+            }
         }
     };
 
@@ -126,16 +145,12 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
                 "value":$scope.fchat.replies[i].value});
         }
         console.log(params);
-        if($scope.serviceName=="" || $scope.serviceName==null){
-            alert("服务名称不能为空！");
-        }else if($scope.serviceDescription=="" || $scope.serviceDescription==null){
-            alert("服务描述不能为空！");
-        }else if($scope.methodName=="" || $scope.methodName==null){
-            alert("方法名不能为空！");
-        } else if(params[0].key=="" || params[0].type=="" || params[0].value=="") {
-            alert("参数必须全部填写！");
-            location.reload();
-        } else{
+        if(($scope.serviceName != "" || $scope.serviceName != null)
+            && ($scope.serviceDescription != "" || $scope.serviceDescription != null)
+            && ($scope.methodName != "" || $scope.methodName != null)
+            && params[0].key != ""
+            && params[0].type != ""
+            && params[0].value != "") {
             console.log("params:"+params[0].key);
             $scope.createAbilityGroup = {
                 modelId: modelId,
@@ -151,7 +166,7 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
                         params: params
                     }
                 }
-            }
+            };
             //将json对象转换成json字符串
             $scope.createAbility = JSON.stringify(
                 {
@@ -169,7 +184,7 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
                         }
                     }
                 }
-            )
+            );
             console.log($scope.createAbility);
             var createAbilityObj =  $resource("/api/v1/ability");
             $scope.ability = createAbilityObj.save({},$scope.createAbility,function (resp) {
@@ -182,6 +197,42 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
             },function (error) {
                 toastr.error("新增失败！");
             });
+        }
+        else {
+            if($scope.serviceName=="" || $scope.serviceName==null){
+                // alert("服务名称不能为空！");
+                $("#serviceName").addClass("input-err");
+                $('#serviceName').on('focus', function () {
+                    $(this).removeClass('input-err');
+                });
+            }
+            if($scope.serviceDescription=="" || $scope.serviceDescription==null){
+                // alert("服务描述不能为空！");
+                $("#serviceDescription").addClass("input-err");
+                $('#serviceDescription').on('focus', function () {
+                    $(this).removeClass('input-err');
+                });
+            }
+            if($scope.methodName=="" || $scope.methodName==null){
+                // alert("方法名不能为空！");
+                $("#methodName").addClass("input-err");
+                $('#methodName').on('focus', function () {
+                    $(this).removeClass('input-err');
+                });
+            }
+            if(params[0].key=="" || params[0].type=="" || params[0].value=="") {
+                // alert("参数必须全部填写！");
+                document.getElementById("paramWarning").style.display="inline";
+                $('.parameterKey').on('focus', function () {
+                    document.getElementById("paramWarning").style.display="none";
+                });
+                $('.parameterType').on('focus', function () {
+                    document.getElementById("paramWarning").style.display="none";
+                });
+                $('.parameterValue').on('focus', function () {
+                    document.getElementById("paramWarning").style.display="none";
+                });
+            }
         }
     };
 
@@ -197,7 +248,7 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
             {key: "",type:1,value: ""}); // 用时间戳作为每个item的key
         // 增加新的参数后允许删除
         $scope.fchat.canDescReply = true;
-       // console.log("增加一行");
+        // console.log("增加一行");
         console.log($scope.fchat.replies);
     }
     // 减少参数
