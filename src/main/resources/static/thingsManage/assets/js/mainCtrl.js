@@ -141,57 +141,57 @@ mainApp.controller("mainCtrl",["$scope","$location","$resource",function ($scope
         });
 
         /*HEAD MENU用户信息显示*/
-        var userId = $.session.get("tenantId");
-        $.ajax({
-            url:"/api/account/user?userId="+userId,
-            type:"GET",
-            dataType:"json",
-            contentType: "application/json; charset=utf-8",
-            async:false,
-            success:function (msg) {
-                console.log(msg);
-                userInfo = msg
-                $scope.currentUser = msg.name;
-                $scope.currentUserLevel = msg.authority;
-            },
-            error:function (err) {
-                console.log(err);
-            }
-        });
-
-        /*-=====个人中心用户信息修改======-*/
-
-        //console.log(userInfo.id);
-        //console.log(userInfo.additional_info);
-        $scope.NAME = userInfo.name;
-        $scope.EMAIL = userInfo.email;
-        $scope.INFO = userInfo.additional_info;
-        $scope.editUser = function () {
-        //console.log($scope.tenantGroupID);
-        //console.log($scope.tenantTitle);
-        //console.log(tenantID);
-        var email=$("#userEmail").val();
-        var additional_info=$("#userSay").val();
-        var name=$("#userName").val();
-        var editTenantUser = '{"id":'+'"'+userInfo.id+'"'+',"email":'+'"'+email+'"'+',"name":'+'"'+name+'"'+',"additional_info":'+'"'+additional_info+'"'+'}';
-        //console.log(editTenantUser);
-        $.ajax({
-            url:"/api/account/user",
-            data:editTenantUser,
-            type:"PUT",
-            contentType: "application/json; charset=utf-8",//post请求必须
-            success:function () {
-                toastr.success("修改成功！");
-                setTimeout(function () {
-                    window.location.reload();
-                },1000);
-            },
-            error:function () {
-                alert("编辑失败");
-            }
-        });
-
-    }
+    //     var userId = $.session.get("tenantId");
+    //     $.ajax({
+    //         url:"/api/account/user?userId="+userId,
+    //         type:"GET",
+    //         dataType:"json",
+    //         contentType: "application/json; charset=utf-8",
+    //         async:false,
+    //         success:function (msg) {
+    //             console.log(msg);
+    //             userInfo = msg
+    //             $scope.currentUser = msg.name;
+    //             $scope.currentUserLevel = msg.authority;
+    //         },
+    //         error:function (err) {
+    //             console.log(err);
+    //         }
+    //     });
+    //
+    //     /*-=====个人中心用户信息修改======-*/
+    //
+    //     //console.log(userInfo.id);
+    //     //console.log(userInfo.additional_info);
+    //     $scope.NAME = userInfo.name;
+    //     $scope.EMAIL = userInfo.email;
+    //     $scope.INFO = userInfo.additional_info;
+    //     $scope.editUser = function () {
+    //     //console.log($scope.tenantGroupID);
+    //     //console.log($scope.tenantTitle);
+    //     //console.log(tenantID);
+    //     var email=$("#userEmail").val();
+    //     var additional_info=$("#userSay").val();
+    //     var name=$("#userName").val();
+    //     var editTenantUser = '{"id":'+'"'+userInfo.id+'"'+',"email":'+'"'+email+'"'+',"name":'+'"'+name+'"'+',"additional_info":'+'"'+additional_info+'"'+'}';
+    //     //console.log(editTenantUser);
+    //     $.ajax({
+    //         url:"/api/account/user",
+    //         data:editTenantUser,
+    //         type:"PUT",
+    //         contentType: "application/json; charset=utf-8",//post请求必须
+    //         success:function () {
+    //             toastr.success("修改成功！");
+    //             setTimeout(function () {
+    //                 window.location.reload();
+    //             },1000);
+    //         },
+    //         error:function () {
+    //             alert("编辑失败");
+    //         }
+    //     });
+    //
+    // }
 
 
 
