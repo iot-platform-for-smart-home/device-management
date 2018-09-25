@@ -39,41 +39,17 @@ public class LoginController extends DefaultThingsboardAwaredController {
         JsonObject json1 = new JsonParser().parse(body).getAsJsonObject();
         String username = json1.get("username").getAsString() ;
         String password = json1.get("password").getAsString() ;
-        HttpSession session = request.getSession();
-
-        session.setAttribute("username", username);
-        session.setAttribute("password", password);
-
-        String res = HttpUtil.getAccessToken(session);
-        JsonObject responseJson = (JsonObject) new JsonParser().parse(res);
-        if(responseJson.has("error")){
-            response.setStatus(400);
-            session.removeAttribute("username");
-            session.removeAttribute("password");
-        }else if(responseJson.has("access_token")){
-            UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
-            Subject subject = SecurityUtils.getSubject();
-            subject.login(usernamePasswordToken);   //完成登录
+        String url = ;
+        String res = null;
+        try {
+            res = HttpUtil.requestLogin(url, username,password);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         return res;
-//        JsonObject json = new JsonObject();
-//        if(res){ // 成功登录
-//            UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
-//            Subject subject = SecurityUtils.getSubject();
-//            subject.login(usernamePasswordToken);   //完成登录
-//
-//            json.addProperty("response_code",0);
-//            json.addProperty("response_msg","login ok");
-//            response.setStatus(200);
-//        }else{
-//            json.addProperty("response_code",1);
-//            json.addProperty("response_msg","wrong username or password");
-//            session.removeAttribute("username");
-//            session.removeAttribute("password");
-//            response.setStatus(401);
-//        }
-//        return json.toString();
     }
+
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response){

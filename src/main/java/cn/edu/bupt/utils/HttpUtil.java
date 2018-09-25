@@ -52,6 +52,26 @@ public class HttpUtil {
     private static String Client_secret;
 
 
+    public static String requestLogin(String url ,String username, String password) throws IOException {
+        OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象。
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");//数据类型为json格式，
+        String jsonStr = "{\"tenantName\":\""+ username +"\",\"password\":\""+ password+"\"}";//json数据.
+        RequestBody body = RequestBody.create(JSON,jsonStr);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Response response = null;
+
+        response = client.newCall(request).execute();
+
+        if (response.isSuccessful()) {
+            return response.body().string();
+        } else {
+            throw new IOException("Unexpected code " + response);
+        }
+    }
+
     public static String sendPostToThingsboard(String url, Map<String,String> headers, JsonObject requestBody,HttpSession session) throws Exception{
         String str ;
         if(requestBody==null){
