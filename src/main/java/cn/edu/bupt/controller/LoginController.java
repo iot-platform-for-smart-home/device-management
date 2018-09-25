@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * Created by tangjialiang on 2018/1/7.
@@ -39,14 +40,13 @@ public class LoginController extends DefaultThingsboardAwaredController {
         JsonObject json1 = new JsonParser().parse(body).getAsJsonObject();
         String username = json1.get("username").getAsString() ;
         String password = json1.get("password").getAsString() ;
-        String url = ;
+        String url = "http://localhost:8400/api/v1/account/login";
         String res = null;
         try {
             res = HttpUtil.requestLogin(url, username,password);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return res;
     }
 
