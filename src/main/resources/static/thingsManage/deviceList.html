@@ -6,7 +6,7 @@
                 <button style="margin-left:5px" class="btn btn-basic btn-sm user" data-toggle="modal"
                         data-target="#createDevice" id="addDevice">
                 </button>
-                <span style="margin-left: 30%;font-size: 1.8rem" id="deviceNum"></span>
+                <span style="margin-left: 20%;font-size: 1.8rem" id="deviceNum"></span>
                 <span style="font-size: 1.8rem">{{Devices_Number||0}}</span>
             </div>
         </div>
@@ -331,8 +331,8 @@
                 <div class="modal-body" id="assignHeader">
                     <!--<input type="checkbox" ng-model="deviceGroupBox" id="deviceGroupBox"/>分配设备到设备组
                     <input type="checkbox" ng-model="customerBox" id="customerBox"/>分配设备到客户组-->
-                    <input type="radio" id="deviceGroupBox" name="assignBox" value="deviceGroupBox"/>
-                    <input type="radio" id="customerBox" name="assignBox" value="customerBox"/>
+                    <input type="radio" id="deviceGroupBox" name="assignBox" value="deviceGroupBox"/><span id="assignDeviceGroupBox"></span>
+                    <input type="radio" id="customerBox" name="assignBox" value="customerBox"/><span id="assignCustomerBox"></span>
                 </div>
                 <div class="modal-body" id="assignTable" style="display: none;">
                     <table class="table table-striped table-hover">
@@ -428,25 +428,25 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalCloseTagDetail">&times;</button>
-                    <h4 class="modal-title" style="font-weight: bold;font-size: 20px;" id="detailDetail">设备详情</h4>
+                    <h4 class="modal-title" style="font-weight: bold;font-size: 20px;" id="detailDetail"></h4>
                 </div>
                 <div class="modal-body showForm" id="detailTable">
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th class="attName" style="text-align: left;font-size: 16px;" id="attribute">-----属性-----</th>
+                            <th class="attName" style="text-align: left;font-size: 16px;" id="attribute"></th>
                         </tr>
                         <tr>
 
                             <td id="attrSelectInfoTd">
-                                每页显示
+                                <span id="displayRecord"></span>
                                 <select id="attrSelectInfo" ng-change="showNum()" ng-model="myNum">
                                     <option value="">5</option>
                                     <option>10</option>
                                     <option>15</option>
                                     <option>20</option>
                                 </select>
-                                <i id="recordNumber">条记录</i>
+                                <span id="recordNumber"></span>
                             </td>
                             <td></td>
                             <td>
@@ -461,9 +461,9 @@
                         </tr>
 
                         <tr class="boldForm">
-                            <td style="width: 30%; text-align: center;" id="attrUpdateTime">最后更新时间</td>
-                            <td style="width: 30%; text-align: center;" id="attrKey">键</td>
-                            <td style="width: 30%; text-align: center;" id="attrValue">值</td>
+                            <td style="width: 30%; text-align: center;" id="attrUpdateTime"></td>
+                            <td style="width: 30%; text-align: center;" id="attrKey"></td>
+                            <td style="width: 30%; text-align: center;" id="attrValue"></td>
                         </tr>
                         </thead>
                         <tbody id="attrDisplay" class="data-list"></tbody>
@@ -472,15 +472,15 @@
                 </div>
                 <div class="divide-line"></div>
                 <div class="modal-body showForm" id="realTimeTable">
-                    <h4 class="detail-block-header" id="telemetry">-----最新遥测-----</h4>
+                    <h4 class="detail-block-header" id="telemetry"></h4>
                     <div class="row">
                         <div>
                             <table id="realtime_data_table" class="table table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th style="width: 30%; text-align: center;" id="teleUpdateTime">最后更新时间</th>
-                                    <th style="width: 30%; text-align: center;" id="teleKey">键</th>
-                                    <th style="width: 30%; text-align: center;" id="teleValue">值</th>
+                                    <th style="width: 30%; text-align: center;" id="teleUpdateTime"></th>
+                                    <th style="width: 30%; text-align: center;" id="teleKey"></th>
+                                    <th style="width: 30%; text-align: center;" id="teleValue"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -492,12 +492,12 @@
                 <div class="divide-line"></div>
 
                 <div class="modal-body showHistoryData" id="historyDataTable">
-                    <h4 class="detail-block-header" id="history">-----历史数据-----</h4>
+                    <h4 class="detail-block-header" id="history"></h4>
 
-                     <label id="historyStart">起始时间：</label>
+                     <label id="historyStart"></label>
                      <input type="datetime-local" id="startTime"/>
 
-                     <label id="historyEnd">终止时间：</label>
+                     <label id="historyEnd"></label>
                      <input type="datetime-local" id="endTime"/>
 
                      <i class="fa fa-search" id="showHistory" ng-click="subTime()"></i>
@@ -509,7 +509,7 @@
                 <div class="divide-line"></div>
 
                 <div class="modal-body showForm" id="controlTable">
-                    <h4 class="detail-block-header" id="control">-----控制面板-----</h4>
+                    <h4 class="detail-block-header" id="control"></h4>
                     <div class="row">
                         <div class="control-panel" id="control_panel">
 
@@ -518,8 +518,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseDetail">关闭</button>
-                    <button type="button" class="btn btn-basic" id="modalConfirmDetail" data-dismiss="modal">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseDetail"></button>
+                    <button type="button" class="btn btn-basic" id="modalConfirmDetail" data-dismiss="modal"></button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -532,13 +532,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeEvent">&times;</button>
-                    <h4 class="modal-title" style="font-weight: bold;" id="eventDetail">设备事件</h4>
+                    <h4 class="modal-title" style="font-weight: bold;" id="eventDetail"></h4>
                 </div>
                 <div class="modal-body" id="eventTable">
-                    <label id="eventStart">起始时间：</label>
+                    <label id="eventStart"></label>
                     <input type="datetime-local" id="eventStartTime"/>
 
-                    <label id="eventEnd">终止时间：</label>
+                    <label id="eventEnd"></label>
                     <input type="datetime-local" id="eventEndTime"/>
 
                     <i class="fa fa-search" id="showEvent" ng-click="subEventTime()"></i>
@@ -546,11 +546,11 @@
                     <table class="table table-striped table-hover" id="showEventTable">
                         <thead>
                             <tr>
-                                <th id="methodName">方法名</th>
-                                <th id="serviceName">服务名</th>
-                                <th id="state">状态</th>
-                                <th id="userId">uid</th>
-                                <th id="createTime">创建时间</th>
+                                <th id="methodName"></th>
+                                <th id="serviceName"></th>
+                                <th id="state"></th>
+                                <th id="userId"></th>
+                                <th id="createTime"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -563,16 +563,16 @@
                             </tr>
                         <tr id="eventPageBtn">
                             <td></td>
-                            <td><button class="btn btn-basic" id="preEvent" ng-click="preEvent()">上一页</button></td>
+                            <td><button class="btn btn-basic" id="preEvent" ng-click="preEvent()"></button></td>
                             <td></td>
-                            <td><button class="btn btn-basic" id="nextEvent" ng-click="nextEvent()">下一页</button></td>
+                            <td><button class="btn btn-basic" id="nextEvent" ng-click="nextEvent()"></button></td>
                             <td></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseEvent">关闭</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseEvent"></button>
                     <!--<button type="button" class="btn btn-basic" id="modalConfirmEvent" data-dismiss="modal">确定</button>-->
                 </div>
             </div><!-- /.modal-content -->

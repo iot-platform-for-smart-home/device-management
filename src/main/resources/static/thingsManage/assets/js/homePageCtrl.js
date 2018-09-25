@@ -1,7 +1,7 @@
 mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resource) {
 
     /*中英文切换*/
-    var lang_flag=0;
+    var lang_flag=getCookie('Language');
 
     if(lang_flag===1){
         document.getElementById("deviceNumber").innerText="设备数量";
@@ -335,4 +335,21 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
         }
     }
     /**广播事件END**/
+
+    function getCookie(Name) {
+        var search = Name + "="
+        if(document.cookie.length > 0)
+        {
+            offset = document.cookie.indexOf(search)
+            if(offset != -1)
+            {
+                offset += search.length
+                end = document.cookie.indexOf(";", offset)
+                if(end == -1)
+                    end = document.cookie.length
+                return unescape(document.cookie.substring(offset, end))
+            }
+            else return ""
+        }
+    }
 }]);

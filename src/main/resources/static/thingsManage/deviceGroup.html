@@ -4,21 +4,21 @@
         <div class="RightView">
             <div class="DGAssignContainer">
                 <div class="DGTitle DGminTitle">
-                    <span class="RightviewTitle">设备组信息</span>
+                    <span class="RightviewTitle" id="deviceGroupInfo"></span>
                     <div class="ruleiconcontainer" data-toggle="modal" data-target="#delDG">
                         <i class="fa fa-trash-o fa-lg ruleicon shand" title="删除"></i>
                     </div>
                 </div>
                 <div class="item">
-                    <p>设备组名：{{item.name}}</p>
-                    <p>设备组ID：{{item.id}}</p>
+                    <p><span id="groupName"></span><span>{{item.name}}</span></p>
+                    <p><span id="groupId"></span><span>{{item.id}}</span></p>
                 </div>
             </div>
 
             <!--关联设备显示-->
             <div class="DGAssignContainer">
                 <div class="DGTitle DGminTitle">
-                    <span class="RightviewTitle">关联设备列表</span>
+                    <span class="RightviewTitle" id="relatedDeviceList"></span>
                 </div>
                 <!--ui-grid实现
                 <div class="item">
@@ -31,9 +31,9 @@
                         <thead>
                         <tr>
                             <td style="width: 30px"></td>
-                            <td>设备名</td>
-                            <td>设备ID</td>
-                            <td>移除</td>
+                            <td id="deviceName"></td>
+                            <td id="deviceId"></td>
+                            <td id="remove"></td>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,31 +50,30 @@
                         <tr ng-if="data.expanded" ng-repeat-end="">
                             <td></td>
                             <td colspan="3">
-                                <p>设备名称：{{data.name}}</p>
-                                <p>设备ID：{{data.id}}</p>
-                                <p>设备类型：{{data.deviceType}}</p>
-                                <p>父类设备：{{data.parentDeviceId||"无"}}</p>
-                                <p>厂商：{{data.manufacture||"无"}}</p>
-                                <p>型号：{{data.model||"无"}}</p>
-                                <p>状态：{{data.status||"无"}}</p>
-                                <p>位置：{{data.location||"无"}}</p>
+                                <p id="relDeviceName">{{data.name}}</p>
+                                <p id="relDeviceId">{{data.id}}</p>
+                                <p id="relDeviceType">{{data.deviceType}}</p>
+                                <p id="relParentDevice">{{data.parentDeviceId||"无"}}</p>
+                                <p id="relVendor">{{data.manufacture||"无"}}</p>
+                                <p id="relModel">{{data.model||"无"}}</p>
+                                <p id="relStatus">{{data.status||"无"}}</p>
+                                <p id="relLocation">{{data.location||"无"}}</p>
                                 <p>
                                     <button class="btn btn-basic user" data-toggle="modal"
-                                            data-target="#refreshDevice" ng-click="setValue(data)">更新设备
+                                            data-target="#refreshDevice" ng-click="setValue(data)" id="groupUpdateDevice">
                                     </button>
-                                    <button class="btn btn-basic" data-toggle="modal"
-                                            data-target="#token" ng-click="showToken(data)">查看令牌
+                                    <button class="highlight btn btn-default" data-toggle="modal"
+                                            data-target="#token" ng-click="showToken(data)" id="groupViewToken">
                                     </button>
                                     <button data-toggle="modal"
-                                            data-target="#deviceDetail" class="highlight btn btn-default" ng-click="showDetail(data)">
-                                        查看详情
+                                            data-target="#deviceDetail" class="highlight btn btn-default" ng-click="showDetail(data)" id="groupViewDetail">
                                     </button>
                                 </p>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <div ng-show="showEmpty" id="deviceGroupEmpty">当前设备组下无关联设备</div>
+                    <div ng-show="showEmpty" id="deviceGroupEmpty"></div>
                 </div>
             </div>
             <!--modal从设备组中取消关联设备-->
@@ -86,18 +85,15 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">
-                                取消关联
+                            <h4 class="modal-title" id="myModalLabelRemove">
                             </h4>
                         </div>
-                        <div class="modal-body">
-                            从设备组中除去此设备？
+                        <div class="modal-body" id="removeConfirm">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseRemove">
                             </button>
-                            <button type="button" class="btn btn-basic" ng-click="unAssign()">
-                                确定
+                            <button type="button" class="btn btn-basic" ng-click="unAssign()" id="modalConfirmRemove">
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -113,18 +109,16 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">
-                                删除设备组
+                            <h4 class="modal-title" id="myModalLabelDelete">
                             </h4>
                         </div>
-                        <div class="modal-body">
-                            确定删除此设备组？
+                        <div class="modal-body" id="deleteConfirm">
+
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseDelete">
                             </button>
-                            <button type="button" class="btn btn-basic" ng-click="delDG()">
-                                确定
+                            <button type="button" class="btn btn-basic" ng-click="delDG()" id="modalConfirmDelete">
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -140,20 +134,19 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </button>
-                            <h4 class="modal-title">
-                                编辑设备组
+                            <h4 class="modal-title" id="myModalLabelEdit">
+
                             </h4>
                         </div>
                         <div class="modal-body">
-                            <p>设备组名：<input type="text" name="NewDGName" placeholder={{item.name}}
+                            <p id="groupNameEdit"><input type="text" name="NewDGName" placeholder={{item.name}}
                                            ng-model="$parent.editdg"></input>
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseEdit">
                             </button>
-                            <button type="button" class="btn btn-basic" ng-click="editDGName()">
-                                确定
+                            <button type="button" class="btn btn-basic" ng-click="editDGName()" id="modalConfirmEdit">
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -167,34 +160,33 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-                            <h4 class="modal-title" style="font-weight: bold;">更新设备</h4>
+                            <h4 class="modal-title" style="font-weight: bold;" id="myModalLabelUpdate"></h4>
                         </div>
                         <div class="modal-body" id="deviceInfoRefresh">
                             <table class="table table-striped table-hover">
                                 <tbody>
                                 <tr>
-                                    <td class="attName">设备名称:</td>
+                                    <td class="attName" id="groupNameUpdate"></td>
                                     <td><input type="text" class="inputInfo" disabled="disabled" id="reName"
                                                ng-value="devInGroup.name"></td>
                                 </tr>
                                 <tr>
-                                    <td class="attName">父类设备:</td>
+                                    <td class="attName" id="parentDeviceUpdate"></td>
                                     <td>
 
                                         <select class="inputInfo" id="reParentId">
-                                            <option>------请选择------</option>
+                                            <option id="select-1"></option>
                                             <option ng-repeat="data in deviceList" class="{{data.id}}">{{data.name}}
                                             </option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="attName">厂商:</td>
+                                    <td class="attName" id="vendorUpdate"></td>
                                     <td>
-
                                         <select class="inputInfo" id="reManufacture" ng-change="getManufacture()"
                                                 ng-model="myReManufacturer">
-                                            <option>------请选择------</option>
+                                            <option id="select-2"></option>
                                             <option ng-repeat="data in manufacturerInfo" class="{{data.manufacturerId}}">
                                                 {{data.manufacturerName}}
                                             </option>
@@ -202,12 +194,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="attName">设备类型:</td>
+                                    <td class="attName" id="deviceTypeUpdate"></td>
                                     <td>
-
                                         <select class="inputInfo" id="reDeviceType" ng-change="getDeviceType()"
                                                 ng-model="myReDeviceType">
-
                                             <option ng-repeat="data in deviceTypeInfo" class="{{data.deviceTypeId}}">
                                                 {{data.deviceTypeName}}
                                             </option>
@@ -215,12 +205,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="attName">型号：</td>
+                                    <td class="attName" id="modelUpdate"></td>
                                     <td>
-
                                         <select class="inputInfo" id="reModel" ng-change="getDeviceModel()"
                                                 ng-model="myReDeviceModel">
-
                                             <option ng-repeat="data in deviceModelInfo" class="{{data.modelId}}">
                                                 {{data.modelName}}
                                             </option>
@@ -228,21 +216,21 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="attName">位置：</td>
+                                    <td class="attName" id="locationUpdate"></td>
                                     <td><input type="text" class="inputInfo" id="reLocation"></td>
                                 </tr>
                                 <tr>
-                                    <td class="attName">状态：</td>
+                                    <td class="attName" id="statusUpdate"></td>
                                     <td><input type="text" class="inputInfo" id="reStatus"></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseRefresh">关闭
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="groupModalCloseRefresh">
                             </button>
-                            <button type="button" class="btn btn-basic" id="modalConfirmRefresh" data-dismiss="modal"
-                                    ng-click="refreshDevice()">更新
+                            <button type="button" class="btn btn-basic" id="groupModalConfirmRefresh" data-dismiss="modal"
+                                    ng-click="refreshDevice()">
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -256,16 +244,16 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-                            <h4 class="modal-title" style="font-weight: bold;">设备令牌</h4>
+                            <h4 class="modal-title" style="font-weight: bold;" id="myModalDeviceToken"></h4>
                         </div>
                         <div class="modal-body" id="tokenTable">
                             <p style="text-align: center;">{{token}}</p>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseToken">关闭
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="groupModalCloseToken">
                             </button>
-                            <button type="button" class="btn btn-basic" id="modalConfirmToken" data-dismiss="modal">确定
+                            <button type="button" class="btn btn-basic" id="groupModalConfirmToken" data-dismiss="modal">
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -279,34 +267,36 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalCloseTagDetail">&times;</button>
-                            <h4 class="modal-title" style="font-weight: bold;font-size: 20px;">设备详情</h4>
+                            <h4 class="modal-title" style="font-weight: bold;font-size: 20px;" id="myModalDeviceDetail"></h4>
                         </div>
                         <div class="modal-body showForm" id="detailTable">
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th class="attName" style="text-align: left;font-size: 16px;">-----属性-----</th>
+                                    <th class="attName" style="text-align: left;font-size: 16px;" id="attribute"></th>
                                 </tr>
                                 <tr>
 
                                     <td>
-                                        每页显示
+                                        <span id="displayRecord"></span>
+
                                         <select id="attrSelectInfo" ng-change="showNum()" ng-model="myNum">
                                             <option value="">5</option>
                                             <option>10</option>
                                             <option>15</option>
                                             <option>20</option>
                                         </select>
-                                        条记录
+
+                                        <span id="recordNumber"></span>
                                     </td>
                                     <td></td>
                                     <td><input type="text" class="form-control" placeholder="请输入关键字搜索..." id="searchKey"></td>
                                 </tr>
 
                                 <tr class="boldForm">
-                                    <td style="width: 30%; text-align: center;">最后更新时间</td>
-                                    <td style="width: 30%; text-align: center;">键</td>
-                                    <td style="width: 30%; text-align: center;">值</td>
+                                    <td style="width: 30%; text-align: center;" id="attrUpdateTime"></td>
+                                    <td style="width: 30%; text-align: center;" id="attrKey"></td>
+                                    <td style="width: 30%; text-align: center;" id="attrValue"></td>
                                 </tr>
                                 </thead>
                                 <tbody id="attrDisplay" class="data-list"></tbody>
@@ -315,15 +305,15 @@
                         </div>
                         <div class="divide-line"></div>
                         <div class="modal-body showForm" id="realTimeTable">
-                            <h4 class="detail-block-header">-----最新遥测-----</h4>
+                            <h4 class="detail-block-header" id="telemetry"></h4>
                             <div class="row">
                                 <div>
                                     <table id="realtime_data_table" class="table table-striped table-hover">
                                         <thead>
                                         <tr>
-                                            <th style="width: 30%; text-align: center;">最后更新时间</th>
-                                            <th style="width: 30%; text-align: center;">键</th>
-                                            <th style="width: 30%; text-align: center;">值</th>
+                                            <th style="width: 30%; text-align: center;" id="teleUpdateTime"></th>
+                                            <th style="width: 30%; text-align: center;" id="teleKey"></th>
+                                            <th style="width: 30%; text-align: center;" id="teleValue"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -336,7 +326,7 @@
                         <div class="divide-line"></div>
 
                         <div class="modal-body showForm" id="controlTable">
-                            <h4 class="detail-block-header">-----控制-----</h4>
+                            <h4 class="detail-block-header" id="control"></h4>
                             <div class="row">
                                 <div class="control-panel" id="control_panel">
 
@@ -345,8 +335,8 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseDetail">关闭</button>
-                            <button type="button" class="btn btn-basic" id="modalConfirmDetail" data-dismiss="modal">确定</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="groupModalCloseDetail"></button>
+                            <button type="button" class="btn btn-basic" id="groupModalConfirmDetail" data-dismiss="modal"></button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -355,12 +345,12 @@
         <!--左侧设备组展示视图-->
         <div class="LeftView">
             <div class="DGTitle">
-                <span style="font-size:30px">设备组</span>
+                <span style="font-size:30px" id="group"></span>
                 <button style="margin-left:5px" class="btn btn-basic btn-sm" data-toggle="modal"
-                        data-target="#addDeviceGroup">+ 创建设备组
+                        data-target="#addDeviceGroup" id="addGroup">
                 </button>
                 <div class="input-group SearchDG">
-                    <input type="text" class="form-control" placeholder="请输入设备组名称..." ng-model="$parent.dgname">
+                    <input type="text" class="form-control" placeholder="请输入设备组名称..." ng-model="$parent.dgname" id="addInput">
                     <span class="input-group-btn">
                         <button class="btn btn-basic" type="button" ng-click="searchDG()"><i class="fa fa-search"></i></button>
                     </span>
@@ -375,8 +365,8 @@
                         </div>
 
                 </div>
-                <div ng-show="isShowEmpty" class="showEmpty">
-                    <p>设备组为空，请创建设备组</p>
+                <div ng-show="isShowEmpty" class="showEmpty" >
+                    <p id="emptyRemind"></p>
                 </div>
             </div>
 
@@ -389,19 +379,17 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                 &times;
                             </button>
-                            <h4 class="modal-title">
-                                添加设备组
+                            <h4 class="modal-title" id="addToGroup">
                             </h4>
                         </div>
                         <div class="modal-body">
-                            <p>设备组名：<input type="text" style="pixels: 300px" placeholder="请输入设备组名"
-                                           ng-model="$parent.addDGName"></p>
+                            <span id="addToGroupName"></span><input type="text" style="pixels: 300px" placeholder="请输入设备组名"
+                                                              ng-model="$parent.addDGName" id="addToInput">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseAddTo">
                             </button>
-                            <button type="button" class="btn btn-basic" ng-click="addDG()">
-                                确定
+                            <button type="button" class="btn btn-basic" ng-click="addDG()" id="modalConfirmAddTo">
                             </button>
                         </div>
                     </div><!-- /.modal-content -->
@@ -410,3 +398,5 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="static/thingsManage/assets/js/deviceGroupSwitch.js" ></script>

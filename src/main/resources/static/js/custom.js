@@ -101,9 +101,18 @@ $('document').ready(function () {
     customScripts.init();
 
     /*中英文切换*/
-    var lang_flag=1;
+    document.getElementById("chooseChinese").onclick=function(){
+        setCookie('Language',1);
+    }
 
-    if(lang_flag===1){
+    document.getElementById("chooseEnglish").onclick=function(){
+        setCookie('Language',0);
+    }
+
+    var lang_flag=getCookie('Language');
+    console.log(lang_flag);
+
+    if(lang_flag==1){
         document.getElementById("homeTitle").innerText="冠川物联网平台-主页";
         document.getElementById("home-menu-first").innerText="主页";
         document.getElementById("home-menu-second").innerText="关于我们";
@@ -133,5 +142,34 @@ $('document').ready(function () {
             "\t\t\t\t\tNo.10 Xitucheng Road, Haidian District, Beijing, China";
         document.getElementById("telephone").innerText="Tel:";
     }
-
 });
+
+function setCookie(name, value) {
+    var argv = setCookie.arguments;
+    var argc = setCookie.arguments.length;
+    var expires = (argc > 2) ? argv[2] : null;
+    if(expires!=null)
+    {
+        var LargeExpDate = new Date ();
+        LargeExpDate.setTime(LargeExpDate.getTime() + (expires*1000*3600*24));
+    }
+    document.cookie = name + "=" + escape (value)+((expires == null) ? "" : ("; expires=" +LargeExpDate.toGMTString()+";path=/"));
+}
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}
+

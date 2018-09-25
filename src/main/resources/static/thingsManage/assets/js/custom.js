@@ -30,9 +30,9 @@ $(document).ready(function () {
             ======================================*/
 
             /*中英文切换*/
-            var lang_flag=1;
+            var lang_flag=getCookie('Language');
 
-            if(lang_flag===1){
+            if(lang_flag==1){
                 document.getElementById("homePageTitle").innerText="物管理平台-租户管理员";
                 document.getElementById("welcomeMessage").innerText=" 欢 迎 来 到 物 管 理 平 台 ！";
                 document.getElementById("personalCenter").innerText="个人中心 ";
@@ -71,7 +71,26 @@ $(document).ready(function () {
                 document.getElementById("side-menu-10").innerText="User Manual";
             }
 
+
+
    });
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}
 
 
 
