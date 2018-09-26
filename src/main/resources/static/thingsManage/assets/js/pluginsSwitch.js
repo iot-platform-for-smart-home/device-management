@@ -22,7 +22,7 @@ $(document).ready(function () {
         document.getElementById("pluginInterface").innerText="接口:  ";
         document.getElementById("pluginRunInfo").innerText="插件运行信息MESSAGE";
         document.getElementById("pluginRequestedFrequency").innerText="插件被请求次数：";
-        document.getElementById("requestFrequency-1").innerText="p";
+        document.getElementById("requestFrequency-1").innerText="";
         document.getElementById("requestFrequency-2").innerText="中MailController被请求次数：";
     }
     else{

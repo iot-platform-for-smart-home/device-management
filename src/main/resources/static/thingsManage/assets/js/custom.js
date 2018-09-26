@@ -44,7 +44,7 @@ $(document).ready(function () {
             if(lang_flag==1){
                 document.getElementById("homePageTitle").innerText="物管理平台-租户管理员";
                 document.getElementById("welcomeMessage").innerText=" 欢 迎 来 到 冠 川 物 管 理 平 台 ！";
-                document.getElementById("personalCenter").innerText="个人中心 ";
+                document.getElementById("personalCenter").innerText=" 个人中心 ";
                 document.getElementById("currentUser").innerText=" 当前用户：";
                 document.getElementById("userLevel").innerText="用户等级：";
                 document.getElementById("setting").innerText=" 设置 ";
