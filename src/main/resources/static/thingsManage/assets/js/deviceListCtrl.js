@@ -18,25 +18,27 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     var initUrl;
     var prePageUrl;
 
-    var customerId = $.cookie("customerId");
+    // var customerId = $.cookie("customerId");
     /*设备列表信息获取与展示*/
 
     /*返回值为所有设备信息*/
-    if ($.cookie("userLevel") === "CUSTOMER_USER") {
-        initUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum;
-        prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
-    } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
+    // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+    //     initUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum;
+    //     prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
+    // } else
+    // if ($.cookie("userLevel") === "TENANT_ADMIN") {
         initUrl = "/api/device/alldevices?limit=" + showNum;
         prePageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
-    }
+    // }
 
-    if ($.cookie("userLevel") === "CUSTOMER_USER") {
-        var obj = $resource("/api/device/customerDevices/" + customerId + "?limit=1000");
-        $scope.deviceListAll = obj.query();
-    } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
+    // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+    //     var obj = $resource("/api/device/customerDevices/" + customerId + "?limit=1000");
+    //     $scope.deviceListAll = obj.query();
+    // } else
+    //     if ($.cookie("userLevel") === "TENANT_ADMIN") {
         var obj = $resource("/api/device/alldevices?limit=1000");
         $scope.deviceListAll = obj.query();
-    }
+    // }
 
 
     /*返回值为限制个数的所有设备信息*/
