@@ -1,7 +1,7 @@
 ﻿<div ng-controller="pluginCtrl" class="content-wrapper">
     <div class="container">
         <div class="col-md-7">
-            <span class="header-line">插件管理</span>
+            <span class="header-line" id="pluginTitle"></span>
             <!--span class="PMsearch">
                 <input class="span2" type="text" placeholder="输入插件名称">
                 <button><span ng-click="searchPG()" title="搜索"><i class="glyphicon glyphicon-search"></i> </span></button>
@@ -37,36 +37,36 @@
         <div class="pluginRightView">
             <div class="pluginChart">
                 <div class="PluginInfo">
-                    <p>插件基本信息</p>
+                    <p id="pluginInfo"></p>
                 </div>
                 <div class="displayPosition">
-                    <p>插件名称：{{name}}</p>
-                    <p>插件url：{{url}}</p>
-                    <p>插件描述：{{describe}}</p>
-                    <p id="changeState">插件状态：<span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
+                    <span id="curPluginName"></span><span>{{name}}</span>
+                    <span id="curPluginURL"></span><span>{{url}}</span>
+                    <span id="curPluginDescription"></span><span>{{describe}}</span>
+                    <span id="changeState"></span><span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
                         <i ng-class="{true:'fa fa-refresh fa-spin',false:'fa fa-refresh'}[isActive]"></i>
                         {{pluginStateDisplay.state}}</span>
-                    </p>
                 </div>
                 <div class="btnPosition">
                     <button class="btn btn-success user tenant" data-toggle="modal"
-                            data-target="#refreshDevice"  ng-click="activePlugin()">激活插件</button>
+                            data-target="#refreshDevice"  ng-click="activePlugin()" id="activatePlugin"></button>
                     <button class="btn btn-danger user tenant" data-toggle="modal"
-                            data-target="#refreshDevice"  ng-click="stopPlugin()">暂停插件</button>
+                            data-target="#refreshDevice"  ng-click="stopPlugin()" id="stopPlugin"></button>
                     <button id="runingStatus" class="btn btn-primary" data-toggle="modal"
-                            data-target="#operatingStatus">运行状态</button>
+                            data-target="#operatingStatus" id="operateStatus"></button>
                 </div>
             </div>
 
 
             <div class="displayInterface">
                 <div class="PluginInterfaceInfo">
-                    <p>插件接口信息</p>
+                    <p id="pluginInterfaceInfo"></p>
                 </div>
                 <div class="interfaceInfo">
                     <ul>
-                        <li class="inlinInter">内外接口<span class="interName">接口名称</span></li>
+                        <li class="inlinInter" id="inexfInterface">内外接口<span class="interName" id="interfaceName">接口名称</span></li>
                         <li ng-repeat="inter in interfaceArray">{{inter.value}}接口:&nbsp{{inter.name}}</li>
+                        <li ng-repeat="inter in interfaceArray">{{inter.value}}</li><li id="pluginInterface">接口: </li><li>{{inter.name}}</li>
                     </ul>
 
                 </div>
@@ -88,15 +88,16 @@
                     &times;
                 </button>
                 <h3 class="modal-title" id="myModalLabel" style="color: #305680;font-weight: 600">
-                    插件运行信息MESSAGE
                 </h3>
             </div>
             <div class="modal-body">
                 <h4>插件被请求次数：<strong style="color: #305680">{{frameBody}}</strong></h4><hr>
+                <h4 id="pluginRequestedFrequency">插件被请求次数：</h4><hr> <strong style="color: #305680">{{frameBody}}</strong>
                 <h4><strong style="color: #305680">{{name}}</strong> 中MailController被请求次数：<strong style="color: #305680">{{MailController}}</strong></h4>
+                <h4 id="requestFrequency-1"></h4><strong style="color: #305680">{{name}}</strong> <h4 id="requestFrequency-2"></h4> <strong style="color: #305680">{{MailController}}</strong>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="pluginConfirm">确定</button>
             </div>
         </div>
     </div>
