@@ -24,7 +24,7 @@ body {
 .content-wrapper {
     min-width:954px;
     background: rgb(238,238,238);
-    padding-left: 100px;
+    padding-left: 130px;
     margin-top: 50px;
 }
 .content-wrapper .container{
@@ -63,7 +63,7 @@ HEAD MENU STYLES
 }
 
 .dropdown-user {
-    left: -100px;
+    /*left: -100px;*/
 }
 
 .dropdown-user li{
@@ -83,7 +83,7 @@ HEAD MENU STYLES
 #side-menu {
     /*height: 100%;*/
     position: fixed;
-    left: 65px;
+    left: 40px;
     top: 100px;
     background-color: rgba(255, 255, 255, 0);
     color: #666666;

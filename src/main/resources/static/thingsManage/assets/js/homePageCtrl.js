@@ -28,7 +28,7 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
     $scope.showBroadcast=false
 
     //获取当前tenantId
-    var tenantid=$.cookie("tenantId");
+    var tenantid=$.session.get("tenantId");
 
     // //获取设备个数
     // console.log($.cookie());
@@ -51,13 +51,13 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
     getDeviceCount()
 
     function getDeviceCount() {
-        if($.cookie("userLevel") === "CUSTOMER_USER"){
-            console.log("客户权限")
-            var url = '/api/device/customer/devicesCount';
-        }else {
+        // if($.cookie("userLevel") === "CUSTOMER_USER"){
+        //     console.log("客户权限")
+        //     var url = '/api/device/customer/devicesCount';
+        // }else {
             console.log("租户权限")
             var url = '/api/device/tenant/devicesCount';
-        }
+        // }
         $.ajax({
             url: url,
             contentType: "application/json; charset=utf-8",

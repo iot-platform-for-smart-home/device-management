@@ -4,10 +4,10 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
     $scope.result = new Array();
 
     /*权限管理*/
-    if($.cookie("userLevel") === "CUSTOMER_USER"){
-        $scope.flag=true;
-
-    }
+    // if($.cookie("userLevel") === "CUSTOMER_USER"){
+    //     $scope.flag=true;
+    //
+    // }
 
     /*权限管理
   var module = angular.module('mainApp', [])

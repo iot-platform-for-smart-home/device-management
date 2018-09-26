@@ -336,7 +336,7 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             $scope.UpdatemessagereqBody={};
             $scope.UpdatemessagereqBody.message=$('#addUpdateMessageText').val();
             $scope.UpdatemessagereqBody.messageType="fromModule";
-            $scope.UpdatemessagereqBody.tenantId=$.cookie("tenantId");
+            $scope.UpdatemessagereqBody.tenantId=$.session.get("tenantId");
 
             transform.name = $scope.RuleaddPlugin.name;
             transform.url = $scope.RuleaddPluginUrl;

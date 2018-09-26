@@ -62,37 +62,37 @@ mainApp.config(["$routeProvider","$locationProvider",function ($routeProvider,$l
             templateUrl:"homeTenant.html",
             controller:"homePageCtrl"
         });
-    if($.cookie("userLevel") === "SYS_ADMIN"){
-        console.log("系统权限跳转")
-        $routeProvider
-            .otherwise({
-                redirectTo:"/homeTenant"
-            });
-    }else{
+    // if($.cookie("userLevel") === "SYS_ADMIN"){
+    //     console.log("系统权限跳转")
+    //     $routeProvider
+    //         .otherwise({
+    //             redirectTo:"/homeTenant"
+    //         });
+    // }else{
         console.log("其他权限跳转")
         $routeProvider
             .otherwise({
                 redirectTo:"/homePage"
             });
-    }
+    // }
 }]);
 
 mainApp.controller("mainCtrl",["$scope","$location","$resource",function ($scope,$location,$resource) {
     /*路由跳转*/
     $scope.$location = $location;
-    console.log($.cookie());
+    // console.log($.cookie());
 
     /*权限管理*/
-    if($.cookie("userLevel") === "CUSTOMER_USER"){
-        $(".user").attr("disabled","disabled");
-        $(".userDelete").removeAttr("data-target");
-        $(".userDelete").css({cursor:"text",color:"#333"});
-        $(".userDelete").removeClass("highlight");
-    }
+    // if($.cookie("userLevel") === "CUSTOMER_USER"){
+    //     $(".user").attr("disabled","disabled");
+    //     $(".userDelete").removeAttr("data-target");
+    //     $(".userDelete").css({cursor:"text",color:"#333"});
+    //     $(".userDelete").removeClass("highlight");
+    // }
     /*权限管理*/
-    if($.cookie("userLevel") === "TENANT_ADMIN"){
+    // if($.cookie("userLevel") === "TENANT_ADMIN"){
         $(".tenant").attr("disabled","disabled");
-    }
+    // }
 
     /*侧边栏选中效果*/
     var href  = window.location.hash;
