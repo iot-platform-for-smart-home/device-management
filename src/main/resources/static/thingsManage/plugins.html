@@ -28,7 +28,7 @@
                 <div>
                     <span data-toggle="modal" data-target="#SMDetail" class="itemp"></span>
                     <span title="插件管理"><i class="fa fa-plug fa-2x"></i></span>
-                    <p class="stylePulgin">{{item.name}}</p>
+                    <p class="stylePlugin">{{item.name}}</p>
                 </div>
             </div>
         </div>
@@ -40,12 +40,12 @@
                     <p id="pluginInfo"></p>
                 </div>
                 <div class="displayPosition">
-                    <span id="curPluginName"></span><span>{{name}}</span>
-                    <span id="curPluginURL"></span><span>{{url}}</span>
-                    <span id="curPluginDescription"></span><span>{{describe}}</span>
-                    <span id="changeState"></span><span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
+                    <p><span id="curPluginName"></span><span>{{name}}</span></p>
+                    <p><span id="curPluginURL"></span><span>{{url}}</span></p>
+                    <p><span id="curPluginDescription"></span><span>{{describe}}</span></p>
+                    <p><span id="changeState"></span><span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
                         <i ng-class="{true:'fa fa-refresh fa-spin',false:'fa fa-refresh'}[isActive]"></i>
-                        {{pluginStateDisplay.state}}</span>
+                        {{pluginStateDisplay.state}}</span></p>
                 </div>
                 <div class="btnPosition">
                     <button class="btn btn-success user tenant" data-toggle="modal"
@@ -65,8 +65,7 @@
                 <div class="interfaceInfo">
                     <ul>
                         <li class="inlinInter" id="inexfInterface">内外接口<span class="interName" id="interfaceName">接口名称</span></li>
-                        <li ng-repeat="inter in interfaceArray">{{inter.value}}接口:&nbsp{{inter.name}}</li>
-                        <li ng-repeat="inter in interfaceArray">{{inter.value}}</li><li id="pluginInterface">接口: </li><li>{{inter.name}}</li>
+                        <li ng-repeat="inter in interfaceArray"><span>{{inter.value}}</span><span id="pluginInterface">接口: </span><span>{{inter.name}}</span></li>
                     </ul>
 
                 </div>
@@ -91,10 +90,10 @@
                 </h3>
             </div>
             <div class="modal-body">
-                <h4>插件被请求次数：<strong style="color: #305680">{{frameBody}}</strong></h4><hr>
-                <h4 id="pluginRequestedFrequency">插件被请求次数：</h4><hr> <strong style="color: #305680">{{frameBody}}</strong>
-                <h4><strong style="color: #305680">{{name}}</strong> 中MailController被请求次数：<strong style="color: #305680">{{MailController}}</strong></h4>
-                <h4 id="requestFrequency-1"></h4><strong style="color: #305680">{{name}}</strong> <h4 id="requestFrequency-2"></h4> <strong style="color: #305680">{{MailController}}</strong>
+                <!--<h4>插件被请求次数：<strong style="color: #305680">{{frameBody}}</strong></h4><hr>-->
+                <h4 ><span id="pluginRequestedFrequency">插件被请求次数：</span><strong style="color: #305680">{{frameBody}}</strong></h4>
+                <!--<h4><strong style="color: #305680">{{name}}</strong> 中MailController被请求次数：<strong style="color: #305680">{{MailController}}</strong></h4>-->
+                <h4><span id="requestFrequency-1"></span><strong style="color: #305680">{{name}}</strong><span id="requestFrequency-2"></span><strong style="color: #305680">{{MailController}}</strong></h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" id="pluginConfirm">确定</button>
@@ -290,3 +289,5 @@
         </div>
     </div-->
 </div>
+
+<script type="text/javascript" src="static/thingsManage/assets/js/pluginsSwitch.js" ></script>
