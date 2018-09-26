@@ -1,12 +1,12 @@
-﻿<div class="content-wrapper" ng-controller="abilityCtrl">
+﻿﻿<div class="content-wrapper" ng-controller="abilityCtrl">
     <div class="container">
         <div clas="SMTitle">
             <div class="col-md-7">
-                <span class="header-line">服务组
+                <span class="header-line" id="serviceTitle"></span>
                 <button style="margin-left:10px" class="btn btn-basic btn-sm user" data-toggle="modal"
-                    data-target="#addServiceGroup">+ 创建服务组
+                    data-target="#addServiceGroup" id="addService">
                 </button>
-                </span>
+
                 <!--span class="SMsearch">
                     <input class="span2" type="text" placeholder="输入设备类型" id="searchAbilityText">
                     <button><span ng-click="searchAbility()" title="搜索"><i class="glyphicon glyphicon-search"></i> </span></button>
@@ -17,9 +17,9 @@
         <div class="abilityIcon">
             <div ng-repeat="items in abilityGroups" class="abilityBackgroundstyle" ng-click="show(items)" ng-style="items.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
                 <div data-toggle="modal" data-target="#SMDetail" class="items">
-                <p class="style"><i class="fa fa-cog fa-cart-plus"></i>&nbsp;厂商：{{items.manufacturer.manufacturerName}}</p>
-                <p class="style"><i class="fa fa-cog fa-cart-plus"></i>&nbsp;设备类型：{{items.deviceType.deviceTypeName}}</p>
-                <p class="style"><i class="fa fa-cog fa-cart-plus"></i>&nbsp;设备型号：{{items.model.modelName}}</p>
+                    <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serVendor"></span><span>{{items.manufacturer.manufacturerName}}</span></p>
+                    <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serDeviceType"></span><span>{{items.deviceType.deviceTypeName}}</span></p>
+                    <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serDeviceModel"></span><span>{{items.model.modelName}}</span></p>
                 </div>
                 <span type="button"  class="btn abilityPlus" data-toggle="modal" data-target="#createSM" ng-disabled="flag">
                 <i class="glyphicon glyphicon-plus userDelete" title="创建服务"></i>
@@ -35,10 +35,10 @@
             <table class="table table-hover table-bordered table-striped" id="searchTextResults">
                 <thead>
                 <tr class="bg-info">
-                    <th>服务名称</th>
-                    <th>服务描述</th>
-                    <th>服务类型</th>
-                    <th>操作</th>
+                    <th id="serServiceName"></th>
+                    <th id="serServiceDescription"></th>
+                    <th id="serServiceType"></th>
+                    <th id="serOperation"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,7 @@
                     <td>{{arr.serviceName}}</td>
                     <td>{{arr.serviceDescription}}</td>
                     <td>{{arr.serviceType}}</td>
-                    <td><button class="btn btn-sm btn-danger" ng-disabled="flag" ng-click="deleteAA(arr)">删除</button></td>
+                    <td><button class="btn btn-sm btn-danger" ng-disabled="flag" ng-click="deleteAA(arr)" id="serDelete"></button></td>
                 </tr>
                 </tbody>
             </table>
@@ -67,34 +67,31 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h3 class="modal-title user" style="color: #305680;font-weight: 600">
-                        创建服务组
+                    <h3 class="modal-title user" style="color: #348835;font-weight: 600" id="serNewServiceGroup">
                     </h3>
                 </div>
                 <div class="modal-body" id="abilityInfo">
                     <label class="col-sm-3 control-label" style="text-align: left">
-                        <span style="color: red;font-size: 14px;margin-right: 5px;">*</span>厂商
+                        <span style="color: red;">*</span><span id="serNewVendor"></span>
                     </label>
                     <input type="text" style="pixels: 300px" placeholder="必填" id="manufacturerName" required/>
                 </div>
                 <div class="modal-body">
                     <label class="col-sm-3 control-label" style="text-align: left">
-                        <span style="color: red;font-size: 14px;margin-right: 5px;">*</span>设备类型
+                        <span style="color: red;">*</span><span id="serNewDeviceType"></span>
                     </label>
                     <input type="text" style="pixels: 300px" placeholder="必填" id="deviceType" required/>
                 </div>
                 <div class="modal-body">
                     <label class="col-sm-3 control-label" style="text-align: left">
-                        <span style="color: red;font-size: 14px;margin-right: 5px;">*</span>设备型号
+                        <span style="color: red;">*</span><span id="serNewDeviceModel"></span>
                     </label>
                     <input type="text" style="pixels: 300px" placeholder="必填" id="model" required/>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-basic" ng-click="addAM()">
-                        创建
+                    <button type="button" class="btn btn-basic" ng-click="addAM()" id="serAdd">
                     </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        取消
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="serCancel">
                     </button>
                 </div>
             </div><!-- /.modal-content -->
@@ -110,20 +107,19 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h3 class="modal-title" style="color: #305680;font-weight: 600">
-                        创建服务
+                    <h3 class="modal-title" style="color: #348835;font-weight: 600" id="serNewService">
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <b><span style="color: red;font-size: 14px;margin-right: 5px;">*</span>服务名称</b>
+                    <b id="serNewServiceName"></b>
                     <input class="form-control" type="text" style="pixels: 300px" placeholder="必填" id="serviceName">
                 </div>
                 <div class="modal-body">
-                    <b><span style="color: red;font-size: 14px;margin-right: 5px;">*</span>服务描述</b>
+                    <b id="serNewServiceDescription"></b>
                     <input class="form-control" type="text" style="pixels: 300px" placeholder="必填" id="serviceDescription">
                 </div>
                 <div class="modal-body">
-                    <b>服务类型</b>
+                    <b id="serNewServiceType"></b>
                     <select class="form-control" id="serviceType">
                         <option value="platform" selected="selected" id="option1">platform</option>
                         <option value="thirdparty" id="option2">thirdparty</option>
@@ -131,30 +127,30 @@
                 </div>
                 <div id="div1" style="display:none">
                     <div class="modal-body">
-                        <b>协议</b>
+                        <b id="serNewProtocol"></b>
                         <input class="form-control" type="text" style="pixels: 300px" id="protocol">
                     </div>
                     <div class="modal-body">
-                        <b>URL</b>
+                        <b id="serNewURL"></b>
                         <input class="form-control" type="text" style="pixels: 300px" id="url">
                     </div>
                 </div>
                 <div class="modal-body">
-                    <b>请求回复</b>
+                    <b id="serRequireResponse"></b>
                     <select class="form-control" type="text" id="requireResponse">
-                        <option value="true">true</option>
-                        <option value="false">false</option>
+                        <option value="true" id="serReTrue">true</option>
+                        <option value="false" id="serReFalse">false</option>
                     </select>
                 </div>
                 <div class="modal-body">
-                    <span style="color: #8a6d3b;font-weight: 600;font-size: 20px">服务体</span>
+                    <span style="color: #348835;font-weight: 600;font-size: 20px" id="serServiceBody"></span>
                 </div>
                 <div class="modal-body">
-                    <b><span style="color: red;font-size: 14px;margin-right: 5px;">*</span>方法名</b>
+                    <b id="serMethodName"></b>
                     <input class="form-control" type="text" style="pixels: 300px" placeholder="必填" id="methodName">
                 </div>
                 <div class="modal-body">
-                    <b><span style="color: red;font-size: 14px;margin-right: 5px;">*</span>参数</b>
+                    <b id="serParameter"></b>
                     <div ng-repeat="reply in fchat.replies">
                         <div style="width: 550px; height: 34px; border: 1px solid #ffffff;">
                             <input class="parameterKey" type="text" style="width: 33%; height:34px;float: left" placeholder="key" ng-model="reply.key" id="reply{{$index+1}}" name="replyOne{{$index+1}}" required="required">
@@ -197,11 +193,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-basic" ng-click="addAbility()">
-                        创建
+                    <button type="button" class="btn btn-basic" ng-click="addAbility()" id="serAddService">
                     </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        取消
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="serCancelService">
                     </button>
                 </div>
             </div><!-- /.modal-content -->
@@ -217,18 +211,15 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         &times;
                     </button>
-                    <h4 class="modal-title" id="myModaLabel">
-                        删除服务组
+                    <h4 class="modal-title" id="myModaLabel" id="serDeleteGroup">
                     </h4>
                 </div>
-                <div class="modal-body">
-                    确定删除此服务组？
+                <div class="modal-body" id="serDeleteConfirm">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="serCancelDelete">
                     </button>
-                    <button type="button" class="btn btn-basic" ng-click="delAG()">
-                        确定
+                    <button type="button" class="btn btn-basic" ng-click="delAG()" id="serConfirmDelete">
                     </button>
                 </div>
             </div><!-- /.modal-content -->
@@ -249,5 +240,6 @@
 
 </script>
 
+<script type="text/javascript" src="static/thingsManage/assets/js/serviceSwitch.js" ></script>
 
 

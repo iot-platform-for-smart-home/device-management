@@ -4,7 +4,7 @@
         <div class="RightView">
             <div class="DGAssignContainer">
                 <div class="DGTitle DGminTitle">
-                    <span class="RightviewTitle">规则信息</span>
+                    <span class="RightviewTitle" id="ruleInformation">规则信息</span>
                     <div class="ruleiconcontainer">
                         <i class="fa fa-power-off fa-lg ruleicon shand userDelete" ng-show="Rulestart" title="激活规则"
                            data-toggle="modal" data-target="#startRule"></i>
@@ -15,17 +15,17 @@
                     </div>
                 </div>
                 <div class="item">
-                    <p>规则名称：{{Ruleitem.rule.name}}<!--规则名称修改按钮
+                    <span id="curRuleName">规则名称：</span><span>{{Ruleitem.rule.name}}<!--规则名称修改按钮
                     <i class="fa fa-pencil-square-o iedit shand" data-toggle="modal"
                        data-target="#editRuleName"></i>
-                    </p.time}}  无此接口--></p>
-                    <p>规则ID：{{Ruleitem.rule.ruleId}}</p>
-                    <p>状态：<span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
+                    </p.time}}  无此接口--></span>
+                    <span id="curRuleID">规则ID：</span><span>{{Ruleitem.rule.ruleId}}</span>
+                    <span id="curRuleStatus">状态：</span><span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
 
                     <i ng-class="{true:'fa fa-refresh fa-spin',false:'fa fa-refresh'}[isActive]"></i>
                     {{Ruleitem.rule.state}}
-                </span></p>
-                    <p>规则描述：{{Ruleitem.rule.additional_info}}
+                </span>
+                    <p id="curRuleDescription">规则描述：{{Ruleitem.rule.additional_info}}
                         <!--规则描述修改按钮
                         <i class="fa fa-pencil-square-o iedit shand" data-toggle="modal"
                            data-target="#editRuleDes"></i>
@@ -36,7 +36,7 @@
             </div>
             <div class="DGAssignContainer">
                 <div class="DGTitle DGminTitle">
-                    <p class="RightviewTitle">规则详情</p>
+                    <p class="RightviewTitle" id="curRuleDetail">规则详情</p>
                 </div>
 
                 <!--filter展示表格折叠效果-->
@@ -45,7 +45,7 @@
                         <thead>
                         <tr>
                             <td style="width: 30px"></td>
-                            <td>过滤器详情</td>
+                            <td id="filterDetail">过滤器详情</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,9 +59,9 @@
                         <tr ng-show="data.expanded" ng-repeat-end="">
                             <td></td>
                             <td colspan="1">
-                                <p>过滤器名称：{{data.name}}</p>
-                                <p>过滤器类型：{{data.type||"无"}}</p>
-                                <p>JS代码：<pre id="rule_jscode">{{data.jsCode}}</pre></p>
+                                <p id="filterName">过滤器名称：{{data.name}}</p>
+                                <p id="filterType">过滤器类型：{{data.type||"无"}}</p>
+                                <p id="filterCode">JS代码：<pre id="rule_jscode">{{data.jsCode}}</pre></p>
                             </td>
                         </tr>
                         </tbody>
@@ -74,7 +74,7 @@
                         <thead>
                         <tr>
                             <td style="width: 30px"></td>
-                            <td>插件详情</td>
+                            <td id="rulePluginDetail">插件详情</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,20 +88,20 @@
                         <tr ng-show="data.expanded" ng-repeat-end="">
                             <td></td>
                             <td colspan="1" style="word-wrap:break-word;word-break: break-all">
-                                <p>规则名称：{{data.name}}</p>
-                                <p>跳转地址：{{data.url}}</p>
+                                <p id="pluginRuleName">规则名称：{{data.name}}</p>
+                                <p id="pluginJumpAddress">跳转地址：{{data.url}}</p>
                                 <div id="plugin_{{$index}}">
-                                    <p>请求方法：{{data.requestBody.method}}</p>
-                                    <p>请求地址：{{data.requestBody.url}}</p>
+                                    <p id="pluginRequestMethod">请求方法：{{data.requestBody.method}}</p>
+                                    <p id="pluginRequestAddress">请求地址：{{data.requestBody.url}}</p>
                                 </div>
                                 <div id="plugin_mail_{{$index}}" style="display: none">
-                                    <p>收件人：{{data.requestBody.to}}</p>
-                                    <p>事务：{{data.requestBody.subject}}</p>
-                                    <p>内容：{{data.requestBody.text}}</p>
+                                    <p id="pluginRecipient">收件人：{{data.requestBody.to}}</p>
+                                    <p id="pluginTransaction">事务：{{data.requestBody.subject}}</p>
+                                    <p id="pluginContent">内容：{{data.requestBody.text}}</p>
                                 </div>
                                 <div id="plugin_updatemessage_{{$index}}" style="display: none">
-                                    <p>消息：{{data.requestBody.message}}</p>
-                                    <p>消息类型：{{data.requestBody.messageType}}</p>
+                                    <p id="pluginNews">消息：{{data.requestBody.message}}</p>
+                                    <p id="pluginNewsType">消息类型：{{data.requestBody.messageType}}</p>
                                 </div>
                             </td>
                         </tr>
