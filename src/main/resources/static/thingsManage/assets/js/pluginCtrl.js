@@ -237,12 +237,6 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
             speed:70 //数值越大 速度越慢
         });
     })
-    
 
 
-
-
-
- 
- 
 });

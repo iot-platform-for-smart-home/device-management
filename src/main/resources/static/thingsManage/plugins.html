@@ -1,4 +1,5 @@
 ﻿<div ng-controller="pluginCtrl" class="content-wrapper">
+
     <div class="container">
         <div class="col-md-7">
             <span class="header-line" id="pluginTitle"></span>
@@ -28,7 +29,7 @@
                 <div>
                     <span data-toggle="modal" data-target="#SMDetail" class="itemp"></span>
                     <span title="插件管理"><i class="fa fa-plug fa-2x"></i></span>
-                    <p class="stylePlugin">{{item.name}}</p>
+                    <p class="stylePulgin">{{item.name}}</p>
                 </div>
             </div>
         </div>
@@ -53,10 +54,9 @@
                     <button class="btn btn-danger user tenant" data-toggle="modal"
                             data-target="#refreshDevice"  ng-click="stopPlugin()" id="stopPlugin"></button>
                     <button id="runingStatus" class="btn btn-primary" data-toggle="modal"
-                            data-target="#operatingStatus" id="operateStatus"></button>
+                            data-target="#operatingStatus" ></button>
                 </div>
             </div>
-
 
             <div class="displayInterface">
                 <div class="PluginInterfaceInfo">
@@ -67,40 +67,44 @@
                         <li class="inlinInter" id="inexfInterface">内外接口<span class="interName" id="interfaceName">接口名称</span></li>
                         <li ng-repeat="inter in interfaceArray"><span>{{inter.value}}</span><span id="pluginInterface">接口: </span><span>{{inter.name}}</span></li>
                     </ul>
-
                 </div>
             </div>
         </div>
+
+
+        <!--插件运行状态显示模态框-->
+        <div class="modal fade" id="operatingStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h3 class="modal-title" id="pluginRunInfo" style="color: #305680;font-weight: 600">
+                        </h3>
+                    </div>
+                    <div class="modal-body">
+                        <!--<h4>插件被请求次数：<strong style="color: #305680">{{frameBody}}</strong></h4><hr>-->
+                        <h4><span id="pluginRequestedFrequency"></span><strong style="color: #305680">{{frameBody}}</strong></h4>
+                        <!--<h4><strong style="color: #305680">{{name}}</strong> 中MailController被请求次数：<strong style="color: #305680">{{MailController}}</strong></h4>-->
+                        <h4><span id="requestFrequency-1"></span><strong style="color: #305680">{{name}}</strong><span id="requestFrequency-2"></span><strong style="color: #305680">{{MailController}}</strong>
+                        </h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="pluginConfirm"></button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-
-
-
-
-    <!--插件运行状态显示模态框-->
-    <div class="modal fade" id="operatingStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h3 class="modal-title" id="myModalLabel" style="color: #305680;font-weight: 600">
-                </h3>
-            </div>
-            <div class="modal-body">
-                <!--<h4>插件被请求次数：<strong style="color: #305680">{{frameBody}}</strong></h4><hr>-->
-                <h4 ><span id="pluginRequestedFrequency">插件被请求次数：</span><strong style="color: #305680">{{frameBody}}</strong></h4>
-                <!--<h4><strong style="color: #305680">{{name}}</strong> 中MailController被请求次数：<strong style="color: #305680">{{MailController}}</strong></h4>-->
-                <h4><span id="requestFrequency-1"></span><strong style="color: #305680">{{name}}</strong><span id="requestFrequency-2"></span><strong style="color: #305680">{{MailController}}</strong></h4>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="pluginConfirm">确定</button>
-            </div>
-        </div>
     </div>
-</div>
+
+
+
+
+
+
 
     <!--创建插
      <span style="margin-left: 160px" ng-init="firstState='SUSPEND'">

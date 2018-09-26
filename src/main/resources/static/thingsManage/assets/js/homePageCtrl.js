@@ -3,17 +3,24 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
     /*中英文切换*/
     var lang_flag=getCookie('Language');
 
-    if(lang_flag===1){
+    var chartText;
+    var chartLabel;
+
+    if(lang_flag==1){
         document.getElementById("deviceNumber").innerText="设备数量";
         document.getElementById("pluginNumber").innerText="插件数量";
         document.getElementById("ruleNumber").innerText="规则数量";
-        document.getElementById("broadcast").innerText="广播事件";
-        document.getElementById("broadcastEvent").innerText="暂无广播事件";
+        // document.getElementById("broadcast").innerText="广播事件";
+        // document.getElementById("broadcastEvent").innerText="暂无广播事件";
+        chartText="设备上下线情况";
+        chartLabel=['上线', '故障', '下线'];
     }
     else{
         document.getElementById("deviceNumber").innerText="Number of Devices";
         document.getElementById("pluginNumber").innerText="Number of Plugins";
         document.getElementById("ruleNumber").innerText="Number of Rules";
+        chartText="Situation of Devices";
+        chartLabel=['online', 'breakdown', 'offline'];
         // document.getElementById("broadcast").innerText="Broadcast Event";
         // document.getElementById("broadcastEvent").innerText="No broadcast event.";
     }
@@ -210,16 +217,12 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
                     borderWidth: 1
 
                 }],
-                labels: [
-                    '上线',
-                    '故障',
-                    '下线'
-                ]
+                labels: chartLabel
             },
             options: {
                 title: {
                     display: true,
-                    text: '设备上下线情况',
+                    text: chartText,
                     fontSize: 25,
                     fontFamily: "Microsoft YaHei",
                     fontStyle: 'normal',
