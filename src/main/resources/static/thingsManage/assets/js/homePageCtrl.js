@@ -121,48 +121,48 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
         console.log(_active, _suspend, _error);
 
         //charts.js-甜甜圈
-        ctx = document.getElementById("myChart1").getContext("2d");
-        var myDoughnutChart1 = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [_active, _error, _suspend],
-                    backgroundColor: [
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1
-
-                }],
-                labels: [
-                    '运行中',
-                    '故障',
-                    '已停止'
-                ]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: '规则运行情况',
-                    fontSize: 25,
-                    fontFamily: "Microsoft YaHei",
-                    fontStyle: 'normal',
-                    fontColor: '#448864'
-                },
-                legend: {
-                    position: 'bottom',
-                    labels:{
-                        boxWidth:20
-                    }
-                }
-            }
-        });
+        // ctx = document.getElementById("myChart1").getContext("2d");
+        // var myDoughnutChart1 = new Chart(ctx, {
+        //     type: 'doughnut',
+        //     data: {
+        //         datasets: [{
+        //             data: [_active, _error, _suspend],
+        //             backgroundColor: [
+        //                 'rgba(54, 162, 235, 0.2)',
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(255, 206, 86, 0.2)'
+        //             ],
+        //             borderColor: [
+        //                 'rgba(54, 162, 235, 1)',
+        //                 'rgba(255,99,132,1)',
+        //                 'rgba(255, 206, 86, 1)'
+        //             ],
+        //             borderWidth: 1
+        //
+        //         }],
+        //         labels: [
+        //             '运行中',
+        //             '故障',
+        //             '已停止'
+        //         ]
+        //     },
+        //     options: {
+        //         title: {
+        //             display: true,
+        //             text: '规则运行情况',
+        //             fontSize: 25,
+        //             fontFamily: "Microsoft YaHei",
+        //             fontStyle: 'normal',
+        //             fontColor: '#448864'
+        //         },
+        //         legend: {
+        //             position: 'bottom',
+        //             labels:{
+        //                 boxWidth:20
+        //             }
+        //         }
+        //     }
+        // });
     }
     function getDevicesName() {
         var _DeviceName=[];

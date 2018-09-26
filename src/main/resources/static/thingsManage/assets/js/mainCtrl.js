@@ -98,8 +98,8 @@ mainApp.controller("mainCtrl",["$scope","$location","$resource",function ($scope
     var href  = window.location.hash;
     var hrefClass = href.substring(2,href.length);
     console.log(hrefClass);
-    $("#"+hrefClass).css("background","rgb(60, 118, 61)");
-    $("#"+hrefClass).siblings().css("background","");
+    $("#"+hrefClass ).children("a").css("color","#468847");
+    $("#"+hrefClass ).siblings().children("a").css("color","#888888");
 
     /*退出登录*/
     $scope.logout = function () {

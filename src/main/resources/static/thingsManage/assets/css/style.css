@@ -3,6 +3,10 @@
     GENERAL STYLES
 ======================================= */
 
+body {
+    background: rgb(238, 238, 238);
+}
+
 .b-clr {
     color:#000;
 }
@@ -18,10 +22,9 @@
     z-index: 100;
 }
 .content-wrapper {
-    min-height:1000px;
     min-width:954px;
     background: rgb(238,238,238);
-    padding-left: 6%;
+    padding-left: 100px;
     margin-top: 50px;
 }
 .content-wrapper .container{
@@ -76,12 +79,12 @@ HEAD MENU STYLES
  ============================================================ */
 
 #side-menu {
-    height: 100%;
+    /*height: 100%;*/
     position: fixed;
-    left: 0px;
-    top: 0px;
-    background-color: #468847;
-    color: #fff;
+    left: 65px;
+    top: 100px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #666666;
     z-index: 999;
     overflow: auto;
     max-width: 500px;
@@ -94,7 +97,7 @@ HEAD MENU STYLES
 }
 
 #side-menu ul li {
-    border-bottom: 1px solid #468847;
+    border-left: 1px solid #468847;
     text-align: left;
 }
 #side-menu ul .userMenu{
@@ -104,7 +107,7 @@ HEAD MENU STYLES
     padding: 17px 25px;
 }
 #side-menu ul .tenantMenu{
-    padding: 15px 25px;
+    padding: 12px 25px;
 }
 
 #side-menu ul li a i {
@@ -113,7 +116,7 @@ HEAD MENU STYLES
 }
 
 #side-menu ul li a, #side-menu ul li a:hover {
-    color: #cad4df;
+    color: #888888;
     text-decoration: none;
     font-size: 16px;
 }
@@ -223,7 +226,7 @@ ul,li{
 DEVICELIST STYLES
 ============================================================ */
 #deviceListIcon,#customerIcon,#customerUserIcon{
-    width: 48%;
+    width: 45%;
     float: left;
     padding-left: 10px;
 }
@@ -233,7 +236,7 @@ DEVICELIST STYLES
     float: right;
     border: 1px solid #c0c0c0;
     border-radius: 10px;
-    margin-right: 20px;
+    margin-right: 40px;
     margin-top: 10px;
 }
 #customerChart,#customerUserChart{
@@ -241,7 +244,7 @@ DEVICELIST STYLES
     float: right;
     border: 1px solid #c0c0c0;
     border-radius: 10px;
-    margin-right: 20px;
+    margin-right: 40px;
     margin-top: 10px;
 }
 #cancelAssign{
@@ -368,6 +371,7 @@ DEVICELIST STYLES
  ============================================================ */
 .RightView{
     float: right;
+    margin-right: 40px;
     padding-top: 10px;
     width:45%;
     min-width: 350px;
@@ -459,7 +463,7 @@ DEVICELIST STYLES
 serviceGroup
 ============================================================ */
 .abilityIcon{
-    width: 60%;
+    width: 58%;
     float: left;
     margin-left: 10px;
 
@@ -498,7 +502,8 @@ serviceGroup
 
 .abilityChart{
     float: right;
-    width:38%;
+    margin-right: 40px;
+    width:35%;
     height:520px;
     background: white;
     border: 1px solid rgb(212,212,212);
@@ -541,8 +546,9 @@ pluginsGroup
 }
 .pluginRightView{
     float: right;
+    margin-right: 40px;
     padding-top: 10px;
-    width:44%;
+    width:43%;
     min-width: 350px;
 }
 .pluginChart{
@@ -680,7 +686,7 @@ width: 35%;
 }
 
 .block-bottom {
-    min-width:200px;
+    min-width:230px;
 }
 
 .block_number{
@@ -708,8 +714,8 @@ width: 35%;
     flex-direction: row;
 }
 .count_flex{
-    flex-direction: column;
-    width: 33%;
+    /*flex-direction: column;*/
+    /*width: 33%;*/
     margin-left: 5%;
 }
 
