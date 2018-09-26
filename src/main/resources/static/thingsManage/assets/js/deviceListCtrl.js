@@ -1191,7 +1191,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
 
                 //每个小控制面板的id为ctrlDiv{{i}}
-                $('#control_panel').append('<div class="col-xs-10 col-sm-6 col-md-4 service-panel"><form><fieldset id="ctrlDiv' + i + '"><legend class="service-control-legend">' + serviceName[i] + '</legend></fieldset></form></div>');
+                $('#control_panel').append('<div class="col-xs-10 col-sm-offset-2 col-sm-8 col-md-8 service-panel"><form><fieldset id="ctrlDiv' + i + '"><legend class="service-control-legend">' + serviceName[i] + '</legend></fieldset></form></div>');
                 // console.log("serviceName:"+serviceName[i]);
                 var params = abilityDesJson.serviceBody.params;//用于记录每一个小控制面板下有多少个控制选项,随i的取值变化而变化
                 // console.log("params"+params);
