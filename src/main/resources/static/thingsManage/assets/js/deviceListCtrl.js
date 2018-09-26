@@ -158,20 +158,21 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         $scope.status = data.status;
         $scope.parentName = parentName;//父设备名
         $scope.model = data.model;
-        $scope.customerId = data.customerId;
+        $scope.customerName = null;
+        // $scope.customerId = data.customerId;
         $scope.lifeTime = formatDate(new Date(data.lifeTime));
         //通过客户组id获取客户组名称
-        $.ajax({
-            url: "/api/account/customerName?customerId=" + data.customerId,
-            dataType: "text",
-            type: "GET",
-            async: false,
-            contentType: "application/json; charset=utf-8",
-            success: function (suc) {
-                $scope.customerName = suc;
-                console.log(suc);
-            }
-        });
+        // $.ajax({
+        //     url: "/api/account/customerName?customerId=" + data.customerId,
+        //     dataType: "text",
+        //     type: "GET",
+        //     async: false,
+        //     contentType: "application/json; charset=utf-8",
+        //     success: function (suc) {
+        //         $scope.customerName = suc;
+        //         console.log(suc);
+        //     }
+        // });
     };
 
 
@@ -258,11 +259,11 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     $scope.nextDeviceInfo = function () {
         console.log(nextDeviceId);
         console.log(nextDeviceName);
-        if ($.cookie("userLevel") === "CUSTOMER_USER") {
-            prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
-        } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
+        // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+        //     prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
+        // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
             prePageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
-        }
+        // }
         if (nextDeviceId && nextDeviceName) {
             $.ajax({
                 url: prePageUrl,
@@ -338,20 +339,20 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         }
         else {
             if (pageNum == 2) {
-                if ($.cookie("userLevel") === "CUSTOMER_USER") {
-                    url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum;
-                } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
+                // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+                //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum;
+                // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
                     url = "/api/device/alldevices?limit=" + showNum;
-                }
+                // }
 
             } else {
                 preDeviceId = preDeviceIdArr[pageNum - 3];
                 preDeviceName = preDeviceNameArr[pageNum - 3];
-                if ($.cookie("userLevel") === "CUSTOMER_USER") {
-                    url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + preDeviceId + "&textOffset=" + preDeviceName;
-                } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
+                // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+                //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + preDeviceId + "&textOffset=" + preDeviceName;
+                // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
                     url = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + preDeviceId + "&textOffset=" + preDeviceName;
-                }
+                // }
 
             }
             $.ajax({
@@ -745,13 +746,13 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         var url
 
         //get搜索设备数量L
-        if ($.cookie("userLevel") === "CUSTOMER_USER") {
-            console.log("客户权限")
-            url="/api/device/customer/searchCount?textSearch=" + textSearch
-        } else {
+        // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+        //     console.log("客户权限")
+        //     url="/api/device/customer/searchCount?textSearch=" + textSearch
+        // } else {
             console.log("租户权限")
             url="/api/device/tenant/searchCount?textSearch=" + textSearch
-        }
+        // }
         $.ajax({
             url: url,
             contentType: "application/json; charset=utf-8",
@@ -1190,7 +1191,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
 
                 //每个小控制面板的id为ctrlDiv{{i}}
-                $('#control_panel').append('<div class="col-xs-10 col-sm-6 col-md-4 service-panel"><form><fieldset id="ctrlDiv' + i + '"><legend class="service-control-legend">' + serviceName[i] + '</legend></fieldset></form></div>');
+                $('#control_panel').append('<div class="col-xs-10 col-sm-offset-2 col-sm-8 col-md-8 service-panel"><form><fieldset id="ctrlDiv' + i + '"><legend class="service-control-legend">' + serviceName[i] + '</legend></fieldset></form></div>');
                 // console.log("serviceName:"+serviceName[i]);
                 var params = abilityDesJson.serviceBody.params;//用于记录每一个小控制面板下有多少个控制选项,随i的取值变化而变化
                 // console.log("params"+params);
@@ -1573,13 +1574,13 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
 
     function getDeviceCount() {
-        if ($.cookie("userLevel") === "CUSTOMER_USER") {
-            console.log("客户权限")
-            var url = '/api/device/customer/devicesCount';
-        } else {
+        // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+        //     console.log("客户权限")
+        //     var url = '/api/device/customer/devicesCount';
+        // } else {
             console.log("租户权限")
             var url = '/api/device/tenant/devicesCount';
-        }
+        // }
         $.ajax({
             url: url,
             contentType: "application/json; charset=utf-8",
