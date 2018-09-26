@@ -141,7 +141,7 @@ mainApp.controller("mainCtrl",["$scope","$location","$resource",function ($scope
         });
 
         /*HEAD MENU用户信息显示*/
-        var userId = $.cookie("userId");
+        var userId = $.session.get("tenantId");
         $.ajax({
             url:"/api/account/user?userId="+userId,
             type:"GET",
