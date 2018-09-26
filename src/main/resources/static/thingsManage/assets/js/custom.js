@@ -1,6 +1,16 @@
 ﻿
 $(document).ready(function () {
 
+            document.getElementById("homePageChooseChinese").onclick=function(){
+                setCookie('Language',1);
+                location.reload();
+            }
+
+            document.getElementById("homePageChooseEnglish").onclick=function(){
+                setCookie('Language',0);
+                location.reload();
+            }
+
            //SIDE MENU SCRIPTS
     
             $('.menu-close-icon').click(function (e) {
@@ -21,16 +31,15 @@ $(document).ready(function () {
                
             });
 
-
-
-   
-
             /*====================================
              WRITE YOUR   SCRIPTS  BELOW
             ======================================*/
 
             /*中英文切换*/
+
             var lang_flag=getCookie('Language');
+
+
 
             if(lang_flag==1){
                 document.getElementById("homePageTitle").innerText="物管理平台-租户管理员";
@@ -74,6 +83,18 @@ $(document).ready(function () {
 
 
    });
+
+function setCookie(name, value) {
+    var argv = setCookie.arguments;
+    var argc = setCookie.arguments.length;
+    var expires = (argc > 2) ? argv[2] : null;
+    if(expires!=null)
+    {
+        var LargeExpDate = new Date ();
+        LargeExpDate.setTime(LargeExpDate.getTime() + (expires*1000*3600*24));
+    }
+    document.cookie = name + "=" + escape (value)+((expires == null) ? "" : ("; expires=" +LargeExpDate.toGMTString()+";path=/"));
+}
 
 function getCookie(Name) {
     var search = Name + "="

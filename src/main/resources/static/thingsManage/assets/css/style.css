@@ -40,14 +40,16 @@ HEAD MENU STYLES
     font-size: 16px;
 }
 #userCenter{
-    /*margin-left: 500px;*/
-    position:absolute;
+    margin-left: 600px;
+    /*position:absolute;*/
     right:50px;
     cursor: pointer;
 }
-#backIcon{
-    margin-left: 25px;
+#homePageLanguage{
+    margin-left: 15px;
 }
+
+
 #dropQuit{
     color: #ffffff;
     cursor: pointer;
