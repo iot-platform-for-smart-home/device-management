@@ -109,7 +109,7 @@ HEAD MENU STYLES
     padding: 17px 25px;
 }
 #side-menu ul .tenantMenu{
-    padding: 12px 25px;
+    padding: 12px 0 12px 23px;
 }
 
 #side-menu ul li a i {
