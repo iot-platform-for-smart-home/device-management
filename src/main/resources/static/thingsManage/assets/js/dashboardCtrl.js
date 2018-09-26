@@ -6,8 +6,8 @@ mainApp.controller("dashboardCtrl",["$scope","$resource","$timeout",function ($s
     $scope.isChoose=false;
 
     //获取cookie中各种Id
-    var tenantId = $.cookie("tenantId")
-    var customerId = $.cookie("customerId")
+    var tenantId = $.session.get("tenantId")
+    // var customerId = $.cookie("customerId")
 
 
     //获取所有dashboard

@@ -4,14 +4,14 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
 
     //获取设备组
     /*权限管理*/
-    console.log($.cookie());
-    if($.cookie("userLevel") === "CUSTOMER_USER"){
-        console.log("客户权限")
-        var Devicegroup = $resource('/api/group/customerGroups?limit=20');
-    }else {
+    // console.log($.cookie());
+    // if($.cookie("userLevel") === "CUSTOMER_USER"){
+    //     console.log("客户权限")
+    //     var Devicegroup = $resource('/api/group/customerGroups?limit=20');
+    // }else {
         console.log("租户权限")
         var Devicegroup = $resource('/api/group/tenantGroups?limit=20');
-    }
+    // }
     /*获取设备组接口*/
     $scope.DeviceGroups = Devicegroup.query(function () {
         //初始化右侧视图
@@ -64,14 +64,14 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
     $scope.searchDG = function () {
         if ($scope.dgname != "" && $scope.dgname != null) {
             //权限管理
-            console.log($.cookie());
-            if($.cookie("userLevel") === "CUSTOMER_USER"){
-                console.log("客户权限")
-                var searchDG = $resource('/api/group/customerGroups?limit=20&textSearch=:name', {name: '@name'});
-            }else {
+            // console.log($.cookie());
+            // if($.cookie("userLevel") === "CUSTOMER_USER"){
+            //     console.log("客户权限")
+            //     var searchDG = $resource('/api/group/customerGroups?limit=20&textSearch=:name', {name: '@name'});
+            // }else {
                 console.log("租户权限")
                 var searchDG = $resource('/api/group/tenantGroups?limit=20&textSearch=:name', {name: '@name'});
-            }
+            // }
 
             searchDG.query({name: $scope.dgname})
                 .$promise.then(function (person) {
