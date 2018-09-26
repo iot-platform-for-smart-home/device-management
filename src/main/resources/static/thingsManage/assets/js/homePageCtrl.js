@@ -14,8 +14,8 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
         document.getElementById("deviceNumber").innerText="Number of Devices";
         document.getElementById("pluginNumber").innerText="Number of Plugins";
         document.getElementById("ruleNumber").innerText="Number of Rules";
-        document.getElementById("broadcast").innerText="Broadcast Event";
-        document.getElementById("broadcastEvent").innerText="No broadcast event.";
+        // document.getElementById("broadcast").innerText="Broadcast Event";
+        // document.getElementById("broadcastEvent").innerText="No broadcast event.";
     }
 
     $scope.showBroadcast=false
@@ -63,7 +63,7 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
     }
 
     //获取设备上下线状态
-    var customerId = $.session.get("tenantId");
+    //var customerId = $.session.get("tenantId");
     // if ($.cookie("userLevel") === "CUSTOMER_USER") {
     //     var Device = $resource("/api/device/customerDevices/" + customerId + "?limit=1000");
     // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
@@ -240,64 +240,64 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
     /**广播事件**/
 
     /**socket连接**/
-    var stompClient = null;
-
-    console.log("begin!") ;
+    // var stompClient = null;
+    //
+    // console.log("begin!") ;
 
     // 开启socket连接
-    function connect() {
-
-
-        var socket = new SockJS('http://10.108.218.64:30080/api/v1/updatemessageplugin');
-        stompClient = Stomp.over(socket);
-
-        var data=[]
-
-        stompClient.connect(
-            {}
-            , function () {
-                console.log("Connected!") ;
-                console.log("begin to send") ;
-                stompClient.send("/plugins/updateMessage/fromModule", {},JSON.stringify({'tenantId': tenantid})) ;
-
-                var res = stompClient.subscribe("/plugins/updateMessage/response/fromModule/"+tenantid, function(frame){
-                    var body=JSON.parse(frame.body)
-                    //根据body的数据类型做相应处理
-                    if(isArray(body)){
-                        console.log("初始20条")
-                        data=body
-                    }else{
-                        console.log("新消息")
-                        data.splice(0,0,body)
-                        data.pop()
-                    }
-                    data.forEach(function (item) {
-                        item.date=formatDate(new Date(item.ts))
-                    })
-                    if(data === undefined || data.length == 0){
-                        $scope.showBroadcast=false
-                    }else {
-                        console.log("判断有数据，显示广播内容")
-                        $scope.showBroadcast=true
-                    }
-
-                    $scope.BroadcastNews=data
-
-                    $scope.$apply()
-                    console.log($scope.BroadcastNews)
-                }) ;
-                console.log(res) ;
-            });
-    }
+    // function connect() {
+    //
+    //
+    //     var socket = new SockJS('http://10.108.218.64:30080/api/v1/updatemessageplugin');
+    //     stompClient = Stomp.over(socket);
+    //
+    //     var data=[]
+    //
+    //     stompClient.connect(
+    //         {}
+    //         , function () {
+    //             console.log("Connected!") ;
+    //             console.log("begin to send") ;
+    //             stompClient.send("/plugins/updateMessage/fromModule", {},JSON.stringify({'tenantId': tenantid})) ;
+    //
+    //             var res = stompClient.subscribe("/plugins/updateMessage/response/fromModule/"+tenantid, function(frame){
+    //                 var body=JSON.parse(frame.body)
+    //                 //根据body的数据类型做相应处理
+    //                 if(isArray(body)){
+    //                     console.log("初始20条")
+    //                     data=body
+    //                 }else{
+    //                     console.log("新消息")
+    //                     data.splice(0,0,body)
+    //                     data.pop()
+    //                 }
+    //                 data.forEach(function (item) {
+    //                     item.date=formatDate(new Date(item.ts))
+    //                 })
+    //                 if(data === undefined || data.length == 0){
+    //                     $scope.showBroadcast=false
+    //                 }else {
+    //                     console.log("判断有数据，显示广播内容")
+    //                     $scope.showBroadcast=true
+    //                 }
+    //
+    //                 $scope.BroadcastNews=data
+    //
+    //                 $scope.$apply()
+    //                 console.log($scope.BroadcastNews)
+    //             }) ;
+    //             console.log(res) ;
+    //         });
+    // }
 
     // 断开socket连接
-    function disconnect() {
-        if (stompClient != null) {
-            stompClient.disconnect();
-        }
-        setConnected(falses);
-        console.log("Disconnect")
-    }
+    // function disconnect() {
+    //     if (stompClient != null) {
+    //         stompClient.disconnect();
+    //     }
+    //     setConnected(falses);
+    //     console.log("Disconnect")
+    // }
 
     /*    // 向‘/app/change-notice’服务端发送消息
      function sendName() {
@@ -312,32 +312,32 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
      })
      }*/
 
-    connect() ;
+    // connect() ;
 
     //时间格式化
-    function formatDate(now) {
-        //var year=now.getFullYear();
-        var month=now.getMonth()+1;
-        var date=now.getDate();
-        var hour=now.getHours();
-        var minute=now.getMinutes();
-        if(minute<10){
-            minute="0"+minute
-        }
-        if(hour<10){
-            hour="0"+hour
-        }
-        //var second=now.getSeconds();
-        return month+"-"+date+" "+hour+":"+minute;
-    }
+    // function formatDate(now) {
+    //     //var year=now.getFullYear();
+    //     var month=now.getMonth()+1;
+    //     var date=now.getDate();
+    //     var hour=now.getHours();
+    //     var minute=now.getMinutes();
+    //     if(minute<10){
+    //         minute="0"+minute
+    //     }
+    //     if(hour<10){
+    //         hour="0"+hour
+    //     }
+    //     //var second=now.getSeconds();
+    //     return month+"-"+date+" "+hour+":"+minute;
+    // }
 
     //判断接受消息的数据类型
-    function isArray(value){
-        if (typeof Array.isArray === "function") {
-            return Array.isArray(value);
-        }else{
-            return Object.prototype.toString.call(value) === "[object Array]";
-        }
-    }
+    // function isArray(value){
+    //     if (typeof Array.isArray === "function") {
+    //         return Array.isArray(value);
+    //     }else{
+    //         return Object.prototype.toString.call(value) === "[object Array]";
+    //     }
+    // }
     /**广播事件END**/
 }]);
