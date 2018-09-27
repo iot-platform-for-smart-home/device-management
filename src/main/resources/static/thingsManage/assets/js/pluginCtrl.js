@@ -1,7 +1,7 @@
 mainApp.controller("pluginCtrl", function ($scope, $resource){
 
     var str = new Array();
-
+    var lang_flag=getCookie('Language');
 
     var pluginGroup = $resource('/api/rule/allPlugins');
     $scope.pluginGroups = pluginGroup.query();
@@ -58,12 +58,24 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
             arrs = $scope.interfaceInfomations.api;
             for(var i=0;i<arrs.length;i++){
                 if(arrs[i].indexOf("/api/v1")== -1){
-                    $scope.interface = "内部";
+                    console.log("内语言"+lang_flag);
+                    if(lang_flag==1){
+                        $scope.interface = "内部";
+                    }
+                    else{
+                        $scope.interface = "Internal";
+                    }
                     var fileData = {"name":$scope.interfaceInfomations.api[i],"value":$scope.interface};
                     arry.push(fileData);//重新构建数组对象
 
                 }else{
-                    $scope.interface = "外部";
+                    console.log("外语言"+lang_flag);
+                    if(lang_flag==1){
+                        $scope.interface = "外部";
+                    }
+                    else{
+                        $scope.interface = "External";
+                    }
                     var fileData = {"name":$scope.interfaceInfomations.api[i],"value":$scope.interface};
                     arry.push(fileData);
                 }
@@ -240,3 +252,20 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
 
 
 });
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}

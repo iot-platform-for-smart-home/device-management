@@ -12,6 +12,9 @@
 
 		}
 	}*/
+
+    var lang_flag=getCookie('Language');
+
     var pagination = function(options) {
         cur = parseInt(options.cur||1, 10);
         total = parseInt(options.total||0, 10);
@@ -78,9 +81,19 @@
             // 下一页
             html += '<a href="javascript:void(0);" class="page-index next" data-index="' + (cur + 1) + '">&gt;</a>';
         }
-        html += '<span class="page-total">共<span class="number">' + total + '</span>页</span>\
+
+        /*中英文切换*/
+        if(lang_flag==1){
+            html += '<span class="page-total">共<span class="number">' + total + '</span>页</span>\
           <span class="page-go">到第<input class="w35 go" id="yeshu" type="text" value="">页</span>\
-          <input type="button" class="gray-btn btn btn-primary" id="go-search" value="确定">';
+          <input type="button" class="gray-btn btn btn-basic" id="go-search" value="确定">';
+        }
+        else{
+            html += '<span class="page-total">Total<span class="number">' + total + '</span>Pages</span>\
+          <span class="page-go">&nbsp;Go to Page<input class="w35 go" id="yeshu" type="text" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>\
+          <input type="button" class="gray-btn btn btn-basic" id="go-search" value="Yes">';
+        }
+
         tar.innerHTML = html;
         if(options.callback) {
             // 执行回调
@@ -99,3 +112,20 @@
         }
     }
 })(window)
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}

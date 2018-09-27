@@ -63,9 +63,9 @@ $(document).ready(function () {
             else{
                 document.getElementById("homePageTitle").innerText="Object Management Platform - Tenant";
                 document.getElementById("welcomeMessage").innerText=" Welcome To Gantch Things Management Platform ! ";
-                document.getElementById("personalCenter").innerText="Personal Center ";
+                document.getElementById("personalCenter").innerText=" Personal Center ";
                 document.getElementById("currentUser").innerText=" Current User：";
-                document.getElementById("userLevel").innerText="User Level：";
+                document.getElementById("userLevel").innerText=" User Level：";
                 document.getElementById("setting").innerText=" Setting ";
                 document.getElementById("signOut").innerText=" Sign Out ";
                 document.getElementById("side-menu-1").innerText="Home";

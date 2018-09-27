@@ -42,14 +42,14 @@ $(document).ready(function () {
         document.getElementById("renewGroupName").innerText="客户组名称:";
         document.getElementById("renewGroupPhone").innerText="电话:";
         document.getElementById("renewGroupAddress").innerText="地址:";
-        document.getElementById("renewGroupEmail").innerText="email:";
+        document.getElementById("renewGroupEmail").innerText="E-mail:";
         document.getElementById("renewEmailRemind").innerText="邮箱格式错误";
         document.getElementById("renewGroupNote").innerText="备注信息：";
         document.getElementById("modalCloseRefresheCustomer").innerText="关闭";
         document.getElementById("modalConfirmRefresheCustomer").innerText="确定";
         document.getElementById("groupAllDevice").innerText="客户组所有设备";
         document.getElementById("groupDeviceName").innerText="设备名称";
-        document.getElementById("groupDeviceI").innerText="设备ID";
+        document.getElementById("groupDeviceID").innerText="设备ID";
         document.getElementById("modalCloseCustomerDevice").innerText="取消";
         document.getElementById("modalConfirmCustomerDevice").innerText="清空所有设备";
     }
@@ -96,7 +96,7 @@ $(document).ready(function () {
         document.getElementById("modalConfirmRefresheCustomer").innerText="Yes";
         document.getElementById("groupAllDevice").innerText="All Devices of the Customer Group";
         document.getElementById("groupDeviceName").innerText="Device Name";
-        document.getElementById("groupDeviceI").innerText="Device ID";
+        document.getElementById("groupDeviceID").innerText="Device ID";
         document.getElementById("modalCloseCustomerDevice").innerText="Cancel";
         document.getElementById("modalConfirmCustomerDevice").innerText="Empty All Devices";
     }

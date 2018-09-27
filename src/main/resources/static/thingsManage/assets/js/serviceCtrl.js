@@ -3,6 +3,7 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
     var abilityId = [];
     $scope.result = new Array();
 
+    var lang_flag=getCookie('Language');
     /*权限管理*/
     // if($.cookie("userLevel") === "CUSTOMER_USER"){
     //     $scope.flag=true;
@@ -280,7 +281,16 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
 
     /*删除能力*/
     $scope.deleteAA = function(data){
-        var result = confirm("确定删除此能力？");
+
+        var result;
+
+        if(lang_flag==1){
+            result = confirm("确定删除此能力？");
+        }
+        else{
+            result = confirm("Are you sure to delete the ability?");
+        }
+
         if(result){
             var deleteAA = $resource('/api/v1/ability/:id');
             deleteAA.delete({id:data.abilityId},{},function(){
@@ -289,13 +299,38 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
                     window.location.reload();
                 },1000);
             },function () {
-                alert("删除失败！");
+                if(lang_flag==1){
+                    alert("删除失败！");
+                }
+                else{
+                    alert("Failed to delete！");
+                }
             });
         }else {
-            alert("不删除?");
+            if(lang_flag==1){
+                alert("不删除?");
+            }
+            else{
+                alert("Do not delete?");
+            }
         }
     }
 
-
-
 });
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}

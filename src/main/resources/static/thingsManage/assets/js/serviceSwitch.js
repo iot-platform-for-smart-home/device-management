@@ -33,6 +33,7 @@ $(document).ready(function () {
         document.getElementById("serServiceBody").innerText="服务体";
         document.getElementById("serMethodName").innerText="方法名";
         document.getElementById("serParameter").innerText="参数";
+        document.getElementById("paramWarning").innerText="参数必须全部填写";
         document.getElementById("serAddService").innerText="创建";
         document.getElementById("serCancelService").innerText="取消";
         document.getElementById("serDeleteGroup").innerText="删除服务组";
@@ -73,6 +74,7 @@ $(document).ready(function () {
         document.getElementById("serServiceBody").innerText="Service Body";
         document.getElementById("serMethodName").innerText="Method Name";
         document.getElementById("serParameter").innerText="Parameter";
+        document.getElementById("paramWarning").innerText="Parameters must be filled in all.";
         document.getElementById("serAddService").innerText="Add";
         document.getElementById("serCancelService").innerText="Cancel";
         document.getElementById("serDeleteGroup").innerText="Delete Service Group";

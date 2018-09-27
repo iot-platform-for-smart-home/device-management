@@ -6,6 +6,7 @@ $(document).ready(function () {
     /*中英文切换*/
     var lang_flag=getCookie('Language');
 
+
     if(lang_flag==1){
         document.getElementById("list").innerText="设备列表";
         document.getElementById("addDevice").innerText="+ 创建设备";

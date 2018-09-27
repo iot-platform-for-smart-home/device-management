@@ -2,10 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <h3><a href="" ng-click="$location.path('customer')">客户组</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;客户</h3>
+                <h3><a href="" ng-click="$location.path('customer')" style="color:#468847" id="userGroupTitle">客户组</a>&nbsp;&nbsp;
+                    <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                    <span style="font-size: 30px;" id="userTitle">客户</span>
+                </h3>
             </div>
             <div class="col-md-1" style="margin-top: 23px;">
-                <button style="margin-left:5px" class="btn btn-basic btn-sm" data-toggle="modal"
+                <button style="margin-left:10px;margin-bottom: 15px" class="btn btn-basic btn-sm" data-toggle="modal"
                         data-target="#createCustomerUser" id="addCustomerUser">+ 创建用户
                 </button>
             </div>

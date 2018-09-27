@@ -64,8 +64,8 @@
                 </div>
                 <div class="interfaceInfo">
                     <ul>
-                        <li class="inlinInter" id="inexInterface">内外接口<span class="interName" id="interfaceName">接口名称</span></li>
-                        <li ng-repeat="inter in interfaceArray"><span>{{inter.value}}</span><span id="pluginInterface">接口: </span><span>{{inter.name}}</span></li>
+                        <li class="inlinInter"><span id="inexInterface"></span><span class="interName" id="interfaceName"></span></li>
+                        <li ng-repeat="inter in interfaceArray"><span>{{inter.value}}</span><span id="pluginInterface"></span><span>{{inter.name}}</span></li>
                     </ul>
                 </div>
             </div>
@@ -81,15 +81,14 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             &times;
                         </button>
-                        <h3 class="modal-title" id="pluginRunInfo" style="color: #305680;font-weight: 600">
+                        <h3 class="modal-title" id="pluginRunInfo" style="color: #468847;font-weight: 600">
                         </h3>
                     </div>
                     <div class="modal-body">
                         <!--<h4>插件被请求次数：<strong style="color: #305680">{{frameBody}}</strong></h4><hr>-->
-                        <h4><span id="pluginRequestedFrequency"></span><strong style="color: #305680">{{frameBody}}</strong></h4>
+                        <h4><span id="pluginRequestedFrequency"></span><strong style="color:#468847">{{frameBody}}</strong></h4><hr>
                         <!--<h4><strong style="color: #305680">{{name}}</strong> 中MailController被请求次数：<strong style="color: #305680">{{MailController}}</strong></h4>-->
-                        <h4><span id="requestFrequency-1"></span><strong style="color: #305680">{{name}}</strong><span id="requestFrequency-2"></span><strong style="color: #305680">{{MailController}}</strong>
-                        </h4>
+                        <h4><span id="requestFrequency-1"></span><span style="color: #468847">{{name}}</span><span id="requestFrequency-2"></span><strong style="color: #468847">{{MailController}}</strong></h4>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" id="pluginConfirm"></button>
