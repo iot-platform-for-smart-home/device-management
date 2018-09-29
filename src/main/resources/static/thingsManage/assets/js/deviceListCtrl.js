@@ -17,6 +17,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
     var initUrl;
     var prePageUrl;
+    var lang_flag=getCookie('Language');
 
     // var customerId = $.cookie("customerId");
     /*设备列表信息获取与展示*/
@@ -180,12 +181,22 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     $scope.cancelAssign = function () {
         var cancelObj = $resource("/api/device/unassign/customer/:deviceId");
         var cancelInfo = cancelObj.delete({deviceId: $scope.ID}, {}, function (suc) {
-            toastr.success("取消分配成功！");
+            if(lang_flag==1){
+                toastr.success("取消分配成功！");
+            }
+            else{
+                toastr.success("Successfully unassigned！");
+            }
             setTimeout(function () {
                 window.location.reload();
             }, 1000);
         }, function (err) {
-            toastr.success("取消分配失败！");
+            if(lang_flag==1){
+                toastr.error("取消分配失败！");
+            }
+            else{
+                toastr.error("Failed to unassign！");
+            }
         });
     };
 
@@ -248,7 +259,6 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                     preDeviceIdArr.push($scope.deviceList[last].id);
                     preDeviceNameArr.push($scope.deviceList[last].name);
 
-
                 }
             });
         }, 1000);
@@ -272,9 +282,13 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                 type: "GET",
                 success: function (msg) {
 
-
                     if (msg.length == 0) {
-                        toastr.warning("当前已是最后一页！");
+                        if(lang_flag==1){
+                            toastr.warning("当前已是最后一页！");
+                        }
+                        else{
+                            toastr.warning("Currently the last page！");
+                        }
                     }
                     else {
                         pageNum++;
@@ -319,14 +333,23 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                         preDeviceNameArr.push($scope.deviceList[last].name);
                     }
 
-
                 },
                 error: function (err) {
-                    toastr.warning("当前已是最后一页！");
+                    if(lang_flag==1){
+                        toastr.warning("当前已是最后一页！");
+                    }
+                    else{
+                        toastr.warning("Currently the last page！");
+                    }
                 }
             });
         } else {
-            toastr.warning("当前已是最后一页！");
+            if(lang_flag==1){
+                toastr.warning("当前已是最后一页！");
+            }
+            else{
+                toastr.warning("Currently the last page！");
+            }
         }
 
     };
@@ -335,7 +358,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     $scope.preDeviceInfo = function () {
         var url;
         if (pageNum == 1) {/*pageNum == 1的时候不发送ajax请求*/
-            toastr.warning("当前已是第一页！");
+            if(lang_flag==1){
+                toastr.warning("当前已是最后一页！");
+            }
+            else{
+                toastr.warning("Currently the last page！");
+            }
         }
         else {
             if (pageNum == 2) {
@@ -411,18 +439,28 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         //console.log($scope.deviceInfo);
         //console.log($scope.deviceInfo.id);
         $scope.deleteDevice = deleteDeviceObj.delete({deviceId: $scope.deviceInfo.id}, {}, function (resp) {
-            toastr.success("删除设备成功！");
+            if(lang_flag==1){
+                toastr.success("删除设备成功！");
+            }
+            else{
+                toastr.success("Successfully deleted the device！");
+            }
+
             setTimeout(function () {
                 window.location.reload();
             }, 1000);
 
         }, function (error) {
-            toastr.error("删除设备失败！");
+            if(lang_flag==1){
+                toastr.error("删除设备失败！");
+            }
+            else{
+                toastr.error("Failed to delete the device！");
+            }
         });
     };
 
     /*查看令牌*/
-
     var tokenObj = $resource("/api/device/token/:deviceId");
     $scope.showToken = function () {
         $scope.tokenJson = tokenObj.get({deviceId: $scope.deviceInfo.id})
@@ -481,12 +519,22 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             //console.log("deviceInfo:"+$scope.deviceInfo.id);
             $scope.deviceGroupAssign = deviceGroupAssignObj.get({deviceId: $scope.deviceInfo.id, groupId: groupId},
                 function (resp) {
-                    toastr.success("设备分配成功！");
+                    if(lang_flag==1){
+                        toastr.success("设备分配成功！");
+                    }
+                    else{
+                        toastr.success("Successfully assigned th device！");
+                    }
                     setTimeout(function () {
                         window.location.reload();
                     }, 1000);
                 }, function (err) {
-                    toastr.error("设备分配失败！");
+                    if(lang_flag==1){
+                        toastr.error("设备分配失败！");
+                    }
+                    else{
+                        toastr.error("Failed to assign the device！");
+                    }
                 });
         }
         //当选中“分配设备到客户组”时
@@ -497,12 +545,22 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             // console.log("deviceInfo:"+$scope.deviceInfo.id);
             $scope.customerAssign = customerAssignObj.get({deviceId: $scope.deviceInfo.id, customerId: customerId},
                 function (resp) {
-                    toastr.success("设备分配成功！");
+                    if(lang_flag==1){
+                        toastr.success("设备分配成功！");
+                    }
+                    else{
+                        toastr.success("Successfully assigned th device！");
+                    }
                     setTimeout(function () {
                         window.location.reload();
                     }, 1000);
                 }, function (err) {
-                    toastr.error("设备分配失败！");
+                    if(lang_flag==1){
+                        toastr.error("设备分配失败！");
+                    }
+                    else{
+                        toastr.error("Failed to assign the device！");
+                    }
                 });
         }
     };
@@ -613,13 +671,23 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             dataType: "text",
             type: "POST",
             success: function (msg) {
-                toastr.success("更新设备成功！");
+                if(lang_flag==1){
+                    toastr.success("更新设备成功！");
+                }
+                else{
+                    toastr.success("Successfully updated the device！");
+                }
                 setTimeout(function () {
                     window.location.reload();
                 }, 1000);
             },
             error: function (err) {
-                toastr.error("更新设备失败！");
+                if(lang_flag==1){
+                    toastr.error("更新设备失败！");
+                }
+                else{
+                    toastr.error("Failed to update the device！");
+                }
             }
         });
     };
@@ -708,9 +776,19 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                     var msgJson = JSON.parse(msg);
                     // console.log(msgJson.id);
                     if (msgJson.id === "") {
-                        toastr.warning("不允许创建同名设备！");
+                        if(lang_flag==1){
+                            toastr.warning("不允许创建同名设备！");
+                        }
+                        else{
+                            toastr.warning("It is not allowed to create a device with the same name！");
+                        }
                     } else {
-                        toastr.success("创建设备成功！");
+                        if(lang_flag==1){
+                            toastr.success("创建设备成功！");
+                        }
+                        else{
+                            toastr.success("Successfully created the device！");
+                        }
                         setTimeout(function () {
                             window.location.reload();
                         }, 1000);
@@ -719,7 +797,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
                 },
                 error: function (err) {
-                    toastr.error("新增设备失败！");
+                    if(lang_flag==1){
+                        toastr.error("创建设备失败！");
+                    }
+                    else {
+                        toastr.error("Failed to create the device！");
+                    }
                 }
             });
         }
@@ -743,7 +826,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
     $scope.searchDevice = function () {
         var textSearch = $("#searchDeviceText").val();
-        var url
+        var url;
 
         //get搜索设备数量L
         // if ($.cookie("userLevel") === "CUSTOMER_USER") {
@@ -777,7 +860,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
         $scope.searchDeviceInfo.$promise.then(function (value) {
             if (value == false) {
-                toastr.warning("设备名称输入有误，无此设备！");
+                if(lang_flag==1){
+                    toastr.warning("设备名称输入有误，无此设备！");
+                }
+                else{
+                    toastr.warning("The device name was entered incorrectly, no such device！");
+                }
                 setTimeout(function () {
                     window.location.reload();
                 }, 1000);
@@ -1044,14 +1132,24 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             $("#historyEcharts").empty();//清空历史数据表
             $("#historyEcharts").removeAttr("_echarts_instance_");//echarts表格重新加载前清除之前的init
             if ($("#startTime").val() === "" || $("#endTime").val() === "") {
-                toastr.warning("起始时间无效！");
+                if(lang_flag==1){
+                    toastr.warning("起始时间无效！");
+                }
+                else{
+                    toastr.warning("Invalid start time！");
+                }
             } else {
                 var start = $("#startTime").val();
                 var end = $("#endTime").val();
                 var startStamp = new Date(start).getTime();
                 var endStamp = new Date(end).getTime();
                 if (startStamp > endStamp) {
-                    toastr.warning("起始时间无效！");
+                    if(lang_flag==1){
+                        toastr.warning("起始时间无效！");
+                    }
+                    else{
+                        toastr.warning("Invalid start time！");
+                    }
                 } else {
                     console.log(start);
                     console.log(startStamp);
@@ -1254,7 +1352,13 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                         console.log("number:" + $("#param" + i + j).val());
                     }
                 }
-                $('#ctrlDiv' + i).append('<button class="btn btn-primary ctrlDivBtn" id="' + i + '" type="button">应用</button>');
+                if(lang_flag==1){
+                    $('#ctrlDiv' + i).append('<button class="btn btn-basic ctrlDivBtn" id="' + i + '" type="button">应用</button>');
+                }
+                else{
+                    $('#ctrlDiv' + i).append('<button class="btn btn-basic ctrlDivBtn" id="' + i + '" type="button">Apply</button>');
+                }
+
 
             }
 
@@ -1347,10 +1451,20 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                     dataType: "text",
                     type: "POST",
                     success: function (msg) {
-                        toastr.success("应用成功！");
+                        if(lang_flag==1){
+                            toastr.success("应用成功！");
+                        }
+                        else{
+                            toastr.success("Successfully applied！");
+                        }
                     },
                     error: function (err) {
-                        toastr.error("应用失败！");
+                        if(lang_flag==1){
+                            toastr.error("应用失败！");
+                        }
+                        else{
+                            toastr.error("Failed to apply！");
+                        }
                     }
                 });
             });
@@ -1394,7 +1508,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         //设备事件上一页
         $scope.preEvent = function () {
             if (eventPage === 0) {
-                toastr.warning("当前已是最新设备事件！");
+                if(lang_flag==1){
+                    toastr.warning("当前已是最新设备事件！");
+                }
+                else{
+                    toastr.warning("Currently the latest device event！");
+                }
             }
             else if (eventPage === 1) {
                 $.ajax({
@@ -1450,7 +1569,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                         console.log(msg.length);
                     }
                     else {
-                        toastr.warning("当前已是最后一页！");
+                        if(lang_flag==1){
+                            toastr.warning("当前已是最后一页！");
+                        }
+                        else{
+                            toastr.warning("Currently the last page！");
+                        }
                     }
                 },
                 error: function (err) {
@@ -1465,7 +1589,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         subLastEventId = [];
         console.log($scope.deviceInfo.id);
         if ($("#eventStartTime").val() === "" || $("#eventEndTime").val() === "") {
-            toastr.warning("起始时间无效!");
+            if(lang_flag==1){
+                toastr.warning("起始时间无效！");
+            }
+            else{
+                toastr.warning("Invalid start time！");
+            }
         } else {
             console.log($("#eventStartTime").val());
             console.log($("#eventEndTime").val());
@@ -1474,7 +1603,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             var eventStartStamp = new Date(eventStart).getTime();
             var eventEndStamp = new Date(eventEnd).getTime();
             if (eventStartStamp > eventEndStamp) {
-                toastr.warning("起始时间无效!");
+                if(lang_flag==1){
+                    toastr.warning("起始时间无效！");
+                }
+                else{
+                    toastr.warning("Invalid start time！");
+                }
             } else {
                 /*var eventObj = $resource("/api/event/:deviceId?limit=20&startTime=:eventStartTime&endTime=:eventEndTime");
                  $scope.eventInfo = eventObj.query({deviceId:$scope.deviceInfo.id,eventStartTime:eventStartStamp,eventEndTime:eventEndStamp});
@@ -1499,7 +1633,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                 //设备事件上一页
                 $scope.preEvent = function () {
                     if (subEventPage === 0) {
-                        toastr.warning("当前已是第一页！");
+                        if(lang_flag==1){
+                            toastr.warning("当前已是第一页！");
+                        }
+                        else{
+                            toastr.warning("Currently the first page！");
+                        }
                     }
                     else if (subEventPage === 1) {
                         $.ajax({
@@ -1555,7 +1694,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                                 subLastEventId.push(msg[msg.length - 1].id);
                             }
                             else {
-                                toastr.warning("当前已是最后一页！");
+                                if(lang_flag==1){
+                                    toastr.warning("当前已是最后一页！");
+                                }
+                                else{
+                                    toastr.warning("Currently the last page！");
+                                }
                             }
                         },
                         error: function (err) {
@@ -1629,4 +1773,20 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
 }]);
 
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}
 

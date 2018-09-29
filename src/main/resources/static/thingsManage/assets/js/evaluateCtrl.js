@@ -41,9 +41,11 @@ mainApp.controller('evaluateCtrl', function ($scope,$resource,FileUploader) {
             //console.log(evaluate);
             //console.log(evaluate.filenames);
             //console.log(evaluate.filenames instanceof Array);
-            evaluate.filenames=evaluate.filenames.replace("[","");//去除[]
-            evaluate.filenames=evaluate.filenames.replace("]","");
-            strs=evaluate.filenames.split(","); //以字符逗号分割字符串，返回数组
+            if(evaluate.filenames != null){
+                evaluate.filenames=evaluate.filenames.replace("[","");//去除[]
+                evaluate.filenames=evaluate.filenames.replace("]","");
+                strs=evaluate.filenames.split(","); //以字符逗号分割字符串，返回数组
+            }
             //console.log(strs);
             var len = strs.length;
             //console.log(len);
@@ -184,56 +186,50 @@ mainApp.controller('evaluateCtrl', function ($scope,$resource,FileUploader) {
         xhr.send(null);
     }
     }======================================*/
-    /*post文件上传
-        //取消
-        $scope.cancel = function () {
-            $uibModalInstance.dismiss('cancel');
-        };
-        //上传按钮
-        $scope.subFile = function () {
-            $scope.upload($scope.file);
-        };
-
-        $scope.upload = function (file) {
-            $scope.fileInfo = file;
-            Upload.upload({
-                //服务端接收
-                method: 'POST',
-                url: 'http://localhost:56897/api/serviceLogAttachments',
-                file: file
-            }).progress(function (evt) {
-                //进度条
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progess:' + progressPercentage + '%' + evt.config.file.name);
-            }).success(function (newAttachment) {
-                //上传成功
-                $uibModalInstance.close(newAttachment);
-            }).error(function (data, status, headers, config) {
-                //上传失败
-                console.log('error status: ' + status);
-            });
-        };*/
-
-
-    /*$("#downFile").on("click",function (item) {
-           console.log(item);
-           $.ajax({
-               url:"/api/document/download/"+ item.name+"/"+item.type,
-               type:"GET",
-               success:function () {
-                   alert("下载成功！");
-               },
-               error:function () {
-                   alert("编辑失败");
-               }
-           });
-       })*/
-
-
-
-
-
-
+    // //post文件上传
+    //     //取消
+    //     $scope.cancel = function () {
+    //         $uibModalInstance.dismiss('cancel');
+    //     };
+    //     //上传按钮
+    //     $scope.subFile = function () {
+    //         $scope.upload($scope.file);
+    //     };
+    //
+    //     $scope.upload = function (file) {
+    //         $scope.fileInfo = file;
+    //         Upload.upload({
+    //             //服务端接收
+    //             method: 'POST',
+    //             url: 'http://localhost:56897/api/serviceLogAttachments',
+    //             file: file
+    //         }).progress(function (evt) {
+    //             //进度条
+    //             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+    //             console.log('progess:' + progressPercentage + '%' + evt.config.file.name);
+    //         }).success(function (newAttachment) {
+    //             //上传成功
+    //             $uibModalInstance.close(newAttachment);
+    //         }).error(function (data, status, headers, config) {
+    //             //上传失败
+    //             console.log('error status: ' + status);
+    //         });
+    //     };
+    //
+    //
+    // $("#downFile").on("click",function (item) {
+    //        console.log(item);
+    //        $.ajax({
+    //            url:"/api/document/download/"+ item.name+"/"+item.type,
+    //            type:"GET",
+    //            success:function () {
+    //                alert("下载成功！");
+    //            },
+    //            error:function () {
+    //                alert("编辑失败");
+    //            }
+    //        });
+    //    })
 
 
 

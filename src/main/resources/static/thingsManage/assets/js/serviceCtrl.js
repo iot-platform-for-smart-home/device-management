@@ -90,12 +90,22 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
             console.log($scope.createAbilityInfo);
             var createAbilityGroupObj =  $resource("/api/v1/abilityGroup");
             $scope.abilityInformation = createAbilityGroupObj.save({},$scope.createAbilityInfo,function (resp) {
-                toastr.success("新增设备成功！");
+                if(lang_flag==1){
+                    toastr.success("新增设备成功！");
+                }
+                else{
+                    toastr.success("Successfully added the device！");
+                }
                 setTimeout(function () {
                     window.location.reload();
                 },500);
             },function (error) {
-                toastr.error("新增设备失败！");
+                if(lang_flag==1){
+                    toastr.error("新增设备失败！");
+                }
+                else{
+                    toastr.error("Failed to add the device！");
+                }
             });
         }
         else {
@@ -189,14 +199,24 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
             console.log($scope.createAbility);
             var createAbilityObj =  $resource("/api/v1/ability");
             $scope.ability = createAbilityObj.save({},$scope.createAbility,function (resp) {
-                toastr.success("新增成功！");
+                if(lang_flag==1){
+                    toastr.success("新增成功！");
+                }
+                else{
+                    toastr.success("Successfully added！");
+                }
                 //console.log($scope.ability);
                 setTimeout(function () {
                     $("#createSM").modal("hide");
                     location.reload();
                 },500);
             },function (error) {
-                toastr.error("新增失败！");
+                if(lang_flag==1){
+                    toastr.error("新增失败！");
+                }
+                else{
+                    toastr.error("Failed to add！");
+                }
             });
         }
         else {
@@ -274,7 +294,12 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
             location.reload();
         }, function (resp) {
             console.log("删除失败");
-            alert("删除失败！")
+            if(lang_flag==1){
+                alert("删除失败！")
+            }
+            else{
+                alert("Failed to delete！")
+            }
         });
     }
 
@@ -294,7 +319,12 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
         if(result){
             var deleteAA = $resource('/api/v1/ability/:id');
             deleteAA.delete({id:data.abilityId},{},function(){
-                toastr.success("删除成功！");
+                if(lang_flag==1){
+                    toastr.success("删除成功！");
+                }
+                else{
+                    toastr.success("Successfully deleted！");
+                }
                 setTimeout(function () {
                     window.location.reload();
                 },1000);

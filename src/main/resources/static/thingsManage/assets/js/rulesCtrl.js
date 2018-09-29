@@ -62,8 +62,8 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
 
         //初始化右侧视图
         $scope.Ruleitem = $scope.Rules[0];//必须在success函数里才能取到Rules[0]
-        $scope.RulePlugins=$scope.Ruleitem.transforms
-        $scope.RuleFilters=$scope.Ruleitem.filters
+        $scope.RulePlugins=$scope.Ruleitem.transforms;
+        $scope.RuleFilters=$scope.Ruleitem.filters;
 
         console.log("query函数内的Rules：");
         console.log($scope.Rules);
@@ -211,7 +211,7 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
      ============================================================ */
     //"js代码"文本框初始化
     var addfilterJS = "function filter(deviceId,key,value){if(deviceId=='35818ec0-5a65-11e8-b66a-e5d2dad89b7c'&&key=='1231' && value>101){return true;}  else{return false;}}";
-    document.getElementById('addfilterjs').value = addfilterJS;
+    document.getElementById("addfilterjs").value = addfilterJS;
 
     //点击添加规则-添加过滤器
     $scope.subFilter = function () {

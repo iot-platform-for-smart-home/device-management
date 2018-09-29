@@ -731,7 +731,7 @@ width: 35%;
 .left_Dashboard{
     position: fixed;
     bottom:0px;
-    width: 200px;
+    width: 250px;
     border-right: 1px solid #ffffff;
     height: 83%;
     overflow-y: scroll;
@@ -739,6 +739,7 @@ width: 35%;
 .left_Dashboard::-webkit-scrollbar {display:none;}
 #dblist_title{
     font-size: 20px;
+    padding-left: 5px;
 }
 .right_Dashboard{
     margin-left:220px ;
@@ -746,7 +747,7 @@ width: 35%;
 .dashboard{
     margin-left: 0;
     height: 100px;
-    width: 180px;
+    width: 210px;
     margin-top: 15px;
 }
 .dashboard_add{

@@ -69,8 +69,8 @@ $(document).ready(function () {
         document.getElementById("custCheck").innerText="Check：";
         document.getElementById("custCheckUser").innerText="Check Customer Group Users";
         document.getElementById("custCheckDevice").innerText="Check Customer Group Devices";
-        document.getElementById("custJump").innerText="jump to";
-        document.getElementById("custPage").innerText="page";
+        document.getElementById("custJump").innerText="Jump to Page ";
+        document.getElementById("custPage").innerText=" ";
         document.getElementById("custJumpConfirm").innerText="Yes";
         document.getElementById("custAddGroup").innerText="Add Customer Group";
         document.getElementById("newCustomerName").innerText="Customer Name:";
