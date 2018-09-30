@@ -192,7 +192,12 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
             .$promise.then(function (resp) {
             //alert("sssss")
             //console.log(resp);
-            toastr.success("激活成功！");
+            if(lang_flag==1){
+                toastr.success("激活成功！");
+            }
+            else{
+                toastr.success("Successfully activated！");
+            }
             setTimeout(function () {
                 window.location.reload();
             },500);
@@ -206,7 +211,12 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
             .$promise.then(function (resp) {
             //alert("sssss")
             //console.log(resp);
-            toastr.success("暂停成功！");
+            if(lang_flag==1){
+                toastr.success("暂停成功！");
+            }
+            else{
+                toastr.success("Successfully paused！");
+            }
             setTimeout(function () {
                 window.location.reload();
             },500);

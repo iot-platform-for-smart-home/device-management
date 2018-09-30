@@ -2,6 +2,8 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
     $scope.isShowAll= true;
     $scope.isShowEmpty = false;
 
+    var lang_flag=getCookie('Language');
+
     //获取设备组
     /*权限管理*/
     // console.log($.cookie());
@@ -47,7 +49,12 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
                 if(resp.id!=""){
                     location.reload();
                 }else{
-                    toastr.warning("不允许创建同名设备！");
+                    if(lang_flag==1){
+                        toastr.warning("不允许创建同名设备！");
+                    }
+                    else{
+                        toastr.warning("It is not allowed to create a device with the same name！！");
+                    }
                 }
             });
         } else {
@@ -77,7 +84,12 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
                 .$promise.then(function (person) {
                 if (person == false) {
                     //如无此结果返回[]
-                    alert("无设备组[" + $scope.dgname + "]信息，请输入正确设备组名!");
+                    if(lang_flag==1){
+                        alert("无设备组[" + $scope.dgname + "]信息，请输入正确设备组名!");
+                    }
+                    else{
+                        alert("There is no information of [" + $scope.dgname + "]，please enter the correct device group name!");
+                    }
                     location.reload();
                 } else {
                     $scope.DeviceGroups = person;
@@ -85,7 +97,12 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
             });
         }
         else {
-            alert("输入不能为空!");
+            if(lang_flag==1){
+                alert("输入不能为空!");
+            }
+            else{
+                alert("Input can not be empty!");
+            }
         }
     };
 
@@ -98,7 +115,12 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
             location.reload();
         }, function (resp) {
             console.log("1234再来一次");
-            alert("删除失败，请重试！")
+            if(lang_flag==1){
+                alert("删除失败，请重试！");
+            }
+            else{
+                alert("Failed to delete, please try again！");
+            }
         });
     }
 
@@ -426,9 +448,19 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
                 console.log( $scope.item.id);
                 var subObj = $resource("/api/shadow/control/:deviceId");
                 var subInfo = subObj.save({deviceId:data.id},json,function (resp) {
-                    toastr.success("应用成功！");
+                    if(lang_flag==1){
+                        toastr.success("应用成功！");
+                    }
+                    else{
+                        toastr.success("Successfully applied！");
+                    }
                 },function (error) {
-                    toastr.error("应用失败！");
+                    if(lang_flag==1){
+                        toastr.error("应用失败！");
+                    }
+                    else{
+                        toastr.error("Failed to apply！");
+                    }
                 });
             });
         });
@@ -639,7 +671,12 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
                 window.location.reload();
             }, 1000);
         }, function (error) {
-            toastr.error("更新设备失败！");
+            if(lang_flag==1){
+                toastr.error("更新设备失败！");
+            }
+            else{
+                toastr.error("Failed to update the device！");
+            }
         });
     };
     /**************更新设备END****************/
@@ -659,3 +696,20 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
         });
     };
 });
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}

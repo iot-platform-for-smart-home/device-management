@@ -15,6 +15,8 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     $scope.RestfulBody = {};
     $scope.RuleaddPluginUrl="";//用于解决url重复赋值bug
 
+    var lang_flag=getCookie('Language');
+
     InitformData();
 
     function InitformData() {
@@ -147,7 +149,12 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             console.log($scope.searchRuleInfo.length);
             $scope.searchRuleInfo.$promise.then(function (value) {
                 if(value == false){
-                    toastr.warning("规则名称输入有误，无此设备！");
+                    if(lang_flag==1){
+                        toastr.warning("规则名称输入有误，无此设备！");
+                    }
+                    else{
+                        toastr.warning("The rule name was entered incorrectly, no such device！");
+                    }
                     setTimeout(function () {
                         window.location.reload();
                     },1000);
@@ -176,7 +183,12 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             location.reload();
         }, function (resp) {
             console.log("1234再来一次");
-            alert("删除失败，请重试！")
+            if(lang_flag==1){
+                alert("删除失败，请重试！")
+            }
+            else{
+                alert("Failed to delete, please try again！")
+            }
         });
     }
 
@@ -367,11 +379,21 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             var addRULE = $resource('/api/rule/create');
             addRULE.save({}, $scope.formData)
                 .$promise.then(function (resp) {
-                toastr.success("创建规则成功！");
+                if(lang_flag==1){
+                    toastr.success("创建规则成功！");
+                }
+                else{
+                    toastr.success("Successfully created the rule！");
+                }
                 $("#addRule").modal("hide");
                 location.reload();
             },function (err) {
-                toastr.success("创建规则失败！");
+                if(lang_flag==1){
+                    toastr.success("创建规则失败！");
+                }
+                else{
+                    toastr.success("Failed to create the rule！");
+                }
             });
         } else {
             // $('#rulenamealert').show();
@@ -470,3 +492,21 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
         $scope.RuleaddPluginUrl=""
     };
 });
+
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}

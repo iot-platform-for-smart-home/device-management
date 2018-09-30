@@ -13,6 +13,8 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
 
     var userLimit = 9;
 
+    var lang_flag=getCookie('Language');
+
     /*初始化新增表格*/
     $("#addCustomerUser").click(function () {
         $("#customerUserName").val("");
@@ -187,13 +189,23 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
                         type:"POST",
                         contentType: "application/json; charset=utf-8",//post请求必须
                         success:function (resp) {
-                            toastr.success("创建用户成功！");
+                            if(lang_flag==1){
+                                toastr.success("创建用户成功！");
+                            }
+                            else{
+                                toastr.success("Successfully created the customer！");
+                            }
                             setTimeout(function () {
                                 window.location.reload();
                             },1000);
                         },
                         error:function (err) {
-                            toastr.error("创建用户失败！");
+                            if(lang_flag==1){
+                                toastr.error("创建用户失败！");
+                            }
+                            else{
+                                toastr.error("Failed to create the customer！");
+                            }
                         }
                     });
                 }
@@ -207,7 +219,12 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
             }
             else{
                 $("#modalConfirmCreateCustomerUser").removeAttr("data-dismiss");
-                toastr.error("两次输入的密码不相同！");
+                if(lang_flag==1) {
+                    toastr.error("两次输入的密码不相同！");
+                }
+                else{
+                    toastr.error("The two entered passwords are different！");
+                }
             }
         }
     }
@@ -216,12 +233,22 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
     $scope.deleteCustomerUser = function () {
         var deleteCustomerUserObj = $resource("/api/account/user?userId=:userId");
         $scope.deleteCustomerUserInfo = deleteCustomerUserObj.delete({userId:$scope.userId},{},function (resp) {
-            toastr.success("删除用户成功！");
+            if(lang_flag==1){
+                toastr.success("删除用户成功！");
+            }
+            else{
+                toastr.success("Successfully delete the customer！");
+            }
             setTimeout(function () {
                 window.location.reload();
             },1000);
         },function (err) {
-            toastr.error("删除用户失败！");
+            if(lang_flag==1){
+                toastr.error("删除用户失败！");
+            }
+            else{
+                toastr.error("Failed to delete the customer！");
+            }
         });
     };
 
@@ -261,13 +288,23 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
                     type:"PUT",
                     contentType: "application/json; charset=utf-8",//post请求必须
                     success:function (resp) {
-                        toastr.success("修改用户信息成功！");
+                        if(lang_flag==1){
+                            toastr.success("修改用户信息成功！");
+                        }
+                        else{
+                            toastr.success("Successfully modified the information of the customer！");
+                        }
                         setTimeout(function () {
                             window.location.reload();
                         },1000);
                     },
                     error:function () {
-                        toastr.error("修改用户信息失败！");
+                        if(lang_flag==1) {
+                            toastr.error("修改用户信息失败！");
+                        }
+                        else{
+                            toastr.error("Failed to modify the information of the customer！");
+                        }
                     }
                 });
             }
@@ -281,3 +318,20 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
         }
     };
 }]);
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}

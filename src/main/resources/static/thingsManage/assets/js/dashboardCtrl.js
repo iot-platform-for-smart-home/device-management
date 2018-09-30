@@ -5,6 +5,8 @@ mainApp.controller("dashboardCtrl",["$scope","$resource","$timeout",function ($s
     $scope.Widgets=[{"name":"line"}]
     $scope.isChoose=false;
 
+    var lang_flag=getCookie('Language');
+
     //获取cookie中各种Id
     var tenantId = $.session.get("tenantId")
     // var customerId = $.cookie("customerId")
@@ -286,7 +288,12 @@ mainApp.controller("dashboardCtrl",["$scope","$resource","$timeout",function ($s
             if(resp.id!=""){
                 location.reload();
             }else{
-                toastr.warning("不允许创建同名设备！");
+                if(lang_flag==1){
+                    toastr.warning("不允许创建同名设备！");
+                }
+                else{
+                    toastr.warning("It is not allowed to create a device with the same name！");
+                }
             }
         })
     }
@@ -341,7 +348,12 @@ mainApp.controller("dashboardCtrl",["$scope","$resource","$timeout",function ($s
             location.reload();
         }, function (resp) {
             console.log("1234再来一次");
-            alert("删除失败，请重试！")
+            if(lang_flag==1){
+                alert("删除失败，请重试！");
+            }
+            else{
+                alert("Failed to delete, please try again！");
+            }
         });
     }
 
@@ -361,7 +373,12 @@ mainApp.controller("dashboardCtrl",["$scope","$resource","$timeout",function ($s
             location.reload();
         }, function (resp) {
             console.log("1234再来一次");
-            alert("删除失败，请重试！")
+            if(lang_flag==1){
+                alert("删除失败，请重试！");
+            }
+            else{
+                alert("Failed to delete, please try again！");
+            }
         });
     }
 
@@ -387,3 +404,20 @@ mainApp.controller("dashboardCtrl",["$scope","$resource","$timeout",function ($s
         });
     };
 }]);
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}

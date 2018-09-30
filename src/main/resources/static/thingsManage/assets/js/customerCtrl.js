@@ -4,6 +4,7 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
     var currentPage=1;//用于记录当前页号
     var customersLimit = 9;//用于记录当前展示客户个数
     var totalPages;
+    var lang_flag=getCookie('Language');
 
     $scope.customerLimit = function () {
         if($("#customerNum").val() === ""){
@@ -62,7 +63,6 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
                         console.log(totalPages);
                     }
                 });
-
 
 
                 //分页
@@ -158,12 +158,22 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
         // console.log($scope.customerInfo);
         var deleteObj = $resource("/api/account/customer?customerId=:customerId");
         deleteObj.delete({customerId:$scope.customerInfo.id},{},function (resp) {
-            toastr.success("删除客户组成功！");
+            if(lang_flag==1){
+                toastr.success("删除客户组成功！");
+            }
+            else{
+                toastr.success("Successfully deleted th customer group！");
+            }
             setTimeout(function () {
                 window.location.reload();
             },1000);
         },function (err) {
-            toastr.error("删除客户组失败！");
+            if(lang_flag==1){
+                toastr.error("删除客户组失败！");
+            }
+            else{
+                toastr.error("Failed to delete the customer group！");
+            }
         });
     };
 
@@ -194,13 +204,23 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
                         type:"POST",
                         contentType: "application/json; charset=utf-8",//post请求必须
                         success:function (resp) {
-                            toastr.success("创建客户组成功！");
+                            if(lang_flag==1){
+                                toastr.success("创建客户组成功！");
+                            }
+                            else{
+                                toastr.success("Successfully created the customer group!");
+                            }
                             setTimeout(function () {
                                 window.location.reload();
                             },1000);
                         },
                         error:function (err) {
-                            toastr.error("创建客户组失败！");
+                            if(lang_flag==1){
+                                toastr.error("创建客户组失败！");
+                            }
+                            else{
+                                toastr.error("Failed to create the customer group！");
+                            }
                         }
                     });
                 }
@@ -219,13 +239,23 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
                     type:"POST",
                     contentType: "application/json; charset=utf-8",//post请求必须
                     success:function (resp) {
-                        toastr.success("创建客户组成功！");
+                        if(lang_flag==1){
+                            toastr.success("创建客户组成功！");
+                        }
+                        else{
+                            toastr.success("Successfully created the customer group!");
+                        }
                         setTimeout(function () {
                             window.location.reload();
                         },1000);
                     },
                     error:function (err) {
-                        toastr.error("创建客户组失败！");
+                        if(lang_flag==1){
+                            toastr.error("创建客户组失败！");
+                        }
+                        else{
+                            toastr.error("Failed to create the customer group！");
+                        }
                     }
                 });
             }
@@ -267,13 +297,23 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
                     type:"PUT",
                     contentType: "application/json; charset=utf-8",//post请求必须
                     success:function (resp) {
-                        toastr.success("修改客户组信息成功！");
+                        if(lang_flag==1){
+                            toastr.success("修改客户组信息成功！");
+                        }
+                        else{
+                            toastr.success("Successfully modified the information of the customer group！");
+                        }
                         setTimeout(function () {
                             window.location.reload();
                         },1000);
                     },
                     error:function () {
-                        toastr.error("修改客户组信息失败！");
+                        if(lang_flag==1){
+                            toastr.error("修改客户组信息失败！");
+                        }
+                        else{
+                            toastr.error("Failed to modify the information of the customer group！");
+                        }
                     }
                 });
             }
@@ -292,13 +332,23 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
                 type:"PUT",
                 contentType: "application/json; charset=utf-8",//post请求必须
                 success:function (resp) {
-                    toastr.success("修改客户组信息成功！");
+                    if(lang_flag==1){
+                        toastr.success("修改客户组信息成功！");
+                    }
+                    else{
+                        toastr.success("Successfully modified the information of the customer group！");
+                    }
                     setTimeout(function () {
                         window.location.reload();
                     },1000);
                 },
                 error:function () {
-                    toastr.error("修改客户组信息失败！");
+                    if(lang_flag==1){
+                        toastr.error("修改客户组信息失败！");
+                    }
+                    else{
+                        toastr.error("Failed to modify the information of the customer group！");
+                    }
                 }
             });
         }
@@ -314,12 +364,22 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
     $scope.deleteCustomerDevice = function () {
         var emptyObj = $resource("/api/device/unassign/customerDevices/:customerId");
         var emptyInfo = emptyObj.delete({customerId:$scope.customerId},{},function (resp) {
-            toastr.success("已清空当前客户组所有设备！");
+            if(lang_flag==1){
+                toastr.success("已清空当前客户组所有设备！");
+            }
+            else{
+                toastr.success("All devices in the current customer group have been cleared！");
+            }
             setTimeout(function () {
                 window.location.reload();
             },1000);
         },function (err) {
-            toastr.error("清空当前客户组所有设备失败！");
+            if(lang_flag==1){
+                toastr.error("清空当前客户组所有设备失败！");
+            }
+            else{
+                toastr.error("Failed to clear all devices in the current customer group！");
+            }
         });
     };
     
@@ -332,3 +392,20 @@ mainApp.controller("customerCtrl",["$scope","$resource","$location",function ($s
         $(this).css("color","#38883c");
     });
 }]);
+
+function getCookie(Name) {
+    var search = Name + "="
+    if(document.cookie.length > 0)
+    {
+        offset = document.cookie.indexOf(search)
+        if(offset != -1)
+        {
+            offset += search.length
+            end = document.cookie.indexOf(";", offset)
+            if(end == -1)
+                end = document.cookie.length
+            return unescape(document.cookie.substring(offset, end))
+        }
+        else return ""
+    }
+}
