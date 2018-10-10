@@ -8,6 +8,17 @@ body {
     text-align: center;
 }
 
+.backToHome {
+	color: #858585;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.backToHome:hover, .backToHome:focus {
+    color: #468847;
+    text-decoration:none;
+}
+
 strong { font-weight: 500; }
 
 a, a:hover, a:focus {
