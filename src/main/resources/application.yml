@@ -24,29 +24,29 @@ bupt.thingsboard:
 
 
 device-access:
- host: 10.108.218.64
+ host: 47.105.120.203
  port: 30080
 
 smart_ruler:
- host: 10.108.218.64
+ host: 47.105.120.203
  port: 30080
 
 service-management:
- host: 10.108.218.64
+ host: 47.105.120.203
  port: 30080
 
 dashboard:
- host: 10.108.218.64
+ host: 47.105.120.203
  port: 30080
 
 userDocument:
- host: 10.108.218.64
+ host: 47.105.120.203
  port: 30080
 
 account:
 #  host: 39.104.165.155
 #  port: 8400
-  host: 10.108.218.64
+  host: 47.105.120.203
 #  host: 39.104.189.84
   port: 30080
   login_url: http://${account.host}:${account.port}/api/v1/account/login
