@@ -11,7 +11,9 @@ body {
     color:#000;
 }
 .sec-menu {
-    background-color:#468847;
+    /*background-color:#468847;*/
+    background: url("../img/bg.jpg") ;
+    background-size: cover;
     padding-top:20px;
     padding-bottom:15px;
     color:#fff;
