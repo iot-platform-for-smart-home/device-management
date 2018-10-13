@@ -359,10 +359,10 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         var url;
         if (pageNum == 1) {/*pageNum == 1的时候不发送ajax请求*/
             if(lang_flag==1){
-                toastr.warning("当前已是最后一页！");
+                toastr.warning("当前已是第一页！");
             }
             else{
-                toastr.warning("Currently the last page！");
+                toastr.warning("Currently the first page！");
             }
         }
         else {
