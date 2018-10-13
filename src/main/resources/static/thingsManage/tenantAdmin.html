@@ -3,7 +3,10 @@
         <div class="row">
             <div class="col-md-7">
                 <h1 class="header-line page-header">
-                    个人中心 <small>编辑</small>
+                    个人中心
+                </h1>
+                <h1 class="header-line page-header">
+                    <small>编辑</small>
                 </h1>
             </div>
         </div>
@@ -19,20 +22,20 @@
                         <div class="col-lg-7">
                             <form role="form">
                                 <div class="form-group">
-                                    <label>用户名:</label>
+                                    <label id="label_username1">用户名:</label>
                                     <input class="form-control" id="userName" value={{NAME}}>
                                 </div>
                                 <div class="form-group">
-                                    <label>邮箱:</label>
+                                    <label id="label_email1">邮箱:</label>
                                     <input class="form-control" id="userEmail" value={{EMAIL}}>
 
                                 </div>
                                 <div class="form-group">
-                                    <label>备注信息:</label>
+                                    <label id="label_remarkInfo1">备注信息:</label>
                                     <input class="form-control" id="userSay" value={{INFO}}>
                                 </div><br>
-                                <button type="submit" class="btn btn-default" ng-click="editUser()">Submit Button</button>
-                                <button type="reset" class="btn btn-default">Reset Button</button>
+                                <button id="button_submit" type="submit" class="btn btn-default" ng-click="editUser()">提交</button>
+                                <button id="button_reset" type="reset" class="btn btn-default">取消</button>
                             </form>
                         </div>
                         <div class="col-lg-5">
@@ -40,16 +43,16 @@
                             <form role="form">
                                 <fieldset disabled="">
                                     <div class="form-group">
-                                        <label>用户名:</label>
+                                        <label id="label_username2">用户名:</label>
                                         <input class="form-control" placeholder={{NAME}}>
                                     </div>
                                     <div class="form-group">
-                                        <label>邮箱:</label>
+                                        <label id="label_email2">邮箱:</label>
                                         <input class="form-control" placeholder={{EMAIL}}>
 
                                     </div>
                                     <div class="form-group">
-                                        <label>备注信息:</label>
+                                        <label id="label_remarkInfo2">备注信息:</label>
                                         <input class="form-control" placeholder={{INFO}}>
                                     </div>
                                 </fieldset>
@@ -61,4 +64,4 @@
             </div>
         </div>
     </div>
-</div>
+</div><script type="text/javascript" src="static/thingsManage/assets/js/tenantAdminSwitch.js" ></script>
