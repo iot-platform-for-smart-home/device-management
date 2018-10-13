@@ -13,7 +13,7 @@ $(document).ready(function () {
         document.getElementById("label_email1").innerText="邮箱";
         document.getElementById("label_remarkInfo1").innerText="备注信息";
         document.getElementById("button_submit").innerText="提交";
-        document.getElementById("button_reset").innerText="提取消交";
+        document.getElementById("button_reset").innerText="消交";
         $('h4').text('曾用信息展示')
         document.getElementById("label_username2").innerText="用户名";
         document.getElementById("label_email2").innerText="邮箱";
@@ -25,13 +25,13 @@ $(document).ready(function () {
         $('h1:last').text('Edit');
         $('.panel-heading').text( 'Modify Personal Information');
         document.getElementById("label_username1").innerText="UserName";
-        document.getElementById("label_email1").innerText="Email1";
+        document.getElementById("label_email1").innerText="Email";
         document.getElementById("label_remarkInfo1").innerText="Note Information";
         document.getElementById("button_submit").innerText="submit";
         document.getElementById("button_reset").innerText="reset";
-        $('h4').text('Used to display information')
+        $('h4').text('Used to Display Information')
         document.getElementById("label_username2").innerText="UserName";
-        document.getElementById("label_email2").innerText="Email1";
+        document.getElementById("label_email2").innerText="Email";
         document.getElementById("label_remarkInfo2").innerText="Note Information";
     }
 });
