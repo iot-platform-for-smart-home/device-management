@@ -29,7 +29,7 @@ $(document).ready(function () {
         document.getElementById("label_remarkInfo1").innerText="Note Information";
         document.getElementById("button_submit").innerText="submit";
         document.getElementById("button_reset").innerText="reset";
-        $('h4').text('Used to Display Information')
+        $('h4').text('Used Information Display')
         document.getElementById("label_username2").innerText="UserName";
         document.getElementById("label_email2").innerText="Email";
         document.getElementById("label_remarkInfo2").innerText="Note Information";
