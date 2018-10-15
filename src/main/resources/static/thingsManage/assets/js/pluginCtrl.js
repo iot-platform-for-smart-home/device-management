@@ -3,6 +3,8 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
     var str = new Array();
     var lang_flag=getCookie('Language');
 
+    $(".pluginRightView").hide();
+
     var pluginGroup = $resource('/api/rule/allPlugins');
     $scope.pluginGroups = pluginGroup.query();
     console.log("pluginGroups:");
@@ -12,12 +14,14 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
     $scope.fadeSiblings = function () {
         $(".pluginChoose").mouseover(function () {
             $(this).siblings().stop().fadeTo(300, 0.3);
+            $(this).css("border-color","#38883C");
         });
     };
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
         $(".pluginChoose").mouseout(function () {
             $(this).siblings().stop().fadeTo(300, 1);
+            $(this).css("border-color","#C0C0C0");
         });
     };
 
@@ -26,11 +30,16 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
         //console.log(str);
         //console.log(item);
         /*除点击元素外其他元素均无特殊样式*/
-        $scope.pluginGroups.forEach(function (items) {
-            if(item != items) items.style = {}
-        });
+        // $scope.pluginGroups.forEach(function (items) {
+        //     if(item != items) items.style = {}
+        // });
         /*给点击元素加上特定样式*/
-        item.style = {"border": "2px solid #468847"};
+        // item.style = {"border": "2px solid #468847"};
+
+        $("#pluginIcon").hide();
+
+        $(".pluginRightView").show();
+
         var pluginName= item.name.toLowerCase();
         console.log(pluginName);
         $scope.name = item.name;
@@ -174,14 +183,12 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
         }
 
         connect() ;
+    };
 
-
-
-
-
-
-
-    }
+    $("#backToPlugin").click(function () {
+        $(".pluginRightView").hide();
+        $("#pluginIcon").show();
+    });
 
 
     /*激活插件*/

@@ -1,55 +1,62 @@
 ﻿﻿<div class="" ng-controller="abilityCtrl">
     <div class="container">
-        <div clas="SMTitle">
-            <div class="col-md-7">
-                <span class="header-line" id="serviceTitle"></span>
-                <button style="margin-left:10px; margin-bottom: 15px" class="btn btn-basic btn-sm user" data-toggle="modal"
-                    data-target="#addServiceGroup" id="addService">
-                </button>
+        <div class="row">
+            <div clas="SMTitle">
+                <div class="col-md-7">
+                    <span class="header-line" id="serviceTitle"></span>
+                    <button style="margin-left:10px; margin-bottom: 15px" class="btn btn-basic btn-sm user" data-toggle="modal"
+                            data-target="#addServiceGroup" id="addService">
+                    </button>
 
-                <!--span class="SMsearch">
-                    <input class="span2" type="text" placeholder="输入设备类型" id="searchAbilityText">
-                    <button><span ng-click="searchAbility()" title="搜索"><i class="glyphicon glyphicon-search"></i> </span></button>
-                </span-->
+                    <!--span class="SMsearch">
+                        <input class="span2" type="text" placeholder="输入设备类型" id="searchAbilityText">
+                        <button><span ng-click="searchAbility()" title="搜索"><i class="glyphicon glyphicon-search"></i> </span></button>
+                    </span-->
+                </div>
             </div>
         </div>
-        <!--模块控件-->
-        <div class="abilityIcon">
-            <div ng-repeat="items in abilityGroups" class="abilityBackgroundstyle" ng-click="show(items)" ng-style="items.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
-                <div data-toggle="modal" data-target="#SMDetail" class="items">
-                    <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serVendor"></span><span>{{items.manufacturer.manufacturerName}}</span></p>
-                    <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serDeviceType"></span><span>{{items.deviceType.deviceTypeName}}</span></p>
-                    <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serDeviceModel"></span><span>{{items.model.modelName}}</span></p>
-                </div>
-                <span type="button"  class="btn abilityPlus" data-toggle="modal" data-target="#createSM" ng-disabled="flag">
+        <div class="row">
+            <!--模块控件-->
+            <div class="abilityIcon">
+                <div ng-repeat="items in abilityGroups" class="abilityBackgroundstyle" ng-click="show(items)" ng-style="items.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
+                    <div data-toggle="modal" data-target="#SMDetail" class="items">
+                        <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serVendor"></span><span>{{items.manufacturer.manufacturerName}}</span></p>
+                        <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serDeviceType"></span><span>{{items.deviceType.deviceTypeName}}</span></p>
+                        <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="serDeviceModel"></span><span>{{items.model.modelName}}</span></p>
+                    </div>
+                    <span type="button"  class="btn abilityPlus" data-toggle="modal" data-target="#createSM" ng-disabled="flag">
                 <i class="glyphicon glyphicon-plus userDelete" title="创建服务"></i>
                 </span>
-                <span type="button" class="btn abilityDelete" data-toggle="modal" data-target="#deleteSM" ng-disabled="flag">
+                    <span type="button" class="btn abilityDelete" data-toggle="modal" data-target="#deleteSM" ng-disabled="flag">
                 <i class="glyphicon glyphicon-trash userDelete" title="删除服务组"></i>
                 </span>
+                </div>
             </div>
         </div>
 
-        <!--右侧表格分布-->
-        <div class="abilityChart">
-            <table class="table table-hover table-bordered table-striped" id="searchTextResults">
-                <thead>
-                <tr class="bg-info">
-                    <th style="text-align:center" id="serServiceName"></th>
-                    <th style="text-align:center" id="serServiceDescription"></th>
-                    <th style="text-align:center" id="serServiceType"></th>
-                    <th style="text-align:center" id="serOperation"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="arr in result">
-                    <td>{{arr.serviceName}}</td>
-                    <td>{{arr.serviceDescription}}</td>
-                    <td>{{arr.serviceType}}</td>
-                    <td><button class="btn btn-sm btn-danger" ng-disabled="flag" ng-click="deleteAA(arr)" id="serDelete"></button></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <!--右侧表格分布-->
+            <div class="abilityChart">
+                <a id="backToService"><span class="glyphicon glyphicon-circle-arrow-left"></span> </a>
+                <table class="table table-hover table-bordered table-striped" id="searchTextResults">
+                    <thead>
+                    <tr class="bg-info">
+                        <th style="text-align:center" id="serServiceName"></th>
+                        <th style="text-align:center" id="serServiceDescription"></th>
+                        <th style="text-align:center" id="serServiceType"></th>
+                        <th style="text-align:center" id="serOperation"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="arr in result">
+                        <td>{{arr.serviceName}}</td>
+                        <td>{{arr.serviceDescription}}</td>
+                        <td>{{arr.serviceType}}</td>
+                        <td><button class="btn btn-sm btn-danger" ng-disabled="flag" ng-click="deleteAA(arr)" id="serDelete"></button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

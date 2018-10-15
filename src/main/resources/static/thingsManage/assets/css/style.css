@@ -395,7 +395,8 @@ DEVICELIST STYLES
     overflow: hidden;
 }
 .LeftView{
-    margin-right: 48%;
+    /*margin-right: 48%;*/
+    width: 80%;
     min-width: 560px;
 }
 .DGTitle{
@@ -422,14 +423,20 @@ DEVICELIST STYLES
     color: #adadad ;
 }
 
+#backToDeviceGroupList {
+    text-decoration: none;
+    color: #38883C;
+    cursor: pointer;
+}
+
 /* =============================================================
    DeviceGroupAssign
  ============================================================ */
 .RightView{
-    float: right;
+    /*float: right;*/
     margin-right: 40px;
     padding-top: 10px;
-    width:45%;
+    /*width:45%;*/
     min-width: 350px;
     height:1000px;
 }
@@ -515,12 +522,19 @@ DEVICELIST STYLES
     white-space: -o-pre-wrap;
     word-wrap: break-word;
 }
+
+#backToRule {
+    text-decoration: none;
+    color: #38883C;
+    font-size: 16px;
+    cursor: pointer;
+}
 /* =============================================================
 serviceGroup
 ============================================================ */
 .abilityIcon{
-    width: 58%;
-    float: left;
+    /*width: 58%;*/
+    /*float: left;*/
     margin-left: 10px;
 
 }
@@ -557,15 +571,22 @@ serviceGroup
 }
 
 .abilityChart{
-    float: right;
-    margin-right: 40px;
-    width:35%;
+    /*float: right;*/
+    /*margin-right: 40px;*/
+    /*width:35%;*/
     height:520px;
     background: white;
     border: 1px solid rgb(212,212,212);
     overflow-y: auto;
     margin-top: 30px;
 
+}
+
+#backToService {
+     text-decoration: none;
+     color: #38883C;
+    font-size: 16px;
+     cursor: pointer;
 }
 
 .bg-info{
@@ -601,10 +622,10 @@ pluginsGroup
     padding:15px 5px;
 }
 .pluginRightView{
-    float: right;
+    /*float: right;*/
     margin-right: 40px;
     padding-top: 10px;
-    width:43%;
+    /*width:43%;*/
     min-width: 350px;
 }
 .pluginChart{
@@ -652,8 +673,8 @@ width: 35%;
 */
 /*插件模块控件位置*/
 #pluginIcon {
-    width:50%;
-    float: left;
+    /*width:50%;*/
+    /*float: left;*/
     margin-left: 10px;
 }
 .btnPosition{
@@ -716,6 +737,13 @@ width: 35%;
     line-height:25px;
     text-align:center;
     list-style:none;
+}
+
+#backToPlugin {
+    text-decoration: none;
+    color: #38883C;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* =============================================================

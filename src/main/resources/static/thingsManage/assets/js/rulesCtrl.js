@@ -15,6 +15,8 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     $scope.RestfulBody = {};
     $scope.RuleaddPluginUrl="";//用于解决url重复赋值bug
 
+    $(".RightView").hide();
+
     InitformData();
 
     function InitformData() {
@@ -88,10 +90,14 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     //右侧展示视图
     $scope.showrule = function (rule) {
         //展示视图添加样式
-        $scope.Rules.forEach(function (items) {
-            if (rule != items) items.style = {}
-        });
-        rule.style = {"border": "2px solid #468847"};
+        // $scope.Rules.forEach(function (items) {
+        //     if (rule != items) items.style = {}
+        // });
+        // rule.style = {"border": "2px solid #468847"};
+
+        $(".LeftView").hide();
+        $("#ruleManagementTitle").show();
+        $(".RightView").show();
 
 
         $scope.Ruleitem = rule;
@@ -114,6 +120,11 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
         //把数据发送给表格控制器
         //$scope.$broadcast('senddata', $scope.Ruleitem);
     };
+    /* 从查看单个设备组详情页面返回显示设备组列表 */
+    $("#backToRule").click(function () {
+        $(".RightView").hide();
+        $(".LeftView").show();
+    });
 
     //根据插件类型展示div
     $scope.showplugin=function(data,i) {
@@ -420,12 +431,14 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     $scope.fadeSiblings = function () {
         $(".chooseBtn").mouseover(function () {
             $(this).siblings().stop().fadeTo(300, 0.3);
+            $(this).css("border-color","#38883C");
         });
     };
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
         $(".chooseBtn").mouseout(function () {
             $(this).siblings().stop().fadeTo(300, 1);
+            $(this).css("border-color","#C0C0C0");
         });
     };
 

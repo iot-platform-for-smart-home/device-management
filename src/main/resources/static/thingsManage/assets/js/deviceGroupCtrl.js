@@ -2,6 +2,8 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
     $scope.isShowAll= true;
     $scope.isShowEmpty = false;
 
+    $(".RightView").hide();
+
     //获取设备组
     /*权限管理*/
     // console.log($.cookie());
@@ -126,11 +128,15 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
         //item是当前展示的单个设备
         $scope.item = {name: DG.name, id: DG.id};
 
+        $(".LeftView").hide();
+        $("#groupTitle").show();
+        $(".RightView").show();
+
         //展示视图添加样式
-        $scope.DeviceGroups.forEach(function (items) {
-            if(DG != items) items.style = {}
-        });
-        DG.style = {"border": "2px solid #468847"};
+        // $scope.DeviceGroups.forEach(function (items) {
+        //     if(DG != items) items.style = {}
+        // });
+        // DG.style = {"border": "2px solid #468847"};
         //获取设备组下的设备
         var DGDEVICES = $resource('/api/group/:id/devices?limit=20', {id: '@id'});
         DGDEVICES.query({id: $scope.item.id})
@@ -145,6 +151,12 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
 
         });
     };
+
+    /* 从查看单个设备组详情页面返回显示设备组列表 */
+    $("#backToDeviceGroupList").click(function () {
+        $(".RightView").hide();
+        $(".LeftView").show();
+    });
 
 
     /*****************显示设备组内设备**********************/
@@ -650,12 +662,14 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
         console.log("666");
         $(".chooseBtn").mouseover(function () {
             $(this).siblings().stop().fadeTo(300, 0.3);
+            $(this).css("border-color","#38883C");
         });
     };
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
         $(".chooseBtn").mouseout(function () {
             $(this).siblings().stop().fadeTo(300, 1);
+            $(this).css("border-color","#C0C0C0");
         });
     };
 });
