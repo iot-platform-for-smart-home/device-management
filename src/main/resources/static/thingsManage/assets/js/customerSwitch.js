@@ -52,6 +52,7 @@ $(document).ready(function () {
         document.getElementById("groupDeviceID").innerText="设备ID";
         document.getElementById("modalCloseCustomerDevice").innerText="取消";
         document.getElementById("modalConfirmCustomerDevice").innerText="清空所有设备";
+        document.getElementById("customerName").setAttribute("placeholder","必填");
     }
     else{
         document.getElementById("customerTitle").innerText="Customer Group";
@@ -99,6 +100,7 @@ $(document).ready(function () {
         document.getElementById("groupDeviceID").innerText="Device ID";
         document.getElementById("modalCloseCustomerDevice").innerText="Cancel";
         document.getElementById("modalConfirmCustomerDevice").innerText="Empty All Devices";
+        document.getElementById("customerName").setAttribute("placeholder","required");
     }
 });
 

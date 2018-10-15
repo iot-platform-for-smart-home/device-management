@@ -19,7 +19,7 @@ $(document).ready(function () {
         document.getElementById("uploadFile").innerText="上传文件";
         document.getElementById("chooseFile").innerText="请选择上传文件：";
         document.getElementById("fileFormat").innerText="证书文件只支持.xls .xlsx .doc .docx .ppt .pptx格式";
-        document.getElementById("browseFile").innerText="浏览";
+        document.getElementById("browseFileBtn").value="选择文件";
         document.getElementById("modalUploadConfirm").innerText="确定";
         document.getElementById("modalUpdateCancel").innerText="取消";
     }
@@ -36,9 +36,10 @@ $(document).ready(function () {
         document.getElementById("uploadFile").innerText="Upload File";
         document.getElementById("chooseFile").innerText="Please select the file to upload：";
         document.getElementById("fileFormat").innerText="The certificate file only supports .xls .xlsx .doc .docx .ppt .pptx format.";
-        document.getElementById("browseFile").innerText="Browse";
+        document.getElementById("browseFileBtn").value="Select A File";
         document.getElementById("modalUploadConfirm").innerText="Yes";
         document.getElementById("modalUpdateCancel").innerText="Cancel";
+
     }
 });
 

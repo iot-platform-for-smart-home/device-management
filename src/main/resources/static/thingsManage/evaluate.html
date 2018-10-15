@@ -55,12 +55,18 @@
                         <form class="form-horizontal" name="form">
                             <div class="form-line">
                                 <label id="chooseFile"></label>
-                                <span class="small-tip" id="fileFormat"></span>
-                                <div class="choose-file-area">
-                                    <a href="javascript:;" class="choose-book">
-                                        <input id="browseFile" type="file" name="certificate" nv-file-select uploader="uploader" ng-click="clearItems()"/>
-                                    </a>
-                                    <input  class="filename" type="text" readonly="readonly" ng-model="fileItem.name"/>
+                                <p class="small-tip" id="fileFormat"></p>
+                                <div class="choose-file-area" style="margin: 5px 0px">
+                                    <!--<a href="javascript:;" class="choose-book">-->
+                                        <!--<input id="browseFile" type="file" name="certificate" nv-file-select uploader="uploader" ng-click="clearItems()"> </input>-->
+                                        <form name="form1">
+                                            <input type="file" id="browseFile" style="display:none;" onChange="document.form1.path.value=this.value" name="certificate" nv-file-select uploader="uploader" ng-click="clearItems()">
+                                            <input name="path" style="display:none;" readonly>
+                                            <input type="button" id="browseFileBtn" value="上传照片" >
+                                            <!--onclick="document.form1.browseFile.click()"-->
+                                        </form>
+                                    <!--</a>-->
+                                    <input  class="filename" type="text" readonly="readonly" style="" ng-model="fileItem.name"/>
                                 </div>
                             </div>
                         </form>

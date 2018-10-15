@@ -24,7 +24,9 @@ mainApp.controller('evaluateCtrl', function ($scope,$resource,FileUploader) {
         alert("error");
     };
 
-
+     $("#browseFileBtn").click(function(){
+         document.getElementById("browseFile").click();
+     });
 
 
     /*=====================================get获取全部文档==============================================*/
