@@ -134,10 +134,10 @@ mainApp.controller("mainCtrl",["$scope","$location","$resource",function ($scope
             $(this).siblings().stop().fadeTo(300, 1);
         });
         $("#dropQuit,#backIcon").mouseover(function () {
-            $(this).css("color","#c0c0c0");
+            $(this).css("color","#888");
         });
         $("#dropQuit,#backIcon").mouseout(function () {
-            $(this).css("color","#ffffff");
+            $(this).css("color","#555");
         });
 
         /*HEAD MENU用户信息显示*/

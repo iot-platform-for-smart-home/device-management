@@ -11,7 +11,8 @@ body {
 .backToHome {
 	color: #858585;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 25px 20px 0 0;
+	font-size: 16px;
 }
 
 .backToHome:hover, .backToHome:focus {
@@ -93,7 +94,7 @@ img { max-width: 100%; }
 /***** Top content *****/
 
 .inner-bg {
-    padding: 100px 0 170px 0;
+    padding: 50px 0 0 0;
 }
 
 .top-content .text {

@@ -19,27 +19,17 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     var prePageUrl;
     var lang_flag=getCookie('Language');
 
+    $("#deviceListChart").hide();
+
     // var customerId = $.cookie("customerId");
     /*设备列表信息获取与展示*/
 
     /*返回值为所有设备信息*/
-    // if ($.cookie("userLevel") === "CUSTOMER_USER") {
-    //     initUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum;
-    //     prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
-    // } else
-    // if ($.cookie("userLevel") === "TENANT_ADMIN") {
-        initUrl = "/api/device/alldevices?limit=" + showNum;
-        prePageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
-    // }
+    initUrl = "/api/device/alldevices?limit=" + showNum;
+    prePageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
 
-    // if ($.cookie("userLevel") === "CUSTOMER_USER") {
-    //     var obj = $resource("/api/device/customerDevices/" + customerId + "?limit=1000");
-    //     $scope.deviceListAll = obj.query();
-    // } else
-    //     if ($.cookie("userLevel") === "TENANT_ADMIN") {
-        var obj = $resource("/api/device/alldevices?limit=1000");
-        $scope.deviceListAll = obj.query();
-    // }
+    var obj = $resource("/api/device/alldevices?limit=1000");
+    $scope.deviceListAll = obj.query();
 
 
     /*返回值为限制个数的所有设备信息*/
@@ -103,12 +93,14 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     $scope.fadeSiblings = function () {
         $(".chooseBtn").mouseover(function () {
             $(this).siblings().stop().fadeTo(300, 0.3);
+            $(this).css("border-color","#38883C");
         });
     };
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
         $(".chooseBtn").mouseout(function () {
             $(this).siblings().stop().fadeTo(300, 1);
+            $(this).css("border-color","#C0C0C0");
         });
     };
     /*在右侧表格中显示各个设备的信息*/
@@ -119,11 +111,21 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
          $('html, body').animate({scrollTop:offset}, 1000);*/
 
         /*除点击元素外其他元素均无特殊样式*/
-        $scope.deviceList.forEach(function (items) {
-            if (data != items) items.style = {}
-        });
+        // $scope.deviceList.forEach(function (items) {
+            // if (data != items) items.style = {}
+            // items.style = {"visibility": "hidden"};
+        // });
+
+        $("#addDevice").hide();
+        $("#deviceNum").hide();
+        $("#deviceNumber").hide();
+        $("#searchRow").hide();
+        $("#statusRow").hide();
+        $("#deviceListRow").hide();
+
+        $("#deviceListChart").show();
         /*给点击元素加上特定样式*/
-        data.style = {"border": "2px solid #468847"};
+        // data.style = {"border": "2px solid #468847"};
 
         //如果父设备ID为undefined，直接显示null
         if (data.parentDeviceId == null || data.parentDeviceId == "undefined" || data.parentDeviceId == "") {
@@ -175,6 +177,18 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         //     }
         // });
     };
+
+    /* 从查看单个设备页面返回显示设备列表 */
+    $("#backToDeviceList").click(function () {
+        $("#deviceListChart").hide();
+
+        $("#addDevice").show();
+        $("#deviceNum").show();
+        $("#deviceNumber").show();
+        $("#searchRow").show();
+        $("#statusRow").show();
+        $("#deviceListRow").show();
+    });
 
 
     /*取消分配设备给客户*/
