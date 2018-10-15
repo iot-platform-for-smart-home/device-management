@@ -128,8 +128,10 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
         //item是当前展示的单个设备
         $scope.item = {name: DG.name, id: DG.id};
 
-        $(".LeftView").hide();
-        $("#groupTitle").show();
+        $("#addGroup").hide();
+        $(".SearchDG").hide();
+        $(".DGContainer").hide();
+
         $(".RightView").show();
 
         //展示视图添加样式
@@ -155,7 +157,9 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
     /* 从查看单个设备组详情页面返回显示设备组列表 */
     $("#backToDeviceGroupList").click(function () {
         $(".RightView").hide();
-        $(".LeftView").show();
+        $("#addGroup").show();
+        $(".SearchDG").show();
+        $(".DGContainer").show();
     });
 
 

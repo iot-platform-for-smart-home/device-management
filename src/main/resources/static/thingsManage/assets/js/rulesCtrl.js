@@ -95,8 +95,10 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
         // });
         // rule.style = {"border": "2px solid #468847"};
 
-        $(".LeftView").hide();
-        $("#ruleManagementTitle").show();
+        $("#createRule").hide();
+        $(".SearchDG").hide();
+        $(".DGContainer").hide();
+
         $(".RightView").show();
 
 
@@ -123,7 +125,9 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     /* 从查看单个设备组详情页面返回显示设备组列表 */
     $("#backToRule").click(function () {
         $(".RightView").hide();
-        $(".LeftView").show();
+        $("#createRule").show();
+        $(".SearchDG").show();
+        $(".DGContainer").show();
     });
 
     //根据插件类型展示div

@@ -15,6 +15,8 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
 
     var lang_flag=getCookie('Language');
 
+    $("#customerUserChart").hide();
+
     /*初始化新增表格*/
     $("#addCustomerUser").click(function () {
         $("#customerUserName").val("");
@@ -28,11 +30,13 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
     $scope.fadeSiblings = function () {
         $(".chooseBtn").mouseover(function () {
             $(this).siblings().stop().fadeTo(300, 0.3);
+            $(this).css("border-color","#38883C");
         });
     };
     $scope.reSiblings = function () {
         $(".chooseBtn").mouseout(function () {
             $(this).siblings().stop().fadeTo(300, 1);
+            $(this).css("border-color","#C0C0C0");
         });
     };
 
@@ -40,11 +44,19 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
         var offset = $('#customerUserChart').offset().top-215;
         console.log(offset);
         $('html, body').animate({scrollTop:offset}, 1000);
-        $scope.userInfo.forEach(function (items) {
-            if(data != items) items.style = {}
-        });
+        // $scope.userInfo.forEach(function (items) {
+        //     if(data != items) items.style = {}
+        // });
         /*给点击元素加上特定样式*/
-        data.style = {"border": "2px solid #468847"};
+        // data.style = {"border": "2px solid #468847"};
+
+        $("#addCustomerUser").hide();
+        $("#userLimitRow").hide();
+        $("#customerUserIcon").hide();
+        $("#customerUserPage").hide();
+
+        $("#customerUserChart").show();
+
         console.log(data);
 
         $scope.name = data.name;
@@ -55,6 +67,13 @@ mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function
         $scope.authority = data.authority;
         $scope.email = data.email;
     };
+    $("#backToCustomerUser").click(function () {
+        $("#customerUserChart").hide();
+        $("#addCustomerUser").show();
+        $("#userLimitRow").show();
+        $("#customerUserIcon").show();
+        $("#customerUserPage").show();
+    });
 
     $scope.customerUserLimit = function () {
         if($("#customerUserNum").val() === ""){

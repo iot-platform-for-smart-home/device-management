@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="row" style="margin-left: 20px;">
+        <div class="row" style="margin-left: 20px;" id="userLimitRow">
             <span id="userDisplay"></span>
             <input type="text" id="customerUserNum" style="width: 50px;border-radius: 5px;" ng-change="customerUserLimit()" ng-model="myLimit" placeholder="9">
             <span id="userCustomerGroup"></span>
@@ -28,12 +28,26 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="row" style="margin-left: 20px;">
+            <ul class="pagination" id="customerUserPage">
+            </ul>
+            <div class="pageJump">
+                <span id="userJump"></span>
+                <input type="text"/>
+                <span id="userPage"></span>
+                <button type="button" class="button" style="margin-left: 40px;" id="userJumpConfirm"></button>
+            </div>
+            <!--</div>-->
+        </div>
+        <div class="row">
             <div id="customerUserChart">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th colspan="2">{{name}}
+                        <th colspan="2">
+                            <a id="backToCustomerUser"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+                            {{name}}
                             <i class="fa fa-trash-o highlight" data-toggle="modal"
                                data-target="#deleteCustomerUser" title="删除" style="float: right;font-size: 17px;cursor: pointer;color: #468847;"></i>
                         </th>
@@ -77,17 +91,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div class="row" style="margin-left: 20px;">
-            <ul class="pagination" id="customerUserPage">
-            </ul>
-            <div class="pageJump">
-                <span id="userJump"></span>
-                <input type="text"/>
-                <span id="userPage"></span>
-                <button type="button" class="button" style="margin-left: 40px;" id="userJumpConfirm"></button>
-            </div>
-            <!--</div>-->
         </div>
 
     </div>

@@ -4,6 +4,7 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
     $scope.result = new Array();
 
     $(".abilityChart").hide();
+    $("#backToService").hide();
 
     var lang_flag=getCookie('Language');
     /*权限管理*/
@@ -68,6 +69,7 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
         $("#addService").hide();
         $(".abilityIcon").hide();
 
+        $("#backToService").show();
         $(".abilityChart").show();
 
         modelId = items.model.modelId;
@@ -87,6 +89,7 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
 
     $("#backToService").click(function () {
         $(".abilityChart").hide();
+        $("#backToService").hide();
 
         $("#addService").show();
         $(".abilityIcon").show();

@@ -1,5 +1,40 @@
 ﻿<div class="" ng-controller="RuleCtrl">
     <div class="container">
+        <!--左侧视图-->
+        <div class="LeftView">
+            <div class="DGTitle">
+                <span style="font-size:30px" id="ruleManagementTitle"></span>
+                <button style="margin-left:10px; margin-bottom: 15px" class="btn btn-basic btn-sm user" data-toggle="modal"
+                        data-target="#addRule" id="createRule">
+                </button>
+                <!--
+                <div class="SearchDG">
+                <span>搜索：<input type="text" style="width: 130px" placeholder="请输入规则id"
+                                ng-model="$parent.ruleid"/></span>
+                    <span class="Searchicon" ng-click="searchRule()" title="搜索">
+                    <i class="fa fa-search fa-lg shand" aria-hidden="true"></i>
+                </span>
+                </div>
+                -->
+                <div class="input-group SearchDG" style="width:250px">
+                    <input type="text" class="form-control" placeholder="请输入规则名称..." id="searchRuleText">
+                    <span class="input-group-btn">
+                        <button class="btn btn-basic" type="button" ng-click="searchRule()"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+
+            </div>
+            <div class="DGContainer" style="margin-left: -15px">
+                <div ng-repeat="rule in Rules" class="chooseBtn RuleBtn" ng-click="showrule(rule)"
+                     ng-style="rule.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
+                    <div>
+                        <i class="fa fa-puzzle-piece fa-2x "></i>
+                        <p>{{rule.rule.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--右侧视图-->
         <div class="RightView">
             <a id="backToRule"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
@@ -181,41 +216,6 @@
                 </div><!-- /.modal -->
             </div>
 
-        </div>
-
-        <!--左侧视图-->
-        <div class="LeftView">
-            <div class="DGTitle">
-                <span style="font-size:30px" id="ruleManagementTitle"></span>
-                <button style="margin-left:10px; margin-bottom: 15px" class="btn btn-basic btn-sm user" data-toggle="modal"
-                        data-target="#addRule" id="createRule">
-                </button>
-                <!--
-                <div class="SearchDG">
-                <span>搜索：<input type="text" style="width: 130px" placeholder="请输入规则id"
-                                ng-model="$parent.ruleid"/></span>
-                    <span class="Searchicon" ng-click="searchRule()" title="搜索">
-                    <i class="fa fa-search fa-lg shand" aria-hidden="true"></i>
-                </span>
-                </div>
-                -->
-                <div class="input-group SearchDG" style="width:250px">
-                    <input type="text" class="form-control" placeholder="请输入规则名称..." id="searchRuleText">
-                    <span class="input-group-btn">
-                        <button class="btn btn-basic" type="button" ng-click="searchRule()"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-
-            </div>
-            <div class="DGContainer" style="margin-left: -15px">
-                <div ng-repeat="rule in Rules" class="chooseBtn RuleBtn" ng-click="showrule(rule)"
-                     ng-style="rule.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
-                    <div>
-                        <i class="fa fa-puzzle-piece fa-2x "></i>
-                        <p>{{rule.rule.name}}</p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!--modal创建规则-->

@@ -1,10 +1,64 @@
 <div class="" ng-controller="DevGroupCtrl">
     <div class="container">
+        <!--左侧设备组展示视图-->
+        <div class="LeftView">
+            <div class="DGTitle">
+                <span style="font-size:30px" id="groupTitle"></span>
+                <button style="margin-left:10px; margin-bottom: 15px" class="btn btn-basic btn-sm" data-toggle="modal"
+                        data-target="#addDeviceGroup" id="addGroup">
+                </button>
+                <div class="input-group SearchDG" style="width:250px">
+                    <input type="text" class="form-control" placeholder="请输入设备组名称..." ng-model="$parent.dgname" id="addInput">
+                    <span class="input-group-btn">
+                        <button class="btn btn-basic" type="button" ng-click="searchDG()"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+
+            </div>
+            <div class="DGContainer">
+                <div ng-repeat="DG in DeviceGroups" ng-show="isShowAll" class="chooseBtn" ng-click="show(DG)" ng-style="DG.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
+                    <div>
+                        <i class="fa fa-sitemap fa-2x "></i>
+                        <p>{{DG.name}}</p>
+                    </div>
+
+                </div>
+                <div ng-show="isShowEmpty" class="showEmpty" >
+                    <p id="emptyRemind"></p>
+                </div>
+            </div>
+
+            <!--modal添加设备组-->
+            <div class="modal fade" id="addDeviceGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="addToGroup">
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <span id="addToGroupName"></span><input type="text" style="pixels: 300px; width:225px" placeholder="请输入设备组名"
+                                                                    ng-model="$parent.addDGName" id="addToInput">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseAddTo">
+                            </button>
+                            <button type="button" class="btn btn-basic" ng-click="addDG()" id="modalConfirmAddTo">
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+        </div>
         <!--右侧关联设备视图-->
         <div class="RightView">
+            <a id="backToDeviceGroupList"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
             <div class="DGAssignContainer">
                 <div class="DGTitle DGminTitle">
-                    <a id="backToDeviceGroupList"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
                     <span class="RightviewTitle" id="deviceGroupInfo"></span>
                     <div class="ruleiconcontainer" data-toggle="modal" data-target="#delDG">
                         <i class="fa fa-trash-o fa-lg ruleicon shand" title="删除"></i>
@@ -342,60 +396,6 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-        </div>
-        <!--左侧设备组展示视图-->
-        <div class="LeftView">
-            <div class="DGTitle">
-                <span style="font-size:30px" id="groupTitle"></span>
-                <button style="margin-left:10px; margin-bottom: 15px" class="btn btn-basic btn-sm" data-toggle="modal"
-                        data-target="#addDeviceGroup" id="addGroup">
-                </button>
-                <div class="input-group SearchDG" style="width:250px">
-                    <input type="text" class="form-control" placeholder="请输入设备组名称..." ng-model="$parent.dgname" id="addInput">
-                    <span class="input-group-btn">
-                        <button class="btn btn-basic" type="button" ng-click="searchDG()"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-
-            </div>
-            <div class="DGContainer">
-                <div ng-repeat="DG in DeviceGroups" ng-show="isShowAll" class="chooseBtn" ng-click="show(DG)" ng-style="DG.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
-                        <div>
-                            <i class="fa fa-sitemap fa-2x "></i>
-                            <p>{{DG.name}}</p>
-                        </div>
-
-                </div>
-                <div ng-show="isShowEmpty" class="showEmpty" >
-                    <p id="emptyRemind"></p>
-                </div>
-            </div>
-
-            <!--modal添加设备组-->
-            <div class="modal fade" id="addDeviceGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                &times;
-                            </button>
-                            <h4 class="modal-title" id="addToGroup">
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                            <span id="addToGroupName"></span><input type="text" style="pixels: 300px; width:225px" placeholder="请输入设备组名"
-                                                              ng-model="$parent.addDGName" id="addToInput">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseAddTo">
-                            </button>
-                            <button type="button" class="btn btn-basic" ng-click="addDG()" id="modalConfirmAddTo">
-                            </button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal -->
-            </div>
         </div>
     </div>
 </div>
