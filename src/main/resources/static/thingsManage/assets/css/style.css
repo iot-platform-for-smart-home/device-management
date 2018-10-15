@@ -4,29 +4,26 @@
 ======================================= */
 
 body {
-    background: rgb(238, 238, 238);
+    /*background: #f7fff3;*/
+    background: #fff;
 }
 
 .b-clr {
     color:#000;
 }
-.sec-menu {
-    /*background-color:#468847;*/
-    background: url("../img/bg.jpg") ;
-    background-size: cover;
-    padding-top:20px;
-    padding-bottom:15px;
-    color:#fff;
-    font-size:22px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
+@media (min-width: 1025px) {
+    .content-wrapper {
+        width: 70%;
+        left: auto;
+        margin-left: 30%;
+    }
 }
+
 .content-wrapper {
-    min-width:954px;
-    background: rgb(238,238,238);
-    padding-left: 130px;
+    /*min-width:954px;*/
+    /*background: #f7fff3;*/
+    background: #fff;
+    /*padding-left: 130px;*/
     margin-top: 50px;
 }
 .content-wrapper .container{
@@ -34,6 +31,59 @@ body {
 }
 
 
+/* =============================================================
+SIDE PART STYLES
+============================================================ */
+@media (min-width: 1025px) {
+    .nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0);
+        border-right: 2px solid #eeeeee;
+        color: #666666;
+        z-index: 999;
+        overflow: auto;
+        width: 30%;
+    }
+    .nav > .container {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.nav > .container {
+    overflow: auto;
+    padding: 0;
+}
+
+.menu-header {
+    height: 70px;
+    display: block;
+    padding: 20px;
+    position: relative;
+    /*background: #c4dfc6;*/
+}
+
+.logo {
+    float: left;
+    height: 30px;
+    width: 50px;
+    text-decoration: none;
+}
+
+.logo img {
+    float: left;
+    width: 50px;
+    height: 30px;
+}
+
+.menu-header-primary {
+    display: inline-block;
+    float: right;
+    padding-top: 7px;
+}
 
 /* =============================================================
 HEAD MENU STYLES
@@ -42,18 +92,16 @@ HEAD MENU STYLES
     font-size: 16px;
 }
 #userCenter{
-    margin-left: 600px;
-    /*position:absolute;*/
-    right:50px;
     cursor: pointer;
 }
 #homePageLanguage{
-    margin-left: 15px;
+    padding: 10px 0 0 10px;
+    font-size: 16px;
 }
 
 
 #dropQuit{
-    color: #ffffff;
+    color: #555;
     cursor: pointer;
 }
 #headMenuFont{
@@ -65,61 +113,59 @@ HEAD MENU STYLES
 }
 
 .dropdown-user {
-    /*left: -100px;*/
+    left: -62px;
 }
 
 .dropdown-user li{
     margin:9px 2px;
     font-size: 14px;
 }
+
+.dropdown-user li a{
+    border: none;
+}
 #logout{
     cursor: pointer;
 }
 
+#homePageChooseChinese, #homePageChooseEnglish {
+    color: #555;
+    cursor: pointer;
+}
 
 
 /* =============================================================
    SIDE MENU STYLES
  ============================================================ */
-
-#side-menu {
-    /*height: 100%;*/
-    position: fixed;
-    left: 40px;
-    top: 100px;
-    background-color: rgba(255, 255, 255, 0);
-    color: #666666;
-    z-index: 999;
-    overflow: auto;
-    max-width: 500px;
-
+.side-menu {
+    margin: 40px 0 0 70px;
 }
 
-#side-menu ul {
+.side-menu ul {
     list-style: none;
     padding: 0px;
 }
 
-#side-menu ul li {
+.side-menu ul li {
     border-left: 1px solid #468847;
     text-align: left;
 }
-#side-menu ul .userMenu{
+.side-menu ul .userMenu{
     padding: 17px 25px;
 }
-#side-menu ul .systemMenu{
+.side-menu ul .systemMenu{
     padding: 17px 25px;
 }
-#side-menu ul .tenantMenu{
+.side-menu ul .tenantMenu{
     padding: 12px 0 12px 23px;
 }
 
-#side-menu ul li a i {
+.side-menu ul li a i {
     padding-right: 10px;
     width: 30px;
 }
 
-#side-menu ul li a, #side-menu ul li a:hover {
+.side-menu ul li a, .side-menu ul li a:hover {
     color: #888888;
     text-decoration: none;
     font-size: 16px;
@@ -230,14 +276,20 @@ ul,li{
 DEVICELIST STYLES
 ============================================================ */
 #deviceListIcon,#customerIcon,#customerUserIcon{
-    width: 45%;
+    width: 80%;
     float: left;
     padding-left: 10px;
 }
 
+#backToDeviceList {
+    text-decoration: none;
+    color: #38883C;
+    cursor: pointer;
+}
+
 #deviceListChart{
-    width: 40%;
-    float: right;
+    /*width: 40%;*/
+    /*float: right;*/
     border: 1px solid #c0c0c0;
     border-radius: 10px;
     margin-right: 40px;
@@ -297,7 +349,7 @@ DEVICELIST STYLES
 }
 #preDevice,#nextDevice{
     margin-top: 15%;
-    width: 2%;
+    width: 5%;
     height: 30px;
     float: left;
     background: #c0c0c0;
@@ -343,7 +395,8 @@ DEVICELIST STYLES
     overflow: hidden;
 }
 .LeftView{
-    margin-right: 48%;
+    /*margin-right: 48%;*/
+    width: 80%;
     min-width: 560px;
 }
 .DGTitle{
@@ -370,14 +423,20 @@ DEVICELIST STYLES
     color: #adadad ;
 }
 
+#backToDeviceGroupList {
+    text-decoration: none;
+    color: #38883C;
+    cursor: pointer;
+}
+
 /* =============================================================
    DeviceGroupAssign
  ============================================================ */
 .RightView{
-    float: right;
+    /*float: right;*/
     margin-right: 40px;
     padding-top: 10px;
-    width:45%;
+    /*width:45%;*/
     min-width: 350px;
     height:1000px;
 }
@@ -463,12 +522,19 @@ DEVICELIST STYLES
     white-space: -o-pre-wrap;
     word-wrap: break-word;
 }
+
+#backToRule {
+    text-decoration: none;
+    color: #38883C;
+    font-size: 16px;
+    cursor: pointer;
+}
 /* =============================================================
 serviceGroup
 ============================================================ */
 .abilityIcon{
-    width: 58%;
-    float: left;
+    /*width: 58%;*/
+    /*float: left;*/
     margin-left: 10px;
 
 }
@@ -505,15 +571,22 @@ serviceGroup
 }
 
 .abilityChart{
-    float: right;
-    margin-right: 40px;
-    width:35%;
+    /*float: right;*/
+    /*margin-right: 40px;*/
+    /*width:35%;*/
     height:520px;
     background: white;
     border: 1px solid rgb(212,212,212);
     overflow-y: auto;
     margin-top: 30px;
 
+}
+
+#backToService {
+     text-decoration: none;
+     color: #38883C;
+    font-size: 16px;
+     cursor: pointer;
 }
 
 .bg-info{
@@ -549,10 +622,10 @@ pluginsGroup
     padding:15px 5px;
 }
 .pluginRightView{
-    float: right;
+    /*float: right;*/
     margin-right: 40px;
     padding-top: 10px;
-    width:43%;
+    /*width:43%;*/
     min-width: 350px;
 }
 .pluginChart{
@@ -600,8 +673,8 @@ width: 35%;
 */
 /*插件模块控件位置*/
 #pluginIcon {
-    width:50%;
-    float: left;
+    /*width:50%;*/
+    /*float: left;*/
     margin-left: 10px;
 }
 .btnPosition{
@@ -664,6 +737,13 @@ width: 35%;
     line-height:25px;
     text-align:center;
     list-style:none;
+}
+
+#backToPlugin {
+    text-decoration: none;
+    color: #38883C;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* =============================================================

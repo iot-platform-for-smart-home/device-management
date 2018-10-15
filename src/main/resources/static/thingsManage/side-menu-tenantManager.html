@@ -56,6 +56,7 @@
 
     <!--DeviceList-->
     <script type="text/javascript" src="static/thingsManage/assets/js/deviceListCtrl.js"></script>
+
     <script type="text/javascript" src="static/thingsManage/assets/js/toastr.js"></script>
     <!--<script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>-->
 
@@ -92,22 +93,20 @@
 </head>
 <body ng-controller="mainCtrl">
 
-<section class="sec-menu" >
-    <div class="container"  style="margin: 0;width:100%;">
-        <div class="row" id="head-menu">
-            <!--<div class="col-md-1 col-sm-1 col-xs-1">-->
-                    <!--<span class="menu-open-icon">-->
-                        <!--<i class="fa fa-bars pull-left fa-2x b-clr"></i>-->
-                    <!--</span>-->
-            <!--</div>-->
+<nav class="nav">
+    <div class="container">
+        <header class="menu-header">
+            <div class="row">
+                <a class="logo">
+                    <img src="../images/gantch_logo.png">
+                </a>
 
-            <div class="col-md-4 col-sm-4 col-xs-5">
-                   <span id="headMenuFont">
-                       <marquee direction="left" onmouseover=this.stop() onmouseout=this.start() width=87% scrollamount="4"><img src="../images/gantch_logo.png" height="30" width="50"><i id="welcomeMessage"></i>&nbsp;</marquee>
-                   </span>
-            </div>
-
-            <div class="col-md-7 col-sm-7 col-xs-6">
+                <span class="fa" id="homePageLanguage">
+                    <a href="" id="homePageChooseChinese" ng-click="">中文</a>
+                    <span>/</span>
+                    <a href="" id="homePageChooseEnglish"  ng-click="">English</a>
+                </span>
+                <div class="menu-header-primary">
                 <span class="dropdown upSideMenu" id="userCenter">
                     <span class="dropdown-toggle" data-toggle="dropdown" id="dropQuit">
                         <i class="fa fa-user" id="personalCenter"></i>&nbsp;<i class="fa fa-caret-down"></i>
@@ -126,99 +125,83 @@
                         </li>
                     </ul>
                 </span>
-                <span class="fa" id="homePageLanguage">
-                    <a href="" style="font-family: FontAwesome; font-size: 16px; color:white" id="homePageChooseChinese" ng-click="">中文</a>
-                    <span style="font-family: FontAwesome; font-size: 16px; color:white">/</span>
-                    <a href=""  style="font-family: FontAwesome; font-size: 16px; color:white" id="homePageChooseEnglish"  ng-click="">English</a>
-                </span>
-                <!--<span class="upSideMenu" id="backIcon" ><i class="fa fa-reply"></i>返回上一级</span>-->
+                </div>
+            </div>
+            <div class="row">
 
             </div>
+        </header>
+        <div class="side-menu">
+            <ul>
+                <li class="side-menu-icon tenantMenu" id="homePage" style="margin-top: 14px;">
+                    <a href ="" title="首页" ng-click="$location.path('homePage')">
+                        <i class="fa fa-home fontStyle"></i>
+                        <span class="textStyle" id="side-menu-1"></span>
+                    </a>
 
-            <!--div class="col-md-7 col-sm-12">
-                <span class="upSideMenu" id="firstSpan"><i class="fa fa-user"></i>当前用户：<span ng-cloak>{{currentUser}}</span></span>
-                <span class="upSideMenu"><i class="fa fa-line-chart"></i>用户等级：<span ng-cloak>{{currentUserLevel}}</span></span>
-                <span class="upSideMenu" id="backIcon"><i class="fa fa-reply"></i>返回上一级</span>
-                <span class="upSideMenu" id="quit" ng-click="logout()"><i class="fa fa-sign-out"></i>退出登录</span>
-            </div-->
+                </li>
+                <li class="side-menu-icon tenantMenu" id="deviceList">
+                    <a href="" title="设备列表" ng-click="$location.path('deviceList')">
+                        <i class="fa fa-file-text-o fontStyle"></i>
+                        <span class="textStyle" id="side-menu-2"></span>
+                    </a>
+                </li>
+                <li class="side-menu-icon tenantMenu" id="deviceGroup">
+                    <a href="" title="设备组" ng-click="$location.path('deviceGroup')">
+                        <i class="fa fa-cubes fontStyle"></i>
+                        <span class="textStyle" id="side-menu-3"></span>
+                    </a>
+                </li>
+                <li class="side-menu-icon tenantMenu" id="service">
+                    <a href="" title="服务管理" ng-click="$location.path('service')">
+                        <i class="fa fa-cog fontStyle"></i>
+                        <span class="textStyle" id="side-menu-4"></span>
+                    </a>
+                </li>
+                <li class="side-menu-icon tenantMenu" id="plugins">
+                    <a href="" title="插件管理" ng-click="$location.path('plugins')">
+                        <i class="fa fa-plug fontStyle "></i>
+                        <span class="textStyle" id="side-menu-5"></span>
+                    </a>
+                </li>
+                <li class="side-menu-icon tenantMenu" id="rules">
+                    <a href="" title="规则管理" ng-click="$location.path('rules')">
+                        <i class="fa fa-link fontStyle "></i>
+                        <span class="textStyle" id="side-menu-6"></span>
+                    </a>
+                </li>
+
+                <li class="side-menu-icon tenantMenu" id="customer">
+                    <a href="" title="客户组" ng-click="$location.path('customer')">
+                        <i class="fa fa-users fontStyle "></i>
+                        <span class="textStyle" id="side-menu-7"></span>
+                    </a>
+                </li>
+
+                <li class="side-menu-icon tenantMenu" id="widgetsLibrary">
+                    <a href="" title="组件库" ng-click="$location.path('widgetsLibrary')">
+                        <i class="fa fa-cube fontStyle "></i>
+                        <span class="textStyle" id="side-menu-8"></span>
+                    </a>
+                </li>
+
+                <li class="side-menu-icon tenantMenu" id="dashboard">
+                    <a href="" title="仪表盘" ng-click="$location.path('dashboard')">
+                        <i class="fa fa-clock-o fontStyle "></i>
+                        <span class="textStyle" id="side-menu-9"></span>
+                    </a>
+                </li>
+
+                <li class="side-menu-icon tenantMenu" id="evaluate">
+                    <a href="" title="用户手册" ng-click="$location.path('evaluate')">
+                        <i class="fa fa-newspaper-o fontStyle "></i>
+                        <span class="textStyle" id="side-menu-10"></span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-
-</section>
-
-<div id="side-menu">
-    <ul>
-        <!--<li class="tenantMenu" style="border-bottom:0px;">-->
-            <!--<a href="#" title="close"> <i class="fa fa-close fa-2x menu-close-icon b-clr"></i></a>-->
-        <!--</li>-->
-        <li class="side-menu-icon tenantMenu" id="homePage" style="margin-top: 14px;">
-            <a href ="" title="首页" ng-click="$location.path('homePage')">
-                <i class="fa fa-home fontStyle"></i>
-                <span class="textStyle" id="side-menu-1"></span>
-            </a>
-
-        </li>
-        <li class="side-menu-icon tenantMenu" id="deviceList">
-            <a href="" title="设备列表" ng-click="$location.path('deviceList')">
-                <i class="fa fa-file-text-o fontStyle"></i>
-                <span class="textStyle" id="side-menu-2"></span>
-            </a>
-        </li>
-        <li class="side-menu-icon tenantMenu" id="deviceGroup">
-            <a href="" title="设备组" ng-click="$location.path('deviceGroup')">
-                <i class="fa fa-cubes fontStyle"></i>
-                <span class="textStyle" id="side-menu-3"></span>
-            </a>
-        </li>
-        <li class="side-menu-icon tenantMenu" id="service">
-            <a href="" title="服务管理" ng-click="$location.path('service')">
-                <i class="fa fa-cog fontStyle"></i>
-                <span class="textStyle" id="side-menu-4"></span>
-            </a>
-        </li>
-        <li class="side-menu-icon tenantMenu" id="plugins">
-            <a href="" title="插件管理" ng-click="$location.path('plugins')">
-                <i class="fa fa-plug fontStyle "></i>
-                <span class="textStyle" id="side-menu-5"></span>
-            </a>
-        </li>
-        <li class="side-menu-icon tenantMenu" id="rules">
-            <a href="" title="规则管理" ng-click="$location.path('rules')">
-                <i class="fa fa-link fontStyle "></i>
-                <span class="textStyle" id="side-menu-6"></span>
-            </a>
-        </li>
-
-        <li class="side-menu-icon tenantMenu" id="customer">
-            <a href="" title="客户组" ng-click="$location.path('customer')">
-                <i class="fa fa-users fontStyle "></i>
-                <span class="textStyle" id="side-menu-7"></span>
-            </a>
-        </li>
-
-        <li class="side-menu-icon tenantMenu" id="widgetsLibrary">
-            <a href="" title="组件库" ng-click="$location.path('widgetsLibrary')">
-                <i class="fa fa-cube fontStyle "></i>
-                <span class="textStyle" id="side-menu-8"></span>
-            </a>
-        </li>
-
-        <li class="side-menu-icon tenantMenu" id="dashboard">
-            <a href="" title="仪表盘" ng-click="$location.path('dashboard')">
-                <i class="fa fa-clock-o fontStyle "></i>
-                <span class="textStyle" id="side-menu-9"></span>
-            </a>
-        </li>
-
-        <li class="side-menu-icon tenantMenu" id="evaluate">
-            <a href="" title="用户手册" ng-click="$location.path('evaluate')">
-                <i class="fa fa-newspaper-o fontStyle "></i>
-                <span class="textStyle" id="side-menu-10"></span>
-            </a>
-        </li>
-    </ul>
-
-</div>
+</nav>
 
 <!--MENU SECTION END-->
 <div class="content-wrapper">

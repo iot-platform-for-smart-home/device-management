@@ -1,9 +1,10 @@
-<div class="content-wrapper" ng-controller="DevGroupCtrl">
+<div class="" ng-controller="DevGroupCtrl">
     <div class="container">
         <!--右侧关联设备视图-->
         <div class="RightView">
             <div class="DGAssignContainer">
                 <div class="DGTitle DGminTitle">
+                    <a id="backToDeviceGroupList"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
                     <span class="RightviewTitle" id="deviceGroupInfo"></span>
                     <div class="ruleiconcontainer" data-toggle="modal" data-target="#delDG">
                         <i class="fa fa-trash-o fa-lg ruleicon shand" title="删除"></i>
@@ -349,7 +350,7 @@
                 <button style="margin-left:10px; margin-bottom: 15px" class="btn btn-basic btn-sm" data-toggle="modal"
                         data-target="#addDeviceGroup" id="addGroup">
                 </button>
-                <div class="input-group SearchDG">
+                <div class="input-group SearchDG" style="width:250px">
                     <input type="text" class="form-control" placeholder="请输入设备组名称..." ng-model="$parent.dgname" id="addInput">
                     <span class="input-group-btn">
                         <button class="btn btn-basic" type="button" ng-click="searchDG()"><i class="fa fa-search"></i></button>
@@ -383,7 +384,7 @@
                             </h4>
                         </div>
                         <div class="modal-body">
-                            <span id="addToGroupName"></span><input type="text" style="pixels: 300px" placeholder="请输入设备组名"
+                            <span id="addToGroupName"></span><input type="text" style="pixels: 300px; width:225px" placeholder="请输入设备组名"
                                                               ng-model="$parent.addDGName" id="addToInput">
                         </div>
                         <div class="modal-footer">

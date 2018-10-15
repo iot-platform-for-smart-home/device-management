@@ -3,6 +3,8 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
     var abilityId = [];
     $scope.result = new Array();
 
+    $(".abilityChart").hide();
+
     var lang_flag=getCookie('Language');
     /*权限管理*/
     // if($.cookie("userLevel") === "CUSTOMER_USER"){
@@ -41,12 +43,14 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
     $scope.fadeSiblings = function () {
         $(".abilityBackgroundstyle").mouseover(function () {
             $(this).siblings().stop().fadeTo(300, 0.3);
+            $(this).css("border-color","#38883C");
         });
     };
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
         $(".abilityBackgroundstyle").mouseout(function () {
             $(this).siblings().stop().fadeTo(300, 1);
+            $(this).css("border-color","#C0C0C0");
         });
     };
 
@@ -55,11 +59,16 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
     $scope.show = function(items){
         $scope.result = [];//初始化数组；
         /*除点击元素外其他元素均无特殊样式*/
-        $scope.abilityGroups.forEach(function (item) {
-            if(items != item) item.style = {}
-        });
+        // $scope.abilityGroups.forEach(function (item) {
+        //     if(items != item) item.style = {}
+        // });
         /*给点击元素加上特定样式*/
-        items.style = {"border": "2px solid #468847"};
+        // items.style = {"border": "2px solid #468847"};
+
+        $("#addService").hide();
+        $(".abilityIcon").hide();
+
+        $(".abilityChart").show();
 
         modelId = items.model.modelId;
         var abilitiesObj = $resource("/api/v1/ability/:modelId");
@@ -75,6 +84,13 @@ mainApp.controller("abilityCtrl", function ($scope, $resource) {
                 }
             });
     };
+
+    $("#backToService").click(function () {
+        $(".abilityChart").hide();
+
+        $("#addService").show();
+        $(".abilityIcon").show();
+    });
 
 
     /*创建能力组*/

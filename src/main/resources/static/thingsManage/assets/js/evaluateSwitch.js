@@ -36,7 +36,7 @@ $(document).ready(function () {
         document.getElementById("uploadFile").innerText="Upload File";
         document.getElementById("chooseFile").innerText="Please select the file to upload：";
         document.getElementById("fileFormat").innerText="The certificate file only supports .xls .xlsx .doc .docx .ppt .pptx format.";
-        document.getElementById("browseFileBtn").value="Select A File";
+        document.getElementById("browseFileBtn").value="Select a File";
         document.getElementById("modalUploadConfirm").innerText="Yes";
         document.getElementById("modalUpdateCancel").innerText="Cancel";
 

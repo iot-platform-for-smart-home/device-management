@@ -1,4 +1,4 @@
-﻿<div class="content-wrapper" ng-controller="deviceListCtrl">
+﻿<div class="" ng-controller="deviceListCtrl">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
@@ -7,11 +7,11 @@
                         data-target="#createDevice" id="addDevice">
                 </button>
                 <span style="margin-left: 20%;font-size: 1.8rem" id="deviceNum"></span>
-                <span style="font-size: 1.8rem">{{Devices_Number||0}}</span>
+                <span style="font-size: 1.8rem" id="deviceNumber">{{Devices_Number||0}}</span>
             </div>
         </div>
 
-        <div class="row" style="margin-top: 10px;margin-left: 20px;">
+        <div class="row" style="margin-top: 10px;margin-left: 20px;" id="searchRow">
             <div class="col-xs-4 col-sm-4 col-md-3" >
                 <!--<div class="input-group">
                     --<input type="text" class="form-control" placeholder="每页显示设备数量" id="deviceListNum">
@@ -26,7 +26,7 @@
             </div>
               <!--<div class="col-md-3"></div>-->
               <div class="col-xs-3 col-sm-3 col-md-3">
-                  <div class="input-group">
+                  <div class="input-group" style="width:280px">
                       <input type="text" class="form-control" placeholder="请输入设备名称..." id="searchDeviceText">
                       <span class="input-group-btn">
                         <button class="btn btn-basic" type="button" ng-click="searchDevice()"><i class="fa fa-search"></i></button>
@@ -37,7 +37,7 @@
                   <!--<i class="fa fa-angle-double-up"></i>-->
               <!--</div>-->
         </div>
-        <div class="row" style="margin-left: 4%;margin-top: 1%;">
+        <div class="row" style="margin-left: 4%;margin-top: 1%;" id="statusRow">
             <div class="labelDiv">
                 <div style="width: 30px;height: 10px;background: #468847;border-radius: 3px;"></div><span id="online"></span>
             </div>
@@ -56,7 +56,7 @@
                 <span id="searchDevice"></span><span>{{searchCount}}</span><span id="searchResult"></span>
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="deviceListRow">
             <div id="preDevice" ng-click="preDeviceInfo()"><i class="fa fa-chevron-left"></i></div>
             <div id="deviceListIcon">
                 <div class="chooseBtn" ng-repeat="data in deviceList" ng-click="show(data)" ng-style="data.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
@@ -67,11 +67,15 @@
                 </div>
             </div>
             <div id="nextDevice" ng-click="nextDeviceInfo()"><i class="fa  fa-chevron-right"></i></div>
+        </div>
+        <div class="row">
             <div id="deviceListChart">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th colspan="2">{{deviceName}}
+                        <th colspan="2">
+                            <a id="backToDeviceList"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+                            {{deviceName}}
                             <i class="fa fa-trash-o highlight userDelete" data-toggle="modal" data-target="#deleteDevice" title="删除" style="float: right;font-size: 17px;cursor: pointer;color: #468847;"></i>
                         </th>
                     </tr>

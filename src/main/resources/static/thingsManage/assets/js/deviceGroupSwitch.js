@@ -142,11 +142,11 @@ $(document).ready(function () {
         document.getElementById("groupModalConfirmDetail").innerText="Yes";
         document.getElementById("groupTitle").innerText="Device Group";
         document.getElementById("addGroup").innerText="+ Add Device Group";
-        document.getElementById("addInput").setAttribute("placeholder","Please input device name");
+        document.getElementById("addInput").setAttribute("placeholder","Please input the device name");
         document.getElementById("emptyRemind").innerText="The device group is empty. Please create a device group.";
         document.getElementById("addToGroup").innerText="Add Device Group";
         document.getElementById("addToGroupName").innerText="Device Group Name：";
-        document.getElementById("addToInput").setAttribute("placeholder","Please input device group name");
+        document.getElementById("addToInput").setAttribute("placeholder","Please input the device group name");
         document.getElementById("modalCloseAddTo").innerText="Close";
         document.getElementById("modalConfirmAddTo").innerText="Yes";
     }

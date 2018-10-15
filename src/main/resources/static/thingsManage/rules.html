@@ -1,7 +1,8 @@
-﻿<div class="content-wrapper" ng-controller="RuleCtrl">
+﻿<div class="" ng-controller="RuleCtrl">
     <div class="container">
         <!--右侧视图-->
         <div class="RightView">
+            <a id="backToRule"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
             <div class="DGAssignContainer">
                 <div class="DGTitle DGminTitle">
                     <span class="RightviewTitle" id="ruleInfoTitle"></span>
@@ -198,7 +199,7 @@
                 </span>
                 </div>
                 -->
-                <div class="input-group SearchDG">
+                <div class="input-group SearchDG" style="width:250px">
                     <input type="text" class="form-control" placeholder="请输入规则名称..." id="searchRuleText">
                     <span class="input-group-btn">
                         <button class="btn btn-basic" type="button" ng-click="searchRule()"><i class="fa fa-search"></i></button>

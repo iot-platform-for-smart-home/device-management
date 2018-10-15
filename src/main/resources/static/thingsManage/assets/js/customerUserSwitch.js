@@ -9,6 +9,7 @@ $(document).ready(function () {
 
     if(lang_flag==1){
         div.setAttribute("class", "col-md-2");
+        div.setAttribute("style", "width:23%");
 
         document.getElementById("userGroupTitle").innerText="客户组";
         document.getElementById("userTitle").innerText="客户";
@@ -54,6 +55,7 @@ $(document).ready(function () {
     }
     else{
         div.setAttribute("class", "col-md-4");
+        div.setAttribute("style", "width:42%");
 
         document.getElementById("userGroupTitle").innerText="Customer Group";
         document.getElementById("userTitle").innerText="Customer";

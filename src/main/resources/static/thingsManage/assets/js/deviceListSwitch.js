@@ -116,7 +116,7 @@ $(document).ready(function () {
         document.getElementById("deviceNum").innerText="Number of Devices：";
         document.getElementById("display").innerText="";
         document.getElementById("devices").innerText="devices per page";
-        document.getElementById("searchDeviceText").setAttribute("placeholder","Please input the device's name...");
+        document.getElementById("searchDeviceText").setAttribute("placeholder","Please input the device name...");
         document.getElementById("online").innerText="Online";
         document.getElementById("offline").innerText="Offline";
         document.getElementById("remind").innerText="Remind";

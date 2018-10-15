@@ -1,72 +1,78 @@
-﻿<div ng-controller="pluginCtrl" class="content-wrapper">
+﻿<div ng-controller="pluginCtrl" class="">
 
     <div class="container">
-        <div class="col-md-7">
-            <span class="header-line" id="pluginTitle"></span>
-            <!--span class="PMsearch">
-                <input class="span2" type="text" placeholder="输入插件名称">
-                <button><span ng-click="searchPG()" title="搜索"><i class="glyphicon glyphicon-search"></i> </span></button>
-            </span-->
-            <!--div id="box">
-                <ul>
-                    <li>这是1个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                    <li>这是2个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                    <li>这是3个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                    <li>这是4个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                    <li>这是5个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                    <li>这是6个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                    <li>这是7个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                    <li>这是8个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                    <li>这是9个无缝向上滚动的特效，实现向上滚动显示的插件</li>
-                </ul>
-            </div-->
+        <div class="row">
+            <div class="col-md-7">
+                <span class="header-line" id="pluginTitle"></span>
+                <!--span class="PMsearch">
+                    <input class="span2" type="text" placeholder="输入插件名称">
+                    <button><span ng-click="searchPG()" title="搜索"><i class="glyphicon glyphicon-search"></i> </span></button>
+                </span-->
+                <!--div id="box">
+                    <ul>
+                        <li>这是1个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                        <li>这是2个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                        <li>这是3个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                        <li>这是4个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                        <li>这是5个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                        <li>这是6个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                        <li>这是7个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                        <li>这是8个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                        <li>这是9个无缝向上滚动的特效，实现向上滚动显示的插件</li>
+                    </ul>
+                </div-->
+            </div>
         </div>
 
-        <!--模块控件-->
-
-        <div id="pluginIcon">
-            <div ng-repeat="item in pluginGroups" ng-click="showAll(item)" class="chooseBtn pluginChoose" ng-style="item.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
-                <div>
-                    <span data-toggle="modal" data-target="#SMDetail" class="itemp"></span>
-                    <span title="插件管理"><i class="fa fa-plug fa-2x"></i></span>
-                    <p class="stylePulgin">{{item.name}}</p>
+        <div class="row">
+            <!--模块控件-->
+            <div id="pluginIcon">
+                <div ng-repeat="item in pluginGroups" ng-click="showAll(item)" class="chooseBtn pluginChoose" ng-style="item.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
+                    <div>
+                        <span data-toggle="modal" data-target="#SMDetail" class="itemp"></span>
+                        <span title="插件管理"><i class="fa fa-plug fa-2x"></i></span>
+                        <p class="stylePulgin">{{item.name}}</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!--右侧表格显示（上部）-->
-        <div class="pluginRightView">
-            <div class="pluginChart">
-                <div class="PluginInfo">
-                    <p id="pluginInfo"></p>
-                </div>
-                <div class="displayPosition">
-                    <p><span id="curPluginName"></span><span>{{name}}</span></p>
-                    <p><span id="curPluginURL"></span><span>{{url}}</span></p>
-                    <p><span id="curPluginDescription"></span><span>{{describe}}</span></p>
-                    <p><span id="changeState"></span><span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
+        <div class="row">
+            <!--右侧表格显示（上部）-->
+            <div class="pluginRightView">
+                <a id="backToPlugin"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+                <div class="pluginChart">
+                    <div class="PluginInfo">
+                        <p id="pluginInfo"></p>
+                    </div>
+                    <div class="displayPosition">
+                        <p><span id="curPluginName"></span><span>{{name}}</span></p>
+                        <p><span id="curPluginURL"></span><span>{{url}}</span></p>
+                        <p><span id="curPluginDescription"></span><span>{{describe}}</span></p>
+                        <p><span id="changeState"></span><span ng-class="{true:'stateActive',false:'stateNActive'}[isActive]">
                         <i ng-class="{true:'fa fa-refresh fa-spin',false:'fa fa-refresh'}[isActive]"></i>
                         {{pluginStateDisplay.state}}</span></p>
+                    </div>
+                    <div class="btnPosition">
+                        <button class="btn btn-success user tenant" data-toggle="modal"
+                                data-target="#refreshDevice"  ng-click="activePlugin()" id="activatePlugin"></button>
+                        <button class="btn btn-danger user tenant" data-toggle="modal"
+                                data-target="#refreshDevice"  ng-click="stopPlugin()" id="stopPlugin"></button>
+                        <button id="runingStatus" class="btn btn-primary" data-toggle="modal"
+                                data-target="#operatingStatus" ></button>
+                    </div>
                 </div>
-                <div class="btnPosition">
-                    <button class="btn btn-success user tenant" data-toggle="modal"
-                            data-target="#refreshDevice"  ng-click="activePlugin()" id="activatePlugin"></button>
-                    <button class="btn btn-danger user tenant" data-toggle="modal"
-                            data-target="#refreshDevice"  ng-click="stopPlugin()" id="stopPlugin"></button>
-                    <button id="runingStatus" class="btn btn-primary" data-toggle="modal"
-                            data-target="#operatingStatus" ></button>
-                </div>
-            </div>
 
-            <div class="displayInterface">
-                <div class="PluginInterfaceInfo">
-                    <p id="pluginInterfaceInfo"></p>
-                </div>
-                <div class="interfaceInfo">
-                    <ul>
-                        <li class="inlinInter"><span id="inexInterface"></span><span class="interName" id="interfaceName"></span></li>
-                        <li ng-repeat="inter in interfaceArray"><span>{{inter.value}}</span><span id="pluginInterface"></span><span>{{inter.name}}</span></li>
-                    </ul>
+                <div class="displayInterface">
+                    <div class="PluginInterfaceInfo">
+                        <p id="pluginInterfaceInfo"></p>
+                    </div>
+                    <div class="interfaceInfo">
+                        <ul>
+                            <li class="inlinInter"><span id="inexInterface"></span><span class="interName" id="interfaceName"></span></li>
+                            <li ng-repeat="inter in interfaceArray"><span>{{inter.value}}</span><span id="pluginInterface"></span><span>{{inter.name}}</span></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

@@ -41,13 +41,13 @@ $(document).ready(function () {
         document.getElementById("modalPauseRuleConfirm").innerText="确定";
         document.getElementById("ruleManagementTitle").innerText="规则管理";
         document.getElementById("createRule").innerText="+ 创建规则";
-        document.getElementById("searchRuleText").setAttribute("placeholder","请输入规则名称...");
+        document.getElementById("searchRuleText").setAttribute("placeholder","请输入规则名称");
         document.getElementById("newRule").innerText="添加规则";
         document.getElementById("newRuleName").innerText="规则名称：";
         document.getElementById("ruleName").setAttribute("placeholder","请输入规则名称");
         document.getElementById("rulenamealert").innerText="请输入规则名称";
         document.getElementById("newRuleDescription").innerText="描       述：";
-        document.getElementById("newDescription").setAttribute("placeholder","请添加对规则的描述...");
+        document.getElementById("newDescription").setAttribute("placeholder","请添加对规则的描述");
         document.getElementById("newFilter").innerText="添加过滤器";
         document.getElementById("newFilterName").innerText="过滤器名称";
         document.getElementById("addFilter").innerText="+ 添加过滤器";
@@ -151,9 +151,9 @@ $(document).ready(function () {
         document.getElementById("newRulePluginMailContent").innerText="Email Content：";
         document.getElementById("modalNewRulePluginClose").innerText="Close";
         document.getElementById("modalNewRulePluginConfirm").innerText="Yes";
-        document.getElementById("searchRuleText").setAttribute("placeholder","Please input the name of rule...");
+        document.getElementById("searchRuleText").setAttribute("placeholder","Please input the name of rule");
         document.getElementById("ruleName").setAttribute("placeholder","Please input the name of rule");
-        document.getElementById("newDescription").setAttribute("placeholder","Please add the description of the rule...");
+        document.getElementById("newDescription").setAttribute("placeholder","Please add the description of the rule");
         document.getElementById("addfiltername").setAttribute("placeholder","Please input the name of filter");
         document.getElementById("addfiltertype").setAttribute("placeholder","To be determined");
         document.getElementById("addTranMailSub").setAttribute("placeholder","Please input the subject of the email");

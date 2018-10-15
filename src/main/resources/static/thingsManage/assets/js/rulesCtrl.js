@@ -15,7 +15,7 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     $scope.RestfulBody = {};
     $scope.RuleaddPluginUrl="";//用于解决url重复赋值bug
 
-    var lang_flag=getCookie('Language');
+    $(".RightView").hide();
 
     InitformData();
 
@@ -90,10 +90,14 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     //右侧展示视图
     $scope.showrule = function (rule) {
         //展示视图添加样式
-        $scope.Rules.forEach(function (items) {
-            if (rule != items) items.style = {}
-        });
-        rule.style = {"border": "2px solid #468847"};
+        // $scope.Rules.forEach(function (items) {
+        //     if (rule != items) items.style = {}
+        // });
+        // rule.style = {"border": "2px solid #468847"};
+
+        $(".LeftView").hide();
+        $("#ruleManagementTitle").show();
+        $(".RightView").show();
 
 
         $scope.Ruleitem = rule;
@@ -116,6 +120,11 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
         //把数据发送给表格控制器
         //$scope.$broadcast('senddata', $scope.Ruleitem);
     };
+    /* 从查看单个设备组详情页面返回显示设备组列表 */
+    $("#backToRule").click(function () {
+        $(".RightView").hide();
+        $(".LeftView").show();
+    });
 
     //根据插件类型展示div
     $scope.showplugin=function(data,i) {
@@ -149,12 +158,7 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             console.log($scope.searchRuleInfo.length);
             $scope.searchRuleInfo.$promise.then(function (value) {
                 if(value == false){
-                    if(lang_flag==1){
-                        toastr.warning("规则名称输入有误，无此设备！");
-                    }
-                    else{
-                        toastr.warning("The rule name was entered incorrectly, no such device！");
-                    }
+                    toastr.warning("规则名称输入有误，无此设备！");
                     setTimeout(function () {
                         window.location.reload();
                     },1000);
@@ -183,12 +187,7 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             location.reload();
         }, function (resp) {
             console.log("1234再来一次");
-            if(lang_flag==1){
-                alert("删除失败，请重试！")
-            }
-            else{
-                alert("Failed to delete, please try again！")
-            }
+            alert("删除失败，请重试！")
         });
     }
 
@@ -379,21 +378,11 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             var addRULE = $resource('/api/rule/create');
             addRULE.save({}, $scope.formData)
                 .$promise.then(function (resp) {
-                if(lang_flag==1){
-                    toastr.success("创建规则成功！");
-                }
-                else{
-                    toastr.success("Successfully created the rule！");
-                }
+                toastr.success("创建规则成功！");
                 $("#addRule").modal("hide");
                 location.reload();
             },function (err) {
-                if(lang_flag==1){
-                    toastr.success("创建规则失败！");
-                }
-                else{
-                    toastr.success("Failed to create the rule！");
-                }
+                toastr.success("创建规则失败！");
             });
         } else {
             // $('#rulenamealert').show();
@@ -442,12 +431,14 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     $scope.fadeSiblings = function () {
         $(".chooseBtn").mouseover(function () {
             $(this).siblings().stop().fadeTo(300, 0.3);
+            $(this).css("border-color","#38883C");
         });
     };
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
         $(".chooseBtn").mouseout(function () {
             $(this).siblings().stop().fadeTo(300, 1);
+            $(this).css("border-color","#C0C0C0");
         });
     };
 
@@ -492,21 +483,3 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
         $scope.RuleaddPluginUrl=""
     };
 });
-
-
-function getCookie(Name) {
-    var search = Name + "="
-    if(document.cookie.length > 0)
-    {
-        offset = document.cookie.indexOf(search)
-        if(offset != -1)
-        {
-            offset += search.length
-            end = document.cookie.indexOf(";", offset)
-            if(end == -1)
-                end = document.cookie.length
-            return unescape(document.cookie.substring(offset, end))
-        }
-        else return ""
-    }
-}
