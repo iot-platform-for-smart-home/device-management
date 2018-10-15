@@ -15,6 +15,7 @@ $(document).ready(function () {
         document.getElementById("form-password").setAttribute("placeholder","请输入密码...");
         document.getElementById("login").innerText="登录";
         document.getElementById("modify").innerText="修改密码";
+        document.getElementById("loginBackToHome").innerText="返回首页";
     }
     else{
         document.getElementById("loginTitle").innerText="Gantch Internet of Things Platform - login";
@@ -25,6 +26,7 @@ $(document).ready(function () {
         document.getElementById("form-password").setAttribute("placeholder","Please input password...");
         document.getElementById("login").innerText="Log In";
         document.getElementById("modify").innerText="Modify Password";
+        document.getElementById("loginBackToHome").innerText=" Back to HomePage";
     }
 
 });
