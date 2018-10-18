@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     /*中英文切换*/
     var lang_flag=getCookie('Language');
+
     if(lang_flag==1){
         $('h1 span').text('个人中心');
         $('h1 small').text('编辑');

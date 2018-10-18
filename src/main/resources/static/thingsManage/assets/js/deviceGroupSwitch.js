@@ -57,7 +57,7 @@ $(document).ready(function () {
         document.getElementById("groupAttribute").innerText="-----属性-----";
         document.getElementById("groupDisplayRecord").innerText="每页显示";
         document.getElementById("groupRecordNumber").innerText="条记录";
-        document.getElementById("groupSearchKey").setAttribute("placeholder","请输入关键字搜索...");
+        document.getElementById("groupSearchKey").setAttribute("placeholder","请输入键值查找...");
         document.getElementById("groupAttrUpdateTime").innerText="最后更新时间";
         document.getElementById("groupAttrKey").innerText="键";
         document.getElementById("groupAttrValue").innerText="值";
@@ -129,7 +129,7 @@ $(document).ready(function () {
         document.getElementById("groupAttribute").innerText="-----Attribute-----";
         document.getElementById("groupDisplayRecord").innerText="";
         document.getElementById("groupRecordNumber").innerText="records per page";
-        document.getElementById("groupSearchKey").setAttribute("placeholder","Please input a keyword...");
+        document.getElementById("groupSearchKey").setAttribute("placeholder","Please enter a key or value to find...");
         document.getElementById("groupAttrUpdateTime").innerText="Last Update Time";
         document.getElementById("groupAttrKey").innerText="Key";
         document.getElementById("groupAttrValue").innerText="Value";

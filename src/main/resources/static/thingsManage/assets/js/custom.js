@@ -44,11 +44,11 @@ $(document).ready(function () {
             if(lang_flag==1){
                 document.getElementById("homePageTitle").innerText="物管理平台-租户管理员";
                 // document.getElementById("welcomeMessage").innerText=" 欢 迎 来 到 冠 川 物 管 理 平 台 ！";
-                document.getElementById("personalCenter").innerText=" 个人中心 ";
-                document.getElementById("currentUser").innerText=" 当前用户：";
-                document.getElementById("userLevel").innerText="用户等级：";
-                document.getElementById("setting").innerText=" 设置 ";
-                document.getElementById("signOut").innerText=" 退出登录";
+               // document.getElementById("personalCenter").innerText=" 个人中心 ";
+                // document.getElementById("currentUser").innerText=" 当前用户：";
+                // document.getElementById("userLevel").innerText="用户等级：";
+                // document.getElementById("setting").innerText=" 设置 ";
+                document.getElementById("signOut").innerText="退出登录";
                 document.getElementById("side-menu-1").innerText="首页";
                 document.getElementById("side-menu-2").innerText="设备列表";
                 document.getElementById("side-menu-3").innerText="设备组";
@@ -63,11 +63,11 @@ $(document).ready(function () {
             else{
                 document.getElementById("homePageTitle").innerText="Object Management Platform - Tenant";
                 // document.getElementById("welcomeMessage").innerText=" Welcome To Gantch Things Management Platform ! ";
-                document.getElementById("personalCenter").innerText=" Personal Center ";
-                document.getElementById("currentUser").innerText=" Current User：";
-                document.getElementById("userLevel").innerText=" User Level：";
-                document.getElementById("setting").innerText=" Setting ";
-                document.getElementById("signOut").innerText=" Sign Out ";
+                //document.getElementById("personalCenter").innerText=" Personal Center ";
+                // document.getElementById("currentUser").innerText=" Current User：";
+                // document.getElementById("userLevel").innerText=" User Level：";
+                // document.getElementById("setting").innerText=" Setting ";
+                document.getElementById("signOut").innerText="Sign Out ";
                 document.getElementById("side-menu-1").innerText="Home";
                 document.getElementById("side-menu-2").innerText="Device List";
                 document.getElementById("side-menu-3").innerText="Device Group";

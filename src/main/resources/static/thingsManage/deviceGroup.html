@@ -291,7 +291,16 @@
                                         <span id="groupRecordNumber"></span>
                                     </td>
                                     <td></td>
-                                    <td><input type="text" class="form-control" placeholder="请输入关键字搜索..." id="groupSearchKey"></td>
+                                    <td>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="请输入键值查找..." id="groupSearchKey">
+                                            <span class="input-group-btn">
+                                                         <button class="btn btn-basic" type="button" ng-click="findKey()"><i class="fa fa-search"></i></button>
+                                                   </span>
+                                        </div>
+                                        <!--<input type="text" class="form-control" placeholder="请输入键值搜索..." id="searchKey" ng-change="findKey()" ng-model="myKey">-->
+                                    </td>
+
                                 </tr>
 
                                 <tr class="boldForm">

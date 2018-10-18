@@ -126,7 +126,6 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
                         $scope.MailController = newArr[0];
 
 
-
                         /*=====================================
                         var json1 = frame.body;
                         var adaper = function (json) {
