@@ -42,7 +42,7 @@ $(document).ready(function () {
 
 
             if(lang_flag==1){
-                document.getElementById("homePageTitle").innerText="物管理平台-租户管理员";
+                document.getElementById("homePageTitle").innerText="冠川物管理平台";
                 // document.getElementById("welcomeMessage").innerText=" 欢 迎 来 到 冠 川 物 管 理 平 台 ！";
                // document.getElementById("personalCenter").innerText=" 个人中心 ";
                 // document.getElementById("currentUser").innerText=" 当前用户：";
@@ -61,7 +61,7 @@ $(document).ready(function () {
                 document.getElementById("side-menu-10").innerText="用户手册";
             }
             else{
-                document.getElementById("homePageTitle").innerText="Object Management Platform - Tenant";
+                document.getElementById("homePageTitle").innerText="Gantch Things Management Platform";
                 // document.getElementById("welcomeMessage").innerText=" Welcome To Gantch Things Management Platform ! ";
                 //document.getElementById("personalCenter").innerText=" Personal Center ";
                 // document.getElementById("currentUser").innerText=" Current User：";

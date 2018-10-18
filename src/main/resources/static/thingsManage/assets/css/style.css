@@ -296,8 +296,8 @@ DEVICELIST STYLES
     margin-top: 10px;
 }
 #customerChart,#customerUserChart{
-    width: 40%;
-    float: right;
+    /*width: 40%;*/
+    /*float: right;*/
     border: 1px solid #c0c0c0;
     border-radius: 10px;
     margin-right: 40px;
@@ -426,6 +426,7 @@ DEVICELIST STYLES
 #backToDeviceGroupList {
     text-decoration: none;
     color: #38883C;
+    font-size: 16px;
     cursor: pointer;
 }
 
@@ -578,15 +579,15 @@ serviceGroup
     background: white;
     border: 1px solid rgb(212,212,212);
     overflow-y: auto;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
 
 }
 
 #backToService {
-     text-decoration: none;
-     color: #38883C;
+    text-decoration: none;
+    color: #38883C;
     font-size: 16px;
-     cursor: pointer;
+    cursor: pointer;
 }
 
 .bg-info{
@@ -743,6 +744,15 @@ width: 35%;
     text-decoration: none;
     color: #38883C;
     font-size: 16px;
+    cursor: pointer;
+}
+
+/* =============================================================
+    Customer
+ ============================================================ */
+#backToCustomer, #backToCustomerUser {
+    text-decoration: none;
+    color: #38883C;
     cursor: pointer;
 }
 

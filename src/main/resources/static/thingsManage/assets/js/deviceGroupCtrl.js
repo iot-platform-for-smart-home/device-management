@@ -128,8 +128,10 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
         //item是当前展示的单个设备
         $scope.item = {name: DG.name, id: DG.id};
 
-        $(".LeftView").hide();
-        $("#groupTitle").show();
+        $("#addGroup").hide();
+        $(".SearchDG").hide();
+        $(".DGContainer").hide();
+
         $(".RightView").show();
 
         //展示视图添加样式
@@ -155,7 +157,9 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
     /* 从查看单个设备组详情页面返回显示设备组列表 */
     $("#backToDeviceGroupList").click(function () {
         $(".RightView").hide();
-        $(".LeftView").show();
+        $("#addGroup").show();
+        $(".SearchDG").show();
+        $(".DGContainer").show();
     });
 
 
@@ -202,6 +206,30 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
             initUI(1,5);
         });
         console.log(attrDetailInfo);//获取的所有数据，格式为[{},{}]
+
+        /*按键值搜索*/
+        $scope.findKey = function () {
+            // console.log(attrDetailInfo[0].key);
+            $("#attrDisplay tr").remove();
+            var txt = $("#searchKey").val();
+            var tag = 0;
+            if (txt == "") {
+                initUI(1, 5);
+            } else {
+                for (var i = 0; i < attrDetailInfo.length; i++) {
+                    if (attrDetailInfo[i].key == txt) {
+                        var latestTs = formatDate(new Date(attrDetailInfo[i].lastUpdateTs));
+                        $("#attrDisplay").append('<tr>' + '<td class="list-item">' + latestTs + '</td>' + '<td class="list-item">' + attrDetailInfo[i].key + '</td>' + '<td class="list-item">' + attrDetailInfo[i].value + '</td>' + '</tr>')
+                        tag++;
+                    }
+                }
+                if (tag == 0) {
+                    $("#attrDisplay").append('<tr>' + '<td class="list-item">' + '</td>' + '<td class="list-item">' + '无此键值！' + '</td>' + '<td class="list-item">' + '</td>' + '</tr>')
+                }
+
+            }
+
+        };
 
         /*==========显示属性==========*/
         //分页功能实现
@@ -309,7 +337,7 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
 
 
                 //每个小控制面板的id为ctrlDiv{{i}}
-                $('#control_panel').append('<div class="col-xs-10 col-sm-6 col-md-4 service-panel"><form><fieldset id="ctrlDiv' + i + '"><legend class="service-control-legend">' + serviceName[i] + '</legend></fieldset></form></div>');
+                $('#control_panel').append('<div class="col-xs-10 col-sm-offset-2 col-sm-8 col-md-8 service-panel"><form><fieldset id="ctrlDiv' + i + '"><legend class="service-control-legend">' + serviceName[i] + '</legend></fieldset></form></div>');
                 console.log("serviceName:"+serviceName[i]);
                 var params = abilityDesJson.serviceBody.params;//用于记录每一个小控制面板下有多少个控制选项,随i的取值变化而变化
                 console.log("params"+params);
@@ -372,7 +400,7 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
                         console.log("number:"+$("#param"+i+j).val());
                     }
                 }
-                $('#ctrlDiv' + i).append('<button class="btn btn-primary ctrlDivBtn" id="'+i+ '" type="button">应用</button>');
+                $('#ctrlDiv' + i).append('<button class="btn btn-basic ctrlDivBtn" id="'+i+ '" type="button">应用</button>');
 
             }
 

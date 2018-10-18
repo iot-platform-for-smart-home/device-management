@@ -10,7 +10,7 @@
         </div>
 
 
-        <div class="row" style="margin-left: 20px;margin-top: 10px;">
+        <div class="row" style="margin-left: 20px;margin-top: 10px;" id="limitRow">
             <span id="custDisplay"></span>
             <input type="text" id="customerNum" style="width: 50px;border-radius: 5px;" ng-change="customerLimit()" ng-model="myLimit" placeholder="9">
             <span id="custCustomerGroup"></span>
@@ -24,12 +24,26 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="row" style="margin-left: 20px;">
+            <ul class="pagination" id="customerPage">
+            </ul>
+            <div class="pageJump">
+                <span id="custJump"></span>
+                <input type="text"/>
+                <span id="custPage"></span>
+                <button type="button" class="button" id="custJumpConfirm" style="margin-left: 40px"></button>
+            </div>
+            <!--</div>-->
+        </div>
+        <div class="row">
             <div id="customerChart">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th colspan="2">{{title}}
+                        <th colspan="2">
+                            <a id="backToCustomer"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+                            {{title}}
                             <i class="fa fa-trash-o highlight" data-toggle="modal"
                                data-target="#deleteCustomer" title="删除" style="float: right;font-size: 17px;cursor: pointer;color: #305680;"></i>
                         </th>
@@ -80,17 +94,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div class="row" style="margin-left: 20px;">
-            <ul class="pagination" id="customerPage">
-            </ul>
-            <div class="pageJump">
-                <span id="custJump"></span>
-                <input type="text"/>
-                <span id="custPage"></span>
-                <button type="button" class="button" id="custJumpConfirm" style="margin-left: 40px"></button>
-            </div>
-            <!--</div>-->
         </div>
     </div>
     <!--新增客户组-->
