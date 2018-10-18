@@ -284,6 +284,29 @@ mainApp.controller("DevGroupCtrl", function ($scope, $resource) {
         };
         /*===================================================================*/
 
+        /*按键值搜索*/
+        $scope.findKey = function () {
+            // console.log(attrDetailInfo[0].key);
+            $("#attrDisplay tr").remove();
+            var txt = $("#searchKey").val();
+            var tag = 0;
+            if (txt == "") {
+                initUI(1, 5);
+            } else {
+                for (var i = 0; i < attrDetailInfo.length; i++) {
+                    if (attrDetailInfo[i].key == txt) {
+                        var latestTs = formatDate(new Date(attrDetailInfo[i].lastUpdateTs));
+                        $("#attrDisplay").append('<tr>' + '<td class="list-item">' + latestTs + '</td>' + '<td class="list-item">' + attrDetailInfo[i].key + '</td>' + '<td class="list-item">' + attrDetailInfo[i].value + '</td>' + '</tr>')
+                        tag++;
+                    }
+                }
+                if (tag == 0) {
+                    $("#attrDisplay").append('<tr>' + '<td class="list-item">' + '</td>' + '<td class="list-item">' + '无此键值！' + '</td>' + '<td class="list-item">' + '</td>' + '</tr>')
+                }
+
+            }
+
+        };
 
         /*调用函数，显示遥测数据*/
         $('#realtime_data_table tr td').remove();//在显示遥测数据之前清空遥测数据表

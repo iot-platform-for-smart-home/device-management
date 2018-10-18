@@ -828,7 +828,7 @@ width: 35%;
         Dashboard
 ============================================================ */
 .left_Dashboard{
-    position: fixed;
+    /*position: fixed;*/
     bottom:0px;
     width: 250px;
     border-right: 1px solid #ffffff;

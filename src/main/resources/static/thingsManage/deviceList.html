@@ -1,4 +1,7 @@
-﻿<div class="" ng-controller="deviceListCtrl">
+﻿
+<link href="static/thingsManage/assets/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<div class="" ng-controller="deviceListCtrl">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
@@ -200,7 +203,7 @@
                         </tr>
                         <tr>
                             <td class="attName" id="newLifeTime"></td>
-                            <td> <input type="datetime-local" id="fixTime"/></td>
+                            <td> <input size="16" type="text" class="form_datetime" id="fixTime"/></td>
                         </tr>
                         </tbody>
                     </table>
@@ -393,8 +396,6 @@
                     </table>
                 </div>
 
-
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseAssign"></button>
                     <button type="button" class="btn btn-basic" id="modalConfirmAssign" data-dismiss="modal" ng-click="assign()"></button>
@@ -499,10 +500,10 @@
                     <h4 class="detail-block-header" id="history"></h4>
 
                      <label id="historyStart"></label>
-                     <input type="datetime-local" id="startTime"/>
+                     <input size="16" type="text" class="form_datetime" id="startTime"/>
 
-                     <label id="historyEnd"></label>
-                     <input type="datetime-local" id="endTime"/>
+                     <label id="historyEnd" style="margin-left:15px"></label>
+                     <input size="16" type="text" class="form_datetime" id="endTime"/>
 
                      <i class="fa fa-search" id="showHistory" ng-click="subTime()"></i>
 
@@ -540,10 +541,10 @@
                 </div>
                 <div class="modal-body" id="eventTable">
                     <label id="eventStart"></label>
-                    <input type="datetime-local" id="eventStartTime"/>
+                    <input id="eventStartTime" size="16" type="text" class="form_datetime"/>
 
-                    <label id="eventEnd"></label>
-                    <input type="datetime-local" id="eventEndTime"/>
+                    <label id="eventEnd" style="margin-left:15px"></label>
+                    <input id="eventEndTime" size="16" type="text" class="form_datetime"/>
 
                     <i class="fa fa-search" id="showEvent" ng-click="subEventTime()"></i>
                     <div class="divide-line" style="margin-top: 15px;"></div>
@@ -585,5 +586,7 @@
 
 </div>
 
+<script type="text/javascript" src="static/thingsManage/assets/js/bootstrap-datetimepicker.js" ></script>
+<script type="text/javascript" src="static/thingsManage/assets/js/bootstrap-datetimepicker.zh-CN.js" ></script>
 <script type="text/javascript" src="static/thingsManage/assets/js/deviceListSwitch.js" ></script>
     <!-- CONTENT-WRAPPER SECTION END-->

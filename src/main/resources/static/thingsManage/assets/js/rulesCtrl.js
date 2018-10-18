@@ -61,25 +61,30 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
     });//获取所有规则组信息
 
     $scope.Rules = RULE.query({}, function () {
+        console.log($scope.Rules);
 
         //初始化右侧视图
         $scope.Ruleitem = $scope.Rules[0];//必须在success函数里才能取到Rules[0]
-        $scope.RulePlugins=$scope.Ruleitem.transforms;
-        $scope.RuleFilters=$scope.Ruleitem.filters;
-
-        console.log("query函数内的Rules：");
-        console.log($scope.Rules);
-        console.log("取第一个对象：");
         console.log($scope.Ruleitem);
-        $scope.$broadcast('senddata', $scope.Ruleitem);
-        if ($scope.Ruleitem.rule.state == "ACTIVE") {
-            $scope.isActive = true;
-            $scope.Rulestart = false;
-            $scope.Rulestop = true;
-        } else {
-            $scope.isActive = false;
-            $scope.Rulestart = true;
-            $scope.Rulestop = false;
+
+        if($scope.Ruleitem){
+            $scope.RulePlugins=$scope.Ruleitem.transforms;
+            $scope.RuleFilters=$scope.Ruleitem.filters;
+
+            console.log("query函数内的Rules：");
+            console.log($scope.Rules);
+            console.log("取第一个对象：");
+            console.log($scope.Ruleitem);
+            $scope.$broadcast('senddata', $scope.Ruleitem);
+            if ($scope.Ruleitem.rule.state == "ACTIVE") {
+                $scope.isActive = true;
+                $scope.Rulestart = false;
+                $scope.Rulestop = true;
+            } else {
+                $scope.isActive = false;
+                $scope.Rulestart = true;
+                $scope.Rulestop = false;
+            }
         }
     });
     /******bug:此时取Rules[0]为undefined
@@ -380,8 +385,7 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             console.log("formData");
             console.log($scope.formData);
             var addRULE = $resource('/api/rule/create');
-            addRULE.save({}, $scope.formData)
-                .$promise.then(function (resp) {
+            addRULE.save({}, $scope.formData).$promise.then(function (resp) {
                 toastr.success("创建规则成功！");
                 $("#addRule").modal("hide");
                 location.reload();

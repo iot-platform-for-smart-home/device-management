@@ -17,6 +17,8 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
     var initUrl;
     var prePageUrl;
+    var nextPageUrl;
+    var hasNext;
     var lang_flag=getCookie('Language');
 
     $("#deviceListChart").hide();
@@ -30,7 +32,6 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
     var obj = $resource("/api/device/alldevices?limit=1000");
     $scope.deviceListAll = obj.query();
-
 
     /*返回值为限制个数的所有设备信息*/
     $.ajax({
@@ -83,6 +84,9 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                 nextDeviceName = $scope.deviceList[last].name;
                 preDeviceIdArr.push($scope.deviceList[last].id);
                 preDeviceNameArr.push($scope.deviceList[last].name);
+
+                console.log(nextDeviceId);
+                console.log(nextDeviceName);
             }
 
         }
@@ -221,9 +225,13 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             showNum = 9;
         } else {
             showNum = $("#deviceListNum").val();
+            preDeviceIdArr = [];
+            preDeviceNameArr = [];
         }
-        // console.log(showNum);
-        setTimeout(function () {
+
+        initUrl = "/api/device/alldevices?limit=" + showNum;
+
+        $("#deviceListNum").keypress(function () {
             $.ajax({
                 url: initUrl,
                 contentType: "application/json; charset=utf-8",
@@ -275,9 +283,10 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
                 }
             });
-        }, 1000);
+        });
 
     };
+
 
     /*查看下一页设备*/
     $scope.nextDeviceInfo = function () {
@@ -286,15 +295,18 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
         // if ($.cookie("userLevel") === "CUSTOMER_USER") {
         //     prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
         // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
-            prePageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
         // }
+
+        nextPageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
+
         if (nextDeviceId && nextDeviceName) {
             $.ajax({
-                url: prePageUrl,
+                url: nextPageUrl,
                 contentType: "application/json; charset=utf-8",
                 async: false,
                 type: "GET",
                 success: function (msg) {
+                    console.log(msg);
 
                     if (msg.length == 0) {
                         if(lang_flag==1){
@@ -630,8 +642,37 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     };
 
     $("#reTime").click(function () {
-        $("#reFixTime").attr("type", "datetime-local");
+        $("#reFixTime").attr("type", "text");
+        $("#reFixTime").attr("class", "form_datetime");
+        $("#reFixTime").attr("size", "16");
         $("#reFixTime").removeAttr("disabled");
+        if(lang_flag==1){
+            $("#reFixTime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',//显示格式
+                language: 'zh-CN',//显示语言
+                todayHighlight: 1,//今天高亮
+                todayBtn:true,
+                bootcssVer:3,
+                minView: 0,//设置显示到分钟
+                startView:2,
+                forceParse: 0,
+                showMeridian: 1,
+                autoclose: 1//选择后自动关闭
+            });
+        }
+        else{
+            $("#reFixTime").datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',//显示格式
+                todayHighlight: 1,//今天高亮
+                todayBtn:true,
+                bootcssVer:3,
+                minView: 0,//设置显示到分钟
+                startView:2,
+                forceParse: 0,
+                showMeridian: 1,
+                autoclose: 1//选择后自动关闭
+            });
+        }
     });
 
 
@@ -1507,12 +1548,12 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             async: false,
             contentType: "application/json; charset=utf-8",
             success: function (msg) {
-                if (msg.length) {
-                    eventPage = 0;
+                eventPage = 0;
+                 if (msg.length) {
                     console.log(msg);
                     $scope.eventInfo = msg;
                     lastEventId.push(msg[msg.length - 1].id);
-                }
+                 }
             },
             error: function (err) {
                 console.log(err);
@@ -1635,9 +1676,11 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
                         subEventPage = 0;
-                        console.log(msg);
-                        $scope.eventInfo = msg;
-                        subLastEventId.push(msg[msg.length - 1].id);
+                        if(msg.length){
+                            console.log(msg);
+                            $scope.eventInfo = msg;
+                            subLastEventId.push(msg[msg.length - 1].id);
+                        }
                     },
                     error: function (err) {
                         console.log(err);
@@ -1803,4 +1846,3 @@ function getCookie(Name) {
         else return ""
     }
 }
-

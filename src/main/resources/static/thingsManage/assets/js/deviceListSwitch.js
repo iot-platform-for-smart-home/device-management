@@ -109,6 +109,21 @@ $(document).ready(function () {
         document.getElementById("preEvent").innerText="上一页";
         document.getElementById("nextEvent").innerText="下一页";
         document.getElementById("modalCloseEvent").innerText="关闭";
+
+
+        $(".form_datetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',//显示格式
+            language: 'zh-CN',//显示语言
+            todayHighlight: 1,//今天高亮
+            todayBtn:true,
+            bootcssVer:3,
+            minView: 0,//设置显示到分钟
+            startView:2,
+            forceParse: 0,
+            showMeridian: 1,
+            autoclose: 1//选择后自动关闭
+        });
+
     }
     else{
         div.setAttribute("style", "width:280px");
@@ -214,6 +229,18 @@ $(document).ready(function () {
         document.getElementById("preEvent").innerText="Last Page";
         document.getElementById("nextEvent").innerText="Next Page";
         document.getElementById("modalCloseEvent").innerText="Close";
+
+        $(".form_datetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',//显示格式
+            todayHighlight: 1,//今天高亮
+            todayBtn:true,
+            bootcssVer:3,
+            minView: 0,//设置显示到分钟
+            startView:2,
+            forceParse: 0,
+            showMeridian: 1,
+            autoclose: 1//选择后自动关闭
+        });
     }
 });
 
