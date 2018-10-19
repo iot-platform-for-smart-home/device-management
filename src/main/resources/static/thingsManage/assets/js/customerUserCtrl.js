@@ -1,8 +1,6 @@
-mainApp.controller("customerUserCtrl",["$scope","$resource","$location",function ($scope,$resource,$location) {
-    $scope.$location = $location;
-
-    console.log($.cookie());
-    var customerId = $.cookie("customerId");
+mainApp.controller("customerUserCtrl",["$scope","$resource",function ($scope,$resource) {
+    // console.log($.cookie());
+    // var customerId = $.cookie("customerId");
     var userObj = $resource("/api/account/customer/users?customerId=:customerId&limit=9&page=0");
     $scope.userInfo = userObj.query({customerId:customerId});
     console.log($scope.userInfo);

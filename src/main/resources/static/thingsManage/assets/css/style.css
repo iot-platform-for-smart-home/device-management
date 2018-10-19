@@ -15,7 +15,7 @@ body {
 .b-clr {
     color:#000;
 }
-@media (min-width: 1025px) {
+@media (min-width: 1194px) {
     .content-wrapper {
         width: 75%;
         position: fixed;
@@ -41,7 +41,7 @@ body {
 /* =============================================================
 SIDE PART STYLES
 ============================================================ */
-@media (min-width: 1025px) {
+@media (min-width: 1194px) {
     .nav {
         position: fixed;
         left: 0;
@@ -54,15 +54,30 @@ SIDE PART STYLES
         overflow: auto;
         width: 25%;
     }
-    .nav > .container {
-        height: 100%;
+}
+
+@media (max-width: 1193px) {
+    .nav {
+        background: rgba(255, 255, 255, 0.5) ;
+        position: relative;
+    }
+
+    .side-menu ul {
+        display: block;
         width: 100%;
+    }
+
+    .side-menu ul li {
+        float: left;
     }
 }
 
 .nav > .container {
     overflow: auto;
+    margin: 0;
     padding: 0;
+    height: 100%;
+    width: 100%;
 }
 
 .menu-header {
@@ -144,8 +159,10 @@ HEAD MENU STYLES
 /* =============================================================
    SIDE MENU STYLES
  ============================================================ */
-.side-menu {
-    margin: 40px 0 0 70px;
+@media (min-width: 1194px) {
+    .side-menu {
+        margin: 54px 0 0 70px;
+    }
 }
 
 .side-menu ul {
@@ -153,10 +170,6 @@ HEAD MENU STYLES
     padding: 0px;
 }
 
-.side-menu ul li {
-    border-left: 1px solid #468847;
-    text-align: left;
-}
 .side-menu ul .userMenu{
     padding: 17px 25px;
 }
@@ -167,9 +180,15 @@ HEAD MENU STYLES
     padding: 12px 0 12px 23px;
 }
 
-.side-menu ul li a i {
-    padding-right: 10px;
-    width: 30px;
+@media(min-width: 1194px) {
+    .side-menu ul li a i {
+        padding-right: 10px;
+        width: 30px;
+    }
+    .side-menu ul li {
+        border-left: 1px solid #468847;
+        text-align: left;
+    }
 }
 
 .side-menu ul li a, .side-menu ul li a:hover {
@@ -299,6 +318,7 @@ DEVICELIST STYLES
     /*float: right;*/
     border: 1px solid #c0c0c0;
     border-radius: 10px;
+    background: #eee;
     margin-right: 40px;
     margin-top: 10px;
 }
@@ -307,6 +327,7 @@ DEVICELIST STYLES
     /*float: right;*/
     border: 1px solid #c0c0c0;
     border-radius: 10px;
+    background: #eee;
     margin-right: 40px;
     margin-top: 10px;
 }

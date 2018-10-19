@@ -99,7 +99,7 @@ mainApp.controller("pluginCtrl", function ($scope, $resource){
 
         // 开启socket连接
         function connect() {
-            var socket = new SockJS('http://10.108.218.64:30080/api/v1/smartruler/socket');
+            var socket = new SockJS('http://47.105.120.203:30080/api/v1/smartruler/socket');
             stompClient = Stomp.over(socket);
             stompClient.connect(
                 {}

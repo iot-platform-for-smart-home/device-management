@@ -57,7 +57,7 @@ $(document).ready(function () {
                 document.getElementById("side-menu-6").innerText="规则管理";
                 document.getElementById("side-menu-7").innerText="客户组";
                 document.getElementById("side-menu-8").innerText="组件库";
-                document.getElementById("side-menu-9").innerText="仪表盘";
+                // document.getElementById("side-menu-9").innerText="仪表盘";
                 document.getElementById("side-menu-10").innerText="用户手册";
             }
             else{
@@ -76,7 +76,7 @@ $(document).ready(function () {
                 document.getElementById("side-menu-6").innerText="Rule Management";
                 document.getElementById("side-menu-7").innerText="Customer Group";
                 document.getElementById("side-menu-8").innerText="Widgets Library";
-                document.getElementById("side-menu-9").innerText="Dashboard";
+                // document.getElementById("side-menu-9").innerText="Dashboard";
                 document.getElementById("side-menu-10").innerText="User Manual";
             }
 
