@@ -981,7 +981,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     var ws;
 
     function realtimeDevice(deviceId) {
-        var url = 'ws://10.108.218.64:30080/api/v1/deviceaccess/websocket';
+        var url = 'ws://47.105.120.203:30080/api/v1/deviceaccess/websocket';
         var keys = [];
         listenWs(url);
 
