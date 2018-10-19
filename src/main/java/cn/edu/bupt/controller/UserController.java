@@ -76,9 +76,9 @@ public class UserController extends DefaultThingsboardAwaredController{
         }
     }
 
-    @RequestMapping(value = "/showAllCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = "/showAllCustomer", method = RequestMethod.GET)
     @ResponseBody
-    public String showAllCustomer(@RequestBody String userInfo){
+    public String showAllCustomer(){
         String requestAddr = API_PREFIX+"searchAllUser";
         String url = "http://"+getAccountServer()+requestAddr;
         try {

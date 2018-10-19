@@ -1,9 +1,24 @@
 mainApp.controller("customerUserCtrl",["$scope","$resource",function ($scope,$resource) {
     // console.log($.cookie());
     // var customerId = $.cookie("customerId");
-    var userObj = $resource("/api/account/customer/users?customerId=:customerId&limit=9&page=0");
-    $scope.userInfo = userObj.query({customerId:customerId});
-    console.log($scope.userInfo);
+    $.ajax({
+        url:"/api/account/showAllCustomer",
+        data: null,
+        type:"GET",
+        contentType: "application/json; charset=utf-8",//post请求必须
+        success:function (resp) {
+            var userObj = JSON.parse(resp);
+            $scope.userInfo = userObj.data;
+            console.log($scope.userInfo);
+            $scope.$apply();
+        },
+        error:function (err) {
+
+        }
+    });
+    // var userObj = $resource("/api/account/showAllCustomer");
+    // $scope.userInfo = userObj.query();
+
 
     var currentUserPage = 1;//用于记录当前用户页码
 
@@ -14,15 +29,16 @@ mainApp.controller("customerUserCtrl",["$scope","$resource",function ($scope,$re
     var lang_flag=getCookie('Language');
 
     $("#customerUserChart").hide();
+    $("#backToCustomerUser").hide();
 
     /*初始化新增表格*/
-    $("#addCustomerUser").click(function () {
-        $("#customerUserName").val("");
-        $("#customerUserPassword").val("");
-        $("#customerUserPasswordAgain").val("");
-        $("#customerUserEmail").val("");
-        $("#customerUserAddInfo").val("");
-    });
+    // $("#addCustomerUser").click(function () {
+    //     $("#customerUserName").val("");
+    //     $("#customerUserPassword").val("");
+    //     $("#customerUserPasswordAgain").val("");
+    //     $("#customerUserEmail").val("");
+    //     $("#customerUserAddInfo").val("");
+    // });
 
     /*鼠标移入动画效果*/
     $scope.fadeSiblings = function () {
@@ -48,127 +64,127 @@ mainApp.controller("customerUserCtrl",["$scope","$resource",function ($scope,$re
         /*给点击元素加上特定样式*/
         // data.style = {"border": "2px solid #468847"};
 
-        $("#addCustomerUser").hide();
-        $("#userLimitRow").hide();
+        // $("#addCustomerUser").hide();
+        // $("#userLimitRow").hide();
         $("#customerUserIcon").hide();
-        $("#customerUserPage").hide();
+        // $("#customerUserPage").hide();
 
         $("#customerUserChart").show();
+        $("#backToCustomerUser").show();
 
         console.log(data);
 
-        $scope.name = data.name;
-        $scope.userId = data.id;
-        $scope.customerId = data.customer_id;
-        $scope.tenantId = data.tenant_id;
-        $scope.additional_info = data.additional_info;
-        $scope.authority = data.authority;
+        $scope.id = data.id;
+        $scope.openid = data.openid;
         $scope.email = data.email;
+        $scope.phone = data.phone;
+        $scope.address = data.address;
     };
     $("#backToCustomerUser").click(function () {
         $("#customerUserChart").hide();
-        $("#addCustomerUser").show();
-        $("#userLimitRow").show();
+        $("#backToCustomerUser").hide();
+        // $("#addCustomerUser").show();
+        // $("#userLimitRow").show();
         $("#customerUserIcon").show();
-        $("#customerUserPage").show();
+        // $("#customerUserPage").show();
     });
 
-    $scope.customerUserLimit = function () {
-        if($("#customerUserNum").val() === ""){
-            setTimeout(function () {
-               /* userLimit = 9;
-                var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
-                $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息
-                console.log($scope.userInfo);
-
-
-                //获取分页总数
-                $.ajax({
-                    url:"/api/account/customer/usersPage?customerId="+customerId+"&limit="+userLimit,
-                    type:"GET",
-                    dataType:"text",
-                    async:false,
-                    success:function (msg) {
-                        totalUserPages = Number(msg);
-                        console.log(totalUserPages);
-                    }
-                });
-                Page({
-                    num:totalUserPages,					//页码数
-                    startnum:1,				//指定页码
-                    elem:$('#customerUserPage'),		//指定的元素
-                    callback:function(n){	//回调函数
-                        console.log(n);//当前页号
-                        currentUserPage = Number(n);
-                        var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
-                        $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息
-                        console.log($scope.userInfo);
-                    }
-                });*/
-               window.location.reload();
-            },1000);
-
-        }else{
-            setTimeout(function () {
-                userLimit = $("#customerUserNum").val();
-                console.log(userLimit);
-               /* var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
-                $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息*/
-                var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=0");
-                $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit});//第一页所有客户信息
-                console.log($scope.userInfo);
-
-                //获取分页总数
-                $.ajax({
-                    url:"/api/account/customer/usersPage?customerId="+customerId+"&limit="+userLimit,
-                    type:"GET",
-                    dataType:"text",
-                    async:false,
-                    success:function (msg) {
-                        totalUserPages = Number(msg);
-                        console.log(totalUserPages);
-                    }
-                });
-                Page({
-                    num:totalUserPages,					//页码数
-                    startnum:1,				//指定页码
-                    elem:$('#customerUserPage'),		//指定的元素
-                    callback:function(n){	//回调函数
-                        console.log(n);//当前页号
-                        currentUserPage = Number(n);
-                        var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
-                        $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息
-                        console.log($scope.userInfo);
-                    }
-                });
-            },1000);
-        }
-
-    };
+    // $scope.customerUserLimit = function () {
+    //     if($("#customerUserNum").val() === ""){
+    //         setTimeout(function () {
+    //            /* userLimit = 9;
+    //             var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
+    //             $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息
+    //             console.log($scope.userInfo);
+    //
+    //
+    //             //获取分页总数
+    //             $.ajax({
+    //                 url:"/api/account/customer/usersPage?customerId="+customerId+"&limit="+userLimit,
+    //                 type:"GET",
+    //                 dataType:"text",
+    //                 async:false,
+    //                 success:function (msg) {
+    //                     totalUserPages = Number(msg);
+    //                     console.log(totalUserPages);
+    //                 }
+    //             });
+    //             Page({
+    //                 num:totalUserPages,					//页码数
+    //                 startnum:1,				//指定页码
+    //                 elem:$('#customerUserPage'),		//指定的元素
+    //                 callback:function(n){	//回调函数
+    //                     console.log(n);//当前页号
+    //                     currentUserPage = Number(n);
+    //                     var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
+    //                     $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息
+    //                     console.log($scope.userInfo);
+    //                 }
+    //             });*/
+    //            window.location.reload();
+    //         },1000);
+    //
+    //     }else{
+    //         setTimeout(function () {
+    //             userLimit = $("#customerUserNum").val();
+    //             console.log(userLimit);
+    //            /* var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
+    //             $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息*/
+    //             var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=0");
+    //             $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit});//第一页所有客户信息
+    //             console.log($scope.userInfo);
+    //
+    //             //获取分页总数
+    //             $.ajax({
+    //                 url:"/api/account/customer/usersPage?customerId="+customerId+"&limit="+userLimit,
+    //                 type:"GET",
+    //                 dataType:"text",
+    //                 async:false,
+    //                 success:function (msg) {
+    //                     totalUserPages = Number(msg);
+    //                     console.log(totalUserPages);
+    //                 }
+    //             });
+    //             Page({
+    //                 num:totalUserPages,					//页码数
+    //                 startnum:1,				//指定页码
+    //                 elem:$('#customerUserPage'),		//指定的元素
+    //                 callback:function(n){	//回调函数
+    //                     console.log(n);//当前页号
+    //                     currentUserPage = Number(n);
+    //                     var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
+    //                     $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息
+    //                     console.log($scope.userInfo);
+    //                 }
+    //             });
+    //         },1000);
+    //     }
+    //
+    // };
     //分页
     //获取分页总数
-    $.ajax({
-        url:"/api/account/customer/usersPage?customerId="+customerId+"&limit="+userLimit,
-        type:"GET",
-        dataType:"text",
-        async:false,
-        success:function (msg) {
-            totalUserPages = Number(msg);
-            console.log(totalUserPages);
-        }
-    });
-    Page({
-        num:totalUserPages,					//页码数
-        startnum:1,				//指定页码
-        elem:$('#customerUserPage'),		//指定的元素
-        callback:function(n){	//回调函数
-            console.log(n);//当前页号
-            currentUserPage = Number(n);
-            var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
-            $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息
-            console.log($scope.userInfo);
-        }
-    });
+    // $.ajax({
+    //     url:"/api/account/customer/usersPage?customerId="+customerId+"&limit="+userLimit,
+    //     type:"GET",
+    //     dataType:"text",
+    //     async:false,
+    //     success:function (msg) {
+    //         totalUserPages = Number(msg);
+    //         console.log(totalUserPages);
+    //     }
+    // });
+    // Page({
+    //     num:totalUserPages,					//页码数
+    //     startnum:1,				//指定页码
+    //     elem:$('#customerUserPage'),		//指定的元素
+    //     callback:function(n){	//回调函数
+    //         console.log(n);//当前页号
+    //         currentUserPage = Number(n);
+    //         var userCurrentObj = $resource("/api/account/customer/users?customerId=:customerId&limit=:userLimit&page=:currentUserPage");
+    //         $scope.userInfo = userCurrentObj.query({customerId:customerId,userLimit:userLimit,currentUserPage:(currentUserPage-1)});//所有客户组信息
+    //         console.log($scope.userInfo);
+    //     }
+    // });
 
 
     /*新增用户*/
