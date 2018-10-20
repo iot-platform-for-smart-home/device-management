@@ -18,7 +18,6 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     var initUrl;
     var prePageUrl;
     var nextPageUrl;
-    var hasNext;
     var lang_flag=getCookie('Language');
 
     $("#deviceListChart").hide();
@@ -507,29 +506,32 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     $("#assignDevice").click(function () {
         $("#assignToCustomer,#assignTable").css("display", "none");
         $("#deviceGroupBox,#customerBox").prop("checked", false);
+
+        $("#assignTable").css("display", "block");
+
     });
-    //单选按钮控制分配选项
-    $("#deviceGroupBox").on("click", function () {
-        // console.log($(this).prop("checked"));
-        if ($(this).prop("checked")) {
-            $("#assignTable").css("display", "block");
-            $("#assignToCustomer").css("display", "none");
-        }
-        else {
-            $("#assignTable").css("display", "none");
-            $("#assignToCustomer").css("display", "block");
-        }
-    });
-    $("#customerBox").on("click", function () {
-        if ($(this).prop("checked")) {
-            $("#assignToCustomer").css("display", "block");
-            $("#assignTable").css("display", "none");
-        }
-        else {
-            $("#assignToCustomer").css("display", "none");
-            $("#assignTable").css("display", "block");
-        }
-    });
+    // //单选按钮控制分配选项
+    // $("#deviceGroupBox").on("click", function () {
+    //     // console.log($(this).prop("checked"));
+    //     if ($(this).prop("checked")) {
+    //         $("#assignTable").css("display", "block");
+    //         $("#assignToCustomer").css("display", "none");
+    //     }
+    //     else {
+    //         $("#assignTable").css("display", "none");
+    //         $("#assignToCustomer").css("display", "block");
+    //     }
+    // });
+    // $("#customerBox").on("click", function () {
+    //     if ($(this).prop("checked")) {
+    //         $("#assignToCustomer").css("display", "block");
+    //         $("#assignTable").css("display", "none");
+    //     }
+    //     else {
+    //         $("#assignToCustomer").css("display", "none");
+    //         $("#assignTable").css("display", "block");
+    //     }
+    // });
 
     //设备组下拉列表
     var deviceGroupObj = $resource("/api/group/allgroups?limit=300");
@@ -542,7 +544,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
 
     $scope.assign = function () {
         //当选中“分配设备到设备组”时
-        if ($("#deviceGroupBox").prop("checked")) {
+        //if ($("#deviceGroupBox").prop("checked")) {
             var deviceGroupAssignObj = $resource("/api/group/assign/:deviceId/:groupId");
             var groupId = $("#deviceGroupSelect option:selected").attr("id");
             //console.log("groupId:"+groupId);
@@ -566,33 +568,33 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                         toastr.error("Failed to assign the device！");
                     }
                 });
-        }
+        //}
         //当选中“分配设备到客户组”时
-        else if ($("#customerBox").prop("checked")) {
-            var customerAssignObj = $resource("/api/device/assign/customer/:deviceId/:customerId");
-            var customerId = $("#customerSelect option:selected").attr("id");
-            // console.log("customerId:"+customerId);
-            // console.log("deviceInfo:"+$scope.deviceInfo.id);
-            $scope.customerAssign = customerAssignObj.get({deviceId: $scope.deviceInfo.id, customerId: customerId},
-                function (resp) {
-                    if(lang_flag==1){
-                        toastr.success("设备分配成功！");
-                    }
-                    else{
-                        toastr.success("Successfully assigned th device！");
-                    }
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 1000);
-                }, function (err) {
-                    if(lang_flag==1){
-                        toastr.error("设备分配失败！");
-                    }
-                    else{
-                        toastr.error("Failed to assign the device！");
-                    }
-                });
-        }
+        // else if ($("#customerBox").prop("checked")) {
+        //     var customerAssignObj = $resource("/api/device/assign/customer/:deviceId/:customerId");
+        //     var customerId = $("#customerSelect option:selected").attr("id");
+        //     // console.log("customerId:"+customerId);
+        //     // console.log("deviceInfo:"+$scope.deviceInfo.id);
+        //     $scope.customerAssign = customerAssignObj.get({deviceId: $scope.deviceInfo.id, customerId: customerId},
+        //         function (resp) {
+        //             if(lang_flag==1){
+        //                 toastr.success("设备分配成功！");
+        //             }
+        //             else{
+        //                 toastr.success("Successfully assigned th device！");
+        //             }
+        //             setTimeout(function () {
+        //                 window.location.reload();
+        //             }, 1000);
+        //         }, function (err) {
+        //             if(lang_flag==1){
+        //                 toastr.error("设备分配失败！");
+        //             }
+        //             else{
+        //                 toastr.error("Failed to assign the device！");
+        //             }
+        //         });
+        // }
     };
 
 
