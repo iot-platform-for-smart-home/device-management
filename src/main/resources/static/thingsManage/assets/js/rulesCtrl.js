@@ -1,4 +1,7 @@
 mainApp.controller("RuleCtrl", function ($scope, $resource) {
+
+    var lang_flag=getCookie('Language');
+
     //各种ng-show初始化
     $scope.Rulestart = false;
     $scope.Rulestop = false;
@@ -167,7 +170,12 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             console.log($scope.searchRuleInfo.length);
             $scope.searchRuleInfo.$promise.then(function (value) {
                 if(value == false){
-                    toastr.warning("规则名称输入有误，无此设备！");
+                    if(lang_flag==1){
+                        toastr.warning("规则名称输入有误，无此设备！");
+                    }
+                    else{
+                        toastr.warning("The rule name was entered incorrectly, there is no such device！");
+                    }
                     setTimeout(function () {
                         window.location.reload();
                     },1000);
@@ -196,7 +204,12 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             location.reload();
         }, function (resp) {
             console.log("1234再来一次");
-            alert("删除失败，请重试！")
+            if(lang_flag==1){
+                alert("删除失败，请重试！");
+            }
+            else{
+                alert("Failed to delete, please try again！");
+            }
         });
     }
 
@@ -386,11 +399,21 @@ mainApp.controller("RuleCtrl", function ($scope, $resource) {
             console.log($scope.formData);
             var addRULE = $resource('/api/rule/create');
             addRULE.save({}, $scope.formData).$promise.then(function (resp) {
-                toastr.success("创建规则成功！");
+                if(lang_flag==1){
+                    toastr.success("创建规则成功！");
+                }
+                else{
+                    toastr.success("Successfully created the rule！");
+                }
                 $("#addRule").modal("hide");
                 location.reload();
             },function (err) {
-                toastr.success("创建规则失败！");
+                if(lang_flag==1){
+                    toastr.error("创建规则失败！");
+                }
+                else{
+                    toastr.error("Failed to create the rule！");
+                }
             });
         } else {
             // $('#rulenamealert').show();
