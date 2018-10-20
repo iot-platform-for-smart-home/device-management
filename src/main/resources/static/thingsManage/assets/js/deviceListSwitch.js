@@ -95,7 +95,7 @@ $(document).ready(function () {
         document.getElementById("history").innerText="-----历史数据-----";
         document.getElementById("historyStart").innerText="起始时间：";
         document.getElementById("historyEnd").innerText="终止时间：";
-        document.getElementById("control").innerText="-----控制面板-----";
+        //document.getElementById("control").innerText="-----控制面板-----";
         document.getElementById("modalCloseDetail").innerText="关闭";
         document.getElementById("modalConfirmDetail").innerText="确定";
         document.getElementById("eventDetail").innerText="设备事件";
@@ -215,7 +215,7 @@ $(document).ready(function () {
         document.getElementById("history").innerText="-----Historical Data-----";
         document.getElementById("historyStart").innerText="Start Time：";
         document.getElementById("historyEnd").innerText="End Time：";
-        document.getElementById("control").innerText="-----Control Panel-----";
+        //document.getElementById("control").innerText="-----Control Panel-----";
         document.getElementById("modalCloseDetail").innerText="Close";
         document.getElementById("modalConfirmDetail").innerText="Yes";
         document.getElementById("eventDetail").innerText="Device Event";

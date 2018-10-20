@@ -888,74 +888,84 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     $scope.searchDevice = function () {
         var textSearch = $("#searchDeviceText").val();
         var url;
-
+        console.log(textSearch);
         //get搜索设备数量L
         // if ($.cookie("userLevel") === "CUSTOMER_USER") {
         //     console.log("客户权限")
         //     url="/api/device/customer/searchCount?textSearch=" + textSearch
         // } else {
-            console.log("租户权限")
-            url="/api/device/tenant/searchCount?textSearch=" + textSearch
+            console.log("租户权限");
+            url="/api/device/tenant/searchCount?textSearch=" + textSearch;
         // }
-        $.ajax({
-            url: url,
-            contentType: "application/json; charset=utf-8",
-            async: false,
-            type: "GET",
-            success: function (msg) {
-                console.log(msg)
-                if (msg > 0) {
-                    $scope.ifSearch = true;
-                    $scope.searchCount = msg;
-                } else {
-                    $scope.ifSearch = false;
-                }
+        if(textSearch == "") {
+            if(lang_flag==1){
+                toastr.warning("请输入设备名称！");
             }
-        });
-
-        //get搜索结果
-        var searchDeviceObj = $resource("/api/device/alldevices?limit=20&textSearch=" + textSearch);
-        $scope.searchDeviceInfo = searchDeviceObj.query();
-        console.log($scope.searchDeviceInfo);
-        console.log($scope.searchDeviceInfo.length);
-
-        $scope.searchDeviceInfo.$promise.then(function (value) {
-            if (value == false) {
-                if(lang_flag==1){
-                    toastr.warning("设备名称输入有误，无此设备！");
-                }
-                else{
-                    toastr.warning("The device name was entered incorrectly, no such device！");
-                }
-                setTimeout(function () {
-                    window.location.reload();
-                }, 1000);
+            else{
+                toastr.warning("Please input the device name！");
             }
-            else {
-                $scope.deviceList = $scope.searchDeviceInfo;
-
-                for (var i = 0; i < $scope.deviceList.length; i++) {
-                    allDeviceId.push($scope.deviceList[i].id);
-                }
-
-                /*获取设备状态*/
-                var statusObj = $resource("/api/device/status");
-                var statusInfo = statusObj.save({deviceId: allDeviceId}).$promise.then(function (resp) {
-                    console.log(resp);
-                    var temp;
-                    for (var i = 0; i < allDeviceId.length; i++) {
-                        temp = allDeviceId[i];
-                        console.log(resp[temp]);
-                        if (resp[temp] === "offline") {
-                            $("#" + temp).css({color: "rgb(220, 220, 220)"});
-                        }
+        }
+        else{
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                type: "GET",
+                success: function (msg) {
+                    console.log(msg)
+                    if (msg > 0) {
+                        $scope.ifSearch = true;
+                        $scope.searchCount = msg;
+                    } else {
+                        $scope.ifSearch = false;
                     }
-                });
-                $("#searchDeviceText").on("focus", function () {
-                    $(this).val("");
-                })
-            }
-        });
+                }
+            });
+
+            //get搜索结果
+            var searchDeviceObj = $resource("/api/device/alldevices?limit=20&textSearch=" + textSearch);
+            $scope.searchDeviceInfo = searchDeviceObj.query();
+            console.log($scope.searchDeviceInfo);
+            console.log($scope.searchDeviceInfo.length);
+
+            $scope.searchDeviceInfo.$promise.then(function (value) {
+                if (value == false) {
+                    if (lang_flag == 1) {
+                        toastr.warning("设备名称输入有误，无此设备！");
+                    }
+                    else {
+                        toastr.warning("The device name was entered incorrectly, no such device！");
+                    }
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
+                }
+                else {
+                    $scope.deviceList = $scope.searchDeviceInfo;
+
+                    for (var i = 0; i < $scope.deviceList.length; i++) {
+                        allDeviceId.push($scope.deviceList[i].id);
+                    }
+
+                    /*获取设备状态*/
+                    var statusObj = $resource("/api/device/status");
+                    var statusInfo = statusObj.save({deviceId: allDeviceId}).$promise.then(function (resp) {
+                        console.log(resp);
+                        var temp;
+                        for (var i = 0; i < allDeviceId.length; i++) {
+                            temp = allDeviceId[i];
+                            console.log(resp[temp]);
+                            if (resp[temp] === "offline") {
+                                $("#" + temp).css({color: "rgb(220, 220, 220)"});
+                            }
+                        }
+                    });
+                    $("#searchDeviceText").on("focus", function () {
+                        $(this).val("");
+                    })
+                }
+            });
+        }
     };
 
 
