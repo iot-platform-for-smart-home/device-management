@@ -7,7 +7,7 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
     var chartLabel;
 
     if(lang_flag==1){
-        document.getElementById("deviceNumber").innerText="设备数量";
+        document.getElementById("homeDeviceNumber").innerText="设备数量";
         document.getElementById("pluginNumber").innerText="插件数量";
         document.getElementById("ruleNumber").innerText="规则数量";
         // document.getElementById("broadcast").innerText="广播事件";
@@ -16,7 +16,7 @@ mainApp.controller("homePageCtrl",["$scope","$resource",function ($scope,$resour
         chartLabel=['上线', '故障', '下线'];
     }
     else{
-        document.getElementById("deviceNumber").innerText="Number of Devices";
+        document.getElementById("homeDeviceNumber").innerText="Number of Devices";
         document.getElementById("pluginNumber").innerText="Number of Plugins";
         document.getElementById("ruleNumber").innerText="Number of Rules";
         chartText="Situation of Devices";
