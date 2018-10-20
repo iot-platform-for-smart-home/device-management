@@ -2,94 +2,89 @@
     <div class="container">
         <div class="row">
             <div style="padding-left: 0px; padding-right: 0px;" id="titleSize">
-                <h3><a href="" ng-click="$location.path('customer')" style="font-size: 30px; color:#468847" id="userGroupTitle"></a>&nbsp;&nbsp;
-                    <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <h3>
                     <span style="font-size: 30px;" id="userTitle"></span>
                 </h3>
             </div>
-            <div class="col-md-1" style="margin-top: 23px;">
-                <button style="margin-top:-2px; margin-bottom: 15px" class="btn btn-basic btn-sm" data-toggle="modal"
-                        data-target="#createCustomerUser" id="addCustomerUser">
-                </button>
-            </div>
+            <!--<div class="col-md-1" style="margin-top: 23px;">-->
+                <!--<button style="margin-top:-2px; margin-bottom: 15px" class="btn btn-basic btn-sm" data-toggle="modal"-->
+                        <!--data-target="#createCustomerUser" id="addCustomerUser">-->
+                <!--</button>-->
+            <!--</div>-->
         </div>
 
-        <div class="row" style="margin-left: 20px;" id="userLimitRow">
-            <span id="userDisplay"></span>
-            <input type="text" id="customerUserNum" style="width: 50px;border-radius: 5px;" ng-change="customerUserLimit()" ng-model="myLimit" placeholder="9">
-            <span id="userCustomerGroup"></span>
-        </div>
+        <!--<div class="row" style="margin-left: 20px;" id="userLimitRow">-->
+            <!--<span id="userDisplay"></span>-->
+            <!--<input type="text" id="customerUserNum" style="width: 50px;border-radius: 5px;" ng-change="customerUserLimit()" ng-model="myLimit" placeholder="9">-->
+            <!--<span id="userCustomerGroup"></span>-->
+        <!--</div>-->
         <div class="row">
             <div id="customerUserIcon">
                 <div class="chooseBtn" ng-repeat="data in userInfo" ng-click="showUserInfo(data)" ng-style="data.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()">
-                    <div title="{{data.name}}">
+                    <div title="{{data.openid}}">
                         <i class="fa fa-user fa-2x"></i>
-                        <p>{{data.name}}</p>
+                        <p>{{data.openid}}</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-left: 20px;">
-            <ul class="pagination" id="customerUserPage">
-            </ul>
-            <div class="pageJump">
-                <span id="userJump"></span>
-                <input type="text"/>
-                <span id="userPage"></span>
-                <button type="button" class="button" style="margin-left: 40px;" id="userJumpConfirm"></button>
-            </div>
+        <!--<div class="row" style="margin-left: 20px;">-->
+            <!--<ul class="pagination" id="customerUserPage">-->
+            <!--</ul>-->
+            <!--<div class="pageJump">-->
+                <!--<span id="userJump"></span>-->
+                <!--<input type="text"/>-->
+                <!--<span id="userPage"></span>-->
+                <!--<button type="button" class="button" style="margin-left: 40px;" id="userJumpConfirm"></button>-->
             <!--</div>-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <div class="row">
+            <a id="backToCustomerUser"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
         </div>
         <div class="row">
-            <div id="customerUserChart">
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th colspan="2">
-                            <a id="backToCustomerUser"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
-                            {{name}}
-                            <i class="fa fa-trash-o highlight" data-toggle="modal"
-                               data-target="#deleteCustomerUser" title="删除" style="float: right;font-size: 17px;cursor: pointer;color: #468847;"></i>
-                        </th>
-                    </tr>
+            <div class="col-sm-8">
+                <div id="customerUserChart">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th colspan="2">
+                                {{openid}}
+                                <i class="fa fa-trash-o highlight" data-toggle="modal"
+                                   data-target="#deleteCustomerUser" title="删除" style="float: right;font-size: 17px;cursor: pointer;color: #468847;"></i>
+                            </th>
+                        </tr>
 
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="attName" id="userID"></td>
-                        <td>{{userId}}</td>
-                    </tr>
-                    <tr>
-                        <td class="attName" id="userCustGroupID"></td>
-                        <td>{{customerId}}</td>
-                    </tr>
-                    <tr>
-                        <td class="attName" id="userTenantID"></td>
-                        <td>{{tenantId}}</td>
-                    </tr>
-                    <tr>
-                        <td class="attName" id="userEmail"></td>
-                        <td>{{email}}</td>
-                    </tr>
-                    <tr>
-                        <td class="attName" id="userPrivilegeLevel"></td>
-                        <td>{{authority}}</td>
-                    </tr>
-                    <tr>
-                        <td class="attName" id="userNote"></td>
-                        <td>{{additional_info}}</td>
-                    </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="attName" id="userCustGroupID"></td>
+                            <td>{{openid}}</td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="userTenantID"></td>
+                            <td>{{email}}</td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="userEmail"></td>
+                            <td>{{phone}}</td>
+                        </tr>
+                        <tr>
+                            <td class="attName" id="userNote"></td>
+                            <td>{{address}}</td>
+                        </tr>
 
-                    <tr>
-                        <td class="attName" id="userOperation"></td>
-                        <td>
-                            <button class="btn btn-basic" data-toggle="modal"
-                                    data-target="#refreshCustomerUser" ng-click="setCustomerUserInfo()" id="userModify"></button>
-                        </td>
-                    </tr>
+                        <!--<tr>-->
+                        <!--<td class="attName" id="userOperation"></td>-->
+                        <!--<td>-->
+                        <!--<button class="btn btn-basic" data-toggle="modal"-->
+                        <!--data-target="#refreshCustomerUser" ng-click="setCustomerUserInfo()" id="userModify"></button>-->
+                        <!--</td>-->
+                        <!--</tr>-->
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

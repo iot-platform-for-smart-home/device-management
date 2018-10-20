@@ -227,6 +227,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             showNum = $("#deviceListNum").val();
             preDeviceIdArr = [];
             preDeviceNameArr = [];
+            pageNum = 1;
         }
 
         initUrl = "/api/device/alldevices?limit=" + showNum;
@@ -239,6 +240,9 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                 type: "GET",
                 success: function (msg) {
 
+                    preDeviceIdArr = [];
+                    preDeviceNameArr = [];
+                    pageNum = 1;
                     $scope.deviceList = msg;
                     var last = $scope.deviceList.length - 1;
                     console.log($scope.deviceList);
@@ -280,7 +284,6 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                     nextDeviceName = $scope.deviceList[last].name;
                     preDeviceIdArr.push($scope.deviceList[last].id);
                     preDeviceNameArr.push($scope.deviceList[last].name);
-
                 }
             });
         });
@@ -320,7 +323,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                         pageNum++;
                         $scope.deviceList = msg;
                         var last = $scope.deviceList.length - 1;
-                        console.log($scope.deviceList);
+                        // console.log($scope.deviceList);
 
                         allDeviceId = [];
                         for (var i = 0; i < $scope.deviceList.length; i++) {
@@ -357,6 +360,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                         nextDeviceName = $scope.deviceList[last].name;
                         preDeviceIdArr.push($scope.deviceList[last].id);
                         preDeviceNameArr.push($scope.deviceList[last].name);
+                        // console.log(preDeviceIdArr);
                     }
 
                 },
@@ -407,7 +411,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                 // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
                     url = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + preDeviceId + "&textOffset=" + preDeviceName;
                 // }
-
+                // console.log(pageNum);
             }
             $.ajax({
                 url: url,
@@ -418,7 +422,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
                     pageNum--;
                     $scope.deviceList = msg;
                     var last = $scope.deviceList.length - 1;
-                    console.log($scope.deviceList);
+                    // console.log($scope.deviceList);
 
                     allDeviceId = [];
                     for (var i = 0; i < $scope.deviceList.length; i++) {
@@ -981,7 +985,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
     var ws;
 
     function realtimeDevice(deviceId) {
-        var url = 'ws://10.108.218.64:30080/api/v1/deviceaccess/websocket';
+        var url = 'ws://47.105.120.203:30080/api/v1/deviceaccess/websocket';
         var keys = [];
         listenWs(url);
 
@@ -1807,7 +1811,7 @@ mainApp.controller("deviceListCtrl", ["$scope", "$resource", function ($scope, $
             $(this).css("color", "#38883c");
         });
         $("#preDevice,#nextDevice").mouseover(function () {
-            $(this).css("opacity", "1");
+            $(this).css("opacity", "0.6");
         });
         $("#preDevice,#nextDevice").mouseout(function () {
             $(this).css("opacity", "0.3");

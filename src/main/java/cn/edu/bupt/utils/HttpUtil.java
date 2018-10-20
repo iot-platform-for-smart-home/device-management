@@ -73,6 +73,25 @@ public class HttpUtil {
         }
     }
 
+    public static String showAllCustom(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient();//创建OkHttpClient对象。
+        String jsonStr = "{'hello':'world'}";//json数据.
+        RequestBody body = RequestBody.create(JSON,jsonStr);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Response response = null;
+
+        response = client.newCall(request).execute();
+
+        if (response.isSuccessful()) {
+            return response.body().string();
+        } else {
+            throw new IOException("Unexpected code " + response);
+        }
+    }
+
     public static String sendPostToThingsboard(String url, Map<String,String> headers, JsonObject requestBody,HttpSession session) throws Exception{
         String str ;
         if(requestBody==null){

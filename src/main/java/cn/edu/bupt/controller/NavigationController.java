@@ -102,11 +102,6 @@ public class NavigationController {
     @RequestMapping("/dashboard")
     public String  dashboard() { return "static/thingsManage/dashboard"; }
 
-    @RequestMapping("/customer")
-    public String  customer() {
-        return "static/thingsManage/customer";
-    }
-
     @RequestMapping("/tenant")
     public String  tenant() {
         return "static/thingsManage/tenant";

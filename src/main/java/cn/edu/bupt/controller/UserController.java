@@ -76,6 +76,20 @@ public class UserController extends DefaultThingsboardAwaredController{
         }
     }
 
+    @RequestMapping(value = "/showAllCustomer", method = RequestMethod.GET)
+    @ResponseBody
+    public String showAllCustomer(){
+        String requestAddr = API_PREFIX+"searchAllUser";
+        String url = "http://"+getAccountServer()+requestAddr;
+        try {
+            String res = HttpUtil.showAllCustom(url);
+            return res;
+        } catch (Exception e) {
+            return retFail(e.toString());
+        }
+    }
+
+
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     @ResponseBody
     public String updateUser(@RequestBody String userInfo) {

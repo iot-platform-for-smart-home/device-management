@@ -38,20 +38,12 @@ mainApp.config(["$routeProvider","$locationProvider",function ($routeProvider,$l
             templateUrl:"dashboard.html",
             controller:"mainCtrl"
         })
-        .when("/customer",{
-            templateUrl:"customer.html",
-            controller:"mainCtrl"
-        })
         .when("/tenant",{
             templateUrl:"tenant.html",
             controller:"mainCtrl"
         })
         .when("/customerUser",{
             templateUrl:"customerUser.html",
-            controller:"mainCtrl"
-        })
-        .when("/customer",{
-            templateUrl:"customer.html",
             controller:"mainCtrl"
         })
         .when("/tenantAdmin",{
