@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="row" style="margin-top: 10px;" id="searchRow">
+        <div class="row" style="margin-top: 10px;margin-left: 4%;" id="searchRow">
             <div class="col-xs-4 col-sm-4 col-md-3" >
                 <!--<div class="input-group">
                     --<input type="text" class="form-control" placeholder="每页显示设备数量" id="deviceListNum">
@@ -43,22 +43,26 @@
               <!--</div>-->
         </div>
         <div class="row" style="margin-left: 4%;margin-top: 1%;" id="statusRow">
-            <div class="labelDiv">
-                <div style="width: 30px;height: 10px;background: #468847;border-radius: 3px;"></div><span id="online"></span>
-            </div>
-            <div class="labelDiv">
-                <div style="width: 30px;height: 10px;background: rgb(220, 220, 220);border-radius: 3px;"></div><span id="offline"></span>
-            </div>
-            <div class="labelDiv">
-                <div style="width: 30px;height: 10px;background: orange;border-radius: 3px;"></div><span id="remind"></span>
-            </div>
-            <div class="labelDiv">
-                <div style="width: 30px;height: 10px;background: red;border-radius: 3px;"></div><span id="warning"></span>
+            <div class="col-xs-8 col-sm-5 col-md-4">
+                <div class="labelDiv">
+                    <div style="width: 30px;height: 10px;background: #468847;border-radius: 3px;"></div><span id="online"></span>
+                </div>
+                <div class="labelDiv">
+                    <div style="width: 30px;height: 10px;background: rgb(220, 220, 220);border-radius: 3px;"></div><span id="offline"></span>
+                </div>
+                <div class="labelDiv">
+                    <div style="width: 30px;height: 10px;background: orange;border-radius: 3px;"></div><span id="remind"></span>
+                </div>
+                <div class="labelDiv">
+                    <div style="width: 30px;height: 10px;background: red;border-radius: 3px;"></div><span id="warning"></span>
+                </div>
             </div>
 
             <!--L显示搜索设备个数-->
-            <div style="margin-left: 35%" ng-if="ifSearch">
-                <span id="searchDevice"></span><span>{{searchCount}}</span><span id="searchResult"></span>
+            <div class="col-xs-8 col-sm-offset-3 col-sm-4 col-md-offset-4 col-md-4">
+                <div ng-if="ifSearch">
+                    <span id="searchDevice"></span><span>{{searchCount}}</span><span id="searchResult"></span>
+                </div>
             </div>
         </div>
         <div class="row" id="deviceListRow">
