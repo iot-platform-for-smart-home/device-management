@@ -169,8 +169,9 @@
 #projects-container .project-item{
   display:block;
   position:relative;
-  margin:5px;
-  width:360px;
+  margin:10px;
+  width:215px;
+  height:180px;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
