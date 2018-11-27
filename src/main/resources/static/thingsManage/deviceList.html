@@ -10,13 +10,13 @@
                         data-target="#createDevice" id="addDevice">
                 </button>
             </div>
-            <div class="col-xs-4 col-sm-offset-3 col-sm-4">
+            <div class="col-xs-4 col-sm-offset-3 col-sm-4" style="padding-top: 8px">
                 <span style="font-size: 1.8rem" id="deviceNum"></span>
                 <span style="font-size: 1.8rem" id="deviceNumber">{{Devices_Number||0}}</span>
             </div>
         </div>
 
-        <div class="row" style="margin-top: 10px;" id="searchRow">
+        <div class="row" style="margin-top: 10px;margin-left: 4%;" id="searchRow">
             <div class="col-xs-4 col-sm-4 col-md-3" >
                 <!--<div class="input-group">
                     --<input type="text" class="form-control" placeholder="每页显示设备数量" id="deviceListNum">
@@ -43,22 +43,26 @@
               <!--</div>-->
         </div>
         <div class="row" style="margin-left: 4%;margin-top: 1%;" id="statusRow">
-            <div class="labelDiv">
-                <div style="width: 30px;height: 10px;background: #468847;border-radius: 3px;"></div><span id="online"></span>
-            </div>
-            <div class="labelDiv">
-                <div style="width: 30px;height: 10px;background: rgb(220, 220, 220);border-radius: 3px;"></div><span id="offline"></span>
-            </div>
-            <div class="labelDiv">
-                <div style="width: 30px;height: 10px;background: orange;border-radius: 3px;"></div><span id="remind"></span>
-            </div>
-            <div class="labelDiv">
-                <div style="width: 30px;height: 10px;background: red;border-radius: 3px;"></div><span id="warning"></span>
+            <div class="col-xs-8 col-sm-5 col-md-4">
+                <div class="labelDiv">
+                    <div style="width: 30px;height: 10px;background: #468847;border-radius: 3px;"></div><span id="online"></span>
+                </div>
+                <div class="labelDiv">
+                    <div style="width: 30px;height: 10px;background: rgb(220, 220, 220);border-radius: 3px;"></div><span id="offline"></span>
+                </div>
+                <div class="labelDiv">
+                    <div style="width: 30px;height: 10px;background: orange;border-radius: 3px;"></div><span id="remind"></span>
+                </div>
+                <div class="labelDiv">
+                    <div style="width: 30px;height: 10px;background: red;border-radius: 3px;"></div><span id="warning"></span>
+                </div>
             </div>
 
             <!--L显示搜索设备个数-->
-            <div style="margin-left: 35%" ng-if="ifSearch">
-                <span id="searchDevice"></span><span>{{searchCount}}</span><span id="searchResult"></span>
+            <div class="col-xs-8 col-sm-offset-3 col-sm-4 col-md-offset-4 col-md-4">
+                <div ng-if="ifSearch">
+                    <span id="searchDevice"></span><span>{{searchCount}}</span><span id="searchResult"></span>
+                </div>
             </div>
         </div>
         <div class="row" id="deviceListRow">
@@ -337,12 +341,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                     <h4 class="modal-title" style="font-weight: bold;" id="assignDetail"></h4>
                 </div>
-                <div class="modal-body" id="assignHeader">
-                    <!--<input type="checkbox" ng-model="deviceGroupBox" id="deviceGroupBox"/>分配设备到设备组
-                    <input type="checkbox" ng-model="customerBox" id="customerBox"/>分配设备到客户组-->
-                    <input type="radio" id="deviceGroupBox" name="assignBox" value="deviceGroupBox"/><span id="assignDeviceGroupBox"></span>
-                    <input type="radio" id="customerBox" name="assignBox" value="customerBox"/><span id="assignCustomerBox"></span>
-                </div>
+                <!--<div class="modal-body" id="assignHeader">-->
+                    <!--&lt;!&ndash;<input type="checkbox" ng-model="deviceGroupBox" id="deviceGroupBox"/>分配设备到设备组-->
+                    <!--<input type="checkbox" ng-model="customerBox" id="customerBox"/>分配设备到客户组&ndash;&gt;-->
+                    <!--<input type="radio" id="deviceGroupBox" name="assignBox" value="deviceGroupBox"/><span id="assignDeviceGroupBox"></span>-->
+                    <!--<input type="radio" id="customerBox" name="assignBox" value="customerBox"/><span id="assignCustomerBox"></span>-->
+                <!--</div>-->
                 <div class="modal-body" id="assignTable" style="display: none;">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -370,33 +374,33 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="modal-body" id="assignToCustomer" style="display: none;">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                               <th id="assignCustomer"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="attName" id="assignCusDeviceId" ></td>
-                            <td>{{ID}}</td>
-                        </tr>
-                        <tr>
-                            <td class="attName" id="assignCusDeviceName" ></td>
-                            <td>{{deviceName}}</td>
-                        </tr>
-                        <tr>
-                            <td class="attName" id="chooseCustomer" ></td>
-                            <td >
-                                <select class="inputInfo" id="customerSelect">
-                                    <option ng-repeat="customerInfo in allCustomersInfo" id="{{customerInfo.id}}">{{customerInfo.title}}</option>
-                                </select>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <!--<div class="modal-body" id="assignToCustomer" style="display: none;">-->
+                    <!--<table class="table table-striped table-hover">-->
+                        <!--<thead>-->
+                            <!--<tr>-->
+                               <!--<th id="assignCustomer"></th>-->
+                            <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<tr>-->
+                            <!--<td class="attName" id="assignCusDeviceId" ></td>-->
+                            <!--<td>{{ID}}</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td class="attName" id="assignCusDeviceName" ></td>-->
+                            <!--<td>{{deviceName}}</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td class="attName" id="chooseCustomer" ></td>-->
+                            <!--<td >-->
+                                <!--<select class="inputInfo" id="customerSelect">-->
+                                    <!--<option ng-repeat="customerInfo in allCustomersInfo" id="{{customerInfo.id}}">{{customerInfo.title}}</option>-->
+                                <!--</select>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseAssign"></button>
@@ -437,6 +441,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalCloseTagDetail">&times;</button>
                     <h4 class="modal-title" style="font-weight: bold;font-size: 20px;" id="detailDetail"></h4>
                 </div>
+                <div class="divide-line"></div>
                 <div class="modal-body showForm" id="detailTable">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -515,14 +520,14 @@
 
                 <div class="divide-line"></div>
 
-                <div class="modal-body showForm" id="controlTable">
-                    <h4 class="detail-block-header" id="control"></h4>
-                    <div class="row">
-                        <div class="control-panel" id="control_panel">
+                <!--<div class="modal-body showForm" id="controlTable">-->
+                    <!--<h4 class="detail-block-header" id="control"></h4>-->
+                    <!--<div class="row">-->
+                        <!--<div class="control-panel" id="control_panel">-->
 
-                        </div>
-                    </div>
-                </div>
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="modalCloseDetail"></button>

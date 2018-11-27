@@ -305,6 +305,8 @@ DEVICELIST STYLES
     width: 80%;
     float: left;
     padding-left: 10px;
+    overflow-y:auto;
+    height:500px;
 }
 
 #backToDeviceList {
