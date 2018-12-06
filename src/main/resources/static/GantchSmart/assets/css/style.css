@@ -15,7 +15,7 @@ body, h1, h2, h3, h4, h5, h6, p, .h1, .h2, .h3, .h4, .h5, .h6 {
 .navbar-default{
   min-height: 60px;
   margin-bottom: 0;
-  padding-top: 3px;
+  padding-top: 4px;
   background-color:rgb(0, 0, 0);
 }
 .navbar-default
@@ -33,18 +33,40 @@ body, h1, h2, h3, h4, h5, h6, p, .h1, .h2, .h3, .h4, .h5, .h6 {
   display: inline;
 }
 .navbar-default
-.navbar-nav>li>a {
+.navbar-nav>li>a{
   color: #fff;
 }
 .navbar-default
-.navbar-nav>li>a:hover {
+.navbar-nav> .open >a{
+    background-color:#000;
+     color: #fff;
+}
+.navbar-default
+.navbar-nav>li>a.scrollto:hover {
+  color: #79CDC0;
+}
+.navbar-nav>li>a.user:hover {
+  color: #fff;
+}
+.caret:hover{
+    background-color:#000;
+}
+.dropdown-menu{
+    width:100px;
+    background-color:#000;
+}
+.dropdown-menu>li>a{
+    color: #fff;
+}
+.dropdown-menu>li>a:hover {
+    background-color:#000;
   color: #79CDC0;
 }
 .navbar-toggle {
   border: none;
 }
-.navbar-toggle :hover{
-  color: #333333;
+.navbar-toggle:hover{
+  background-color:rgba(0, 0, 0, 0);
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #fff;
@@ -66,7 +88,7 @@ body, h1, h2, h3, h4, h5, h6, p, .h1, .h2, .h3, .h4, .h5, .h6 {
   .navbar-default{
     padding: 12px 0 10px 0;
     background-color: rgb(0,0,0);
-  }-->
+
   .navbar-default .navbar-collapse{
     margin-top:11px;
   }
@@ -125,7 +147,7 @@ body, h1, h2, h3, h4, h5, h6, p, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
     section.section {
         margin: 0;
-        padding: 80px 0 60px 0;
+        padding: 30px 0 20px 0;
     }
     section#aboutUS {
         background: #242424;

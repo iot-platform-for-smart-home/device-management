@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冠川智能->智能家居</title>
+    <link rel="icon" href="../../images/g.ico" type="image/x-icon"/>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/menu.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-route.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-resource.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-mocks.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-animate.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="/">
+                        <img class="" src="../../images/gantch_logo.png">
+                        智能家居
+                    </a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="" class="scrollto"><span  id="chooseChinese" onclick="">中文</span><span> / </span><span  id="chooseEnglish"  onclick="">English</span></a></li>
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle user" data-toggle="dropdown"><i class="fa fa-user"></i> 用户名<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="release.html" class="scrollto">发布留言</a></li>
+                                <li><a href="home.html" class="scrollto">退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="content">
+        <nav>
+            <!--<div class='side-menu'>-->
+                <ul class="nav navbar-inverse side-menu" role="navigation">
+                    <li class="side-menu-icon menu-details" id="allGateway">
+                        <a href="" title="所有网关" ng-click="$location.path('allGateway')">所有网关
+                            <span class="textStyle" id="side-menu-1"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="allDevice">
+                        <a href="" title="所有设备" ng-click="$location.path('allDevice')">所有设备
+                            <span class="textStyle" id="side-menu-2"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="lightBulb">
+                        <a href="" title="灯泡" ng-click="$location.path('lightBulb')">灯泡
+                            <i class=""></i>
+                            <span class="textStyle" id="side-menu-3"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="socket">
+                        <a href="" title="插座" ng-click="$location.path('socket')">插座
+                            <i class=""></i>
+                            <span class="textStyle" id="side-menu-4"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="curtain">
+                        <a href="" title="窗帘" ng-click="$location.path('curtain')">窗帘
+                            <i class=""></i>
+                            <span class="textStyle" id="side-menu-5"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="sensor">
+                        <a href="" title="传感器" ng-click="$location.path('sensor')">传感器
+                            <i class=""></i>
+                            <span class="textStyle" id="side-menu-6"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="switch">
+                        <a href="" title="开关" ng-click="$location.path('switch')">开关
+                            <i class=""></i>
+                            <span class="textStyle" id="side-menu-7"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="monitor">
+                        <a href="" title="监控" ng-click="$location.path('monitor')">监控
+                            <i class=""></i>
+                            <span class="textStyle" id="side-menu-8"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="doorLock">
+                        <a href="" title="门锁" ng-click="$location.path('doorLock')">门锁
+                            <i class=""></i>
+                            <span class="textStyle"  id="side-menu-9"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="otherDevice">
+                        <a href="" title="其他设备" ng-click="$location.path('otherDevice')">其他设备
+                            <i class=""></i>
+                            <span class="textStyle"  id="side-menu-10"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="grouping">
+                        <a href="" title="分组" ng-click="$location.path('grouping')">分组
+                            <i class=""></i>
+                            <span class="textStyle"  id="side-menu-11"></span>
+                        </a>
+                    </li>
+                    <li class="side-menu-icon menu-details" id="scenes">
+                        <a href="" title="场景" ng-click="$location.path('scenes')">场景
+                            <i class=""></i>
+                            <span class="textStyle" id="side-menu-12"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content-right">
+            <!--<div class="container">-->
+                <div ng-view></div>
+            </div>
+        <!--</div>-->
+    <!--</div>-->
+    <footer>
+        <section id="aboutUS" class="section aboutUS ">
+            <div class="container pad-bot40">
+                <div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
+                    <div class="col-sm-12 align-center" style="text-align:center" >
+                        <img src="../../images/mini.png">&nbsp;&nbsp;
+                        <img src="../../images/html5.png"><br>
+                    </div>
+                </div>
+                <div class="row align-center copyright">
+                    <div class="col-sm-12">
+                        <p>&copy;&nbsp;2018 北京冠川智能技术股份有限公司</p>
+                        <p>
+                            <small><i class="fa fa-building-o"></i>&nbsp;北京市海淀区西土城路10号科研楼815室&nbsp;</small>
+                        </p>
+                        <h4><strong><i class="fa fa-phone"></i>&nbsp;86-010-84935219/0755-28192199</strong></h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
