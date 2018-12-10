@@ -88,6 +88,7 @@ body, h1, h2, h3, h4, h5, h6, p, .h1, .h2, .h3, .h4, .h5, .h6 {
   .navbar-default{
     padding: 12px 0 10px 0;
     background-color: rgb(0,0,0);
+    }
 
   .navbar-default .navbar-collapse{
     margin-top:11px;
@@ -159,6 +160,7 @@ body, h1, h2, h3, h4, h5, h6, p, .h1, .h2, .h3, .h4, .h5, .h6 {
         text-align: center;
         color:#999;
     }
+ }
     /*************************************** BEGIN LOGIN *******************************/
 .modal-content{
     margin-top:80px;

@@ -43,8 +43,8 @@
     </header>
     <div class="content">
         <nav>
-            <!--<div class='side-menu'>-->
-                <ul class="nav navbar-inverse side-menu" role="navigation">
+            <div class='side-menu'>
+                <ul class="nav navbar-inverse" role="navigation">
                     <li class="side-menu-icon menu-details" id="allGateway">
                         <a href="" title="所有网关" ng-click="$location.path('allGateway')">所有网关
                             <span class="textStyle" id="side-menu-1"></span>
@@ -116,14 +116,15 @@
                         </a>
                     </li>
                 </ul>
+            </div>
             </nav>
         </div>
         <div class="content-right">
-            <!--<div class="container">-->
+            <div class="container">
                 <div ng-view></div>
             </div>
-        <!--</div>-->
-    <!--</div>-->
+        </div>
+    </div>
     <footer>
         <section id="aboutUS" class="section aboutUS ">
             <div class="container pad-bot40">
