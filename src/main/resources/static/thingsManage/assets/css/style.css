@@ -432,10 +432,20 @@ DEVICELIST STYLES
 .DGTitle{
     margin:5px 0 0 10px;
 }
+.UGTitle{
+    margin:5px 0 0 10px;
+}
 .DGminTitle{
     overflow: hidden;
 }
 .SearchDG{
+    float: right;
+    height: 20px;
+    margin-top: 10px;
+    margin-right:20px;
+    width: 180px;
+}
+.SearchUG{
     float: right;
     height: 20px;
     margin-top: 10px;

@@ -93,6 +93,9 @@ public class NavigationController {
     @RequestMapping("/plugins")
     public String  plugins() { return "static/thingsManage/plugins"; }
 
+    @RequestMapping("/unbindGateway")
+    public String  unbindGateway() { return "static/thingsManage/unbindGateway"; }
+
     @RequestMapping("/evaluate")
     public String  assess() { return "static/thingsManage/evaluate"; }
 

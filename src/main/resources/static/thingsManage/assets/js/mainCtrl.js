@@ -34,6 +34,10 @@ mainApp.config(["$routeProvider","$locationProvider",function ($routeProvider,$l
             templateUrl:"widgetsLibrary.html",
             controller:"mainCtrl"
         })
+        .when("/unbindGateway",{
+                    templateUrl:"unbindGateway.html",
+                    controller:"mainCtrl"
+                })
         .when("/dashboard",{
             templateUrl:"dashboard.html",
             controller:"mainCtrl"

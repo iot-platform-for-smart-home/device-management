@@ -1,11 +1,22 @@
 
+#J_dotLine{
+    width:100%;
+    height:inherit;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: -2;
+}
+.content{
+    padding:10px 30px 30px 40px;
+}
 .side-menu {
     width:20%;
     font-size:16px;
 }
 .menu-details{
 
-}
+}height
 .content-right{
     width:80%;
 }

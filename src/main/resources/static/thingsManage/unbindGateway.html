@@ -1,0 +1,41 @@
+<div class="" ng-controller="unbindGatewayCtrl">
+    <div class="container">
+        <!--标题-->
+        <div class="row">
+            <div class="col-xs-5 col-sm-5">
+                <span style="font-size: 30px;" id="GatewayList">Gateway List</span>
+            </div>
+        </div>
+        <!--每页显示数量-->
+        <div class="row" style="margin-top: 10px;margin-left: 4%;" id="searchRow">
+            <div class="col-xs-4 col-sm-4 col-md-3" >
+                <span id="display"></span>
+                <input type="text" id="GatewayListNum" style="width: 50px;border-radius: 5px;" ng-change="GatewayListNumChoose()" ng-model="myNum" placeholder="9">
+                <span id="devices"> </span>
+            </div>
+            <div class="col-xs-3 col-sm-offset-4 col-sm-3 col-md-3">
+                <div class="input-group" id="searchDeviceWidth">
+                    <input type="text" class="form-control" placeholder="请输入设备名称..." id="searchGatewayText">
+                    <span class="input-group-btn">
+                        <button class="btn btn-basic" type="button" ng-click="searchDevice()"><i class="fa fa-search"></i></button>
+                    </span>
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-4 -->
+        </div>
+        <div class="row" id="GatewayListRow">
+            <!--<div id="preDevice" ng-click="preGatewayInfo()"><i class="fa fa-chevron-left"></i></div>-->
+            <div id="preDevice" ng-click="preGatewayInfo()"><i class="fa fa-chevron-left"></i></div>
+            <div id="GatewayListIcon">
+                <div class="chooseBtn"  ng-click="show(data)" ng-style="data.style"  ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
+                    <div title="Customerid">
+                        <i class="fa fa-file-text fa-2x"></i>
+                        <p>Customerid:</p>
+                        <p>Gateway_30222:</p>
+                    </div>
+                </div>
+            </div>
+            <div id="nextDevice" ng-click="nextDeviceInfo()"><i class="fa  fa-chevron-right"></i></div>
+        </div>
+</div>
+
+<script type="text/javascript" src="static/thingsManage/assets/js/unbindGatewaySwitch.js" ></script>

@@ -89,6 +89,7 @@
 
     <script type="text/javascript" src="static/thingsManage/assets/js/angular-file-upload.js"></script>
 
+    <script type="text/javascript" src="static/thingsManage/assets/js/unbindGatewayCtrl.js"></script>
 </head>
 <body ng-controller="mainCtrl">
 
@@ -194,7 +195,12 @@
                         <span class="textStyle" id="side-menu-8"></span>
                     </a>
                 </li>
-
+                <li class="side-menu-icon tenantMenu" id="unbindGateway">
+                    <a href="" title="解绑网关" ng-click="$location.path('unbindGateway')">
+                        <i class="fa fa-file-text-o fontStyle "></i>
+                        <span class="textStyle" id="side-menu-11"></span>
+                    </a>
+                </li>
                 <!--<li class="side-menu-icon tenantMenu" id="dashboard">-->
                     <!--<a href="" title="仪表盘" ng-click="$location.path('dashboard')">-->
                         <!--<i class="fa fa-clock-o fontStyle "></i>-->
