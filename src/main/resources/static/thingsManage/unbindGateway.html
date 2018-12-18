@@ -17,7 +17,7 @@
                 <div class="input-group" id="searchDeviceWidth">
                     <input type="text" class="form-control" placeholder="请输入设备名称..." id="searchGatewayText">
                     <span class="input-group-btn">
-                        <button class="btn btn-basic" type="button" ng-click="searchDevice()"><i class="fa fa-search"></i></button>
+                        <button class="btn btn-basic" type="button" ng-click="searchGateway()"><i class="fa fa-search"></i></button>
                     </span>
                 </div><!-- /input-group -->
             </div><!-- /.col-lg-4 -->
@@ -26,15 +26,41 @@
             <!--<div id="preDevice" ng-click="preGatewayInfo()"><i class="fa fa-chevron-left"></i></div>-->
             <div id="preDevice" ng-click="preGatewayInfo()"><i class="fa fa-chevron-left"></i></div>
             <div id="GatewayListIcon">
-                <div class="chooseBtn"  ng-click="show(data)" ng-style="data.style"  ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
+                <div class="chooseBtn"  ng-style="data.style"  ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
                     <div title="Customerid">
-                        <i class="fa fa-file-text fa-2x"></i>
+                        <!--<i class="fa fa-file-text fa-2x"></i>-->
                         <p>Customerid:</p>
                         <p>Gateway_30222:</p>
+                        <span type="button" class="btn abilityDelete" data-toggle="modal" data-target="#unbindGW" ng-disabled="flag">
+                            <i class="glyphicon glyphicon-new-window userDelete" title="解绑网关"></i>
+                        </span>
                     </div>
                 </div>
             </div>
-            <div id="nextDevice" ng-click="nextDeviceInfo()"><i class="fa  fa-chevron-right"></i></div>
+            <div id="nextDevice" ng-click="nextGatewayInfo()"><i class="fa  fa-chevron-right"></i></div>
+        </div>
+        <!--解绑网关界面弹出框-->
+        <div class="modal fade" id="unbindGW" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModaLabel" id="gwUnbind">
+                        </h4>
+                    </div>
+                    <div class="modal-body" id="gwUnbindConfirm">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="gwCancelUnbind">
+                        </button>
+                        <button type="button" class="btn btn-basic" ng-click="unbindGW()" id="gwConfirmUnbind">
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
         </div>
 </div>
 

@@ -9,14 +9,22 @@ $(document).ready(function () {
     if(lang_flag==1){
         document.getElementById("GatewayList").innerText="网关列表";
         document.getElementById("display").innerText="每页显示";
-        document.getElementById("devices").innerText="个设备";
+        document.getElementById("devices").innerText="个网关";
         document.getElementById("searchGatewayText").setAttribute("placeholder","请输入网关名称...");
+        document.getElementById("gwUnbind").innerText="解绑网关";
+        document.getElementById("gwUnbindConfirm").innerText="确定解绑此网关？";
+        document.getElementById("gwCancelUnbind").innerText="取消";
+        document.getElementById("gwConfirmUnbind").innerText="确定";
     }
     else{
         document.getElementById("GatewayList").innerText="Gateway List";
         document.getElementById("display").innerText=" ";
-        document.getElementById("devices").innerText="devices per page";
+        document.getElementById("devices").innerText="gateways per page";
         document.getElementById("searchGatewayText").setAttribute("placeholder","Please input the gateway name...");
+        document.getElementById("gwUnbind").innerText="Unbind Gateway";
+        document.getElementById("gwUnbindConfirm").innerText="Are you sure to unbind this gateway？";
+        document.getElementById("gwCancelUnbind").innerText="Cancel";
+        document.getElementById("gwConfirmUnbind").innerText="Yes";
     }
 });
 
