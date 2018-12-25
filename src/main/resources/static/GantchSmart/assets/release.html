@@ -5,10 +5,13 @@
     <title>冠川智能->发布</title>
     <link rel="icon" href="../../images/g.ico" type="image/x-icon"/>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-select/1.12.4/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/release.css" rel="stylesheet"/>
     <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular.js"></script>
     <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-route.js"></script>
@@ -40,8 +43,178 @@
             </div>
         </nav>
     </header>
-    <div style="height:600px;width:100%">
-        敬请期待发布留言！！！！
+    <div class="context">
+        <div class="row">
+            <div class="left col-lg-3">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge list-group-item-success">4</span>
+                        这里已经有很多评论啦！
+                    </li>
+                </ul>
+            </div>
+            <div class="right" style="width:300px;">
+                <p>
+                    <span class="input_ico" style="position:relative;">
+                        <i class="fa fa-search"></i>
+                        <input class="form-control" style="width:200px;display: inline-block;" type="text" placeholder="请输入搜索内容..." id="searchRelease">
+                    </span>
+                    <span  class="icon-release" data-toggle="modal" data-target="#modal_release" ng-disabled="flag">
+                        <i class="fa fa-plus-square-o" title="写评论"></i>
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" src="../../images/mini.png" alt="...">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">&nbsp;linda</h4>
+                <p>&nbsp;2017-08-08&nbsp;&nbsp;23:15发表</p>
+                <hr style="width:100%;">
+            </div>
+            <div class="content">
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>
+                    <span>
+                        <i class="fa fa-thumbs-up" style="color:red;"></i><span>&nbsp;10</span>
+                    </span>
+                    <span class="right">
+                        <i class="fa fa-thumbs-up"></i>&nbsp;
+                        <i class="fa fa-comment"></i>
+                    </span>
+                </p>
+                <p>
+                    <input type="text" class="input_others" placeholder="评论..." style="width:100%;">
+                </p>
+            </div>
+        </div>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" src="../../images/mini.png" alt="...">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">&nbsp;linda</h4>
+                <p>&nbsp;2017-08-08&nbsp;&nbsp;23:15发表</p>
+                <hr style="width:100%;">
+            </div>
+            <div class="content">
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>
+                    <span>
+                        <i class="fa fa-thumbs-up" style="color:red;"></i><span>&nbsp;10</span>
+                    </span>
+                    <span class="right">
+                        <i class="fa fa-thumbs-up"></i>&nbsp;
+                        <i class="fa fa-comment"></i>
+                    </span>
+                </p>
+                <p>
+                    <input type="text" class="input_others" placeholder="评论..." style="width:100%;">
+                </p>
+            </div>
+        </div>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" src="../../images/mini.png" alt="...">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">&nbsp;linda</h4>
+                <p>&nbsp;2017-08-08&nbsp;&nbsp;23:15发表</p>
+                <hr style="width:100%;">
+            </div>
+            <div class="content">
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>
+                    <span>
+                        <i class="fa fa-thumbs-up" style="color:red;"></i><span>&nbsp;10</span>
+                    </span>
+                    <span class="right">
+                        <i class="fa fa-thumbs-up"></i>&nbsp;
+                        <i class="fa fa-comment"></i>
+                    </span>
+                </p>
+                <p>
+                    <input type="text" class="input_others" placeholder="评论..." style="width:100%;">
+                </p>
+            </div>
+        </div>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" src="../../images/mini.png" alt="...">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">&nbsp;linda</h4>
+                <p>&nbsp;2017-08-08&nbsp;&nbsp;23:15发表</p>
+                <hr style="width:100%;">
+            </div>
+            <div class="content">
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>
+                    <span>
+                        <i class="fa fa-thumbs-up" style="color:red;"></i><span>&nbsp;10</span>
+                    </span>
+                    <span class="right">
+                        <i class="fa fa-thumbs-up"></i>&nbsp;
+                        <i class="fa fa-comment"></i>
+                    </span>
+                </p>
+                <p>
+                    <input type="text" class="input_others" placeholder="评论..." style="width:100%;">
+                </p>
+            </div>
+        </div>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" src="../../images/mini.png" alt="...">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">&nbsp;linda</h4>
+                <p>&nbsp;2017-08-08&nbsp;&nbsp;23:15发表</p>
+                <hr style="width:100%;">
+            </div>
+            <div class="content">
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>Clla vel metus scelerisqpis.</p>
+                <p>
+                    <span>
+                        <i class="fa fa-thumbs-up" style="color:red;"></i><span>&nbsp;10</span>
+                    </span>
+                    <span class="right">
+                        <i class="fa fa-thumbs-up"></i>&nbsp;
+                        <i class="fa fa-comment"></i>
+                    </span>
+                </p>
+                <p>
+                    <input type="text" class="input_others" placeholder="评论...">
+                </p>
+            </div>
+        </div>
+        <div class="set-shownum">
+            <span>
+                <span>每页评论数</span>
+                <span>
+                    <select autocomplete="off" name="perPageSelect" class="show-num">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </span>
+            </span>
+            <span class="right">
+                <i class="glyphicon glyphicon-chevron-left"></i><span>上一页 </span>
+                <!--<i class="fa fa-angle-left"></i><span>上一页 </span>-->
+                <span>&nbsp;2&nbsp;</span>
+                <span>下一页</span><i class="glyphicon glyphicon-chevron-right"></i>
+                <!--<span>下一页</span><i class="fa fa-angle-right"></i>-->
+            </span>
+        </div>
     </div>
     <footer>
         <section id="aboutUS" class="section aboutUS ">
@@ -64,5 +237,35 @@
             </div>
         </section>
     </footer>
+    <!--写评论界面弹出框-->
+    <div class="modal fade" id="modal_release" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">写评论
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <textarea type="text" placeholder="评论内容..."></textarea>
+                    <p></p>
+                    <i class="glyphicon glyphicon-picture" style="font-size:60px;"></i>
+                    <a href="#" class="g-u ks-uploader-button" style="font-size:20px;">上传图片</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal" id="Cancel">
+                    取消</button>
+                    <button type="button" class="btn btn-success" ng-click="Release_Yes()" id="Confirm">
+                    发布</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <script src="js/canvas-nest.js" type="text/javascript" color="32,178,170" pointColor="32,178,170" opacity='0.7' zIndex="-2" count="120"></script>
+    <script src="js/canvas-nest.umd.js" type="text/javascript"></script>
+    <script src="js/releaseCtrl.js" type="text/javascript"></script>
 </body>
 </html>

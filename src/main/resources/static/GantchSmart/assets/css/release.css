@@ -1,0 +1,77 @@
+.context{
+    padding:25px 200px 10px 200px;
+}
+.left{
+    float:left;
+}
+.right{
+    float:right;
+}
+.input_ico>i{
+    position:absolute;
+    top:2px;
+    left:10px;
+    margin:0
+}
+.icon-release{
+    vertical-align: middle;
+    display: inline-block;
+}
+.icon-release>i{
+    font-size: 40px;
+}
+.media{
+    background-color:rgba(229,232,232,0.4);
+    padding:15px 25px 10px 25px;
+}
+.input_others{
+    width:100%;
+    display:none;
+}
+.set-shownum{
+    padding:15px 25px 10px 25px;
+}
+.show-num{
+    background-color: transparent;
+    width: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    height: auto;
+    font-size: 14px;
+    margin-left: 8px;
+    color: #606266;
+    font-weight: 700;
+}
+
+.modal-body>textarea{
+    height:100px;
+    width:100%;
+}
+button.btn {
+    height:34px;
+    width:54px;
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+}
+button.close{
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冠川智能->大数据</title>
+    <link rel="icon" href="../../images/g.ico" type="image/x-icon"/>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-route.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-resource.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-mocks.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.9/angular-animate.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header" >
+                    <a class="navbar-brand" href="/">
+                        <img class="" src="../../images/gantch_logo.png">
+                        大数据
+                    </a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="" class="scrollto"><span  id="chooseChinese" onclick="">中文</span><span> / </span><span  id="chooseEnglish"  onclick="">English</span></a></li>
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle user" data-toggle="dropdown"><i class="fa fa-user"></i> 用户名<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="release.html" class="scrollto">发布留言</a></li>
+                                <li><a href="home.html" class="scrollto">退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div style="height:auto; padding:25px 170px 20px 170px;">
+            <div  style="background-color:rgba(242,244,244,1);padding:10px 10px 10px 10px;">
+            <div>
+                <div class="THSensor" style="width:100%;">
+                    <div id="TSensor" style="width:50%;height:400px;float:left;"></div>
+                    <div id="HSensor" style="width:50%;height:400px;float:right;"></div>
+                </div>
+                <div style="width:100%;">
+                    <div id="deviceType" style="width:50%;height:400px;float:left;"></div>
+                    <div id="lineChart" style="width:50%;height:400px;float:right;"></div>
+                </div>
+            </div>
+            <div>
+                &nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <section id="aboutUS" class="section aboutUS ">
+            <div class="container pad-bot40">
+                <div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
+                    <div class="col-sm-12 align-center" style="text-align:center" >
+                        <img src="../../images/mini.png">&nbsp;&nbsp;
+                        <img src="../../images/html5.png"><br>
+                    </div>
+                </div>
+                <div class="row align-center copyright">
+                    <div class="col-sm-12">
+                        <p>&copy;&nbsp;2018 北京冠川智能技术股份有限公司</p>
+                        <p>
+                            <small><i class="fa fa-building-o"></i>&nbsp;北京市海淀区西土城路10号科研楼815室&nbsp;</small>
+                        </p>
+                        <h4><strong><i class="fa fa-phone"></i>&nbsp;86-010-84935219/0755-28192199</strong></h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <script src="js/canvas-nest.js" type="text/javascript" color="32,178,170" pointColor="32,178,170" opacity='0.7' zIndex="-2" count="120"></script>
+    <script src="js/canvas-nest.umd.js" type="text/javascript"></script>
+    <script src="js/echarts.min.js" type="text/javascript"></script>
+    <script src="js/bigData.js" type="text/javascript"></script>
+</body>
+</html>

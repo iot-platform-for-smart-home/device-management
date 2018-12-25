@@ -22,19 +22,19 @@
                 </div><!-- /input-group -->
             </div><!-- /.col-lg-4 -->
         </div>
-        <div class="row" id="GatewayListRow">
+        <div class="row">
             <!--<div id="preDevice" ng-click="preGatewayInfo()"><i class="fa fa-chevron-left"></i></div>-->
             <div id="preDevice" ng-click="preGatewayInfo()"><i class="fa fa-chevron-left"></i></div>
-            <div id="GatewayListIcon">
-                <div class="chooseBtn"  ng-style="data.style"  ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
-                    <div title="Customerid">
+            <div class="abilityIcon">
+                <div class="GWstyle"  ng-style="data.style"  ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
+                    <!--<div class="items">-->
                         <!--<i class="fa fa-file-text fa-2x"></i>-->
-                        <p>Customerid:</p>
-                        <p>Gateway_30222:</p>
-                        <span type="button" class="btn abilityDelete" data-toggle="modal" data-target="#unbindGW" ng-disabled="flag">
-                            <i class="glyphicon glyphicon-new-window userDelete" title="解绑网关"></i>
-                        </span>
-                    </div>
+                        <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="Customerid"></span><span>user12</span></p>
+                        <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="Gateway_30222"></span><span>gateway14</span></p>
+                    <!--</div>-->
+                    <span type="button" class="btn abilityUnbind" data-toggle="modal" data-target="#unbindGW" ng-disabled="flag">
+                            <i id="unbindGW-i" class="glyphicon glyphicon-edit userDelete"></i>
+                    </span>
                 </div>
             </div>
             <div id="nextDevice" ng-click="nextGatewayInfo()"><i class="fa  fa-chevron-right"></i></div>

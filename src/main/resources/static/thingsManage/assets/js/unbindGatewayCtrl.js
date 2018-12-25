@@ -7,11 +7,11 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
     var showNum = 9;//用于记录每次显示多少个网关
 
-    var preGatewayCustomerIdArr = [];//用于记录网关列表展示时向前翻页
+    var preCustomerIdArr = [];//用于记录网关列表展示时向前翻页
     var preGateway_30222Arr = [];//用于网关列表展示时向前翻页
-    var preGatewayCustomerId;//用于网关列表展示时向前翻页
+    var preCustomerId;//用于网关列表展示时向前翻页
     var preGateway_30222;//用于网关列表展示时向前翻页
-    var nextGatewayCustomerId;//用于网关列表展示时向后翻页
+    var nextCustomerId;//用于网关列表展示时向后翻页
     var nextGateway_30222;//用于网关列表展示时向后翻页
     var pageNum = 1;//用于记录当前页号
 
@@ -23,7 +23,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
     /*返回值为所有网关信息*/
 //    initUrl = "/api/device/alldevices?limit=" + showNum;
-//    prePageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
+//    prePageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_30222;
 
 
 //    var obj = $resource("/api/device/alldevices?limit=1000");
@@ -50,26 +50,26 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 //                    /*用于翻页*/
 //                    nextGatewayCustomerId = $scope.gatewayList[last].customerid;
 //                    nextGateway_30222 = $scope.gatewayList[last].gateway_30222;
-//                    preGatewayCustomerIdArr.push($scope.gatewayList[last].customerid);
+//                    preCustomerIdArr.push($scope.gatewayList[last].customerid);
 //                    preGateway_30222Arr.push($scope.gatewayList[last].gateway_30222);
 //
-//                    console.log(nextGatewayCustomerId);
+//                    console.log(nextCustomerId);
 //                    console.log(nextGateway_30222);
 //                }
 //            }
 //        });
       /*查看下一页设备*/
 //    $scope.nextGatewayInfo = function () {
-//        console.log(nextDeviceId);
-//        console.log(nextDeviceName);
+//        console.log(nextCustomerId);
+//        console.log(nextGateway_30222);
 //        // if ($.cookie("userLevel") === "CUSTOMER_USER") {
-//        //     prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
+//        //     prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_30222;
 //        // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
 //        // }
 //
-//        nextPageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextDeviceName;
+//        nextPageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_30222;
 //
-//        if (nextDeviceId && nextDeviceName) {
+//        if (nextCustomerId && nextGateway_30222) {
 //            $.ajax({
 //                url: nextPageUrl,
 //                contentType: "application/json; charset=utf-8",
@@ -88,20 +88,19 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 //                    }
 //                    else {
 //                        pageNum++;
-//                        $scope.deviceList = msg;
-//                        var last = $scope.deviceList.length - 1;
-//                        // console.log($scope.deviceList);
+//                        $scope.gatewayList = msg;
+//                        var last = $scope.gatewayList.length - 1;
+//                        // console.log($scope.gatewayList);
 //
 //                        allDeviceId = [];
-//                        for (var i = 0; i < $scope.deviceList.length; i++) {
-//                            allDeviceId.push($scope.deviceList[i].id);
-//                        }
-//
-//                        nextDeviceId = $scope.deviceList[last].id;
-//                        nextDeviceName = $scope.deviceList[last].name;
-//                        preDeviceIdArr.push($scope.deviceList[last].id);
-//                        preDeviceNameArr.push($scope.deviceList[last].name);
-//                        // console.log(preDeviceIdArr);
+//                        for (var i = 0; i < $scope.gatewayList.length; i++) {
+//                            allGateway_30222.push($scope.gatewayList[i].id);
+                        }
+//                        nextCustomerId = $scope.gatewayList[last].customerid;
+//                        nextGateway_30222 = $scope.gatewayList[last].gateway_30222;
+//                        preCustomerIdArr.push($scope.gatewayList[last].customerid);
+//                        preGateway_30222Arr.push($scope.gatewayList[last].gateway_30222);
+//                        // console.log(preCustomerIdArr);
 //                    }
 //
 //                },
@@ -145,12 +144,12 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 //                // }
 //
 //            } else {
-//                preDeviceId = preDeviceIdArr[pageNum - 3];
-//                preDeviceName = preDeviceNameArr[pageNum - 3];
+//                preCustomerId = preCustomerIdArr[pageNum - 3];
+//                preGateway_30222 = preGateway_30222Arr[pageNum - 3];
 //                // if ($.cookie("userLevel") === "CUSTOMER_USER") {
-//                //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + preDeviceId + "&textOffset=" + preDeviceName;
+//                //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + preCustomerId + "&textOffset=" + preGateway_30222;
 //                // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
-//                    url = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + preDeviceId + "&textOffset=" + preDeviceName;
+//                    url = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + preCustomerId + "&textOffset=" + preGateway_30222;
 //                // }
 //                // console.log(pageNum);
 //            }
@@ -161,17 +160,18 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 //                type: "GET",
 //                success: function (msg) {
 //                    pageNum--;
-//                    $scope.deviceList = msg;
-//                    var last = $scope.deviceList.length - 1;
-//                    // console.log($scope.deviceList);
+//                    $scope.gatewayList = msg;
+//                    var last = $scope.gatewayList.length - 1;
+//                    // console.log($scope.gatewayList);
 //
 //                    allDeviceId = [];
-//                    for (var i = 0; i < $scope.deviceList.length; i++) {
-//                        allDeviceId.push($scope.deviceList[i].id);
+//                    for (var i = 0; i < $scope.gatewayList.length; i++) {
+//                        allGateway_30222.push($scope.gatewayList[i].id);
 //                    }
 //
-//                    nextDeviceId = $scope.deviceList[last].id;
-//                    nextDeviceName = $scope.deviceList[last].name;
+//                    nextCustomerId = $scope.gatewayList[last].customerid;
+//                    nextGateway_30222 = $scope.gatewayList[last].gateway_30222;
+
 //                }
 //            });
 //        }
