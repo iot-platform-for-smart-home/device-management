@@ -297,6 +297,41 @@ public class DeviceController extends DefaultThingsboardAwaredController {
         }
     }
 
+    //获取所有绑定的网关的接口
+    @RequestMapping(value = "/assignGateways", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getAllAssignGateways(@RequestParam int limit,
+                                   @RequestParam(required = false) String textSearch,
+                                   @RequestParam(required = false) String idOffset,
+                                   @RequestParam(required = false) String textOffset) {
+
+        String requestAddr = "http://" + getDeviceAccessServer() + "/api/v1/deviceaccess/assignGateways?limit=" + limit;
+        if(textSearch != null){
+            requestAddr = requestAddr + "&textSearch=" + textSearch;
+        }
+        if(idOffset != null){
+            requestAddr = requestAddr + "&idOffset=" + idOffset;
+        }
+        if(textOffset != null){
+            requestAddr = requestAddr + "&textOffset=" + textOffset;
+        }
+
+        String responseContent = null ;
+        try{
+            responseContent = HttpUtil.sendGetToThingsboard(requestAddr,
+                    null,
+                    request.getSession());
+        } catch (Exception e) {
+            return retFail(e.toString()) ;
+        }
+
+        try {
+            return retSuccess(decodeArray(responseContent)) ;
+        } catch (Exception e) {
+            return retFail(e.toString()) ;
+        }
+    }
+
 
     //获取设备token
     @RequestMapping(value = "/token/{deviceId}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
