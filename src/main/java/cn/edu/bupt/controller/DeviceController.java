@@ -454,6 +454,28 @@ public class DeviceController extends DefaultThingsboardAwaredController {
         }
     }
 
+    @RequestMapping(value = "/unassign/gateways/{customerId}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String getCustomerDevices(@PathVariable("customerId") Integer cId,
+                                     @RequestParam String gateway_name) {
+
+        String requestAddr = "/api/v1/deviceaccess/unassign/" + getCustomerId() + "/" + cId
+                + "?gateway_name=" + gateway_name;
+        String responseContent = null;
+        try {
+            responseContent = HttpUtil.sendGetToThingsboard("http://" + getDeviceAccessServer() + requestAddr,
+                    null,
+                    request.getSession());
+        } catch (Exception e) {
+            return retFail(e.toString());
+        }
+        try {
+            return retSuccess(decodeArray(responseContent));
+        } catch (Exception e) {
+            return retFail(e.toString());
+        }
+    }
+
 
 
     //增加显示警报的方法
