@@ -578,8 +578,11 @@ serviceGroup
 .abilityIcon{
     /*width: 58%;*/
     /*float: left;*/
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 
+    margin-left: 60px;
+    float: left;
+    width: 80%;
 }
 .abilityBackgroundstyle{
     width: 210px;
