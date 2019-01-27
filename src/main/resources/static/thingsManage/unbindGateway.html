@@ -24,20 +24,20 @@
         </div>
         <div class="row"  id="GatewayListRow">
             <!--<div id="preDevice" ng-click="preGatewayInfo()"><i class="fa fa-chevron-left"></i></div>-->
-            <div id="preDevice" ng-click="preGatewayInfo()"><i class="fa fa-chevron-left"></i></div>
+            <div id="preDevice" ng-click="preGatewayInfo()" style="margin-top: 20%;"><i class="fa fa-chevron-left"></i></div>
             <div class="abilityIcon">
-                <div class="GWstyle" ng-repeat="data in gatewayList" ng-click="show(data)" ng-style="data.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
+                <div class="GWstyle" ng-repeat="data in gatewayList" ng-style="data.style" ng-mouseover="fadeSiblings()" ng-mouseout="reSiblings()" >
                     <!--<div class="items">-->
                         <!--<i class="fa fa-file-text fa-2x"></i>-->
                         <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="customerId"></span><span>{{data.customerId}}</span></p>
                         <p class="style"><i class="fa fa-cog fa-cart-plus"></i><span id="name"></span><span>{{data.name}}</span></p>
                     <!--</div>-->
                     <span type="button" class="btn abilityUnbind" data-toggle="modal" data-target="#unbindGW" ng-disabled="flag">
-                            <i id="unbindGW-i" class="glyphicon glyphicon-edit userDelete"></i>
+                            <i id="unbindGW-i" class="glyphicon glyphicon-edit userDelete" ng-click="show(data)"></i>
                     </span>
                 </div>
             </div>
-            <div id="nextDevice" ng-click="nextGatewayInfo()" style="opacity:0.3;"><i class="fa  fa-chevron-right"></i></div>
+            <div id="nextDevice" ng-click="nextGatewayInfo()" style="opacity:0.3; margin-top: 20%;"><i class="fa  fa-chevron-right"></i></div>
         </div>
         <!--解绑网关界面弹出框-->
         <div class="modal fade" id="unbindGW" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

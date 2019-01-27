@@ -1,10 +1,11 @@
 mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
-
+    $scope.gatewayInfo;//用于记录当前选中的设备
 
 //    $scope.$location = $location;
 
     var lang_flag=getCookie('Language');
-
+    var customerId;
+    var gateway_Name;
     var showNum = 12;//用于记录每次显示多少个网关
 
     var preCustomerIdArr = [];//用于记录网关列表展示时向前翻页
@@ -27,8 +28,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
 
     var obj = $resource("/api/device/assignGateways?limit=1000");
-    $scope.deviceListAll = obj.query();
-
+    $scope.gatewayListAll = obj.query();
     /*返回值为限制个数的所有网关信息*/
         $.ajax({
             url: initUrl,
@@ -125,6 +125,14 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
     };
 
+/*在右侧表格中显示各个设备的信息*/
+    $scope.show = function (data) {
+        $scope.gatewayInfo = data;
+        console.log(data);
+        $scope.ID = data.id;
+//        $scope.gatewayName = data.name;
+//        $scope.customerId = data.customerId;
+    };
     /*查看上一页设备*/
     $scope.preGatewayInfo = function () {
         var url;
@@ -322,11 +330,11 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     };
     /*
     * 解绑网关
-    * 接口需更改
     */
-    $scope.unbindGW = function () {/*/api/v1/abilityGroup?modelId=:id*/
-        var unbindGWObj = $resource('/api/v1/deviceaccess/unassign/customer/{modelId=:id}');
-        unbindGWObj.delete({id: modelId},{} , function (resp) {
+    $scope.unbindGW = function () {
+        var gatewayName=$scope.gatewayInfo.name;
+        var unbindGWObj = $resource('/unassign/gateways/:CustomerId?gateway_name='+ gatewayName);
+        unbindGWObj.get({CustomerId:$scope.gatewayInfo.customerId},{gatewayName:$scope.gatewayInfo.name} , function (resp) {
             //console.log(resp);
             $("#unbindGW").modal("hide");
              if(lang_flag==1){
