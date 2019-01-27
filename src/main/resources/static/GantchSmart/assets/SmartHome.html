@@ -41,88 +41,98 @@
             </div>
         </nav>
     </header>
-    <div id="github-iframe">
-        <div class="content">
+    <div class="content">
         <!--<canvas id="J_dotLine"></canvas>-->
-            <nav>
+        <nav class="navb">
+            <div class='container'>
                 <div class='side-menu'>
-                    <ul class="nav " role="navigation">
+                    <ul>
                         <li class="side-menu-icon menu-details" id="allGateway">
-                            <a href="" title="所有网关" ng-click="$location.path('allGateway')">所有网关
-                                <span class="textStyle" id="side-menu-1"></span>
+                            <a href="" title="所有网关" ng-click="$location.path('allGateway')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle" id="side-menu-1">所有网关</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="allDevice">
-                            <a href="" title="所有设备" ng-click="$location.path('allDevice')">所有设备
-                                <span class="textStyle" id="side-menu-2"></span>
+                            <a href="" title="所有设备" ng-click="$location.path('allDevice')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle" id="side-menu-2">所有设备</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="lightBulb">
-                            <a href="" title="灯泡" ng-click="$location.path('lightBulb')">灯泡
-                                <i class=""></i>
-                                <span class="textStyle" id="side-menu-3"></span>
+                            <a href="" title="灯泡" ng-click="$location.path('lightBulb')">
+                                <i class="fa fa-lightbulb-o fontStyle"></i>
+                                <span class="textStyle" id="side-menu-3">灯泡</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="socket">
-                            <a href="" title="插座" ng-click="$location.path('socket')">插座
-                                <i class=""></i>
-                                <span class="textStyle" id="side-menu-4"></span>
+                            <a href="" title="插座" ng-click="$location.path('socket')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <!--<icon></icon>-->
+                                <span class="textStyle" id="side-menu-4">插座</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="curtain">
-                            <a href="" title="窗帘" ng-click="$location.path('curtain')">窗帘
-                                <i class=""></i>
-                                <span class="textStyle" id="side-menu-5"></span>
+                            <a href="" title="窗帘" ng-click="$location.path('curtain')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle" id="side-menu-5">窗帘</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="sensor">
-                            <a href="" title="传感器" ng-click="$location.path('sensor')">传感器
-                                <i class=""></i>
-                                <span class="textStyle" id="side-menu-6"></span>
+                            <a href="" title="传感器" ng-click="$location.path('sensor')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle" id="side-menu-6">传感器</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="switch">
-                            <a href="" title="开关" ng-click="$location.path('switch')">开关
-                                <i class=""></i>
-                                <span class="textStyle" id="side-menu-7"></span>
+                            <a href="" title="开关" ng-click="$location.path('switch')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle" id="side-menu-7">开关</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="monitor">
-                            <a href="" title="监控" ng-click="$location.path('monitor')">监控
-                                <i class=""></i>
-                                <span class="textStyle" id="side-menu-8"></span>
+                            <a href="" title="监控" ng-click="$location.path('monitor')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle" id="side-menu-8">监控</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="doorLock">
-                            <a href="" title="门锁" ng-click="$location.path('doorLock')">门锁
-                                <i class=""></i>
-                                <span class="textStyle"  id="side-menu-9"></span>
+                            <a href="" title="门锁" ng-click="$location.path('doorLock')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle"  id="side-menu-9">门锁</span>
                             </a>
                         </li>
-                        <li class="side-menu-icon menu-details" id="otherDevice">
-                            <a href="" title="其他设备" ng-click="$location.path('otherDevice')">其他设备
-                                <i class=""></i>
-                                <span class="textStyle"  id="side-menu-10"></span>
+                        <li class="side-menu-icon menu-details" id="otherDevice" style="opacity: 1;">
+                            <a href="" title="其他设备" ng-click="$location.path('otherDevice')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle"  id="side-menu-10">其他设备</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="grouping">
-                            <a href="" title="分组" ng-click="$location.path('grouping')">分组
-                                <i class=""></i>
-                                <span class="textStyle"  id="side-menu-11"></span>
+                            <a href="" title="分组" ng-click="$location.path('grouping')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle"  id="side-menu-11">分组</span>
                             </a>
                         </li>
                         <li class="side-menu-icon menu-details" id="scenes">
-                            <a href="" title="场景" ng-click="$location.path('scenes')">场景
-                                <i class=""></i>
-                                <span class="textStyle" id="side-menu-12"></span>
+                            <a href="" title="场景" ng-click="$location.path('scenes')">
+                                <i class="fa fa-file-text-o fontStyle"></i>
+                                <span class="textStyle" id="side-menu-12">场景</span>
                             </a>
                         </li>
                     </ul>
                 </div>
-            </nav>
-            <div class="content-right">
-                <div class="container">
-                    <div ng-view></div>
+            </div>
+        </nav>
+        <div class="content-wrapper">
+            <!--最终版-->
+            <!--<div class="container">-->
+                <!--<div ng-view></div>-->
+            <!--</div>-->
+            <!--测试版-->
+            <div class="container">>
+                <div ng-view>
+                    设备列表
                 </div>
             </div>
         </div>

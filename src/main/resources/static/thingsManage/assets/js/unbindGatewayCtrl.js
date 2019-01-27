@@ -8,174 +8,178 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     var showNum = 9;//用于记录每次显示多少个网关
 
     var preCustomerIdArr = [];//用于记录网关列表展示时向前翻页
-    var preGateway_30222Arr = [];//用于网关列表展示时向前翻页
+    var preGateway_nameArr = [];//用于网关列表展示时向前翻页
     var preCustomerId;//用于网关列表展示时向前翻页
-    var preGateway_30222;//用于网关列表展示时向前翻页
+    var preGateway_name;//用于网关列表展示时向前翻页
     var nextCustomerId;//用于网关列表展示时向后翻页
-    var nextGateway_30222;//用于网关列表展示时向后翻页
+    var nextGateway_name;//用于网关列表展示时向后翻页
     var pageNum = 1;//用于记录当前页号
 
-    var allGateway_30222 = [];//用于获取当前页面的设备的状态信息
+    var allGateway_name = [];//用于获取当前页面的设备的状态信息
 
     var initUrl;
     var prePageUrl;
     var nextPageUrl;
 
-    /*返回值为所有网关信息*/
-//    initUrl = "/api/device/alldevices?limit=" + showNum;
-//    prePageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_30222;
+//    /*返回值为所有网关信息*/
+    initUrl = "/api/device/assignGateways?limit=" + showNum;
+//    prePageUrl = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_30222;
 
 
-//    var obj = $resource("/api/device/alldevices?limit=1000");
-//    $scope.deviceListAll = obj.query();
+    var obj = $resource("/api/device/assignGateways?limit=1000");
+    $scope.deviceListAll = obj.query();
 
     /*返回值为限制个数的所有网关信息*/
-//        $.ajax({
-//            url: initUrl,
-//            contentType: "application/json; charset=utf-8",
-//            async: false,
-//            type: "GET",
-//            success: function (msg) {
-//                console.log(msg);
-//                if (msg.length != 0) {
-//                    $scope.gatewayList = msg;
-//                    var last = $scope.gatewayList.length - 1;
-//                    console.log($scope.gatewayList);
-//                    console.log($scope.gatewayList.length);
-//
-//                    for (var i = 0; i < $scope.gatewayList.length; i++) {
-//                        allGateway_30222.push($scope.gatewayList[i].gateway_30222);
-//                    }
-//
-//                    /*用于翻页*/
-//                    nextGatewayCustomerId = $scope.gatewayList[last].customerid;
-//                    nextGateway_30222 = $scope.gatewayList[last].gateway_30222;
-//                    preCustomerIdArr.push($scope.gatewayList[last].customerid);
-//                    preGateway_30222Arr.push($scope.gatewayList[last].gateway_30222);
-//
-//                    console.log(nextCustomerId);
-//                    console.log(nextGateway_30222);
-//                }
-//            }
-//        });
-      /*查看下一页设备*/
-//    $scope.nextGatewayInfo = function () {
-//        console.log(nextCustomerId);
-//        console.log(nextGateway_30222);
-//        // if ($.cookie("userLevel") === "CUSTOMER_USER") {
-//        //     prePageUrl = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_30222;
-//        // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
-//        // }
-//
-//        nextPageUrl = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_30222;
-//
-//        if (nextCustomerId && nextGateway_30222) {
-//            $.ajax({
-//                url: nextPageUrl,
-//                contentType: "application/json; charset=utf-8",
-//                async: false,
-//                type: "GET",
-//                success: function (msg) {
-//                    console.log(msg);
-//
-//                    if (msg.length == 0) {
-//                        if(lang_flag==1){
-//                            toastr.warning("当前已是最后一页！");
-//                        }
-//                        else{
-//                            toastr.warning("Currently the last page！");
-//                        }
-//                    }
-//                    else {
-//                        pageNum++;
-//                        $scope.gatewayList = msg;
-//                        var last = $scope.gatewayList.length - 1;
-//                        // console.log($scope.gatewayList);
-//
-//                        allDeviceId = [];
-//                        for (var i = 0; i < $scope.gatewayList.length; i++) {
-//                            allGateway_30222.push($scope.gatewayList[i].id);
-                        }
-//                        nextCustomerId = $scope.gatewayList[last].customerid;
-//                        nextGateway_30222 = $scope.gatewayList[last].gateway_30222;
-//                        preCustomerIdArr.push($scope.gatewayList[last].customerid);
-//                        preGateway_30222Arr.push($scope.gatewayList[last].gateway_30222);
-//                        // console.log(preCustomerIdArr);
-//                    }
-//
-//                },
-//                error: function (err) {
-//                    if(lang_flag==1){
-//                        toastr.warning("当前已是最后一页！");
-//                    }
-//                    else{
-//                        toastr.warning("Currently the last page！");
-//                    }
-//                }
-//            });
-//        } else {
-//            if(lang_flag==1){
-//                toastr.warning("当前已是最后一页！");
-//            }
-//            else{
-//                toastr.warning("Currently the last page！");
-//            }
-//        }
-//
-//    };
-//
-//    /*查看上一页设备*/
-//    $scope.preGatewayInfo = function () {
-//        var url;
-//        if (pageNum == 1) {/*pageNum == 1的时候不发送ajax请求*/
-//            if(lang_flag==1){
-//                toastr.warning("当前已是第一页！");
-//            }
-//            else{
-//                toastr.warning("Currently the first page！");
-//            }
-//        }
-//        else {
-//            if (pageNum == 2) {
-//                // if ($.cookie("userLevel") === "CUSTOMER_USER") {
-//                //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum;
-//                // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
-//                    url = "/api/device/alldevices?limit=" + showNum;
-//                // }
-//
-//            } else {
-//                preCustomerId = preCustomerIdArr[pageNum - 3];
-//                preGateway_30222 = preGateway_30222Arr[pageNum - 3];
-//                // if ($.cookie("userLevel") === "CUSTOMER_USER") {
-//                //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + preCustomerId + "&textOffset=" + preGateway_30222;
-//                // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
-//                    url = "/api/device/alldevices?limit=" + showNum + "&idOffset=" + preCustomerId + "&textOffset=" + preGateway_30222;
-//                // }
-//                // console.log(pageNum);
-//            }
-//            $.ajax({
-//                url: url,
-//                contentType: "application/json; charset=utf-8",
-//                async: false,
-//                type: "GET",
-//                success: function (msg) {
-//                    pageNum--;
-//                    $scope.gatewayList = msg;
-//                    var last = $scope.gatewayList.length - 1;
-//                    // console.log($scope.gatewayList);
-//
-//                    allDeviceId = [];
-//                    for (var i = 0; i < $scope.gatewayList.length; i++) {
-//                        allGateway_30222.push($scope.gatewayList[i].id);
-//                    }
-//
-//                    nextCustomerId = $scope.gatewayList[last].customerid;
-//                    nextGateway_30222 = $scope.gatewayList[last].gateway_30222;
+        $.ajax({
+            url: initUrl,
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            type: "GET",
+            success: function (msg) {
+                console.log(msg);
+                if (msg.length != 0) {
+                    $scope.gatewayList = msg;
+                    var last = $scope.gatewayList.length - 1;
+                    console.log($scope.gatewayList);
+                    console.log($scope.gatewayList.length);
+                    allGateway_name = [];
 
-//                }
-//            });
-//        }
-//    };
+                    for (var i = 0; i < $scope.gatewayList.length; i++) {
+                        allGateway_name.push($scope.gatewayList[i].name);
+                    }
+
+                    /*用于翻页*/
+                    nextCustomerId = $scope.gatewayList[last].customerId;
+                    nextGateway_name = $scope.gatewayList[last].name;
+                    preCustomerIdArr.push($scope.gatewayList[last].customerId);
+                    preGateway_nameArr.push($scope.gatewayList[last].name);
+
+                    console.log(nextCustomerId);
+                    console.log(nextGateway_name);
+                }
+            }
+        });
+      /*查看下一页设备*/
+    $scope.nextGatewayInfo = function () {
+        console.log(nextCustomerId);
+        console.log(nextGateway_name);
+
+        nextPageUrl = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_name;
+
+        if (nextCustomerId && nextGateway_name) {
+            $.ajax({
+                url: nextPageUrl,
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                type: "GET",
+                success: function (msg) {
+                    console.log(msg);
+
+                    if (msg.length == 0) {
+                        if(lang_flag==1){
+                            toastr.warning("当前已是最后一页！");
+                        }
+                        else{
+                            toastr.warning("Currently the last page！");
+                        }
+                    }
+                    else {
+                        pageNum++;
+                        $scope.gatewayList = msg;
+                        var last = $scope.gatewayList.length - 1;
+                        // console.log($scope.deviceList);
+
+                        allGateway_name = [];
+                        for (var i = 0; i < $scope.gatewayList.length; i++) {
+                            allGateway_name.push($scope.gatewayList[i].name);
+                        }
+
+                        /*用于翻页*/
+                        nextCustomerId = $scope.gatewayList[last].customerId;
+                        nextGateway_name = $scope.gatewayList[last].name;
+                        preCustomerIdArr.push($scope.gatewayList[last].customerId);
+                        preGateway_nameArr.push($scope.gatewayList[last].name);
+
+                        console.log(nextCustomerId);
+                        console.log(nextGateway_name);
+                    }
+
+                },
+                error: function (err) {
+                    if(lang_flag==1){
+                        toastr.warning("当前已是最后一页！");
+                    }
+                    else{
+                        toastr.warning("Currently the last page！");
+                    }
+                }
+            });
+        } else {
+            if(lang_flag==1){
+                toastr.warning("当前已是最后一页！");
+            }
+            else{
+                toastr.warning("Currently the last page！");
+            }
+        }
+
+    };
+
+    /*查看上一页设备*/
+    $scope.preGatewayInfo = function () {
+        var url;
+        if (pageNum == 1) {/*pageNum == 1的时候不发送ajax请求*/
+            if(lang_flag==1){
+                toastr.warning("当前已是第一页！");
+            }
+            else{
+               toastr.warning("Currently the first page！");
+            }
+        }
+        else {
+            if (pageNum == 2) {
+                // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+                //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum;
+                // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
+                    url = "/api/device/assignGateways?limit=" + showNum;
+                // }
+
+            } else {
+                preCustomerId = preCustomerIdArr[pageNum - 3];
+                preGateway_name = preGateway_nameArr[pageNum - 3];
+                // if ($.cookie("userLevel") === "CUSTOMER_USER") {
+                //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + preCustomerId + "&textOffset=" + preGateway_name;
+                // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
+                    url = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + preCustomerId + "&textOffset=" + preGateway_name;
+                // }
+                // console.log(pageNum);
+            }
+            $.ajax({
+                url: url,
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                type: "GET",
+                success: function (msg) {
+                    pageNum--;
+                    $scope.gatewayList = msg;
+                    var last = $scope.gatewayList.length - 1;
+                    // console.log($scope.gatewayList);
+
+                    allGateway_name = [];
+                    for (var i = 0; i < $scope.gatewayList.length; i++) {
+                        allGateway_name.push($scope.gatewayList[i].name);
+                  }
+                    /*用于翻页*/
+                    nextCustomerId = $scope.gatewayList[last].customerId;
+                    nextGateway_name = $scope.gatewayList[last].name;
+
+                    console.log(nextCustomerId);
+                    console.log(nextGateway_name);
+
+              }
+           });
+        }
+    };
 
     /*鼠标移入动画效果*/
     $scope.fadeSiblings = function () {
