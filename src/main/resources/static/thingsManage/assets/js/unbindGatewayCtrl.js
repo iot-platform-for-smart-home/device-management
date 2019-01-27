@@ -332,7 +332,8 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     * 解绑网关
     */
     $scope.unbindGW = function () {
-        var unbindGWObj = $resource('/unassign/gateways/:CustomerId?gateway_name=gatewayName');
+        var gatewayName=$scope.gatewayInfo.name;
+        var unbindGWObj = $resource('/unassign/gateways/:CustomerId?gateway_name='+ gatewayName);
         unbindGWObj.get({CustomerId:$scope.gatewayInfo.customerId},{gatewayName:$scope.gatewayInfo.name} , function (resp) {
             //console.log(resp);
             $("#unbindGW").modal("hide");
