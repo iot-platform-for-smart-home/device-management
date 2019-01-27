@@ -459,8 +459,7 @@ public class DeviceController extends DefaultThingsboardAwaredController {
     public String getCustomerDevices(@PathVariable("customerId") Integer cId,
                                      @RequestParam String gateway_name) {
 
-        String requestAddr = "/api/v1/deviceaccess/unassign/" + getCustomerId() + "/" + cId
-                + "?gateway_name=" + gateway_name;
+        String requestAddr = "/api/v1/deviceaccess/unassign/" + cId + "/?gateway_name=" + gateway_name;
         String responseContent = null;
         try {
             responseContent = HttpUtil.sendGetToThingsboard("http://" + getDeviceAccessServer() + requestAddr,
