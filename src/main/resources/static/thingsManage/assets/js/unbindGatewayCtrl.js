@@ -188,6 +188,53 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
             $(this).css("border-color","#38883C");
         });
     };
+    /*选择每页显示多少设备*/
+        $scope.GatewayListNumChoose = function () {
+            if ($("#GatewayListNum").val() === "") {
+                showNum = 9;
+            } else {
+                showNum = $("#GatewayListNum").val();
+                preCustomerIdArr = [];
+                preGateway_nameArr = [];
+                pageNum = 1;
+            }
+
+            initUrl = "/api/device/assignGateways?limit=" + showNum;
+
+            $("#GatewayListNum").keypress(function () {
+                $.ajax({
+                    url: initUrl,
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    type: "GET",
+                    success: function (msg) {
+
+                        preCustomerIdArr = [];
+                        preGateway_nameArr = [];
+                        pageNum = 1;
+                        $scope.gatewayList = msg;
+                        var last = $scope.gatewayList.length - 1;
+                        console.log($scope.gatewayList);
+                        console.log($scope.gatewayList.length);
+
+                        allGateway_name = [];
+                        for (var i = 0; i < $scope.gatewayList.length; i++) {
+                            allGateway_name.push($scope.gatewayList[i].name);
+                        }
+                        /*用于翻页*/
+                        nextCustomerId = $scope.gatewayList[last].customerId;
+                        nextGateway_name = $scope.gatewayList[last].name;
+                        preCustomerIdArr.push($scope.gatewayList[last].customerId);
+                        preGateway_nameArr.push($scope.gatewayList[last].name);
+
+                        console.log(nextCustomerId);
+                        console.log(nextGateway_name);
+                    }
+                });
+            });
+
+        };
+
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
         $(".chooseBtn").mouseout(function () {
