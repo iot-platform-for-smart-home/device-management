@@ -5,7 +5,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
     var lang_flag=getCookie('Language');
 
-    var showNum = 9;//用于记录每次显示多少个网关
+    var showNum = 12;//用于记录每次显示多少个网关
 
     var preCustomerIdArr = [];//用于记录网关列表展示时向前翻页
     var preGateway_nameArr = [];//用于网关列表展示时向前翻页
@@ -191,7 +191,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     /*选择每页显示多少设备*/
         $scope.GatewayListNumChoose = function () {
             if ($("#GatewayListNum").val() === "") {
-                showNum = 9;
+                showNum = 12;
             } else {
                 showNum = $("#GatewayListNum").val();
                 preCustomerIdArr = [];
