@@ -23,7 +23,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
 //    /*返回值为所有网关信息*/
     initUrl = "/api/device/assignGateways?limit=" + showNum;
-//    prePageUrl = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_30222;
+    prePageUrl = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_name;
 
 
     var obj = $resource("/api/device/assignGateways?limit=1000");
@@ -235,6 +235,75 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
         };
 
+        /*搜索设备*/
+        $scope.ifSearch = false; //判断是否出于搜索状态
+
+        $scope.searchGateway = function () {
+            var textSearch = $("#searchGatewayText").val();
+            var url;
+            console.log(textSearch);
+
+                console.log("租户权限");
+                url="/api/device/tenant/searchCount?textSearch=" + textSearch;
+
+            if(textSearch == "") {
+                if(lang_flag==1){
+                    toastr.warning("请输入设备名称！");
+                }
+                else{
+                    toastr.warning("Please input the device name！");
+                }
+            }
+            else{
+                $.ajax({
+                    url: url,
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    type: "GET",
+                    success: function (msg) {
+                        console.log(msg)
+                        if (msg > 0) {
+                            $scope.ifSearch = true;
+                            $scope.searchCount = msg;
+                        } else {
+                            $scope.ifSearch = false;
+                        }
+                    }
+                });
+
+                //get搜索结果
+                var searchDeviceObj = $resource("/api/device/alldevices?limit=20&textSearch=" + textSearch);
+                $scope.searchGatewayInfo = searchDeviceObj.query();
+                console.log($scope.searchGatewayInfo);
+                console.log($scope.searchGatewayInfo.length);
+
+                $scope.searchGatewayInfo.$promise.then(function (value) {
+                    if (value == false) {
+                        if (lang_flag == 1) {
+                            toastr.warning("网关名称输入有误，无此网关！");
+                        }
+                        else {
+                            toastr.warning("The gateway name was entered incorrectly, no such gateway！");
+                        }
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+                    }
+                    else {
+                        $scope.gatewayList = $scope.searchGatewayInfo;
+
+                       allGateway_name = [];
+                       for (var i = 0; i < $scope.gatewayList.length; i++) {
+                           allGateway_name.push($scope.gatewayList[i].name);
+                       }
+                        $("#searchGatewayText").on("focus", function () {
+                            $(this).val("");
+                        });
+                    }
+                });
+            }
+        };
+
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
         $(".chooseBtn").mouseout(function () {
@@ -255,30 +324,30 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     * 解绑网关
     * 接口需更改
     */
-//    $scope.unbindGW = function () {
-//        var unbindGWObj = $resource('/api/v1/abilityGroup?modelId=:id');
-//        unbindGWObj.delete({id: modelId},{} , function (resp) {
-//            //console.log(resp);
-//            $("#unbindGW").modal("hide");
-//             if(lang_flag==1){
-//                    toastr.success("解绑网关成功！");
-//                }
-//                else{
-//                    toastr.success("Successfully unbind the gateway！");
-//                }
-//                setTimeout(function () {
-//                    window.location.reload();
-//                }, 1000);
-//        }, function (error) {
-//            console.log("解绑网关失败！");
-//            if(lang_flag==1){
-//                toastr.error("解绑网关失败！");
-//            }
-//            else{
-//                toastr.error("Failed to unbind the gateway！");
-//            }
-//        });
-//    }
+    $scope.unbindGW = function () {/*/api/v1/abilityGroup?modelId=:id*/
+        var unbindGWObj = $resource('/api/v1/deviceaccess/unassign/customer/{modelId=:id}');
+        unbindGWObj.delete({id: modelId},{} , function (resp) {
+            //console.log(resp);
+            $("#unbindGW").modal("hide");
+             if(lang_flag==1){
+                    toastr.success("解绑网关成功！");
+                }
+                else{
+                    toastr.success("Successfully unbind the gateway！");
+                }
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1000);
+        }, function (error) {
+            console.log("解绑网关失败！");
+            if(lang_flag==1){
+                toastr.error("解绑网关失败！");
+            }
+            else{
+                toastr.error("Failed to unbind the gateway！");
+            }
+        });
+    }
 });
 function getCookie(Name) {
     var search = Name + "="
