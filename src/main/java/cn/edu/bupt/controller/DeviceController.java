@@ -453,7 +453,7 @@ public class DeviceController extends DefaultThingsboardAwaredController {
             return retFail(e.toString());
         }
     }
-
+    /**/
     @RequestMapping(value = "/unassign/gateways/{customerId}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String getCustomerDevices(@PathVariable("customerId") Integer cId,
