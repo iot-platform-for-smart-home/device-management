@@ -469,7 +469,7 @@ public class DeviceController extends DefaultThingsboardAwaredController {
             return retFail(e.toString());
         }
         try {
-            return retSuccess(decodeArray(responseContent));
+            return retSuccess(responseContent);
         } catch (Exception e) {
             return retFail(e.toString());
         }
