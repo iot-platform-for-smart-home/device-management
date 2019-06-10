@@ -581,10 +581,10 @@ serviceGroup
     /*margin-left: 10px;*/
 
     margin-left: 50px;
-    margin-right: 50px;
+    margin-right: 20px;
     margin-top: 30px;
     float: left;
-    width: 72%;
+    width: 78%;
     overflow-y: auto;
     height: 480px;
 }

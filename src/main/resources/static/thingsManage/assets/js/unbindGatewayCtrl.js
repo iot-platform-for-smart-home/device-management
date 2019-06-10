@@ -6,13 +6,13 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     var lang_flag=getCookie('Language');
     var customerId;
     var gateway_Name;
-    var showNum = 12;//用于记录每次显示多少个网关
+    var showNum = 1000;//用于记录每次显示多少个网关
 
-    var preCustomerIdArr = [];//用于记录网关列表展示时向前翻页
+    var preDeviceIdArr = [];//用于记录网关列表展示时向前翻页
     var preGateway_nameArr = [];//用于网关列表展示时向前翻页
-    var preCustomerId;//用于网关列表展示时向前翻页
+    var preDeviceId;//用于网关列表展示时向前翻页
     var preGateway_name;//用于网关列表展示时向前翻页
-    var nextCustomerId;//用于网关列表展示时向后翻页
+    var nextDeviceId;//用于网关列表展示时向后翻页
     var nextGateway_name;//用于网关列表展示时向后翻页
     var pageNum = 1;//用于记录当前页号
 
@@ -24,7 +24,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
 //    /*返回值为所有网关信息*/
     initUrl = "/api/device/assignGateways?limit=" + showNum;
-    prePageUrl = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_name;
+    prePageUrl = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextGateway_name;
 
 
     var obj = $resource("/api/device/assignGateways?limit=1000");
@@ -49,24 +49,24 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
                     }
 
                     /*用于翻页*/
-                    nextCustomerId = $scope.gatewayList[last].customerId;
+                    nextDeviceId = $scope.gatewayList[last].id;
                     nextGateway_name = $scope.gatewayList[last].name;
-                    preCustomerIdArr.push($scope.gatewayList[last].customerId);
+                    preDeviceIdArr.push($scope.gatewayList[last].id);
                     preGateway_nameArr.push($scope.gatewayList[last].name);
 
-                    console.log(nextCustomerId);
+                    console.log(nextDeviceId);
                     console.log(nextGateway_name);
                 }
             }
         });
       /*查看下一页设备*/
     $scope.nextGatewayInfo = function () {
-        console.log(nextCustomerId);
+        console.log(nextDeviceId);
         console.log(nextGateway_name);
 
-        nextPageUrl = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + nextCustomerId + "&textOffset=" + nextGateway_name;
+        nextPageUrl = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + nextDeviceId + "&textOffset=" + nextGateway_name;
 
-        if (nextCustomerId && nextGateway_name) {
+        if (nextDeviceId && nextGateway_name) {
             $.ajax({
                 url: nextPageUrl,
                 contentType: "application/json; charset=utf-8",
@@ -95,12 +95,12 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
                         }
 
                         /*用于翻页*/
-                        nextCustomerId = $scope.gatewayList[last].customerId;
+                        nextDeviceId = $scope.gatewayList[last].id;
                         nextGateway_name = $scope.gatewayList[last].name;
-                        preCustomerIdArr.push($scope.gatewayList[last].customerId);
+                        preDeviceIdArr.push($scope.gatewayList[last].id);
                         preGateway_nameArr.push($scope.gatewayList[last].name);
 
-                        console.log(nextCustomerId);
+                        console.log(nextDeviceId);
                         console.log(nextGateway_name);
                     }
 
@@ -153,12 +153,12 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
                 // }
 
             } else {
-                preCustomerId = preCustomerIdArr[pageNum - 3];
+                preDeviceId = preDeviceIdArr[pageNum - 3];
                 preGateway_name = preGateway_nameArr[pageNum - 3];
                 // if ($.cookie("userLevel") === "CUSTOMER_USER") {
                 //     url = "/api/device/customerDevices/" + customerId + "?limit=" + showNum + "&idOffset=" + preCustomerId + "&textOffset=" + preGateway_name;
                 // } else if ($.cookie("userLevel") === "TENANT_ADMIN") {
-                    url = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + preCustomerId + "&textOffset=" + preGateway_name;
+                    url = "/api/device/assignGateways?limit=" + showNum + "&idOffset=" + preDeviceId + "&textOffset=" + preGateway_name;
                 // }
                 // console.log(pageNum);
             }
@@ -178,10 +178,10 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
                         allGateway_name.push($scope.gatewayList[i].name);
                   }
                     /*用于翻页*/
-                    nextCustomerId = $scope.gatewayList[last].customerId;
+                    nextDeviceId = $scope.gatewayList[last].id;
                     nextGateway_name = $scope.gatewayList[last].name;
 
-                    console.log(nextCustomerId);
+                    console.log(nextDeviceId);
                     console.log(nextGateway_name);
 
               }
@@ -191,7 +191,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
     /*鼠标移入动画效果*/
     $scope.fadeSiblings = function () {
-        $(".chooseBtn").mouseover(function () {
+        $(".GWstyle").mouseover(function () {
             $(this).siblings().stop().fadeTo(300, 0.3);
             $(this).css("border-color","#38883C");
         });
@@ -199,10 +199,10 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     /*选择每页显示多少设备*/
         $scope.GatewayListNumChoose = function () {
             if ($("#GatewayListNum").val() === "") {
-                showNum = 12;
+                showNum = 9;
             } else {
                 showNum = $("#GatewayListNum").val();
-                preCustomerIdArr = [];
+                preDeviceIdArr = [];
                 preGateway_nameArr = [];
                 pageNum = 1;
             }
@@ -217,7 +217,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
                     type: "GET",
                     success: function (msg) {
 
-                        preCustomerIdArr = [];
+                        preDeviceIdArr = [];
                         preGateway_nameArr = [];
                         pageNum = 1;
                         $scope.gatewayList = msg;
@@ -230,12 +230,12 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
                             allGateway_name.push($scope.gatewayList[i].name);
                         }
                         /*用于翻页*/
-                        nextCustomerId = $scope.gatewayList[last].customerId;
+                        nextDeviceId = $scope.gatewayList[last].id;
                         nextGateway_name = $scope.gatewayList[last].name;
-                        preCustomerIdArr.push($scope.gatewayList[last].customerId);
+                        preDeviceIdArr.push($scope.gatewayList[last].id);
                         preGateway_nameArr.push($scope.gatewayList[last].name);
 
-                        console.log(nextCustomerId);
+                        console.log(nextDeviceId);
                         console.log(nextGateway_name);
                     }
                 });
@@ -314,7 +314,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
 
     /*鼠标移出动画效果*/
     $scope.reSiblings = function () {
-        $(".chooseBtn").mouseout(function () {
+        $(".GWstyle").mouseout(function () {
             $(this).siblings().stop().fadeTo(300, 1);
             $(this).css("border-color","#C0C0C0");
         });
@@ -333,7 +333,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     */
     $scope.unbindGW = function () {
         var gatewayName = $scope.gatewayInfo.name;
-        var customerId = $scope.gatewayInfo.customerId;
+        var customerId = $scope.gatewayInfo.id;
         var unbindGWObj = $resource('/api/device/unassign/gateways/:customerId?gateway_name='+ gatewayName);
         unbindGWObj.get({customerId:$scope.gatewayInfo.customerId},{gatewayName:$scope.gatewayInfo.name} , function (resp) {
             //console.log(resp);
