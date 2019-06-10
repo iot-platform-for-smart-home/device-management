@@ -334,7 +334,7 @@ mainApp.controller("unbindGatewayCtrl", function ($scope, $resource) {
     $scope.unbindGW = function () {
         var gatewayName = $scope.gatewayInfo.name;
         var customerId = $scope.gatewayInfo.customerId;
-        var unbindGWObj = $resource('/unassign/gateways/:customerId?gateway_name='+ gatewayName);
+        var unbindGWObj = $resource('/api/device/unassign/gateways/:customerId?gateway_name='+ gatewayName);
         unbindGWObj.get({customerId:$scope.gatewayInfo.customerId},{gatewayName:$scope.gatewayInfo.name} , function (resp) {
             //console.log(resp);
             $("#unbindGW").modal("hide");
