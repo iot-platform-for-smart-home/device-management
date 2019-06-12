@@ -8,8 +8,10 @@ $(document).ready(function () {
 
     if(lang_flag==1){
         document.getElementById("GatewayListTitle").innerText="网关列表";
-        document.getElementById("display").innerText="每页显示";
-        document.getElementById("devices").innerText="个网关";
+//        document.getElementById("display").innerText="每页显示";
+        document.getElementById("display").innerText="   ";
+//        document.getElementById("devices").innerText="个网关";
+        document.getElementById("devices").innerText="  ";
         document.getElementById("searchGatewayText").setAttribute("placeholder","请输入网关名称...");
         document.getElementById("customerId").innerText=" 用户ID：";
         document.getElementById("name").innerText=" 网关名：";
@@ -22,7 +24,9 @@ $(document).ready(function () {
     else{
         document.getElementById("GatewayListTitle").innerText="Gateway List";
         document.getElementById("display").innerText=" ";
+        document.getElementById("display").innerText="   ";
         document.getElementById("devices").innerText="gateways per page";
+        document.getElementById("devices").innerText="   ";
         document.getElementById("searchGatewayText").setAttribute("placeholder","Please input the gateway name...");
         document.getElementById("customerId").innerText=" CustomerId：";
         document.getElementById("name").innerText=" GatewayName：";
