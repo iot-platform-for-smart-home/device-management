@@ -41,8 +41,8 @@ public class DocumentController {
 
     @RequestMapping(value = "/download/{filename}/{fileType}", method = RequestMethod.GET)
     public void downloadFile(@PathVariable("filename") String filename, @PathVariable("fileType") String fileType, HttpServletResponse response, HttpServletRequest request) throws IOException {
-        response.setCharacterEncoding(request.getCharacterEncoding());
-        response.setContentType("application/octet-stream");
+            response.setCharacterEncoding(request.getCharacterEncoding());
+            response.setContentType("application/octet-stream");
         //filename = URLDecoder.decode(filename,"UTF-8");
         FileInputStream fis = null;
         try {

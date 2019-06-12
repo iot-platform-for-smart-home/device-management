@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
 public class GroupController extends DefaultThingsboardAwaredController{
 
 
-    //获取客户管理的设备组
+    //获取客
     @RequestMapping(value = "/tenantGroups", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String getTenantGroups(@RequestParam int limit, @RequestParam(required = false) String textSearch,
